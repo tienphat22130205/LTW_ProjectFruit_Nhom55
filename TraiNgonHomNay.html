@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- link swiper -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <!-- link style css -->
+        <link rel="stylesheet" href="./css/style.css" />
+        <!-- Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+        <title>Trai Ngon Hom Nay</title>
+      </head>
+      
+<body>
+
+    <!-- header section stars -->
+    <header>
+      <div class="header-container">
+        <div class="left">
+          <div class="menu">
+            <span id="menuToggle" onclick="toggleSidebarMenu()">
+              <i id="menuIcon" class="fa-solid fa-bars"></i></span>
+          </div>
+          <div class="logo">
+            <h1>Vitamin<span>FRUIT</span></h1>
+          </div>
+          <div class="search">
+            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+            <i class="fa-solid fa-search"></i>
+          </div>
+        </div>
+        <div class="center">
+          <div class="delivery" onclick="toggleBranchSelection()">
+            <span>Giao hoặc đến lấy tại ▼</span>
+            <p>Chi nhánh 1 - 43 Nguyễn Thái Học...</p>
+          </div>
+        </div>
+        <div class="right">
+          <div class="hotline">
+            <i class="fas fa-phone"></i>
+            <span>Hotline: 0865660775</span>
+          </div>
+          <div class="account">
+            <i class="fa-solid fa-user"></i>
+            <span>Tài khoản</span>
+          </div>
+          <div class="cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Giỏ hàng</span>
+            <span class="cart-badge">0</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Branch Selection Form -->
+      <div class="branch-selection" id="branchSelection">
+        <h2>KHU VỰC MUA HÀNG</h2>
+        <div class="form-group">
+          <label for="city">Tỉnh/Thành</label>
+          <select id="city">
+            <option>- Chọn Thành phố/ tỉnh -</option>
+            <option>Hồ Chí Minh</option>
+            <!-- Thêm các tỉnh/thành khác nếu cần -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="district">Quận/Huyện</label>
+          <select id="district">
+            <option>- Chọn Quận/Huyện -</option>
+            <option>- Thủ Đức -</option>
+            <option>- Quận 1 -</option>
+            <!-- Thêm các quận/huyện khác nếu cần -->
+          </select>
+        </div>
+  
+        <div class="selected-branch">
+          <p>Giao hoặc đến lấy tại:</p>
+          <div class="branch-info-highlight">
+            <p><strong>Chi nhánh 1 - 43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</strong></p>
+          </div>
+        </div>
+  
+        <p>Chọn cửa hàng gần bạn nhất để tối ưu chi phí giao hàng. Hoặc đến lấy hàng</p>
+  
+        <div class="branch-list">
+          <div class="branch">
+            <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 1</p>
+            <p>43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</p>
+          </div>
+          <div class="branch">
+            <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
+            <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức, Phường An
+              Phú, Thành phố Thủ Đức</p>
+          </div>
+        </div>
+      </div>
+      <div class="login-form" id="loginForm">
+        <h2>ĐĂNG NHẬP</h2>
+        <p>Nhập email và mật khẩu của bạn:</p>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" placeholder="Mật khẩu">
+        </div>
+        <p class="captcha-text">
+            Trang web này được bảo vệ bởi reCAPTCHA và Google
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
+        <button class="login-button">ĐĂNG NHẬP</button>
+        <p class="additional-links">
+          Khách hàng mới? <a href="TaoTaiKhoan.html">Tạo tài khoản</a><br>
+          Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
+        </p>
+      </div>
+      <div class="cart-form" id="cartForm">
+        <h2>GIỎ HÀNG</h2>
+        <hr>
+        <div class="cart-content">
+          <i class="fa-solid fa-cart-shopping cart-icon"></i>
+          <p>Hiện chưa có sản phẩm</p>
+        </div>
+        <hr>
+        <div class="cart-total">
+          <span>TỔNG TIỀN:</span>
+          <span class="total-amount">0₫</span>
+        </div>
+        <a href="card.html" class="view-cart-button">XEM GIỎ HÀNG</a>
+      </div>
+    </header>
+    <!-- Menu Bar dưới Header -->
+    <!-- Menu Bar dưới Header -->
+    <nav class="menu-bar">
+      <ul>
+        <li class="active"><a href="index.html" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="TraiNgonHomNay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="#" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="#" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="#" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="#" onclick="setActive(this)">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
+    <nav class="sidebar-menu" id="sidebarMenu">
+      <ul>
+        <li><a href="index.html" onclick="setActive(this)">Trang chủ</a></li>
+        <li><a href="TraiNgonHomNay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="#" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="#" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="#" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="#" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="#" onclick="setActive(this)">Liên hệ</a></li>
+      </ul>
+    </nav>
+    <!-- header section ends -->
+  
+    <!-- home section starts -->
+    <section class="home" id="home">
+      <div class="swiper-container background-slider">
+        
+      </div>
+     
+    </section>
+  
+
+
+
+
+
+
+     <!-- footer section star ----------------------------------------------------------------->
+     <section class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3><i class="fa-solid fa-shop"></i> fruit</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias,
+            optio!
+          </p>
+          <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-youtube"></a>
+            <a href="#" class="fab fa-tiktok"></a>
+          </div>
+        </div>
+        <div class="box">
+          <h3>liên hệ</h3>
+          <p>Liên hệ chúng tôi tại đây :</p>
+          <a href="#" class="links"><i class="fas fa-phone"></i>+334 286 049</a>
+          <a href="#" class="links"><i class="fas fa-phone"></i>+263 463 463</a>
+          <a href="#" class="links"><i class="fas fa-envelope"></i>phuongtran35789@gmail.com</a>
+          <a href="#" class="links"><i class="fas fa-map-marker-alt"></i>VQCR+GP6, khu phố 6, Thủ Đức,
+            Hồ Chí Minh</a>
+        </div>
+        <div class="box">
+          <h3>liên kết</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias,
+            optio!
+          </p>
+          <a href="#home" class="links"><i class="fas fa-arrow-right"></i>trang chủ</a>
+          <a href="#features" class="links"><i class="fas fa-arrow-right"></i>tính năng</a>
+          <a href="#products" class="links"><i class="fas fa-arrow-right"></i>sản phẩm</a>
+          <a href="#categories" class="links"><i class="fas fa-arrow-right"></i>thể loại</a>
+          <a href="#review" class="links"><i class="fas fa-arrow-right"></i>đánh giá</a>
+          <a href="#blogs" class="links"><i class="fas fa-arrow-right"></i>blogs</a>
+        </div>
+        <div class="box">
+          <h3>bản tin</h3>
+          <p>đăng ký để cập nhật mới nhất</p>
+          <input type="email" placeholder="Nhập email của bạn" class="email" />
+          <input type="submit" value="đăng ký" class="btn" />
+          <div class="payments">
+            <a href="#"><i class="fa-brands fa-cc-visa"></i></a>
+            <a href="#"><i class="fa-solid fa-credit-card"></i></a>
+            <a href="#"><i class="fa-solid fa-wallet"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="credit">Copyright © 2024 <span>Nhom 55 - Trái Cây Chất Lượng Cao</span></div>
+    </section>
+    <!-- footer section end -->
+  
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+    <script src="./javacript/fruit.js"></script>
+</body>
+</html>
