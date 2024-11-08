@@ -7,7 +7,7 @@
         <!-- link swiper -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <!-- link style css -->
-        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/register.css" />
         <!-- Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
         <title>Selling Fruit</title>
@@ -163,20 +163,21 @@
     </ul>
   </nav>
   <!-- header section ends -->
+   <!-- register starts -->
   <div class="register-container">
     <h4>Tạo Tài Khoản</h4>
     <form action="/register" method="POST">
         <label for="username">Họ Và Tên:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" placeholder="Họ và tên..." required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" placeholder=" Email..." required>
 
         <label for="password">Mật Khẩu:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" placeholder="Mật khẩu..." required>
 
         <label for="confirm-password">Xác Thực Mật Khẩu:</label>
-        <input type="password" id="confirm-password" name="confirm_password" required>
+        <input type="password" id="confirm-password" name="confirm_password" placeholder="Xác thực mật khẩu" required>
         <p class="captcha-text">
             Trang web này được bảo vệ bởi reCAPTCHA và Google
             <a href="https://policies.google.com/privacy">Privacy Policy</a> and
@@ -185,11 +186,7 @@
         <button type="submit">Đăng Ký</button>
     </form>
 </div>
-  <!-- home section starts -->
-  <section class="home" id="home">
-    <div class="swiper-container background-slider"> </div>
-  </section>
-
+<!-- register ends -->
   <section class="footer">
     <div class="box-container">
       <div class="box">
@@ -246,6 +243,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <script src="./javacript/fruit.js"></script>
+  <script src="./javacript/register.js"></script>
 </body>
 </html>
