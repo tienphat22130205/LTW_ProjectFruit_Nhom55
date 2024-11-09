@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Shop Trái Cây</title>
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Trái Cây</h2>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#products">Quản lý sản phẩm</a></li>
+            <li><a href="#orders">Quản lý đơn hàng</a></li>
+            <li><a href="#customers">Quản lý khách hàng</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <section id="dashboard">
+            <h1>Dashboard</h1>
+            <p>Tổng quan doanh thu và số lượng sản phẩm bán chạy.</p>
+            <div class="chart">[Biểu đồ doanh thu]</div>
+        </section>
+
+        <section id="products">
+            <h1>Quản lý Sản phẩm</h1>
+            <button onclick="addProduct()">Thêm Sản phẩm</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng tồn kho</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <!-- Sản phẩm sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="orders">
+            <h1>Quản lý Đơn hàng</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã Đơn hàng</th>
+                        <th>Khách hàng</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="order-list">
+                    <!-- Đơn hàng sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="customers">
+            <h1>Quản lý Khách hàng</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên Khách hàng</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                    </tr>
+                </thead>
+                <tbody id="customer-list">
+                    <!-- Khách hàng sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="./javacript/admin.js"></script>
+</body>
+</html>
