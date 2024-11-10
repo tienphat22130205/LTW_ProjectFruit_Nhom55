@@ -660,12 +660,20 @@ body.scrolled-up .menu-bar {
 
 .info-box p {
     margin: 10px 0;
+    color: var(--light-color);
+
 }
 
 .info-box i {
-    margin-right: 10px;
+    margin-right: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--light-color);
+    padding: 10px;
 }
-
+.info-box i:hover{
+    background-color: var(--orange);
+    color: #eee;
+}
 .info-box h2,
 .info-box p,
 .info-box i {
