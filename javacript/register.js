@@ -13,13 +13,6 @@
     form.style.left = `${buttonRect.right - form.offsetWidth - 280}px`; // Căn chỉnh viền phải của form với viền phải của nút
   }
   
-  function toggleLoginForm() {
-    closeAllForms();
-    const loginForm = document.getElementById("loginForm");
-    const button = document.querySelector(".account");
-    setPositionRelativeToButton(loginForm, button);
-    loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
-  }
   
   function toggleBranchForm() {
     closeAllForms();
@@ -30,7 +23,6 @@
   }
   
   document.querySelector(".account").addEventListener("click", toggleLoginForm);
-//   document.querySelector(".cart").addEventListener("click", toggleCartForm);
   document.querySelector(".delivery").addEventListener("click", toggleBranchForm);
   
   window.onclick = function (event) {

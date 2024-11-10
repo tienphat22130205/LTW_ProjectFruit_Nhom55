@@ -63,6 +63,9 @@ section {
     background: #ff8c00;
     /* Chuyển màu để tăng tương tác */
 }
+input, textarea {
+    text-transform: none;
+}
 
 .btn {
     margin-top: .5rem;

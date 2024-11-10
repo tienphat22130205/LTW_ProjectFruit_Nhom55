@@ -99,24 +99,27 @@
             <h2>ĐĂNG NHẬP</h2>
             <p>Nhập email và mật khẩu của bạn:</p>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" placeholder="Mật khẩu">
+              <label for="password">Mật khẩu</label>
+              <input type="password" id="password" placeholder="Mật khẩu">
             </div>
+            <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
             <p class="captcha-text">
-                Trang web này được bảo vệ bởi reCAPTCHA và Google
-                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+              Trang web này được bảo vệ bởi reCAPTCHA và Google
+              <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+              <a href="https://policies.google.com/terms">Terms of Service</a> apply.
             </p>
-            <button class="login-button">ĐĂNG NHẬP</button>
+            <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
             <p class="additional-links">
-                Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
-                Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
+      
+              Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
+      
+              Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
             </p>
-        </div>
+          </div>
         <div class="cart-form" id="cartForm">
             <h2>GIỎ HÀNG</h2>
             <hr>

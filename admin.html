@@ -1,80 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Shop Trái Cây</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
+
 <body>
+    <input type="checkbox" name="" id="nav-toggle">
     <div class="sidebar">
-        <h2>Admin Trái Cây</h2>
-        <ul>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#products">Quản lý sản phẩm</a></li>
-            <li><a href="#orders">Quản lý đơn hàng</a></li>
-            <li><a href="#customers">Quản lý khách hàng</a></li>
-        </ul>
+        <div class="sidebar-brand">
+            <h1><i class="fa-solid fa-leaf"></i> <span>VitaminFRUIT</span></h1>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="#" class="menu-item active" onclick="showSection('dashboard', 'Dashboard')"><span><i
+                                class="fa-solid fa-gauge"></i></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('customers', 'Khách hàng')"><span><i
+                                class="fa-solid fa-user"></i></span>
+                        <span>Khách hàng</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('products', 'Sản phẩm')"><span><i
+                                class="fa-solid fa-box"></i></span>
+                        <span>Sản phẩm</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('orders', 'Đặt hàng')"><span><i
+                                class="fa-solid fa-bag-shopping"></i></span>
+                        <span>Đặt hàng</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('statistics', 'Thống kê doanh thu')"><span><i
+                                class="fa-solid fa-chart-line"></i></span>
+                        <span>Thống kê doanh thu</span></a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="main-content">
-        <section id="dashboard">
-            <h1>Dashboard</h1>
-            <p>Tổng quan doanh thu và số lượng sản phẩm bán chạy.</p>
-            <div class="chart">[Biểu đồ doanh thu]</div>
-        </section>
+        <header>
+            <h1 id="page-title">
+                <label for="nav-toggle">
+                    <span class="fa-solid fa-bars"></span>
+                </label>
+                Dashboard
+            </h1>
+            <div class="search-wrapper">
+                <span class="fa-solid fa-search"></span>
+                <input type="search" placeholder="Bạn muốn tìm gì...">
+            </div>
+            <div class="user-wrapper">
+                <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                <div>
+                    <h4>Admin</h4>
+                    <small>Super admin</small>
+                </div>
+            </div>
+        </header>
+        <main>
+            <!-- dashboard -->
+            <div id="dashboard" class="section active">
+                <div class="cards">
+                    <div class="card-single">
+                        <div>
+                            <h1>45</h1>
+                            <span>Khách hàng</span>
+                        </div>
+                        <div>
+                            <span class="fa-solid fa-users"></span>
+                        </div>
+                    </div>
+                    <div class="card-single">
+                        <div>
+                            <h1>150</h1>
+                            <span>Sản phẩm</span>
+                        </div>
+                        <div>
+                            <span class="fa-solid fa-box"></span>
+                        </div>
+                    </div>
+                    <div class="card-single">
+                        <div>
+                            <h1>57</h1>
+                            <span>Đặt hàng</span>
+                        </div>
+                        <div>
+                            <span class="fa-solid fa-bag-shopping"></span>
+                        </div>
+                    </div>
+                    <div class="card-single">
+                        <div>
+                            <h1>40</h1>
+                            <span>Thống kê sản phẩm</span>
+                        </div>
+                        <div>
+                            <span class="fa-solid fa-chart-line"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-grid">
+                    <div class="customers">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Khách hàng gần đây</h2>
+                                <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-reponsive">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Tên khách hàng</td>
+                                                <td>Sản phẩm mua</td>
+                                                <td>Giá sản phẩm</td>
+                                                <td>Ngày mua</td>
+                                                <td>Chi tiết sản phẩm</td>
+                                                <td>Tình trạng</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Ngô Tiến Phát</td>
+                                                <td>Dâu đà lạt</td>
+                                                <td>200.000đ</td>
+                                                <td>12/11/2023</td>
+                                                <td>
+                                                    <button>Xem chi tiết</button>
+                                                </td>
+                                                <td>
+                                                    <span class="status blue"></span>
+                                                    Đã mua
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Đào Nguyễn Duy Phong</td>
+                                                <td>Táo mỹ</td>
+                                                <td>150.000đ</td>
+                                                <td>10/11/2023</td>
+                                                <td>
+                                                    <button>Xem chi tiết</button>
+                                                </td>
+                                                <td>
+                                                    <span class="status red"></span>
+                                                    Chưa thanh toán
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngô Quan Nhật</td>
+                                                <td>Nho úc</td>
+                                                <td>100.000đ</td>
+                                                <td>09/11/2023</td>
+                                                <td>
+                                                    <button>Xem chi tiết</button>
+                                                </td>
+                                                <td>
+                                                    <span class="status blue"></span>
+                                                    Đã mua
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngô Tiến Phát</td>
+                                                <td>Dâu đà lạt</td>
+                                                <td>200.000đ</td>
+                                                <td>05/11/2023</td>
+                                                <td>
+                                                    <button>Xem chi tiết</button>
+                                                </td>
+                                                <td>
+                                                    <span class="status blue"></span>
+                                                    Đã mua
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Đào Nguyễn Duy Phong</td>
+                                                <td>Táo mỹ</td>
+                                                <td>150.000đ</td>
+                                                <td>03/11/2023</td>
+                                                <td>
+                                                    <button>Xem chi tiết</button>
+                                                </td>
+                                                <td>
+                                                    <span class="status red"></span>
+                                                    Chưa thanh toán
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngô Quan Nhật</td>
+                                                <td>Nho úc</td>
+                                                <td>100.000đ</td>
+                                                <td>03/11/2023</td>
+                                                <td>
+                                                    <button>Xem chi tiết</button>
+                                                </td>
+                                                <td>
+                                                    <span class="status blue"></span>
+                                                    Đã mua
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="flex-container">
+                            <div class="customer">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h2>Khách hàng mới </h2>
+                                        <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="customer">
+                                            <div class="info">
+                                                <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                                                <div>
+                                                    <h4>Nguyen Van A</h4>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <span class="fa-regular fa-circle-user"></span>
+                                                <span class="fa-regular fa-comment"></span>
+                                                <span class="fa-solid fa-phone"></span>
+                                            </div>
+                                        </div>
+                                        <div class="customer">
+                                            <div class="info">
+                                                <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                                                <div>
+                                                    <h4>Le Thi B</h4>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <span class="fa-regular fa-circle-user"></span>
+                                                <span class="fa-regular fa-comment"></span>
+                                                <span class="fa-solid fa-phone"></span>
+                                            </div>
+                                        </div>
+                                        <div class="customer">
+                                            <div class="info">
+                                                <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                                                <div>
+                                                    <h4>Nguyen Hong N</h4>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <span class="fa-regular fa-circle-user"></span>
+                                                <span class="fa-regular fa-comment"></span>
+                                                <span class="fa-solid fa-phone"></span>
+                                            </div>
+                                        </div>
+                                        <div class="customer">
+                                            <div class="info">
+                                                <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                                                <div>
+                                                    <h4>Nguyen Tu A</h4>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <span class="fa-regular fa-circle-user"></span>
+                                                <span class="fa-regular fa-comment"></span>
+                                                <span class="fa-solid fa-phone"></span>
+                                            </div>
+                                        </div>
+                                        <div class="customer">
+                                            <div class="info">
+                                                <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                                                <div>
+                                                    <h4>Ngo Van A</h4>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <span class="fa-regular fa-circle-user"></span>
+                                                <span class="fa-regular fa-comment"></span>
+                                                <span class="fa-solid fa-phone"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h2>Sản phẩm được mua nhiều nhất</h2>
+                                        <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <td>STT</td>
+                                                        <td>Tên sản phẩm</td>
+                                                        <td>Tổng số lượng mua</td>
+                                                        <td>Tổng số tiền</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Dâu Đà Lạt</td>
+                                                        <td>50</td>
+                                                        <td>10,000,000đ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Táo Mỹ</td>
+                                                        <td>45</td>
+                                                        <td>6,750,000đ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Nho Úc</td>
+                                                        <td>40</td>
+                                                        <td>5,200,000đ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Cam Sành</td>
+                                                        <td>35</td>
+                                                        <td>4,900,000đ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Xoài Cát</td>
+                                                        <td>30</td>
+                                                        <td>4,500,000đ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Mâm xôi đen</td>
+                                                        <td>25</td>
+                                                        <td>4,000,000đ</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Dừa xiêm</td>
+                                                        <td>24</td>
+                                                        <td>3,990,000đ</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard">
+                        <!-- Doanh thu 6 tháng qua -->
+                        <div class="chart-box large-chart">
+                            <h3>Doanh thu 6 tháng qua</h3>
+                            <canvas id="monthlyRevenueChart"></canvas>
+                        </div>
+                        
+                        <!-- Doanh thu tháng vừa qua -->
+                        <div class="chart-box small-chart">
+                            <h3>Doanh thu tháng vừa qua</h3>
+                            <canvas id="weeklyRevenueChart"></canvas>
+                        </div>
+                    </div>
+                    
+                </div>
 
-        <section id="products">
-            <h1>Quản lý Sản phẩm</h1>
-            <button onclick="addProduct()">Thêm Sản phẩm</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá</th>
-                        <th>Số lượng tồn kho</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody id="product-list">
-                    <!-- Sản phẩm sẽ được thêm vào đây -->
-                </tbody>
-            </table>
-        </section>
+            </div>
+            <!-- Customer section -->
+            <div id="customers" class="section">
+                <h2>Khách hàng</h2>
+                <p>Đây là nội dung của phần Khách hàng.</p>
+            </div>
 
-        <section id="orders">
-            <h1>Quản lý Đơn hàng</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Mã Đơn hàng</th>
-                        <th>Khách hàng</th>
-                        <th>Trạng thái</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody id="order-list">
-                    <!-- Đơn hàng sẽ được thêm vào đây -->
-                </tbody>
-            </table>
-        </section>
+            <!-- Products section -->
+            <div id="products" class="section">
+                <h2>Sản phẩm</h2>
+                <p>Đây là nội dung của phần Sản phẩm.</p>
+            </div>
 
-        <section id="customers">
-            <h1>Quản lý Khách hàng</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tên Khách hàng</th>
-                        <th>Email</th>
-                        <th>Số điện thoại</th>
-                    </tr>
-                </thead>
-                <tbody id="customer-list">
-                    <!-- Khách hàng sẽ được thêm vào đây -->
-                </tbody>
-            </table>
-        </section>
+            <!-- Orders section -->
+            <div id="orders" class="section">
+                <h2>Đặt hàng</h2>
+                <p>Đây là nội dung của phần Đặt hàng.</p>
+            </div>
+
+            <!-- Statistics section -->
+            <div id="statistics" class="section">
+                <h2>Thống kê sản phẩm</h2>
+                <p>Đây là nội dung của phần Thống kê sản phẩm.</p>
+            </div>
+
+        </main>
     </div>
 
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./javacript/admin.js"></script>
 </body>
+
 </html>
