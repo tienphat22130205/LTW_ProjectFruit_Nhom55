@@ -332,6 +332,23 @@ function resetInterval() {
 // Initialize
 showImage(currentIndex);
 startInterval();
+// Get the input field and buttons
+const minusButton = document.querySelector('.minus');
+const plusButton = document.querySelector('.plus');
+const quantityInput = document.querySelector('.quantity input');
+
+// Add event listeners to the buttons
+minusButton.addEventListener('click', () => {
+    let currentValue = parseInt(quantityInput.value) || 0;
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+    }
+});
+
+plusButton.addEventListener('click', () => {
+    let currentValue = parseInt(quantityInput.value) || 0;
+    quantityInput.value = currentValue + 1;
+});
 
 
 
