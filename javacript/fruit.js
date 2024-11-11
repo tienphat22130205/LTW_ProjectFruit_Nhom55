@@ -19,26 +19,6 @@ var swiper = new Swiper(".product-slider", {
     },
   },
 });
-//   review
-var swiper = new Swiper(".review-slider", {
-  loop: true,
-  spaceBetween: 20,
-  autoplay: {
-    delay: 7500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    1020: {
-      slidesPerView: 3,
-    },
-  },
-});
 // su kien trang web
 function closeAllForms() {
   document.getElementById("loginForm").style.display = "none";
@@ -291,6 +271,68 @@ function login() {
 window.onload = function() {
   document.querySelector(".search input").value = ""; // Đảm bảo ô input bên trong thẻ .search được làm rỗng
 };
+
+// chi tiet san pham
+let currentIndex = 0;
+const images = document.querySelectorAll('.carousel-images img');
+const thumbnails = document.querySelectorAll('.thumbnails .thumbnail');
+const intervalTime = 5000;
+let slideInterval;
+
+// Show image based on index
+function showImage(index) {
+    images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+        thumbnails[i].classList.toggle('active-thumbnail', i === index);
+    });
+    currentIndex = index;
+}
+
+// Next image
+function nextImage() {
+    const nextIndex = (currentIndex + 1) % images.length;
+    showImage(nextIndex);
+}
+
+// Previous image
+function prevImage() {
+    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(prevIndex);
+}
+
+// Thumbnail click event
+thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', () => {
+        showImage(index);
+        resetInterval();
+    });
+});
+
+// Controls click events
+document.querySelector('.next').addEventListener('click', () => {
+    nextImage();
+    resetInterval();
+});
+document.querySelector('.prev').addEventListener('click', () => {
+    prevImage();
+    resetInterval();
+});
+
+// Automatic slide change
+function startInterval() {
+    slideInterval = setInterval(nextImage, intervalTime);
+}
+
+// Reset interval when manually changing image
+function resetInterval() {
+    clearInterval(slideInterval);
+    startInterval();
+}
+
+// Initialize
+showImage(currentIndex);
+startInterval();
+
 
 
 

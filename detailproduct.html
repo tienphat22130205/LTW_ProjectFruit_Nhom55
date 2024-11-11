@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <title>Chi tiết sản phẩm</title>
+  <link rel="stylesheet" href="./css/detail.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="left">
+        <div class="menu">
+          <span id="menuToggle" onclick="toggleSidebarMenu()">
+            <i id="menuIcon" class="fa-solid fa-bars"></i></span>
+        </div>
+        <div class="logo">
+          <h1>Vitamin<span>FRUIT</span></h1>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="Tìm kiếm sản phẩm...">
+          <i class="fa-solid fa-search"></i>
+        </div>
+      </div>
+      <div class="center">
+        <div class="delivery" onclick="toggleBranchSelection()">
+          <span>Giao hoặc đến lấy tại ▼</span>
+          <p>Chi nhánh 1 - 43 Nguyễn Thái Học...</p>
+        </div>
+      </div>
+      <div class="right">
+        <div class="hotline">
+          <i class="fas fa-phone"></i>
+          <span>Hotline: 0865660775</span>
+        </div>
+        <div class="account">
+          <i class="fa-solid fa-user"></i>
+          <span>Tài khoản</span>
+        </div>
+        <div class="cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Giỏ hàng</span>
+          <span class="cart-badge">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Branch Selection Form -->
+    <div class="branch-selection" id="branchSelection">
+      <h2>KHU VỰC MUA HÀNG</h2>
+      <div class="form-group">
+        <label for="city">Tỉnh/Thành</label>
+        <select id="city">
+          <option>- Chọn Thành phố/ tỉnh -</option>
+          <option>Hồ Chí Minh</option>
+          <!-- Thêm các tỉnh/thành khác nếu cần -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="district">Quận/Huyện</label>
+        <select id="district">
+          <option>- Chọn Quận/Huyện -</option>
+          <option>- Thủ Đức -</option>
+          <option>- Quận 1 -</option>
+          <!-- Thêm các quận/huyện khác nếu cần -->
+        </select>
+      </div>
+
+      <div class="selected-branch">
+        <p>Giao hoặc đến lấy tại:</p>
+        <div class="branch-info-highlight">
+          <p><strong>Chi nhánh 1 - 43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</strong></p>
+        </div>
+      </div>
+
+      <p>Chọn cửa hàng gần bạn nhất để tối ưu chi phí giao hàng. Hoặc đến lấy hàng</p>
+
+      <div class="branch-list">
+        <div class="branch">
+          <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 1</p>
+          <p>43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</p>
+        </div>
+        <div class="branch">
+          <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
+          <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức,
+            Phường An
+            Phú, Thành phố Thủ Đức</p>
+        </div>
+      </div>
+    </div>
+    <div class="login-form" id="loginForm">
+      <h2>ĐĂNG NHẬP</h2>
+      <p>Nhập email và mật khẩu của bạn:</p>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" placeholder="Mật khẩu">
+      </div>
+      <p class="captcha-text">
+        Trang web này được bảo vệ bởi reCAPTCHA và Google
+        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+      </p>
+      <button class="login-button">ĐĂNG NHẬP</button>
+      <p class="additional-links">
+
+        Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
+
+
+        Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
+      </p>
+    </div>
+  </header>
+  <!-- Menu Bar dưới Header -->
+  <!-- Menu Bar dưới Header -->
+  <nav class="menu-bar">
+    <ul>
+
+      <li><a href="index.html" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+      <li><a href="traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+      <li><a href="traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+      <li><a href="traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+      <li><a href="traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+      <li><a href="quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
+      <li><a href="hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+      <li><a href="traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
+      <li><a href="muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
+      <li><a href="contact.html" onclick="setActive(this)">Liên hệ</a></li>
+
+    </ul>
+  </nav>
+  <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
+  <nav class="sidebar-menu" id="sidebarMenu">
+    <ul>
+      <li><a href="index.html" onclick="setActive(this)">Trang chủ</a></li>
+
+      <li><a href="traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+      <li><a href="traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+      <li><a href="traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+      <li><a href="traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+      <li><a href="quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
+      <li><a href="hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+      <li><a href="traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
+      <li><a href="muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
+      <li><a href="contact.html" onclick="setActive(this)">Liên hệ</a></li>
+
+
+    </ul>
+  </nav>
+  <!-- header section ends -->
+
+  <section class="container">
+    <div class="product-info">
+      <div class="product">
+        <div class="product-image">
+          <div class="carousel-images">
+            <img src="./img/duahau.jpg" alt="Image 1" class="active">
+            <img src="./img/dualua.jpg" alt="Image 2">
+            <img src="./img/dau.jpg" alt="Image 3">
+            <img src="./img/tao.jpg" alt="Image 4">
+          </div>
+
+          <!-- Navigation Controls -->
+          <div class="carousel-controls">
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+          </div>
+
+          <!-- Thumbnail Images -->
+          <div class="thumbnails">
+            <img src="./img/duahau.jpg" alt="Thumbnail 1" data-index="0" class="thumbnail active-thumbnail">
+            <img src="./img/dualua.jpg" alt="Thumbnail 2" data-index="1" class="thumbnail">
+            <img src="./img/dau.jpg" alt="Thumbnail 3" data-index="2" class="thumbnail">
+            <img src="./img/tao.jpg" alt="Thumbnail 4" data-index="3" class="thumbnail">
+          </div>
+        </div>
+        <div class="product-price-section">
+          <h2>Bưởi da xanh</h2>
+          <p class="product-code">Mã sản phẩm: 2010007 | Tình trạng: Còn hàng</p>
+          <p class="discount-code">Mã giảm giá</p>
+          <div class="discount-buttons">
+            <button>FREESHIP40K</button>
+            <button>FREESHIPMF</button>
+          </div>
+          <p class="price">85,000₫</p>
+          <div class="quantity">
+            <button class="minus"><i class="fa-solid fa-minus"></i></button>
+            <input type="number" value="1" min="1" />
+            <button class="plus"><i class="fa-solid fa-plus"></i></button>
+          </div>
+          <button class="add-to-cart">THÊM VÀO GIỎ</button>
+        </div>
+      </div>
+    </div>
+    <div class="content_detail">
+      <div class="product-description">
+        <h2>THÔNG TIN SẢN PHẨM</h2>
+        <h3>Mô tả sản phẩm</h3>
+        <p><strong>Xuất xứ:</strong> huyện Cái Bè, tỉnh Tiền Giang</p>
+        <p><strong>Tiêu Chuẩn Chất Lượng:</strong> VietGap</p>
+        <p><strong>Đặc Điểm Sản Phẩm:</strong></p>
+        <ul>
+          <li>- Dưa hấu đỏ là loại trái cây thuộc họ thảo.</li>
+          <li>- Dưa hấu đỏ đạt các tiêu chuẩn Vietgap, thịt giòn và mọng.</li>
+        </ul>
+        <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
+        <ul>
+          <li>- Nên chọn mua những trái dưa hấu cứng.</li>
+          <li>- Dưa hấu sau khi bổ ra nên cho vào bọc kín.</li>
+        </ul>
+        <p><strong>Lợi Ích Của Dưa Hấu Không Hạt:</strong></p>
+        <ul>
+          <li>- Trong dưa hấu có hàm lượng nước (chiếm 91%) và dưa hấu còn rất giàu chất xơ.</li>
+          <li>- Hàm lượng vitamin A và C có trong dưa hấu, có tác dụng quan trọng đối với sức khỏe của da và
+            tóc.
+          </li>
+          <li>- Lượng nước và vitamin C có trong dưa hấu giúp cơ thể đào thải độc tố ra khỏi cơ thể.</li>
+        </ul>
+      </div>
+      <div class="delivery-service">
+        <h2>DỊCH VỤ GIAO HÀNG</h2>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Cam kết 100% chính hãng</li>
+          <li><i class="fas fa-clock"></i> Giao hàng dự kiến: Thứ 2 - Chủ nhật từ 8h00 - 21h00</li>
+          <li><i class="fas fa-headset"></i> Hỗ trợ 24/7 với các kênh facebook, instagram & phone</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="products" id="products">
+    <h1 class="heading"><span>Sản phẩm liên quan</span></h1>
+    <div class="swiper product-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide box">
+          <img src="./img/dualua.jpg" alt="" />
+          <h3>Dưa lưới</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/duahau.jpg" alt="" />
+          <h3>Dưa hấu</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <a href="chitietsanpham.html" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/vietquat.jpg" alt="" />
+          <h3>việt quất</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/nho.jpg" alt="" />
+          <h3>nho</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/cam.jpg" alt="" />
+          <h3>cam</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/dau.jpg" alt="" />
+          <h3>dâu tây</h3>
+          <h3 class="price">80.000đ - 150000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+    <div class="swiper product-slider">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide box">
+          <img src="./img/chomchom.jpg" alt="" />
+          <h3>chom chom</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/bo.jpg" alt="" />
+          <h3>bơ</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/cherry.jpg" alt="" />
+          <h3>cherry</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/chanh.jpg" alt="" />
+          <h3>chanh</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/tao.jpg" alt="" />
+          <h3>táo</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+        <div class="swiper-slide box">
+          <img src="./img/cachua.jpg" alt="" />
+          <h3>cà chua</h3>
+          <h3 class="price">80.000đ - 150.000đ</h3>
+          <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <a href="#" class="btn">thêm vào giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer section star -------------------------------------------------------------->
+  <section class="footer">
+    <div class="box-container">
+      <div class="box">
+        <h3>VitaminFruit</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias,
+          optio!
+        </p>
+        <div class="share">
+          <a href="#" class="fab fa-facebook-f"></a>
+          <a href="#" class="fab fa-twitter"></a>
+          <a href="#" class="fab fa-instagram"></a>
+          <a href="#" class="fab fa-youtube"></a>
+          <a href="#" class="fab fa-tiktok"></a>
+        </div>
+      </div>
+      <div class="box">
+        <h3>liên hệ</h3>
+        <p>Liên hệ chúng tôi tại đây :</p>
+        <a href="#" class="links"><i class="fas fa-phone"></i>+334 286 049</a>
+        <a href="#" class="links"><i class="fas fa-phone"></i>+263 463 463</a>
+
+        <a href="#" class="links"><i class="fas fa-envelope"></i>nhom55ltw@gmail.com</a>
+
+
+        <a href="#" class="links"><i class="fas fa-map-marker-alt"></i>VQCR+GP6, khu phố 6, Thủ Đức,
+          Hồ Chí Minh</a>
+      </div>
+      <div class="box">
+
+        <h3>Hỗ trợ khách hàng</h3>
+        <p>
+          Luôn hổ trợ khách hàng mọi lúc mọi nơi.
+        </p>
+        <a href="#home" class="links"><i class="fas fa-arrow-right"></i>Chính sách thương hiệu</a>
+        <a href="#features" class="links"><i class="fas fa-arrow-right"></i>Chính sách thành viên</a>
+        <a href="#products" class="links"><i class="fas fa-arrow-right"></i>Chính sách kiểm hàng</a>
+        <a href="#categories" class="links"><i class="fas fa-arrow-right"></i>Chính sách giao hàng</a>
+        <a href="#review" class="links"><i class="fas fa-arrow-right"></i>Chính sách thanh toán</a>
+        <a href="#blogs" class="links"><i class="fas fa-arrow-right"></i>Chính sách bảo mật</a>
+      </div>
+      <div class="box">
+        <h3>bản tin</h3>
+        <p>đăng ký để cập nhật mới nhất</p>
+        <input type="email" placeholder="Nhập email của bạn" class="email" />
+        <input type="submit" value="đăng ký" class="btn" />
+        <div class="payments">
+          <a href="#"><i class="fa-brands fa-cc-visa"></i></a>
+          <a href="#"><i class="fa-solid fa-credit-card"></i></a>
+          <a href="#"><i class="fa-solid fa-wallet"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="credit">Copyright © 2024 <span>Nhom 55 - Trái Cây Chất Lượng Cao</span></div>
+  </section>
+  <!-- footer section end -->
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script src="./javacript/fruit.js"></script>
+</body>
+
+</html>
