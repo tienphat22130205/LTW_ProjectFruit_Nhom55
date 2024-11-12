@@ -144,3 +144,5 @@ const weeklyRevenueChart = new Chart(ctx, {
     }
 });
 
+
+

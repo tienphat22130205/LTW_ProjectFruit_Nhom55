@@ -348,7 +348,7 @@
                                                         <td>24</td>
                                                         <td>3,990,000đ</td>
                                                     </tr>
-                                                    
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -363,14 +363,14 @@
                             <h3>Doanh thu 6 tháng qua</h3>
                             <canvas id="monthlyRevenueChart"></canvas>
                         </div>
-                        
+
                         <!-- Doanh thu tháng vừa qua -->
                         <div class="chart-box small-chart">
                             <h3>Doanh thu tháng vừa qua</h3>
                             <canvas id="weeklyRevenueChart"></canvas>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -388,8 +388,199 @@
 
             <!-- Orders section -->
             <div id="orders" class="section">
-                <h2>Đặt hàng</h2>
-                <p>Đây là nội dung của phần Đặt hàng.</p>
+                <div class="orders">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Đơn đặt hàng gần đây</h2>
+                            <div class="options">
+                                <select id="filterSelect">
+                                    <option value="">Chọn</option>
+                                    <option value="all">Tất cả khách hàng</option>
+                                    <option value="new">Khách hàng mới</option>
+                                    <option value="pending">Đang chờ thanh toán</option>
+                                    <option value="completed">Đã hoàn thành đơn hàng</option>
+                                </select>
+                                
+                                <!-- Nút sắp xếp -->
+                                <button id="sortButton" class="sort-button">
+                                    Sắp xếp <span class="sort-icon fas fa-sort"></span>
+                                </button>
+                            </div>
+                            <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-reponsive">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <td>Mã đơn hàng</td>
+                                            <td>Tên khách hàng</td>
+                                            <td>Địa chỉ</td>
+                                            <td>Tổng số tiền</td>
+                                            <td>Ngày đặt hàng</td>
+                                            <td>Chi tiết đơn hàng</td>
+                                            <td>Phương thức thanh toán</td>
+                                            <td>Tình trạng</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#ORD001</td>
+                                            <td>Nguyễn Minh Khoa</td>
+                                            <td>123 Đường ABC, TP.HCM</td>
+                                            <td>500,000đ</td>
+                                            <td>12/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Chuyển khoản</td>
+                                            <td>
+                                                <span class="status yellow"></span>
+                                                Chờ xử lý
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD002</td>
+                                            <td>Trần Thị Lan Anh</td>
+                                            <td>456 Đường XYZ, Hà Nội</td>
+                                            <td>1,200,000đ</td>
+                                            <td>10/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Tiền mặt</td>
+                                            <td>
+                                                <span class="status yellow"></span>
+                                                Chờ xử lý
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD003</td>
+                                            <td>Ngô Văn Dũng</td>
+                                            <td>789 Đường MNO, Đà Nẵng</td>
+                                            <td>750,000đ</td>
+                                            <td>09/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Ví điện tử</td>
+                                            <td>
+                                                <span class="status green"></span>
+                                                Đã hoàn thành
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD004</td>
+                                            <td>Lê Thị Bích Ngọc</td>
+                                            <td>101 Đường PQR, Cần Thơ</td>
+                                            <td>300,000đ</td>
+                                            <td>05/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Chuyển khoản</td>
+                                            <td>
+                                                <span class="status blue"></span>
+                                                Đang giao hàng
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD005</td>
+                                            <td>Hoàng Văn Sơn</td>
+                                            <td>202 Đường STU, Hải Phòng</td>
+                                            <td>1,500,000đ</td>
+                                            <td>03/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Tiền mặt</td>
+                                            <td>
+                                                <span class="status blue"></span>
+                                                Đang giao hàng
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD006</td>
+                                            <td>Phạm Văn Bình</td>
+                                            <td>303 Đường VWX, TP.HCM</td>
+                                            <td>950,000đ</td>
+                                            <td>02/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Ví điện tử</td>
+                                            <td>
+                                                <span class="status green"></span>
+                                                Đã hoàn thành
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD007</td>
+                                            <td>Phạm Văn Toàn</td>
+                                            <td>404 Đường YZ, Đà Nẵng</td>
+                                            <td>1,000,000đ</td>
+                                            <td>02/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Chuyển khoản</td>
+                                            <td>
+                                                <span class="status green"></span>
+                                                Đã hoàn thành
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD008</td>
+                                            <td>Phạm Văn Huy</td>
+                                            <td>505 Đường ABC, Hà Nội</td>
+                                            <td>750,000đ</td>
+                                            <td>02/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Tiền mặt</td>
+                                            <td>
+                                                <span class="status red"></span>
+                                                Đã hủy
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD009</td>
+                                            <td>Bùi Lệ Huyên</td>
+                                            <td>606 Đường DEF, TP.HCM</td>
+                                            <td>3,500,000đ</td>
+                                            <td>02/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Ví điện tử</td>
+                                            <td>
+                                                <span class="status green"></span>
+                                                Đã hoàn thành
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>#ORD010</td>
+                                            <td>Phạm Văn Bình</td>
+                                            <td>707 Đường GHI, Cần Thơ</td>
+                                            <td>950,000đ</td>
+                                            <td>02/11/2023</td>
+                                            <td>
+                                                <button>Xem chi tiết</button>
+                                            </td>
+                                            <td>Chuyển khoản</td>
+                                            <td>
+                                                <span class="status red"></span>
+                                                Đã hủy
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
 
             <!-- Statistics section -->

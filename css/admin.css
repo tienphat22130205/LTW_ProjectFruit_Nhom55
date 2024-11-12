@@ -8,6 +8,7 @@
     --text-gray: #8390A2;
     --blue: #AED9EC;
     --red: #CE050D;
+    --green: #395f18;
 }
 
 * {
@@ -301,6 +302,12 @@ tr td:last-child{
 .status.red{
     background: var(--red);
 }
+.status.yellow{
+    background: var(--main--color);
+}
+.status.green{
+    background: var(--green);
+}
 .table-reponsive {
     width: 100%;
     overflow-x: auto;
@@ -371,6 +378,33 @@ tr td:last-child{
     font-size: 1.2em;
     color: #333;
 }
+.options {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-right: 20px;
+    right: 0;
+}
+.options select {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.sort-button {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.sort-icon {
+    margin-left: 5px;
+}
+
 
 /* Table styling */
 .table-responsive {
