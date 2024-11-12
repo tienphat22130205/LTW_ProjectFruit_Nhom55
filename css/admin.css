@@ -21,7 +21,7 @@
 }
 
 .sidebar {
-    width: 345px;
+    width: 310px;
     position: fixed;
     left: 0;
     top: 0;
@@ -98,7 +98,7 @@
 }
 .main-content {
     transition: margin-left 300ms;
-    margin-left: 345px;
+    margin-left: 300px;
     padding: 20px;
 }
 .section{
@@ -115,7 +115,7 @@ header {
     padding: 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     position: fixed;
-    left: 345px;
+    left: 320px;
     width: calc(100% - 345px);
     top: 0;
     z-index: 100;
@@ -495,7 +495,17 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
 .chart-box.small-chart {
     max-width: 100%; /* Adjusts with sidebar toggle */
 }
-
+.chart-container {
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+}
+.chart-container .large-chart{
+    flex: 4;
+}
+.chart-container .common-chart{
+    flex: 6;
+}
 
 
 
