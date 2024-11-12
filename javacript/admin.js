@@ -204,118 +204,117 @@ const monthlyRevenueChart1 = new Chart(monthlyRevenueCtx, {
     }
 });
 // // biểu đồ biểu diễn các sản phẩm đã đóng góp vào doanh thu
-// const productDonutCtx = document.getElementById('productDonutChart').getContext('2d');
+const productDonutCtx = document.getElementById('productDonutChart').getContext('2d');
 
-// const productDonutChart = new Chart(productDonutCtx, {
-//     type: 'doughnut', // Loại biểu đồ Donut
-//     data: {
-//         labels: ["Táo Mỹ", "Cam Sành", "Dưa Hấu", "Nho Úc", "Xoài Cát"],
-//         datasets: [{
-//             label: 'Top Selling Categories',
-//             data: [34.3, 25.7, 18.6, 21.4, 15.0], // Tỷ lệ phần trăm cho từng loại sản phẩm
-//             backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'], // Màu sắc dễ phân biệt
-//             hoverOffset: 4,
-//             borderWidth: 2,
-//             borderColor: '#ffffff',
-//         }]
-//     },
-//     options: {
-//         responsive: true,
-//         cutout: '70%', // Độ rộng phần rỗng ở giữa biểu đồ
-//         animation: {
-//             animateRotate: true, // Hiệu ứng xoay từ 0 đến 360 độ
-//             duration: 1500 // Thời gian của hiệu ứng (ms)
-//         },
-//         plugins: {
-//             tooltip: {
-//                 callbacks: {
-//                     label: (context) => `${context.label}: ${context.raw}%`
-//                 }
-//             },
-//             legend: {
-//                 display: true,
-//                 position: 'bottom',
-//                 labels: {
-//                     boxWidth: 10,
-//                     padding: 20,
-//                 }
-//             },
-//             // Plugin để hiển thị tổng số ở giữa biểu đồ
-//             doughnutlabel: {
-//                 labels: [
-//                     {
-//                         text: 'Products',
-//                         font: {
-//                             size: 18,
-//                             weight: 'bold'
-//                         }
-//                     },
-//                     {
-//                         text: '70', // Tổng số giả lập
-//                         font: {
-//                             size: 24,
-//                             weight: 'bold'
-//                         }
-//                     }
-//                 ]
-//             }
-//         }
-//     }
-// });
+const productDonutChart = new Chart(productDonutCtx, {
+    type: 'doughnut', // Loại biểu đồ Donut
+    data: {
+        labels: ["Táo Mỹ", "Cam Sành", "Dưa Hấu", "Nho Úc", "Xoài Cát"],
+        datasets: [{
+            label: 'Top Selling Categories',
+            data: [34.3, 25.7, 18.6, 21.4, 15.0], // Tỷ lệ phần trăm cho từng loại sản phẩm
+            backgroundColor: ['#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff'], // Màu sắc dễ phân biệt
+            hoverOffset: 4,
+            borderWidth: 2,
+            borderColor: '#ffffff',
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '70%', // Độ rộng phần rỗng ở giữa biểu đồ
+        animation: {
+            animateRotate: true, // Hiệu ứng xoay từ 0 đến 360 độ
+            duration: 1500 // Thời gian của hiệu ứng (ms)
+        },
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: (context) => `${context.label}: ${context.raw}%`
+                }
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    boxWidth: 10,
+                    padding: 20,
+                }
+            },
+            // Plugin để hiển thị tổng số ở giữa biểu đồ
+            doughnutlabel: {
+                labels: [
+                    {
+                        text: 'Products',
+                        font: {
+                            size: 18,
+                            weight: 'bold'
+                        }
+                    },
+                    {
+                        text: '70', // Tổng số giả lập
+                        font: {
+                            size: 24,
+                            weight: 'bold'
+                        }
+                    }
+                ]
+            }
+        }
+    }
+});
 // biểu đồ doanh thu các loại sản phẩm
-// Lấy ngữ cảnh 2D từ canvas để vẽ biểu đồ
-// const productTypeRevenueCtx = document.getElementById('productTypeRevenueChart').getContext('2d');
+const productTypeRevenueCtx = document.getElementById('productTypeRevenueChart').getContext('2d');
 
-// const productTypeRevenueChart = new Chart(productTypeRevenueCtx, {
-//     type: 'bar', // Loại biểu đồ cột
-//     data: {
-//         labels: ["Trái Ngon Hôm Nay", "Trái Cây Việt Nam", "Trái Cây Nhập Khẩu", "Trái Cây Cắt Sẵn", 
-//                  "Quà Tặng Trái Cây", "Hộp Quà Nguyệt Cát", "Trái Cây Sấy Khô", "Mứt Trái Cây"],
-//         datasets: [{
-//             label: 'Doanh thu (VND)',
-//             data: [50000000, 30000000, 45000000, 70000000, 20000000, 60000000, 40000000, 25000000, 15000000, 10000000], // Doanh thu giả lập cho từng loại
-//             backgroundColor: [
-//                 '#4A90E2', '#7FB3D5', '#85C1E9', '#AED6F1', '#D4E6F1',
-//                 '#f39c12', '#e74c3c', '#9b59b6', '#2ecc71', '#3498db'
-//             ],
-//             borderWidth: 1,
-//             borderRadius: 4
-//         }]
-//     },
-//     options: {
-//         responsive: true,
-//         scales: {
-//             y: {
-//                 beginAtZero: true,
-//                 title: {
-//                     display: true,
-//                     text: 'Doanh thu (VND)',
-//                 },
-//                 ticks: {
-//                     callback: function(value) {
-//                         return value.toLocaleString() + ' đ';
-//                     }
-//                 }
-//             },
-//             x: {
-//                 title: {
-//                     display: true,
-//                     text: 'Loại sản phẩm',
-//                 }
-//             }
-//         },
-//         plugins: {
-//             legend: {
-//                 display: false
-//             },
-//             tooltip: {
-//                 callbacks: {
-//                     label: (context) => `${context.raw.toLocaleString()} VND`
-//                 }
-//             }
-//         }
-//     }
-// });
+const productTypeRevenueChart = new Chart(productTypeRevenueCtx, {
+    type: 'bar', // Loại biểu đồ cột
+    data: {
+        labels: ["Trái Ngon Hôm Nay", "Trái Cây Việt Nam", "Trái Cây Nhập Khẩu", "Trái Cây Cắt Sẵn", 
+                 "Quà Tặng Trái Cây", "Hộp Quà Nguyệt Cát", "Trái Cây Sấy Khô", "Mứt Trái Cây"],
+        datasets: [{
+            label: 'Doanh thu (VND)',
+            data: [50000000, 30000000, 45000000, 70000000, 20000000, 60000000, 40000000, 25000000, 15000000, 10000000], // Doanh thu giả lập cho từng loại
+            backgroundColor: [
+                '#4A90E2', '#7FB3D5', '#85C1E9', '#AED6F1', '#D4E6F1',
+                '#f39c12', '#e74c3c', '#9b59b6', '#2ecc71', '#3498db'
+            ],
+            borderWidth: 1,
+            borderRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Doanh thu (VND)',
+                },
+                ticks: {
+                    callback: function(value) {
+                        return value.toLocaleString() + ' đ';
+                    }
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Loại sản phẩm',
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: (context) => `${context.raw.toLocaleString()} VND`
+                }
+            }
+        }
+    }
+});
 
 
 
