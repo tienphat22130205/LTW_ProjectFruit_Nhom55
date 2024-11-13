@@ -2,230 +2,236 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="./css/card.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <title>Giỏ hàng</title>
+  <link rel="stylesheet" href="./css/card.css">
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-          <div class="left">
-            <div class="menu">
-              <span id="menuToggle" onclick="toggleSidebarMenu()">
-                <i id="menuIcon" class="fa-solid fa-bars"></i></span>
-            </div>
-            <div class="logo">
-              <h1>Vitamin<span>FRUIT</span></h1>
-            </div>
-            <div class="search">
-              <input type="text" placeholder="Tìm kiếm sản phẩm...">
-              <i class="fa-solid fa-search"></i>
-            </div>
-          </div>
-          <div class="center">
-            <div class="delivery" onclick="toggleBranchSelection()">
-              <span>Giao hoặc đến lấy tại ▼</span>
-              <p>Chi nhánh 1 - 43 Nguyễn Thái Học...</p>
-            </div>
-          </div>
-          <div class="right">
-            <div class="hotline">
-              <i class="fas fa-phone"></i>
-              <span>Hotline: 0865660775</span>
-            </div>
-            <div class="account">
-              <i class="fa-solid fa-user"></i>
-              <span>Tài khoản</span>
-            </div>
-            <div class="cart">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span>Giỏ hàng</span>
-              <span class="cart-badge">0</span>
-            </div>
-          </div>
+  <header>
+    <div class="header-container">
+      <div class="left">
+        <div class="menu">
+          <span id="menuToggle" onclick="toggleSidebarMenu()">
+            <i id="menuIcon" class="fa-solid fa-bars"></i></span>
         </div>
-    
-        <!-- Branch Selection Form -->
-        <div class="branch-selection" id="branchSelection">
-          <h2>KHU VỰC MUA HÀNG</h2>
-          <div class="form-group">
-            <label for="city">Tỉnh/Thành</label>
-            <select id="city">
-              <option>- Chọn Thành phố/ tỉnh -</option>
-              <option>Hồ Chí Minh</option>
-              <!-- Thêm các tỉnh/thành khác nếu cần -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="district">Quận/Huyện</label>
-            <select id="district">
-              <option>- Chọn Quận/Huyện -</option>
-              <option>- Thủ Đức -</option>
-              <option>- Quận 1 -</option>
-              <!-- Thêm các quận/huyện khác nếu cần -->
-            </select>
-          </div>
-    
-          <div class="selected-branch">
-            <p>Giao hoặc đến lấy tại:</p>
-            <div class="branch-info-highlight">
-              <p><strong>Chi nhánh 1 - 43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</strong></p>
-            </div>
-          </div>
-    
-          <p>Chọn cửa hàng gần bạn nhất để tối ưu chi phí giao hàng. Hoặc đến lấy hàng</p>
-    
-          <div class="branch-list">
-            <div class="branch">
-              <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 1</p>
-              <p>43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</p>
-            </div>
-            <div class="branch">
-              <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
-              <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức, Phường An
-                Phú, Thành phố Thủ Đức</p>
-            </div>
-          </div>
+        <div class="logo">
+          <h1>Vitamin<span>FRUIT</span></h1>
         </div>
-        <div class="login-form" id="loginForm">
-          <h2>ĐĂNG NHẬP</h2>
-          <p>Nhập email và mật khẩu của bạn:</p>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <input type="password" id="password" placeholder="Mật khẩu">
-          </div>
-          <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
-          <p class="captcha-text">
-            Trang web này được bảo vệ bởi reCAPTCHA và Google
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-          </p>
-          <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
-          <p class="additional-links">
-    
-            Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
-    
-            Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
-          </p>
+        <div class="search">
+          <input type="text" placeholder="Tìm kiếm sản phẩm...">
+          <i class="fa-solid fa-search"></i>
         </div>
-      </header>
-      <!-- Menu Bar dưới Header -->
-      <!-- Menu Bar dưới Header -->
-      <nav class="menu-bar">
-        <ul>
-
-          <li><a href="index.html" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-          <li><a href="traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-          <li><a href="traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-          <li><a href="traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-          <li><a href="traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-          <li><a href="quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
-          <li><a href="hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-          <li><a href="traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
-          <li><a href="muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
-          <li><a href="contact.html" onclick="setActive(this)">Liên hệ</a></li>
-
-        </ul>
-      </nav>
-      <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
-      <nav class="sidebar-menu" id="sidebarMenu">
-        <ul>
-          <li><a href="index.html" onclick="setActive(this)">Trang chủ</a></li>
-
-          <li><a href="traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-          <li><a href="traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-          <li><a href="traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-          <li><a href="traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-          <li><a href="quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
-          <li><a href="hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-          <li><a href="traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
-          <li><a href="muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
-          <li><a href="contact.html" onclick="setActive(this)">Liên hệ</a></li>
-
-
-        </ul>
-      </nav>
-      <!-- header section ends -->
-    <div class="cart-container">
-        <div class="cart-details">
-            <h2>Giỏ hàng của bạn</h2>
-            <p id="cart-empty-message">Giỏ hàng của bạn đang trống</p>
-            
-            <!-- Container cho các sản phẩm trong giỏ hàng -->
-            <div id="cart-items">
-                <!-- Các sản phẩm sẽ được thêm vào đây bằng JavaScript -->
-            </div>
-    
-            <!-- Ghi chú đơn hàng -->
-            <div class="order-note">
-                <h4>Ghi chú đơn hàng</h4>
-                <p>Lưu ý: Khách hàng đặt quà tặng trái cây, vui lòng ghi rõ thông tin của người được tặng và người đặt để Vitamin Fruit thuận tiện liên hệ.</p>
-                <textarea placeholder="Thêm ghi chú cho đơn hàng..."></textarea>
-                <div class="invoice-option">
-                    <input type="checkbox" id="invoice-checkbox">
-                    <label for="invoice-checkbox">Xuất hóa đơn cho đơn hàng</label>
-                </div>
-            </div>
+      </div>
+      <div class="center">
+        <div class="delivery" onclick="toggleBranchSelection()">
+          <span>Giao hoặc đến lấy tại ▼</span>
+          <p>Chi nhánh 1 - 43 Nguyễn Thái Học...</p>
         </div>
-    
-        <div class="order-info">
-            <h3>Thông tin đơn hàng</h3>
-    
-            <div class="delivery-options">
-                <label>
-                    <input type="radio" name="delivery" id="delivery-asap" checked>
-                    Giao khi có hàng
-                </label>
-                <label>
-                    <input type="radio" name="delivery" id="delivery-schedule">
-                    Chọn thời gian
-                </label>
-            </div>
-    
-            <div id="asap-info">
-                <p>Giao khi có hàng</p>
-            </div>
-    
-            <div id="schedule-info" style="display: none;">
-                <label for="delivery-date">Ngày giao</label>
-                <select id="delivery-date">
-                    <option value="today">Hôm nay</option>
-                    <option value="tomorrow">Ngày mai</option>
-                </select>
-    
-                <label for="delivery-time">Thời gian giao</label>
-                <select id="delivery-time">
-                    <option value="08:00-10:00">08:00 - 10:00</option>
-                    <option value="10:00-12:00">10:00 - 12:00</option>
-                </select>
-    
-                <button class="confirm-time-button">XÁC NHẬN THỜI GIAN</button>
-            </div>
-    
-            <p class="total"><strong>Tổng tiền:</strong> <span id="total-price">0₫</span></p>
-            <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.</p>
-            <p class="note">Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
-            <div class="warning" id="minimum-warning">
-                Giỏ hàng của bạn hiện chưa đạt mức tối thiểu để thanh toán.
-            </div>
-    
-            <a class="checkout-button" id="checkout-button" disabled>THANH TOÁN</a>
-    
-            <div class="policy-info">
-                <p><strong>Chính sách mua hàng</strong></p>
-                <p>Hiện chúng tôi chỉ áp dụng thanh toán với đơn hàng có giá trị tối thiểu 100.000₫ trở lên.</p>
-            </div>
+      </div>
+      <div class="right">
+        <div class="hotline">
+          <i class="fas fa-phone"></i>
+          <span>Hotline: 0865660775</span>
         </div>
+        <div class="account">
+          <i class="fa-solid fa-user"></i>
+          <span>Tài khoản</span>
+        </div>
+        <div class="cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Giỏ hàng</span>
+          <span class="cart-badge">0</span>
+        </div>
+      </div>
     </div>
-    <!-- footer section star -->
+
+    <!-- Branch Selection Form -->
+    <div class="branch-selection" id="branchSelection">
+      <h2>KHU VỰC MUA HÀNG</h2>
+      <div class="form-group">
+        <label for="city">Tỉnh/Thành</label>
+        <select id="city">
+          <option>- Chọn Thành phố/ tỉnh -</option>
+          <option>Hồ Chí Minh</option>
+          <!-- Thêm các tỉnh/thành khác nếu cần -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="district">Quận/Huyện</label>
+        <select id="district">
+          <option>- Chọn Quận/Huyện -</option>
+          <option>- Thủ Đức -</option>
+          <option>- Quận 1 -</option>
+          <!-- Thêm các quận/huyện khác nếu cần -->
+        </select>
+      </div>
+
+      <div class="selected-branch">
+        <p>Giao hoặc đến lấy tại:</p>
+        <div class="branch-info-highlight">
+          <p><strong>Chi nhánh 1 - 43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</strong></p>
+        </div>
+      </div>
+
+      <p>Chọn cửa hàng gần bạn nhất để tối ưu chi phí giao hàng. Hoặc đến lấy hàng</p>
+
+      <div class="branch-list">
+        <div class="branch">
+          <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 1</p>
+          <p>43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</p>
+        </div>
+        <div class="branch">
+          <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
+          <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức, Phường An
+            Phú, Thành phố Thủ Đức</p>
+        </div>
+      </div>
+    </div>
+    <div class="login-form" id="loginForm">
+      <h2>ĐĂNG NHẬP</h2>
+      <p>Nhập email và mật khẩu của bạn:</p>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" placeholder="Mật khẩu">
+      </div>
+      <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
+      <p class="captcha-text">
+        Trang web này được bảo vệ bởi reCAPTCHA và Google
+        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+      </p>
+      <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
+      <p class="additional-links">
+
+        Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
+
+        Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
+      </p>
+    </div>
+  </header>
+  <!-- Menu Bar dưới Header -->
+  <!-- Menu Bar dưới Header -->
+  <nav class="menu-bar">
+    <ul>
+
+      <li><a href="index.html" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+      <li><a href="traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+      <li><a href="traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+      <li><a href="traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+      <li><a href="traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+      <li><a href="quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
+      <li><a href="hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+      <li><a href="traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
+      <li><a href="muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
+      <li><a href="contact.html" onclick="setActive(this)">Liên hệ</a></li>
+
+    </ul>
+  </nav>
+  <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
+  <nav class="sidebar-menu" id="sidebarMenu">
+    <ul>
+      <li><a href="index.html" onclick="setActive(this)">Trang chủ</a></li>
+
+      <li><a href="traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+      <li><a href="traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+      <li><a href="traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+      <li><a href="traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+      <li><a href="quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
+      <li><a href="hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+      <li><a href="traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
+      <li><a href="muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
+      <li><a href="contact.html" onclick="setActive(this)">Liên hệ</a></li>
+
+
+    </ul>
+  </nav>
+  <!-- header section ends -->
+  <div class="cart-container">
+    <div class="cart-details">
+      <h2>Giỏ hàng của bạn</h2>
+      <p id="cart-empty-message">Giỏ hàng của bạn đang trống</p>
+
+      <!-- Container cho các sản phẩm trong giỏ hàng -->
+      <div id="cart-items">
+        <!-- Các sản phẩm sẽ được thêm vào đây bằng JavaScript -->
+      </div>
+
+      <!-- Ghi chú đơn hàng -->
+      <div class="order-note">
+        <h4>Ghi chú đơn hàng</h4>
+        <p>Lưu ý: Khách hàng đặt quà tặng trái cây, vui lòng ghi rõ thông tin của người được tặng và người đặt để
+          Vitamin Fruit thuận tiện liên hệ.</p>
+        <textarea placeholder="Thêm ghi chú cho đơn hàng..."></textarea>
+        <div class="invoice-option">
+          <input type="checkbox" id="invoice-checkbox">
+          <label for="invoice-checkbox">Xuất hóa đơn cho đơn hàng</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-info">
+      <h3>Thông tin đơn hàng</h3>
+
+      <div class="delivery-options">
+        <label>
+          <input type="radio" name="delivery" id="delivery-asap" checked>
+          Giao khi có hàng
+        </label>
+        <label>
+          <input type="radio" name="delivery" id="delivery-schedule">
+          Chọn thời gian
+        </label>
+      </div>
+
+      <div id="asap-info">
+        <p>Giao khi có hàng</p>
+      </div>
+
+      <div id="schedule-info" style="display: none;">
+        <label for="delivery-date">Ngày giao</label>
+        <select id="delivery-date">
+          <option value="today">Hôm nay</option>
+          <option value="tomorrow">Ngày mai</option>
+        </select>
+
+        <label for="delivery-time">Thời gian giao</label>
+        <select id="delivery-time">
+          <option value="08:00-10:00">08:00 - 10:00</option>
+          <option value="10:00-12:00">10:00 - 12:00</option>
+        </select>
+
+        <button class="confirm-time-button">XÁC NHẬN THỜI GIAN</button>
+      </div>
+      <!-- <div id="voucher">
+        <p>Áp mã giảm giá</p>
+        <input type="text" id="voucher-input" placeholder="Nhập mã giảm giá">
+        <button id="apply-voucher">Áp dụng</button>
+      </div> -->
+      
+      <p class="total"><strong>Tổng tiền:</strong> <span id="total-price">0₫</span></p>
+      <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.</p>
+      <p class="note">Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
+      <div class="warning" id="minimum-warning">
+        Giỏ hàng của bạn hiện chưa đạt mức tối thiểu để thanh toán.
+      </div>
+
+      <a class="checkout-button" id="checkout-button" disabled>THANH TOÁN</a>
+
+      <div class="policy-info">
+        <p><strong>Chính sách mua hàng</strong></p>
+        <p>Hiện chúng tôi chỉ áp dụng thanh toán với đơn hàng có giá trị tối thiểu 100.000₫ trở lên.</p>
+      </div>
+    </div>
+  </div>
+  <!-- footer section star -->
   <section class="footer">
     <div class="box-container">
       <div class="box">
@@ -283,7 +289,7 @@
   </section>
   <!-- footer section end -->
 
-    <script src="./javacript/card.js"></script>
+  <script src="./javacript/card.js"></script>
 </body>
 
 </html>
