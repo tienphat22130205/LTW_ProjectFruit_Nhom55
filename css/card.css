@@ -1019,7 +1019,7 @@ body.scrolled-up .menu-bar {
 }
 
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .cart-container {
         flex-direction: column;
         gap: 20px;
@@ -1067,4 +1067,4 @@ body.scrolled-up .menu-bar {
     .checkout-button {
         font-size: 1.3rem;
     }
-} */
+}
