@@ -673,6 +673,7 @@ body.scrolled-up .menu-bar {
     background-position: center;
     background-size: cover;
     border-radius: 10px;
+    margin: 0 auto;
 }
 
 .background-slider {
@@ -1149,98 +1150,111 @@ body.scrolled-up .menu-bar {
 
 
 
-@media (max-width:991px) {
-    html {
-        font-size: 55%;
-    }
-
+@media (max-width: 991px) {
     .header-container {
         padding: 1rem 2rem;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .menu-bar ul {
-        display: none;
+    .left,
+    .right {
+        gap: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .center {
+        display: none; /* Hide center section for smaller screens */
+    }
+
+    .search {
+        width: 100%;
+        margin-top: 10px;
     }
 
     .menu {
-        display: block;
-    }
-
-    section {
-        padding: 2rem;
+        display: block; /* Show menu icon */
+        font-size: 20px;
     }
 }
 
-@media (max-width:768px) {
-    #menu-btn {
-        display: inline-block;
+@media (max-width: 768px) {
+    .header-container {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .left,
+    .right {
+        justify-content: space-around;
+        gap: 20px;
     }
 
     .menu-bar {
-        display: flex;
+        display: none; /* Hidden by default */
         flex-direction: column;
         position: fixed;
         top: 60px;
-        /* Cách dưới header */
         left: 0;
         width: 100%;
         background-color: white;
         z-index: 1000;
-        padding: 20px;
+        padding: 15px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .menu-bar.active {
-        display: flex;
-        /* Hiển thị menu bar khi active */
+        display: flex; /* Show menu bar when active */
+    }
+
+    .menu-bar ul {
+        flex-direction: column;
+        gap: 5px;
     }
 
     .menu-bar ul li {
         width: 100%;
         text-align: center;
-        margin: 10px 0;
+        padding: 10px 0;
+    }
+
+    .search {
+        width: 100%;
+        margin-bottom: 15px;
     }
 
     .menu {
-        display: inline-block;
-        /* Hiển thị icon bars để mở menu */
-    }
-
-    .right,
-    .center,
-    .search {
-        display: none;
-        /* Ẩn các phần khác khi menu bar ở dạng icon */
+        font-size: 24px; /* Enlarge menu icon */
     }
 }
 
-@media (max-width:450px) {
-    html {
-        font-size: 50%;
-    }
-
-    .heading {
-        font-size: 2.5rem;
-    }
-
-    .footer {
-        text-align: center;
-    }
-
+@media (max-width: 450px) {
     .header-container {
         padding: 0.5rem 1rem;
+        flex-direction: column;
+        align-items: center;
     }
 
     .menu-bar {
         top: 50px;
-        /* Điều chỉnh vị trí cho menu phù hợp với màn hình nhỏ hơn */
+        padding: 10px;
+        width: 100%;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
     }
 
-    .branch-selection,
-    .login-form,
-    .cart-form {
-        width: 90%;
-        /* Điều chỉnh form cho màn hình nhỏ */
-        left: 5%;
+    .menu-bar ul {
+        gap: 8px;
+    }
+
+    .menu-bar ul li {
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    .menu {
+        font-size: 18px; /* Adjust icon size */
     }
 }

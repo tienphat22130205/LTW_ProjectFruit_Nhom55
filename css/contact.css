@@ -812,3 +812,63 @@ body.scrolled-up .menu-bar {
 .footer .credit span {
     color: var(--orange);
 }
+
+
+
+
+/* 
+/* Responsive adjustments */
+/* @media (max-width: 991px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+    .info-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .info-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+    .map {
+        height: 300px;
+    }
+    .info-box h2 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 450px) {
+    .container {
+        width: 100%;
+        padding: 5px;
+    }
+    .map {
+        height: 250px;
+    }
+    .info-box h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    .info-box p {
+        font-size: 14px;
+    }
+    .info-box i {
+        font-size: 12px;
+        padding: 8px;
+    }
+    .contact-form input, .contact-form textarea {
+        padding: 8px;
+    }
+    .contact-form button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}  */

@@ -755,3 +755,161 @@ body.scrolled-up .menu-bar {
 .footer .credit span {
     color: var(--orange);
 }
+
+
+
+/* @media (max-width: 991px) {
+    .header-container {
+        padding: 1rem 2rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .left,
+    .right {
+        gap: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .center {
+        display: none;
+    }
+
+    .search {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .menu {
+        display: block; 
+        font-size: 20px;
+    }
+    .register-container {
+        max-width: 350px;
+        padding: 1.5em;
+    }
+
+    .register-container h4 {
+        font-size: 22px;
+    }
+
+    .register-container button {
+        font-size: 15px;
+        padding: 0.7em;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .left,
+    .right {
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .menu-bar {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 1000;
+        padding: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-bar.active {
+        display: flex; 
+
+    .menu-bar ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .menu-bar ul li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .search {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .menu {
+        font-size: 24px; 
+    }
+    .register-container {
+        max-width: 300px;
+        padding: 1.2em;
+    }
+
+    .register-container h4 {
+        font-size: 20px;
+    }
+
+    .register-container button {
+        font-size: 14px;
+        padding: 0.6em;
+    }
+}
+
+@media (max-width: 450px) {
+    .header-container {
+        padding: 0.5rem 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-bar {
+        top: 50px;
+        padding: 10px;
+        width: 100%;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-bar ul {
+        gap: 8px;
+    }
+
+    .menu-bar ul li {
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    .menu {
+        font-size: 18px; 
+    }
+    .register-container {
+        max-width: 100%;
+        padding: 1em;
+        margin: 0px auto;
+    }
+
+    .register-container h4 {
+        font-size: 18px;
+    }
+
+    .register-container label {
+        font-size: 10px;
+    }
+
+    .register-container input {
+        padding: 0.6em;
+    }
+
+    .register-container button {
+        font-size: 13px;
+        padding: 0.5em;
+    }
+} */
