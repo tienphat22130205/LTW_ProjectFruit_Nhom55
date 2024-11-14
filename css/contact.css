@@ -818,7 +818,7 @@ body.scrolled-up .menu-bar {
 
 /* 
 /* Responsive adjustments */
-/* @media (max-width: 991px) {
+@media (max-width: 991px) {
     .container {
         width: 90%;
         padding: 15px;
@@ -871,4 +871,4 @@ body.scrolled-up .menu-bar {
         padding: 8px 15px;
         font-size: 14px;
     }
-}  */
+} 
