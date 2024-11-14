@@ -758,7 +758,7 @@ body.scrolled-up .menu-bar {
 
 
 
-/* @media (max-width: 991px) {
+@media (max-width: 991px) {
     .header-container {
         padding: 1rem 2rem;
         flex-direction: column;
@@ -912,4 +912,4 @@ body.scrolled-up .menu-bar {
         font-size: 13px;
         padding: 0.5em;
     }
-} */
+}
