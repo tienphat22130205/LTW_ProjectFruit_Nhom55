@@ -146,6 +146,10 @@ function updateTimer() {
 
 // Cập nhật đồng hồ mỗi giây
 const countdownInterval = setInterval(updateTimer, 1000);
+
+
+
+
 // Hàm để đặt mục được nhấn là active
 function setActive(element) {
   // Loại bỏ lớp "active" khỏi tất cả các mục menu
