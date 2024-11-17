@@ -220,7 +220,20 @@ input, textarea {
     cursor: pointer;
     margin-right: 10px;
 }
+.account .avatar {
+    display: none; /* Ẩn avatar trước khi đăng nhập */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
 
+.account.logged-in .avatar {
+    display: block; /* Hiển thị avatar khi đăng nhập thành công */
+}
+
+.account.logged-in i, .account.logged-in span {
+    display: none; /* Ẩn icon tài khoản và text "Tài khoản" khi có avatar */
+}
 /* Delivery area */
 .delivery {
     text-align: center;

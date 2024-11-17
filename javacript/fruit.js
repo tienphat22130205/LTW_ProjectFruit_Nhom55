@@ -233,44 +233,44 @@ window.addEventListener("scroll", function () {
 });
 
 // đăng nhập để đến trang admin
-function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const errorMessage = document.getElementById("error-message");
-  const loginForm = document.getElementById("loginForm");
+// function login() {
+//   const email = document.getElementById("email").value;
+//   const password = document.getElementById("password").value;
+//   const errorMessage = document.getElementById("error-message");
+//   const loginForm = document.getElementById("loginForm");
 
-  // Thông tin tài khoản admin
-  const adminEmail = "nhom55@gmail.com";
-  const adminPassword = "nhom55";
+//   // Thông tin tài khoản admin
+//   const adminEmail = "nhom55@gmail.com";
+//   const adminPassword = "nhom55";
 
-  // Thông tin tài khoản người dùng thường
-  const userEmail = "user@example.com"; // Thay đổi theo tài khoản người dùng thường của bạn
-  const userPassword = "user123"; // Thay đổi theo mật khẩu người dùng thường của bạn
+//   // Thông tin tài khoản người dùng thường
+//   const userEmail = "user@example.com"; // Thay đổi theo tài khoản người dùng thường của bạn
+//   const userPassword = "user123"; // Thay đổi theo mật khẩu người dùng thường của bạn
 
-  // Kiểm tra tài khoản và mật khẩu
-  if (email === adminEmail && password === adminPassword) {
-      // Nếu là tài khoản admin, ẩn form, xóa thông tin và chuyển hướng đến trang Admin
-      document.getElementById("email").value = ""; // Xóa thông tin email
-      document.getElementById("password").value = ""; // Xóa thông tin password
-      loginForm.style.display = "none"; // Ẩn form đăng nhập
-      setTimeout(() => {
-          window.location.href = "admin.html"; // Đường dẫn tới trang Admin
-      }, 500); // Đợi 500ms trước khi chuyển hướng
-  } else if (email === userEmail && password === userPassword) {
-      // Nếu là tài khoản người dùng thường, ẩn form, xóa thông tin và chuyển hướng đến trang User
-      document.getElementById("email").value = ""; // Xóa thông tin email
-      document.getElementById("password").value = ""; // Xóa thông tin password
-      loginForm.style.display = "none"; // Ẩn form đăng nhập
-      setTimeout(() => {
-          window.location.href = "index.html"; // Đường dẫn tới trang User (trang chủ)
-      }, 500); // Đợi 500ms trước khi chuyển hướng
-  } else {
-      // Nếu thông tin không đúng, hiển thị thông báo lỗi và xóa nội dung trong các trường nhập
-      errorMessage.style.display = "block";
-      document.getElementById("email").value = "";
-      document.getElementById("password").value = "";
-  }
-}
+//   // Kiểm tra tài khoản và mật khẩu
+//   if (email === adminEmail && password === adminPassword) {
+//       // Nếu là tài khoản admin, ẩn form, xóa thông tin và chuyển hướng đến trang Admin
+//       document.getElementById("email").value = ""; // Xóa thông tin email
+//       document.getElementById("password").value = ""; // Xóa thông tin password
+//       loginForm.style.display = "none"; // Ẩn form đăng nhập
+//       setTimeout(() => {
+//           window.location.href = "admin.html"; // Đường dẫn tới trang Admin
+//       }, 500); // Đợi 500ms trước khi chuyển hướng
+//   } else if (email === userEmail && password === userPassword) {
+//       // Nếu là tài khoản người dùng thường, ẩn form, xóa thông tin và chuyển hướng đến trang User
+//       document.getElementById("email").value = ""; // Xóa thông tin email
+//       document.getElementById("password").value = ""; // Xóa thông tin password
+//       loginForm.style.display = "none"; // Ẩn form đăng nhập
+//       setTimeout(() => {
+//           window.location.href = "index.html"; // Đường dẫn tới trang User (trang chủ)
+//       }, 500); // Đợi 500ms trước khi chuyển hướng
+//   } else {
+//       // Nếu thông tin không đúng, hiển thị thông báo lỗi và xóa nội dung trong các trường nhập
+//       errorMessage.style.display = "block";
+//       document.getElementById("email").value = "";
+//       document.getElementById("password").value = "";
+//   }
+// }
 // loi ngo search
 window.onload = function() {
   document.querySelector(".search input").value = ""; // Đảm bảo ô input bên trong thẻ .search được làm rỗng
