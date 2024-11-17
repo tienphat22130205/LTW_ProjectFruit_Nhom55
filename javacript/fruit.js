@@ -24,6 +24,7 @@ function closeAllForms() {
   document.getElementById("loginForm").style.display = "none";
   document.getElementById("cartForm").style.display = "none";
   document.getElementById("branchSelection").style.display = "none";
+  document.getElementById("userMenu").style.display = "none";
 }
 
 function setPositionRelativeToButton(form, button) {
@@ -37,11 +38,34 @@ function setPositionRelativeToButton(form, button) {
 function toggleLoginForm() {
   closeAllForms();
   const loginForm = document.getElementById("loginForm");
+  const userMenu = document.getElementById("userMenu"); // Thêm menu người dùng
   const button = document.querySelector(".account");
-  setPositionRelativeToButton(loginForm, button);
-  loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
+  const avatarImg = document.querySelector(".account .avatar");
+
+  if (avatarImg) {
+    // Khi đã đăng nhập (có avatar), hiển thị menu người dùng
+    setPositionRelativeToButton(userMenu, button);
+    userMenu.style.display = userMenu.style.display === "none" || userMenu.style.display === "" ? "block" : "none";
+  } else {
+    // Khi chưa đăng nhập (không có avatar), hiển thị form đăng nhập
+    setPositionRelativeToButton(loginForm, button);
+    loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
+  }
 }
 
+// Thêm sự kiện cho avatar để mở menu người dùng
+function toggleUserMenu() {
+  const userMenu = document.getElementById("userMenu");
+  userMenu.style.display = userMenu.style.display === "none" || userMenu.style.display === "" ? "block" : "none";
+}
+
+// Sự kiện cho avatar
+document.querySelector(".account").addEventListener("click", toggleLoginForm);
+
+// Đóng form khi người dùng cuộn trang
+window.addEventListener("scroll", function () {
+  closeAllForms();
+});
 function toggleCartForm() {
   closeAllForms();
   const cartForm = document.getElementById("cartForm");
@@ -61,6 +85,7 @@ function toggleBranchForm() {
 document.querySelector(".account").addEventListener("click", toggleLoginForm);
 document.querySelector(".cart").addEventListener("click", toggleCartForm);
 document.querySelector(".delivery").addEventListener("click", toggleBranchForm);
+document.querySelector(".account").addEventListener("click", toggleLoginForm);
 
 window.onclick = function (event) {
   if (!event.target.closest('.login-form') && !event.target.closest('.cart-form') &&
@@ -75,8 +100,6 @@ window.onclick = function (event) {
 window.addEventListener("scroll", function () {
   closeAllForms();
 });
-
-
 
 
 
@@ -161,13 +184,6 @@ function setActive(element) {
   element.closest("li").classList.add("active");
 }
 
-
-
-
-
-
-
-
 // cap nhat menu ben trai
 function closeSidebarMenu() {
   const sidebarMenu = document.getElementById("sidebarMenu");
@@ -232,47 +248,8 @@ window.addEventListener("scroll", function () {
   lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Đảm bảo giá trị không bị âm
 });
 
-// đăng nhập để đến trang admin
-// function login() {
-//   const email = document.getElementById("email").value;
-//   const password = document.getElementById("password").value;
-//   const errorMessage = document.getElementById("error-message");
-//   const loginForm = document.getElementById("loginForm");
-
-//   // Thông tin tài khoản admin
-//   const adminEmail = "nhom55@gmail.com";
-//   const adminPassword = "nhom55";
-
-//   // Thông tin tài khoản người dùng thường
-//   const userEmail = "user@example.com"; // Thay đổi theo tài khoản người dùng thường của bạn
-//   const userPassword = "user123"; // Thay đổi theo mật khẩu người dùng thường của bạn
-
-//   // Kiểm tra tài khoản và mật khẩu
-//   if (email === adminEmail && password === adminPassword) {
-//       // Nếu là tài khoản admin, ẩn form, xóa thông tin và chuyển hướng đến trang Admin
-//       document.getElementById("email").value = ""; // Xóa thông tin email
-//       document.getElementById("password").value = ""; // Xóa thông tin password
-//       loginForm.style.display = "none"; // Ẩn form đăng nhập
-//       setTimeout(() => {
-//           window.location.href = "admin.html"; // Đường dẫn tới trang Admin
-//       }, 500); // Đợi 500ms trước khi chuyển hướng
-//   } else if (email === userEmail && password === userPassword) {
-//       // Nếu là tài khoản người dùng thường, ẩn form, xóa thông tin và chuyển hướng đến trang User
-//       document.getElementById("email").value = ""; // Xóa thông tin email
-//       document.getElementById("password").value = ""; // Xóa thông tin password
-//       loginForm.style.display = "none"; // Ẩn form đăng nhập
-//       setTimeout(() => {
-//           window.location.href = "index.html"; // Đường dẫn tới trang User (trang chủ)
-//       }, 500); // Đợi 500ms trước khi chuyển hướng
-//   } else {
-//       // Nếu thông tin không đúng, hiển thị thông báo lỗi và xóa nội dung trong các trường nhập
-//       errorMessage.style.display = "block";
-//       document.getElementById("email").value = "";
-//       document.getElementById("password").value = "";
-//   }
-// }
 // loi ngo search
-window.onload = function() {
+window.onload = function () {
   document.querySelector(".search input").value = ""; // Đảm bảo ô input bên trong thẻ .search được làm rỗng
 };
 
@@ -285,52 +262,52 @@ let slideInterval;
 
 // Show image based on index
 function showImage(index) {
-    images.forEach((img, i) => {
-        img.classList.toggle('active', i === index);
-        thumbnails[i].classList.toggle('active-thumbnail', i === index);
-    });
-    currentIndex = index;
+  images.forEach((img, i) => {
+    img.classList.toggle('active', i === index);
+    thumbnails[i].classList.toggle('active-thumbnail', i === index);
+  });
+  currentIndex = index;
 }
 
 // Next image
 function nextImage() {
-    const nextIndex = (currentIndex + 1) % images.length;
-    showImage(nextIndex);
+  const nextIndex = (currentIndex + 1) % images.length;
+  showImage(nextIndex);
 }
 
 // Previous image
 function prevImage() {
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(prevIndex);
+  const prevIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(prevIndex);
 }
 
 // Thumbnail click event
 thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener('click', () => {
-        showImage(index);
-        resetInterval();
-    });
+  thumbnail.addEventListener('click', () => {
+    showImage(index);
+    resetInterval();
+  });
 });
 
 // Controls click events
 document.querySelector('.next').addEventListener('click', () => {
-    nextImage();
-    resetInterval();
+  nextImage();
+  resetInterval();
 });
 document.querySelector('.prev').addEventListener('click', () => {
-    prevImage();
-    resetInterval();
+  prevImage();
+  resetInterval();
 });
 
 // Automatic slide change
 function startInterval() {
-    slideInterval = setInterval(nextImage, intervalTime);
+  slideInterval = setInterval(nextImage, intervalTime);
 }
 
 // Reset interval when manually changing image
 function resetInterval() {
-    clearInterval(slideInterval);
-    startInterval();
+  clearInterval(slideInterval);
+  startInterval();
 }
 
 // Initialize
@@ -343,15 +320,15 @@ const quantityInput = document.querySelector('.quantity input');
 
 // Add event listeners to the buttons
 minusButton.addEventListener('click', () => {
-    let currentValue = parseInt(quantityInput.value) || 0;
-    if (currentValue > 1) {
-        quantityInput.value = currentValue - 1;
-    }
+  let currentValue = parseInt(quantityInput.value) || 0;
+  if (currentValue > 1) {
+    quantityInput.value = currentValue - 1;
+  }
 });
 
 plusButton.addEventListener('click', () => {
-    let currentValue = parseInt(quantityInput.value) || 0;
-    quantityInput.value = currentValue + 1;
+  let currentValue = parseInt(quantityInput.value) || 0;
+  quantityInput.value = currentValue + 1;
 });
 // thêm gior hang
 let cart = [];
@@ -365,13 +342,13 @@ function toggleCart() {
 // Thêm sản phẩm vào giỏ hàng
 function addToCart(name, price, image) {
   const existingItem = cart.find(item => item.name === name);
-  
+
   if (existingItem) {
     existingItem.quantity++;
   } else {
     cart.push({ name, price, image, quantity: 1 });
   }
-  
+
   updateCart();
 }
 
@@ -379,13 +356,13 @@ function addToCart(name, price, image) {
 function updateCart() {
   const cartContent = document.querySelector(".cart-content");
   const totalAmount = document.querySelector(".total-amount");
-  
+
   cartContent.innerHTML = "";
   let total = 0;
 
   cart.forEach(item => {
     total += item.price * item.quantity;
-    
+
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart-item");
     cartItem.innerHTML = `
@@ -404,7 +381,7 @@ function updateCart() {
   });
 
   totalAmount.textContent = `${total.toLocaleString()}₫`;
-  
+
   // Cập nhật trạng thái khi giỏ hàng trống
   if (cart.length === 0) {
     cartContent.innerHTML = `<i class="fa-solid fa-cart-shopping cart-icon"></i><p>Hiện chưa có sản phẩm</p>`;

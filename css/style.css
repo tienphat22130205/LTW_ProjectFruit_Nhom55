@@ -63,7 +63,9 @@ section {
     background: #ff8c00;
     /* Chuyển màu để tăng tương tác */
 }
-input, textarea {
+
+input,
+textarea {
     text-transform: none;
 }
 
@@ -83,6 +85,7 @@ input, textarea {
     background: var(--orange);
     color: #fff;
 }
+
 .timer {
     display: flex;
     align-items: center;
@@ -96,11 +99,13 @@ input, textarea {
     border-radius: 5px;
     text-align: center;
 }
+
 .sale {
     display: flex;
     align-items: center;
     justify-content: left;
-    gap: 20px; /* Khoảng cách giữa các phần tử */
+    gap: 20px;
+    /* Khoảng cách giữa các phần tử */
     padding: 10px 20px;
     background: #f0f0f0;
     border-radius: 10px;
@@ -114,7 +119,7 @@ input, textarea {
     color: #ff416c;
     text-transform: uppercase;
 }
-  
+
 /* header */
 .header-container {
     position: fixed;
@@ -220,20 +225,100 @@ input, textarea {
     cursor: pointer;
     margin-right: 10px;
 }
+
 .account .avatar {
-    display: none; /* Ẩn avatar trước khi đăng nhập */
+    display: none;
+    /* Ẩn avatar trước khi đăng nhập */
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
 
 .account.logged-in .avatar {
-    display: block; /* Hiển thị avatar khi đăng nhập thành công */
+    display: block;
+    /* Hiển thị avatar khi đăng nhập thành công */
 }
 
-.account.logged-in i, .account.logged-in span {
-    display: none; /* Ẩn icon tài khoản và text "Tài khoản" khi có avatar */
+.account.logged-in i,
+.account.logged-in span {
+    display: none;
+    /* Ẩn icon tài khoản và text "Tài khoản" khi có avatar */
 }
+
+.account {
+    position: relative;
+}
+
+.user-menu {
+    width: 250px;
+    padding: 15px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    z-index: 1000;
+}
+
+.user-menu p {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin: 0 20px 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px var(--light-color);
+    max-width: 180px;
+}
+.user-menu hr {
+    border: none;
+    border-top: 1px solid #c8c8c8;
+    margin: 10px 0;
+  }
+
+.user-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-menu li {
+    margin-bottom: 12px;
+}
+
+.user-menu li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: #555;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.user-menu li a:hover {
+    background-color: #f2f2f2;
+    /* Màu nền khi hover */
+    color: #333;
+}
+
+.user-menu li a i {
+    margin-right: 10px;
+    color: #ff5a00;
+}
+
+#logout {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+#logout:hover {
+    color: #c9302c;
+}
+
 /* Delivery area */
 .delivery {
     text-align: center;
@@ -508,7 +593,7 @@ input, textarea {
 }
 
 .view-cart-button {
-    display: block; 
+    display: block;
     width: calc(100% - 20px);
     margin: 0 auto;
     padding: 10px;
@@ -523,7 +608,8 @@ input, textarea {
     margin-top: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.view-cart-button:hover{
+
+.view-cart-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     background-color: #eee;
@@ -615,8 +701,9 @@ body.scrolled-up .menu-bar {
     justify-content: center;
     transition: background-color 0.3s;
 }
+
 /* Menu dọc */
-.sidebar-menu{
+.sidebar-menu {
     display: none;
     position: fixed;
     top: 75px;
@@ -630,6 +717,7 @@ body.scrolled-up .menu-bar {
     overflow-y: auto;
     border-radius: 0 0 8px 8px;
 }
+
 /* .sidebar-menu.active{
     display: block;
 } */
@@ -638,10 +726,12 @@ body.scrolled-up .menu-bar {
     padding: 0;
     margin: 0;
 }
+
 .sidebar-menu li {
     padding: 10px 20px;
     border-bottom: 1px solid #f0f0f0;
 }
+
 .sidebar-menu a {
     color: var(--black);
     font-size: 16px;
@@ -654,14 +744,17 @@ body.scrolled-up .menu-bar {
 .sidebar-menu a:hover {
     text-decoration: underline;
 }
+
 .sidebar-menu .active a {
     font-weight: 500;
 
 }
+
 .sidebar-menu.active {
     display: block;
 }
-.menu .menu-icon{
+
+.menu .menu-icon {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -669,7 +762,8 @@ body.scrolled-up .menu-bar {
     font-size: 20px;
     color: white;
 }
-.menu .menu-icon i{
+
+.menu .menu-icon i {
     font-size: 30px;
 }
 
@@ -768,6 +862,7 @@ body.scrolled-up .menu-bar {
     color: var(--light-color);
     padding: 1rem 0;
 }
+
 /* san pham */
 .products .product-slider {
     padding: 1rem;
@@ -957,6 +1052,7 @@ body.scrolled-up .menu-bar {
     font-size: 1.5rem;
     padding: .5rem 0;
 }
+
 /* register trong tài khoản */
 .register-container {
     background-color: #fff;
@@ -970,6 +1066,7 @@ body.scrolled-up .menu-bar {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .register-container h4 {
     text-align: center;
     margin-bottom: 1em;
@@ -978,36 +1075,44 @@ body.scrolled-up .menu-bar {
     line-height: 1.2;
     font-size: 24px;
 }
+
 .register-container form {
     display: flex;
     flex-direction: column;
 }
+
 .register-container label {
     margin-top: 1em;
     color: #f36f40;
     font-size: 12px;
 }
+
 .register-container input {
     padding: 0.8em;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 0.5em;
 }
+
 .register-container button {
     margin-top: 1.5em;
     padding: 0.8em;
     border: none;
     border-radius: 5px;
-    background-color: #f36f40; /* Màu giống với tiêu đề */
+    background-color: #f36f40;
+    /* Màu giống với tiêu đề */
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
 .register-container button:hover {
-    background-color: #d85a2e; /* Màu khi di chuột qua */
+    background-color: #d85a2e;
+    /* Màu khi di chuột qua */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
 /* -------------------------------Footer---------------------------------------------- */
 .footer {
     background: #fff;
@@ -1179,7 +1284,8 @@ body.scrolled-up .menu-bar {
     }
 
     .center {
-        display: none; /* Hide center section for smaller screens */
+        display: none;
+        /* Hide center section for smaller screens */
     }
 
     .search {
@@ -1188,7 +1294,8 @@ body.scrolled-up .menu-bar {
     }
 
     .menu {
-        display: block; /* Show menu icon */
+        display: block;
+        /* Show menu icon */
         font-size: 20px;
     }
 }
@@ -1207,7 +1314,8 @@ body.scrolled-up .menu-bar {
     }
 
     .menu-bar {
-        display: none; /* Hidden by default */
+        display: none;
+        /* Hidden by default */
         flex-direction: column;
         position: fixed;
         top: 60px;
@@ -1220,7 +1328,8 @@ body.scrolled-up .menu-bar {
     }
 
     .menu-bar.active {
-        display: flex; /* Show menu bar when active */
+        display: flex;
+        /* Show menu bar when active */
     }
 
     .menu-bar ul {
@@ -1240,7 +1349,8 @@ body.scrolled-up .menu-bar {
     }
 
     .menu {
-        font-size: 24px; /* Enlarge menu icon */
+        font-size: 24px;
+        /* Enlarge menu icon */
     }
 }
 
@@ -1268,6 +1378,7 @@ body.scrolled-up .menu-bar {
     }
 
     .menu {
-        font-size: 18px; /* Adjust icon size */
+        font-size: 18px;
+        /* Adjust icon size */
     }
 }

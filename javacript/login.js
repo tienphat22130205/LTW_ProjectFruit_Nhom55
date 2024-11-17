@@ -32,6 +32,12 @@ function login() {
         avatarImg.classList.add("avatar");
         accountSection.appendChild(avatarImg);
 
+         // Hiển thị tên người dùng trong dropdown
+         document.getElementById("userNameDisplay").textContent = userName;
+
+         // Hiển thị dropdown khi nhấp vào avatar
+         avatarImg.addEventListener("click", toggleUserMenu);
+         
         alert(`Chào mừng ${userName}!`);
     } else {
         // Hiển thị thông báo lỗi nếu thông tin không đúng
