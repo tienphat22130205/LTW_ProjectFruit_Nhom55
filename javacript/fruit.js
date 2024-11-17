@@ -353,8 +353,75 @@ plusButton.addEventListener('click', () => {
     let currentValue = parseInt(quantityInput.value) || 0;
     quantityInput.value = currentValue + 1;
 });
+// thêm gior hang
+let cart = [];
 
+// Hiển thị giỏ hàng
+function toggleCart() {
+  const cartForm = document.getElementById("cartForm");
+  cartForm.style.display = cartForm.style.display === "none" || cartForm.style.display === "" ? "block" : "none";
+}
 
+// Thêm sản phẩm vào giỏ hàng
+function addToCart(name, price, image) {
+  const existingItem = cart.find(item => item.name === name);
+  
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({ name, price, image, quantity: 1 });
+  }
+  
+  updateCart();
+}
+
+// Cập nhật giỏ hàng
+function updateCart() {
+  const cartContent = document.querySelector(".cart-content");
+  const totalAmount = document.querySelector(".total-amount");
+  
+  cartContent.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+    
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+    cartItem.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <div>
+        <h4>${item.name}</h4>
+        <p>${item.price.toLocaleString()}₫</p>
+        <div>
+          <button onclick="updateQuantity('${item.name}', -1)">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="updateQuantity('${item.name}', 1)">+</button>
+        </div>
+      </div>
+    `;
+    cartContent.appendChild(cartItem);
+  });
+
+  totalAmount.textContent = `${total.toLocaleString()}₫`;
+  
+  // Cập nhật trạng thái khi giỏ hàng trống
+  if (cart.length === 0) {
+    cartContent.innerHTML = `<i class="fa-solid fa-cart-shopping cart-icon"></i><p>Hiện chưa có sản phẩm</p>`;
+  }
+}
+
+// Cập nhật số lượng sản phẩm trong giỏ hàng
+function updateQuantity(name, change) {
+  const item = cart.find(item => item.name === name);
+  if (item) {
+    item.quantity += change;
+    if (item.quantity <= 0) {
+      cart = cart.filter(cartItem => cartItem.name !== name);
+    }
+    updateCart();
+  }
+}
 
 
 
