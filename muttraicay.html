@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="./css/style.css" />
   <!-- Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- link logo anh -->
+  <link rel="icon" href="./img/logoBank/logoweb.png" type="image/x-icon">
   <title>Selling Fruit</title>
 </head>
 
@@ -42,18 +44,17 @@
           <i class="fas fa-phone"></i>
           <span>Hotline: 0865660775</span>
         </div>
-        <div class="account">
-          <i class="fa-solid fa-user"></i>
-          <span>Tài khoản</span>
-        </div>
         <div class="cart">
           <i class="fa-solid fa-cart-shopping"></i>
           <span>Giỏ hàng</span>
           <span class="cart-badge">0</span>
         </div>
+        <div class="account">
+          <i class="fa-solid fa-user"></i>
+          <span>Tài khoản</span>
+        </div>
       </div>
     </div>
-
     <!-- Branch Selection Form -->
     <div class="branch-selection" id="branchSelection">
       <h2>KHU VỰC MUA HÀNG</h2>
@@ -121,6 +122,14 @@
         Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
       </p>
     </div>
+    <div class="user-menu" id="userMenu" style="display: none;">
+      <p>Xin chào, <span id="userNameDisplay">User</span></p>
+      <ul>
+          <li><a href="user.html"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
+          <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
+          <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+      </ul>
+  </div>  
     <div class="cart-form" id="cartForm">
       <h2>GIỎ HÀNG</h2>
       <hr>
@@ -604,6 +613,7 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script src="./javacript/fruit.js"></script>
+  <script src="./javacript/login.js"></script>
 </body>
 
 </html>
