@@ -506,6 +506,184 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
 .chart-container .common-chart{
     flex: 6;
 }
+/* Overlay styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark background */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 9998; /* Behind the modal */
+}
+
+/* Modal styles */
+.modal {
+    background-color: #fff;
+    border-radius: 12px;
+    width: 70%;
+    max-width: 900px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    transition: all 0.3s ease-in-out;
+}
+.modal.active {
+    transform: scale(1);
+}
+.modal h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Close button */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #d9534f; /* Red when hovered */
+}
+
+/* Modal Content */
+.modal-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+.customer-info {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.customer-info p {
+    margin: 12px 0;
+}
+
+.customer-info strong {
+    color: #333;
+}
+
+
+ /* @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+} */
+
+/* Table styles */
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.invoice-table th, .invoice-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #333;
+}
+
+.invoice-table td {
+    color: #555;
+}
+
+.invoice-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.invoice-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Styling cho tổng tiền */
+.total {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e69500;
+    margin-top: 20px;
+}
+
+/* Nút footer của modal */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.modal-footer button {
+    background-color: #e69500;
+    color: #fff;
+    padding: 12px 35px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+    background-color: #c67800;
+}
+
+/* Style cho bảng sản phẩm trong modal */
+.product-table th, .product-table td {
+    padding: 15     px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-table td {
+    color: #555;
+}
+
+.product-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.product-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -655,6 +833,17 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
     header {
         width: 100%;
         left: 0;
+    }
+    .modal {
+        width: 90%;
+    }
+
+    .invoice-table, .product-table {
+        font-size: 0.9rem;
+    }
+
+    .total {
+        font-size: 1.2rem;
     }
 }
 @media only screen and (max-width :560px){
