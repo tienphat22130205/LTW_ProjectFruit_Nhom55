@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showSection('dashboard', 'Dashboard');
 });
 // dong mo sidebar
-document.querySelector("#nav-toggle").addEventListener("change", function() {
+document.querySelector("#nav-toggle").addEventListener("change", function () {
     document.querySelector(".sidebar").classList.toggle("active");
 });
 // chart
@@ -77,7 +77,7 @@ const monthlyRevenueChart = new Chart(ctxMonthly, {
                     }
                 },
                 ticks: {
-                    callback: function(value) {
+                    callback: function (value) {
                         return value.toLocaleString() + ' đ';
                     }
                 }
@@ -100,7 +100,7 @@ const monthlyRevenueChart = new Chart(ctxMonthly, {
 // Cấu hình biểu đồ Doanh thu hàng ngày của tháng vừa qua
 const ctx = document.getElementById('weeklyRevenueChart').getContext('2d');
 const weeklyRevenueChart = new Chart(ctx, {
-    type: 'line', 
+    type: 'line',
     data: {
         labels: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'], // Các mốc tuần trong tháng
         datasets: [{
@@ -120,7 +120,7 @@ const weeklyRevenueChart = new Chart(ctx, {
             y: {
                 beginAtZero: true,
                 ticks: {
-                    callback: function(value) {
+                    callback: function (value) {
                         return value.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                     }
                 },
@@ -186,7 +186,7 @@ const monthlyRevenueChart1 = new Chart(monthlyRevenueCtx, {
                     }
                 },
                 ticks: {
-                    callback: function(value) {
+                    callback: function (value) {
                         return `${value.toLocaleString('vi-VN')} đ`; // Hiển thị "đồng" cho trục y
                     }
                 }
@@ -268,8 +268,8 @@ const productTypeRevenueCtx = document.getElementById('productTypeRevenueChart')
 const productTypeRevenueChart = new Chart(productTypeRevenueCtx, {
     type: 'bar', // Loại biểu đồ cột
     data: {
-        labels: ["Trái Ngon Hôm Nay", "Trái Cây Việt Nam", "Trái Cây Nhập Khẩu", "Trái Cây Cắt Sẵn", 
-                 "Quà Tặng Trái Cây", "Hộp Quà Nguyệt Cát", "Trái Cây Sấy Khô", "Mứt Trái Cây"],
+        labels: ["Trái Ngon Hôm Nay", "Trái Cây Việt Nam", "Trái Cây Nhập Khẩu", "Trái Cây Cắt Sẵn",
+            "Quà Tặng Trái Cây", "Hộp Quà Nguyệt Cát", "Trái Cây Sấy Khô", "Mứt Trái Cây"],
         datasets: [{
             label: 'Doanh thu (VND)',
             data: [50000000, 30000000, 45000000, 70000000, 20000000, 60000000, 40000000, 25000000, 15000000, 10000000], // Doanh thu giả lập cho từng loại
@@ -291,7 +291,7 @@ const productTypeRevenueChart = new Chart(productTypeRevenueCtx, {
                     text: 'Doanh thu (VND)',
                 },
                 ticks: {
-                    callback: function(value) {
+                    callback: function (value) {
                         return value.toLocaleString() + ' đ';
                     }
                 }
@@ -319,11 +319,12 @@ const productTypeRevenueChart = new Chart(productTypeRevenueCtx, {
 // Hàm mở modal chung
 function openModal(data, modalType) {
     // Hiển thị overlay
-    document.getElementById("overlay").style.display = "flex"; 
+    document.getElementById("overlay").style.display = "flex";
 
     // Ẩn tất cả các bảng trước khi hiển thị bảng mới
     document.getElementById("invoiceTable").style.display = "none";
     document.getElementById("productTable").style.display = "none";
+    document.getElementById("productDescriptionModal").style.display = "none";
 
     // Ẩn các modal cũ trước khi mở modal mới
     document.getElementById("invoiceModal").style.display = "none";
@@ -384,6 +385,19 @@ function openModal(data, modalType) {
 
         // Hiển thị tổng cộng
         document.getElementById("grandTotal").textContent = data.grandTotal;
+    } else if (modalType === "productDescription") {
+        // Mở modal mô tả sản phẩm
+        document.getElementById("productDescriptionModal").style.display = "block";
+
+        // Cập nhật thông tin vào modal
+        document.getElementById("product-description-image").src = data.image;
+        document.getElementById("product-description-name").textContent = data.name;
+        document.getElementById("product-description-code").textContent = data.code;
+        document.getElementById("product-description-price").textContent = data.price;
+        document.getElementById("product-description-category").textContent = data.category;
+        document.getElementById("product-description-origin").textContent = data.origin;
+        document.getElementById("product-description-description").textContent = data.description;
+        document.getElementById("product-description-image").src = productDetailData.image;
     }
 }
 
@@ -398,6 +412,8 @@ function closeModal(modalType) {
     } else if (modalType === "productDetail") {
         document.getElementById("productDetailModal").style.display = "none"; // Ẩn modal chi tiết sản phẩm
         document.getElementById("productTable").style.display = "none"; // Ẩn bảng chi tiết sản phẩm đã mua
+    } else if (modalType === "productDescription") {
+        document.getElementById("productDescriptionModal").style.display = "none"; // Ẩn modal mô tả sản phẩm
     }
 }
 
@@ -439,6 +455,21 @@ document.querySelectorAll(".button-product-detail").forEach(button => {
             grandTotal: "46,500,000"
         };
         openModal(productDetailData, "productDetail");
+    });
+});
+document.querySelectorAll(".button-product-description").forEach(button => {
+    button.addEventListener("click", () => {
+        // Dữ liệu sản phẩm sẽ được lấy từ nguồn khác, ví dụ từ một API hoặc dữ liệu có sẵn
+        const productDetailData = {
+            name: "Vú Sữa",
+            code: "VS",
+            price: "121,000đ",
+            category: "Trái Cây Việt Nam",
+            origin: "Tiền Giang, Việt Nam",
+            description: "Vú sữa là loại trái cây nổi tiếng của miền Tây, Việt Nam.",
+            image: "./img/traicayvietnam/vusua.jpg"
+        };
+        openModal(productDetailData, "productDescription");
     });
 });
 
