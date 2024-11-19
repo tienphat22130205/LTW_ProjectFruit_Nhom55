@@ -13,7 +13,7 @@
     <input type="checkbox" name="" id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
-            <h1><i class="fa-solid fa-leaf"></i> <span>VitaminFRUIT</span></h1>
+            <h1><i class="fa-solid fa-leaf"></i> <span>Fruit</span></h1>
         </div>
         <div class="sidebar-menu">
             <ul>
@@ -38,9 +38,34 @@
                         <span>Quản lý đặt hàng</span></a>
                 </li>
                 <li>
+                    <a href="#" class="menu-item" onclick="showSection('suppliers', 'Quản lý nhà cung cấp')"><span><i
+                                class="fa-solid fa-truck"></i></span>
+                        <span>Quản lý nhà cung cấp</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('inventory', 'Quản lý kho hàng')"><span><i
+                                class="fa-solid fa-warehouse"></i></span>
+                        <span>Quản lý kho hàng</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('promotions', 'Quản lý khuyến mãi')"><span><i
+                                class="fa-solid fa-tags"></i></span>
+                        <span>Quản lý khuyến mãi</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('feedback', 'Phản hồi khách hàng')"><span><i
+                                class="fa-solid fa-comments"></i></span>
+                        <span>Phản hồi khách hàng</span></a>
+                </li>            
+                <li>
                     <a href="#" class="menu-item" onclick="showSection('statistics', 'Thống kê doanh thu')"><span><i
                                 class="fa-solid fa-chart-line"></i></span>
                         <span>Thống kê doanh thu</span></a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item" onclick="showSection('system', 'Hệ thống')"><span><i
+                                class="fa-solid fa-cogs"></i></span>
+                        <span>Hệ thống</span></a>
                 </li>
             </ul>
         </div>
@@ -1312,6 +1337,21 @@
                         <canvas id="productTypeRevenueChart"></canvas>
                     </div>
                 </div>
+            </div>
+            <div id="suppliers" class="section">
+                <p>Phan noi dung cua Quan Ly Nha Cung Cap</p>
+            </div>
+            <div id="inventory" class="section">
+                <p>Phan noi dung cua Quan Ly Kho Hang</p>
+            </div>
+            <div id="promotions" class="section">
+                <p>Phan noi dung cua Quan Ly Khuyen Mai</p>
+            </div>
+            <div id="feedback" class="section">
+                <p>Phan noi dung cua Phan Hoi Khach Hang</p>
+            </div>
+            <div id="system" class="section">
+                <p>Phan noi dung cua He Thong</p>
             </div>
         </main>
     </div>
