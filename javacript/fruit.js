@@ -38,7 +38,7 @@ function setPositionRelativeToButton(form, button) {
 function toggleLoginForm() {
   closeAllForms();
   const loginForm = document.getElementById("loginForm");
-  const userMenu = document.getElementById("userMenu"); // Thêm menu người dùng
+  const userMenu = document.getElementById("userMenu");
   const button = document.querySelector(".account");
   const avatarImg = document.querySelector(".account .avatar");
 
@@ -61,7 +61,32 @@ function toggleUserMenu() {
 
 // Sự kiện cho avatar
 document.querySelector(".account").addEventListener("click", toggleLoginForm);
+// Đăng xuất
+function logout() {
+  // Xóa thông tin người dùng từ giao diện
+  const accountSection = document.querySelector(".account");
+  const avatarImg = document.querySelector(".account .avatar");
+  const userMenu = document.getElementById("userMenu");
 
+  if (avatarImg) {
+      avatarImg.remove(); // Xóa ảnh đại diện
+  }
+
+  // Đặt lại trạng thái mặc định (icon tài khoản)
+  accountSection.classList.remove("logged-in");
+
+  // Ẩn menu người dùng
+  userMenu.style.display = "none";
+
+  // Hiển thị lại form đăng nhập hoặc đặt lại giao diện icon tài khoản
+  alert("Bạn đã đăng xuất thành công!");
+}
+
+// Gắn sự kiện cho nút đăng xuất
+document.getElementById("logout").addEventListener("click", (event) => {
+  event.preventDefault(); // Ngăn tải lại trang
+  logout();
+});
 // Đóng form khi người dùng cuộn trang
 window.addEventListener("scroll", function () {
   closeAllForms();
