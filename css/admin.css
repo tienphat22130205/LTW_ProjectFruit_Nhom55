@@ -152,7 +152,8 @@
 .main-content {
     transition: margin-left 300ms;
     margin-left: 300px;
-    padding: 20px;
+    /* padding: 10px; */
+    padding-top: 10px;
 }
 .section{
     display: none;
@@ -235,8 +236,8 @@ header label span {
 }
 
 main {
-    margin-top: 85px;
-    padding: 2rem 1.5rem;
+    margin-top: 80px;
+    padding: .5rem 1.5rem;
     background: #f1f5f9;
     min-height: calc(100% - 90px);
 }
@@ -245,7 +246,7 @@ main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
-    margin-top: 1rem;
+    margin-top: .5rem;
 }
 
 .card-single {
@@ -306,6 +307,25 @@ main {
 }
 .card-header button:hover{
     background-color: #e69500;
+}
+.edit-button {
+    background-color: #5cb85c;
+    color: white;
+    margin: 5px;
+    border: 1px solid #5cb85c;
+}
+.edit-button:hover{
+    background-color: #418141
+}
+
+.delete-button {
+    background-color: #d9534f;
+    color: white;
+    margin: 5px;
+    border: 1px solid #d9534f;
+}
+.delete-button:hover{
+    background-color: #973835;
 }
 
 table {
@@ -791,7 +811,7 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
 .admin-actions button:hover {
     background-color: #c67800;
 }
-
+/* -----------------------------------------------css phan hoi khach hang -----------------------------*/
 
 
 
@@ -952,6 +972,7 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
     header {
         width: 100%;
         left: 0;
+        max-width: 744px;
     }
     .modal {
         width: 90%;
