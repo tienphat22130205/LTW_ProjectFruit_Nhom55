@@ -578,5 +578,65 @@ document.querySelectorAll(".button-new-invoice-detail").forEach(button => {
         openModal(invoiceData, "newInvoice");
     });
 });
+// suppliers------
+function viewDetails(transactionId) {
+    alert(`Chi tiết giao dịch ${transactionId}`);
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+   
+    const modal = document.createElement("div");
+    modal.id = "detailModal";
+    modal.style.display = "none";
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Chi tiết nhà cung cấp</h2>
+        <div id="modal-body"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  
+    
+    const closeModal = () => {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto"; 
+    };
+  
+    document.querySelector(".close-btn").addEventListener("click", closeModal);
+  
+    
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  
+   
+    document.querySelectorAll(".action-btn.view").forEach((button) => {
+      button.addEventListener("click", () => {
+        const row = button.closest("tr");
+        const supplierId = row.children[0].textContent;
+        const supplierName = row.children[1].textContent;
+        const rating = row.children[2].textContent;
+        const priority = row.children[3].textContent;
+        const totalErrors = row.children[4].textContent;
+        const responseTime = row.children[5].textContent;
+  
+        const modalBody = document.querySelector("#modal-body");
+        modalBody.innerHTML = `
+          <p><strong>Mã nhà cung cấp:</strong> ${supplierId}</p>
+          <p><strong>Tên nhà cung cấp:</strong> ${supplierName}</p>
+          <p><strong>Điểm đánh giá:</strong> ${rating}</p>
+          <p><strong>Hạng ưu tiên:</strong> ${priority}</p>
+          <p><strong>Tổng số lỗi:</strong> ${totalErrors}</p>
+          <p><strong>Thời gian phản hồi:</strong> ${responseTime}</p>
+        `;
+  
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; 
+      });
+    });
+  });
+  
 
 
