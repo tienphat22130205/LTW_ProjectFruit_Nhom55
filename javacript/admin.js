@@ -315,6 +315,74 @@ const productTypeRevenueChart = new Chart(productTypeRevenueCtx, {
         }
     }
 });
+// Bieu do thong ke san pham 
+const productStatsChartCtx = document.getElementById('productOverviewChart').getContext('2d');
+
+new Chart(productStatsChartCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Sản phẩm còn hàng', 'Sản phẩm đã bán', 'Đánh giá'],
+        datasets: [{
+            label: 'Thống kê sản phẩm',
+            data: [80, 120, 4.5],
+            backgroundColor: [
+                'rgba(255, 159, 64, 0.7)', 
+                'rgba(255, 205, 86, 0.7)', 
+                'rgba(75, 192, 192, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1.5, // Độ dày viền thanh
+            borderRadius: 5, // Góc bo tròn
+            barPercentage: 0.5, // Độ rộng của thanh
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false, // Ẩn chú thích
+            },
+            tooltip: {
+                enabled: true, // Bật tooltip khi hover
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                titleFont: { size: 14, weight: 'bold' },
+                bodyFont: { size: 12 },
+                bodyColor: '#fff',
+                borderColor: '#fff',
+                borderWidth: 1,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false, // Ẩn đường lưới dọc
+                },
+                ticks: {
+                    font: {
+                        size: 14,
+                    },
+                    color: '#555',
+                },
+            },
+            y: {
+                beginAtZero: true, // Bắt đầu từ 0
+                grid: {
+                    color: 'rgba(200, 200, 200, 0.3)', // Màu lưới ngang
+                },
+                ticks: {
+                    font: {
+                        size: 14,
+                    },
+                    color: '#555',
+                },
+            },
+        },
+    },
+});
 
 // Hàm mở modal chung
 function openModal(data, modalType) {
