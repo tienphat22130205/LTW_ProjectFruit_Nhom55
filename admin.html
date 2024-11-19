@@ -1447,8 +1447,222 @@
                     </div>
                 </div>
             </div>
-            <div id="suppliers" class="section">
-                <p>Phan noi dung cua Quan Ly Nha Cung Cap</p>
+           <div id="suppliers" class="section">
+                <div class="container">
+                    <h1>Thông Tin Nhà Cung Cấp</h1>
+                    <table id="supplierTable">
+                        <thead>
+                            <tr>
+                                <th>Mã nhà cung cấp</th>
+                                <th>Tên nhà cung cấp</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Danh sách sản phẩm</th>
+                                <th>Trạng thái hợp tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NCC01</td>
+                                <td>Nhà Cung Cấp An Phát</td>
+                                <td>103 Phạm Ngũ Lão, Quận 1, TP.HCM</td>
+                                <td>0123456789</td>
+                                <td>anphatfruit@gmail.com</td>
+                                <td>Trái Cây Việt Nam</td>
+
+                                <td>
+                                    <span class="status red"></span>
+                                    Tạm Dừng
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NCC02</td>
+                                <td>Nhà Cung Cấp An Bình</td>
+                                <td>256 Phạm Văn Đồng, TP.Thủ Đức, TP.HCM</td>
+                                <td>0906211276</td>
+                                <td>nhacungcapanbinh@gmail.com</td>
+                                <td>Trái Cây Việt Nam</td>
+
+                                <td>
+                                    <span class="status blue"></span>
+                                    Đang Hợp Tác
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NCC03</td>
+                                <td>Nhà Cung Cấp FeshFruit</td>
+                                <td>111 Tân Sơn, Quận Tân Bình, TP.HCM</td>
+                                <td>0902866888</td>
+                                <td>freshfruit@gmail.com</td>
+                                <td>Trái Cây Nhập Khẩu</td>
+
+                                <td>
+                                    <span class="status blue"></span>
+                                    Đang Hợp Tác
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NCC04</td>
+                                <td>Nhà Cung Cấp GoodMorning</td>
+                                <td>96 Thảo Điền, TP.Thủ Đức, TP.HCM</td>
+                                <td>0906211222</td>
+                                <td>morningfruit@gmail.com</td>
+                                <td>Trái Cây Nhập Khẩu Và Giỏ Quà Trái Cây</td>
+
+                                <td>
+                                    <span class="status blue"></span>
+                                    Đang Hợp Tác
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NCC05</td>
+                                <td>Nhà Cung Cấp Tấn Lợi</td>
+                                <td>29 Đỗ Xuân Hợp, TP.Thủ Đức, TP.HCM</td>
+                                <td>0123456789</td>
+                                <td>tanloifruit@gmail.com</td>
+                                <td>Trái Cây Sấy</td>
+
+                                <td>
+                                    <span class="status red"></span>
+                                    Tạm Dừng
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container2">
+                    <h1>Lịch Sử Cung Cấp</h1>
+                    <table id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th>Mã giao dịch</th>
+                                <th>Mã Nhà Cung Cấp</th>
+                                <th>Ngày giao dịch</th>
+                                <th>Số lượng sản phẩm</th>
+                                <th>Giá trị giao dịch</th>
+                                <th>Trạng thái thanh toán</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dữ liệu mẫu -->
+                            <tr>
+                                <td>#GD001</td>
+                                <td>NCC001</td>
+                                <td>12/11/2023</td>
+                                <td>200</td>
+                                <td>10,000,000 VND</td>
+                                <td><span class="status green"></span> Đã thanh toán</td>
+                                <td><button class="view-details" onclick="viewDetails('#GD001')">Xem</button></td>
+                            </tr>
+                            <tr>
+                                <td>#GD002</td>
+                                <td>NCC002</td>
+                                <td>10/11/2023</td>
+                                <td>150</td>
+                                <td>7,500,000 VND</td>
+                                <td><span class="status orange"></span> Chờ thanh toán</td>
+                                <td><button class="view-details" onclick="viewDetails('#GD002')">Xem</button></td>
+                            </tr>
+                            <tr>
+                                <td>#GD003</td>
+                                <td>NCC003</td>
+                                <td>08/11/2023</td>
+                                <td>300</td>
+                                <td>15,000,000 VND</td>
+                                <td><span class="status red"></span> Hủy</td>
+                                <td><button class="view-details" onclick="viewDetails('#GD003')">Xem</button></td>
+                            </tr>
+                            <tr>
+                                <td>#GD002</td>
+                                <td>NCC001</td>
+                                <td>08/9/2023</td>
+                                <td>300</td>
+                                <td>15,000,000 VND</td>
+                                <td><span class="status green"></span> Đã thanh toán</td>
+                                <td><button class="view-details" onclick="viewDetails('#GD003')">Xem</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container3">
+                    <h1>Đánh giá và hợp tác</h1>
+                    <table id="ratingTable">
+                        <thead>
+                            <tr>
+                                <th>Mã nhà cung cấp</th>
+                                <th>Tên nhà cung cấp</th>
+                                <th>Điểm đánh giá</th>
+                                <th>Hạng ưu tiên</th>
+                                <th>Tổng số lỗi</th>
+                                <th>Thời gian phản hồi</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dữ liệu mẫu -->
+                            <tr>
+                                <td>NCC01</td>
+                                <td>Nhà Cung Cấp An Phát</td>
+                                <td><span class="rating">4.5</span> ⭐</td>
+                                <td>Cao</td>
+                                <td>2</td>
+                                <td>24 giờ</td>
+                                <td>
+                                    <button class="action-btn view">Xem</button>
+                                    <button class="action-btn edit">Chỉnh sửa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NCC02</td>
+                                <td>Nhà Cung Cấp GoodMorning</td>
+                                <td><span class="rating">3.8</span> ⭐</td>
+                                <td>Trung bình</td>
+                                <td>5</td>
+                                <td>48 giờ</td>
+                                <td>
+                                    <button class="action-btn view">Xem</button>
+                                    <button class="action-btn edit">Chỉnh sửa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NCC03</td>
+                                <td>Nhà Cung Cấp Tấn Lợi</td>
+                                <td><span class="rating">2.0</span> ⭐</td>
+                                <td>Thấp</td>
+                                <td>10</td>
+                                <td>72 giờ</td>
+                                <td>
+                                    <button class="action-btn view">Xem</button>
+                                    <button class="action-btn edit">Chỉnh sửa</button>
+                                </td>
+                            <tr>
+                                <td>NCC04</td>
+                                <td>Nhà Cung Cấp Tấn Lợi</td>
+                                <td><span class="rating">2.0</span> ⭐</td>
+                                <td>Thấp</td>
+                                <td>10</td>
+                                <td>72 giờ</td>
+                                <td>
+                                    <button class="action-btn view">Xem</button>
+                                    <button class="action-btn edit">Chỉnh sửa</button>
+                                </td>
+                            <tr>
+                                <td>NCC05</td>
+                                <td>Nhà Cung Cấp Tấn Lợi</td>
+                                <td><span class="rating">2.0</span> ⭐</td>
+                                <td>Thấp</td>
+                                <td>10</td>
+                                <td>72 giờ</td>
+                                <td>
+                                    <button class="action-btn view">Xem</button>
+                                    <button class="action-btn edit">Chỉnh sửa</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div id="inventory" class="section">
                 <p>Phan noi dung cua Quan Ly Kho Hang</p>
