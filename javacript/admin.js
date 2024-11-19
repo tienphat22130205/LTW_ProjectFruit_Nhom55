@@ -321,19 +321,16 @@ function openModal(data, modalType) {
     // Hiển thị overlay
     document.getElementById("overlay").style.display = "flex";
 
-    // Ẩn tất cả các bảng trước khi hiển thị bảng mới
-    document.getElementById("invoiceTable").style.display = "none";
-    document.getElementById("productTable").style.display = "none";
-    document.getElementById("productDescriptionModal").style.display = "none";
-
-    // Ẩn các modal cũ trước khi mở modal mới
+    // Ẩn tất cả các modal trước khi hiển thị modal mới
     document.getElementById("invoiceModal").style.display = "none";
     document.getElementById("productDetailModal").style.display = "none";
+    document.getElementById("productDescriptionModal").style.display = "none";
+    document.getElementById("newInvoiceModal").style.display = "none";
 
     if (modalType === "invoice") {
-        // Mở modal chi tiết hóa đơn và hiển thị bảng hóa đơn
+        // Mở modal chi tiết hóa đơn (cũ)
         document.getElementById("invoiceModal").style.display = "block";
-        document.getElementById("invoiceTable").style.display = "table"; // Hiển thị bảng chi tiết hóa đơn
+        document.getElementById("invoiceTable").style.display = "table";
 
         // Điền dữ liệu vào modal
         document.getElementById("customerName").textContent = data.customerName;
@@ -343,7 +340,7 @@ function openModal(data, modalType) {
 
         // Điền dữ liệu vào bảng hóa đơn
         const productList = document.getElementById("productList");
-        productList.innerHTML = ''; // Xóa dữ liệu cũ
+        productList.innerHTML = ""; // Xóa dữ liệu cũ
         data.products.forEach((product, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -359,9 +356,9 @@ function openModal(data, modalType) {
         // Hiển thị tổng tiền
         document.getElementById("totalAmount").textContent = data.totalAmount;
     } else if (modalType === "productDetail") {
-        // Mở modal chi tiết sản phẩm đã mua và hiển thị bảng sản phẩm
+        // Mở modal chi tiết sản phẩm đã mua
         document.getElementById("productDetailModal").style.display = "block";
-        document.getElementById("productTable").style.display = "table"; // Hiển thị bảng sản phẩm đã mua
+        document.getElementById("productTable").style.display = "table";
 
         // Điền dữ liệu vào modal
         document.getElementById("customerID").textContent = data.customerID;
@@ -371,7 +368,7 @@ function openModal(data, modalType) {
 
         // Điền dữ liệu vào bảng sản phẩm đã mua
         const purchasedProductList = document.getElementById("purchasedProductList");
-        purchasedProductList.innerHTML = ''; // Xóa dữ liệu cũ
+        purchasedProductList.innerHTML = ""; // Xóa dữ liệu cũ
         data.products.forEach((product, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -389,7 +386,7 @@ function openModal(data, modalType) {
         // Mở modal mô tả sản phẩm
         document.getElementById("productDescriptionModal").style.display = "block";
 
-        // Cập nhật thông tin vào modal
+        // Điền dữ liệu vào modal
         document.getElementById("product-description-image").src = data.image;
         document.getElementById("product-description-name").textContent = data.name;
         document.getElementById("product-description-code").textContent = data.code;
@@ -397,7 +394,35 @@ function openModal(data, modalType) {
         document.getElementById("product-description-category").textContent = data.category;
         document.getElementById("product-description-origin").textContent = data.origin;
         document.getElementById("product-description-description").textContent = data.description;
-        document.getElementById("product-description-image").src = productDetailData.image;
+    } else if (modalType === "newInvoice") {
+        // Mở modal chi tiết hóa đơn mới
+        document.getElementById("newInvoiceModal").style.display = "block";
+        document.getElementById("newInvoiceTable").style.display = "table";
+
+        // Điền dữ liệu vào modal
+        document.getElementById("newCustomerID").textContent = data.customerID;
+        document.getElementById("newCustomerName").textContent = data.customerName;
+        document.getElementById("newCustomerAddress").textContent = data.customerAddress;
+        document.getElementById("newCustomerPhone").textContent = data.customerPhone;
+        document.getElementById("newCustomerDateSell").textContent = data.customerDateSell;
+
+        // Điền dữ liệu vào bảng hóa đơn mới
+        const newProductList = document.getElementById("newProductList");
+        newProductList.innerHTML = ""; // Xóa dữ liệu cũ
+        data.products.forEach((product, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${product.name}</td>
+                <td>${product.quantity}</td>
+                <td>${product.unitPrice} VND</td>
+                <td>${product.totalPrice} VND</td>
+            `;
+            newProductList.appendChild(row);
+        });
+
+        // Hiển thị tổng tiền
+        document.getElementById("newTotalAmount").textContent = data.totalAmount;
     }
 }
 
@@ -405,19 +430,21 @@ function openModal(data, modalType) {
 function closeModal(modalType) {
     document.getElementById("overlay").style.display = "none"; // Ẩn overlay
 
-    // Ẩn modal và các bảng khi đóng modal
     if (modalType === "invoice") {
-        document.getElementById("invoiceModal").style.display = "none"; // Ẩn modal chi tiết hóa đơn
-        document.getElementById("invoiceTable").style.display = "none"; // Ẩn bảng chi tiết hóa đơn
+        document.getElementById("invoiceModal").style.display = "none";
+        document.getElementById("invoiceTable").style.display = "none";
     } else if (modalType === "productDetail") {
-        document.getElementById("productDetailModal").style.display = "none"; // Ẩn modal chi tiết sản phẩm
-        document.getElementById("productTable").style.display = "none"; // Ẩn bảng chi tiết sản phẩm đã mua
+        document.getElementById("productDetailModal").style.display = "none";
+        document.getElementById("productTable").style.display = "none";
     } else if (modalType === "productDescription") {
-        document.getElementById("productDescriptionModal").style.display = "none"; // Ẩn modal mô tả sản phẩm
+        document.getElementById("productDescriptionModal").style.display = "none";
+    } else if (modalType === "newInvoice") {
+        document.getElementById("newInvoiceModal").style.display = "none";
+        document.getElementById("newInvoiceTable").style.display = "none";
     }
 }
 
-// Ví dụ dữ liệu mẫu và sự kiện nhấn nút "Xem chi tiết" cho cả hai modal
+// Sự kiện nhấn nút "Xem chi tiết"
 document.querySelectorAll(".button-invoice-detail").forEach(button => {
     button.addEventListener("click", () => {
         const invoiceData = {
@@ -426,13 +453,10 @@ document.querySelectorAll(".button-invoice-detail").forEach(button => {
             customerPhone: "0987654321",
             customerDateSell: "12/11/2023",
             products: [
-                { name: "Đào Tiên Úc", quantity: 5, unitPrice: "90,000", totalPrice: "450.000" },
-                { name: "Dâu Nghệ Nhân", quantity: 3, unitPrice: "72,000", totalPrice: "213,000" },
-                { name: "Nho Mẫu Đơn", quantity: 10, unitPrice: "89,000", totalPrice: "890,000" },
-                { name: "Vãi Thiều", quantity: 2, unitPrice: "80,000", totalPrice: "160,000" },
-                { name: "Lựu Tứ Xuyên", quantity: 4, unitPrice: "75,000", totalPrice: "300,000" }
+                { name: "Đào Tiên Úc", quantity: 5, unitPrice: "90,000", totalPrice: "450,000" },
+                { name: "Dâu Nghệ Nhân", quantity: 3, unitPrice: "72,000", totalPrice: "213,000" }
             ],
-            totalAmount: "2,013,000"
+            totalAmount: "663,000"
         };
         openModal(invoiceData, "invoice");
     });
@@ -446,24 +470,20 @@ document.querySelectorAll(".button-product-detail").forEach(button => {
             totalSpent: "45,500,000",
             registrationDate: "2020-06-10",
             products: [
-                { name: "Đào Tiên Úc", quantity: 5, unitPrice: "90,000", totalPrice: "450.000" },
-                { name: "Dâu Nghệ Nhân", quantity: 3, unitPrice: "72,000", totalPrice: "213,000" },
-                { name: "Nho Mẫu Đơn", quantity: 10, unitPrice: "89,000", totalPrice: "890,000" },
-                { name: "Vãi Thiều", quantity: 2, unitPrice: "80,000", totalPrice: "160,000" },
-                { name: "Lựu Tứ Xuyên", quantity: 4, unitPrice: "75,000", totalPrice: "300,000" }
+                { name: "Nho Mẫu Đơn", quantity: 10, unitPrice: "89,000", totalPrice: "890,000" }
             ],
-            grandTotal: "46,500,000"
+            grandTotal: "46,390,000"
         };
         openModal(productDetailData, "productDetail");
     });
 });
+
 document.querySelectorAll(".button-product-description").forEach(button => {
     button.addEventListener("click", () => {
-        // Dữ liệu sản phẩm sẽ được lấy từ nguồn khác, ví dụ từ một API hoặc dữ liệu có sẵn
         const productDetailData = {
             name: "Vú Sữa",
             code: "VS",
-            price: "121,000đ",
+            price: "121,000",
             category: "Trái Cây Việt Nam",
             origin: "Tiền Giang, Việt Nam",
             description: "Vú sữa là loại trái cây nổi tiếng của miền Tây, Việt Nam.",
@@ -473,11 +493,22 @@ document.querySelectorAll(".button-product-description").forEach(button => {
     });
 });
 
-
-
-
-
-
-
+document.querySelectorAll(".button-new-invoice-detail").forEach(button => {
+    button.addEventListener("click", () => {
+        const invoiceData = {
+            customerID: "KH56789",
+            customerName: "Lê Văn B",
+            customerAddress: "789 Đường DEF",
+            customerPhone: "0901234567",
+            customerDateSell: "19/11/2023",
+            products: [
+                { name: "Bưởi Da Xanh", quantity: 3, unitPrice: "150,000", totalPrice: "450,000" },
+                { name: "Cam Sành", quantity: 5, unitPrice: "100,000", totalPrice: "500,000" }
+            ],
+            totalAmount: "950,000"
+        };
+        openModal(invoiceData, "newInvoice");
+    });
+});
 
 
