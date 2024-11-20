@@ -254,26 +254,57 @@ main {
     justify-content: space-between;
     background: #fff;
     padding: 2rem;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Hiệu ứng hover: Chỉ nổi lên */
+.card-single:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    background: #fff; 
+    transition: all 0.3s ease-in-out;
+}
+
+/* Khi click: Giảm nhẹ nổi */
+.card-single:active {
+    transform: translateY(-5px); 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.1s ease-in-out;
+}
+
+/* Số liệu */
+.card-single h1 {
+    font-size: 2rem;
+    font-weight: bold; 
+    line-height: 1.2; 
+    display: flex;
+    align-items: center; 
+    color: #333; 
+}
+
+/* Biểu tượng */
 .card-single div:last-child span {
-    font-size: 3rem;
-    color: var(--main--color);
+    font-size: 3rem; 
+    color: var(--main--color); 
 }
 
-.card-single div:first-child span {
-    color: var(--text-gray);
+/* Mô tả */
+.card-single div:first-child span,
+.card-single p {
+    color: var(--text-gray); 
 }
 
+/* Cấu hình thẻ cuối */
 .card-single:last-child {
-    background: var(--main--color);
+    background: #fff;
 }
 
-.card-single:last-child h1,
-.card-single:last-child div:first-child span,
-.card-single:last-child div:last-child span {
-    color: #fff;
+.card-single:last-child:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    background: #fff; 
 }
 /* muc khach hang */
 .recent-grid {
@@ -442,6 +473,11 @@ tr td:last-child{
 .overview-item:hover {
     transform: scale(1.05);
     box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+.overview-item:active{
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.1s ease-in-out; 
 }
 
 /* Nội dung dưới tổng quan */
