@@ -19,6 +19,17 @@
     text-decoration: none;
     font-family: "Open Sans", sans-serif;
 }
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
 
 .sidebar {
     width: 280px;
@@ -1916,4 +1927,3 @@ h2 {
 #detailModal .close-btn:hover {
     color: #ff0000;
 }
-
