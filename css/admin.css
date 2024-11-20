@@ -1031,6 +1031,226 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
 
 
 
+/* ---------------He thong--------------- */
+.system-settings {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.system-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.system-item {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.system-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    background: #f8f9fa;
+}
+
+.system-item i {
+    font-size: 2rem;
+    color: var(--main--color); /* Default color is orange */
+    margin-bottom: 10px;
+}
+
+.system-item span {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.system-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #555;
+}
+/* Quản lý người dùng */
+.form-section {
+    margin-top: 30px;
+    padding: 20px; /* Thêm khoảng cách bên trong */
+    background-color: #f9f9f9; /* Màu nền nhạt cho phần section */
+    border-radius: 8px; /* Bo góc section */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+}
+
+/* Tiêu đề trong Form Section */
+.form-section h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px; 
+}
+
+/* Mô tả trong Form Section */
+.form-section p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* Input và Dropdown */
+#usernameInput,
+#userRoleInput,
+#useremailInput {
+    font-size: 1.2rem; /* Tăng kích thước chữ */
+    padding: 12px; /* Tăng khoảng cách bên trong */
+    border: 1px solid #ddd; /* Viền nhẹ */
+    border-radius: 8px; /* Bo góc mềm mại */
+    width: 100%; /* Độ rộng full theo container */
+    max-width: 350px; /* Giới hạn chiều rộng tối đa */
+    background-color: #fdfdfd; /* Nền nhạt hơn */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+    margin-bottom: 15px; /* Khoảng cách dưới */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi focus */
+}
+
+#usernameInput:focus,
+#userRoleInput:focus,
+#useremailInput:focus {
+    border-color: #007bff; /* Đổi màu viền khi focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Bóng đổ màu xanh */
+    outline: none; /* Loại bỏ viền mặc định */
+}
+
+/* Label */
+.form-section label {
+    font-size: 1.2rem; /* Tăng kích thước nhãn */
+    font-weight: bold; /* Làm đậm nhãn */
+    margin-bottom: 8px; /* Khoảng cách dưới nhãn */
+    display: block; /* Hiển thị nhãn như một khối */
+    color: #333;
+}
+
+/* Nút Thêm/Sửa/Xóa */
+.btn-add {
+    display: block; /* Nút riêng thành một khối */
+    width: auto; /* Tự động theo nội dung */
+    margin: 20px 0 0 auto; /* Canh phải */
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+    transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #218838; /* Đổi màu khi hover */
+}
+.btn-save {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-edit {
+    background-color: rgb(75, 148, 251); /* Màu vàng sửa */
+    color: #fff;
+}
+.btn-edit:hover{
+    background-color: rgb(63, 122, 206);
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Màu đỏ xóa */
+    color: #fff;
+}
+.btn-edit:hover{
+    background-color: rgb(63, 122, 206);
+}
+.btn-delete:hover {
+    background-color: #c82333; /* Đậm hơn khi hover */
+}
+
+/* Table Style */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px; /* Bo góc bảng */
+    overflow: hidden; /* Ẩn viền tràn */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+}
+
+.user-table th,
+.user-table td {
+    text-align: left; /* Căn chữ sang trái */
+    padding: 14px; /* Tăng padding để giãn cách */
+    font-size: 1.2rem; /* Đồng nhất kích thước chữ */
+}
+
+.user-table th {
+    background-color: #f1f1f1; /* Nền tiêu đề bảng */
+    font-weight: 600; /* Đậm chữ */
+    border-bottom: 2px solid #ddd; /* Đường kẻ dưới tiêu đề */
+    color: #333;
+}
+
+.user-table td {
+    border-bottom: 1px solid #eee; /* Kẻ dưới các ô dữ liệu */
+    color: #555;
+    font-size: 1.1rem;
+}
+
+/* Căn chỉnh các nút trong cột "Hành động" */
+.user-table td:last-child {
+    display: flex; /* Hiển thị nội dung dưới dạng hàng ngang */
+    justify-content: flex-start; /* Canh trái các nút */
+    gap: 10px; /* Khoảng cách giữa các nút */
+    align-items: center; /* Căn giữa nút theo chiều dọc */
+}
 
 
 

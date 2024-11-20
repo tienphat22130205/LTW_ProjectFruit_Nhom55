@@ -394,6 +394,7 @@ function openModal(data, modalType) {
     document.getElementById("productDetailModal").style.display = "none";
     document.getElementById("productDescriptionModal").style.display = "none";
     document.getElementById("newInvoiceModal").style.display = "none";
+    document.getElementById("userManagementModal").style.display = "none";
 
     if (modalType === "invoice") {
         // Mở modal chi tiết hóa đơn (cũ)
@@ -491,6 +492,25 @@ function openModal(data, modalType) {
 
         // Hiển thị tổng tiền
         document.getElementById("newTotalAmount").textContent = data.totalAmount;
+    } else if (modalType === "userManagement") {
+        // Mở modal quản lý người dùng
+        document.getElementById("userManagementModal").style.display = "block";
+
+        // Điền dữ liệu demo vào modal
+        const userTable = document.querySelector(".user-table tbody");
+        userTable.innerHTML = ""; // Xóa dữ liệu cũ
+        data.forEach(user => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${user.username}</td>
+                <td>${user.role}</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            `;
+            userTable.appendChild(row);
+        });
     }
 }
 
@@ -509,6 +529,8 @@ function closeModal(modalType) {
     } else if (modalType === "newInvoice") {
         document.getElementById("newInvoiceModal").style.display = "none";
         document.getElementById("newInvoiceTable").style.display = "none";
+    } else if (modalType === "userManagement") {
+        document.getElementById("userManagementModal").style.display = "none";
     }
 }
 
@@ -578,6 +600,16 @@ document.querySelectorAll(".button-new-invoice-detail").forEach(button => {
         openModal(invoiceData, "newInvoice");
     });
 });
+// Sự kiện nhấn nút "Quản lý người dùng"
+document.querySelectorAll(".button-user-management").forEach(button => {
+    button.addEventListener("click", () => {
+        const userManagementData = [
+            { username: "admin1", role: "Super Admin" },
+            { username: "staff1", role: "Nhân viên" }
+        ];
+        openModal(userManagementData, "userManagement");
+    });
+});
 // suppliers------
 function viewDetails(transactionId) {
     alert(`Chi tiết giao dịch ${transactionId}`);
@@ -637,6 +669,6 @@ function viewDetails(transactionId) {
       });
     });
   });
-  
+
 
 

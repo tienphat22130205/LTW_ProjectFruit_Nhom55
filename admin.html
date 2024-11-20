@@ -1711,7 +1711,35 @@
                 <p>Phan noi dung cua Phan Hoi Khach Hang</p>
             </div>
             <div id="system" class="section">
-                <p>Phan noi dung cua He Thong</p>
+                <div class="system-settings">
+                    <div class="system-menu">
+                        <div class="system-item button-user-management" id="user-management">
+                            <i class="fa-solid fa-user-gear"></i>
+                            <span>Quản lý người dùng</span>
+                        </div>
+                        <div class="system-item" id="system-config">
+                            <i class="fa-solid fa-cogs"></i>
+                            <span>Cấu hình hệ thống</span>
+                        </div>
+                        <div class="system-item" id="backup-restore">
+                            <i class="fa-solid fa-database"></i>
+                            <span>Sao lưu và khôi phục</span>
+                        </div>
+                        <div class="system-item" id="activity-log">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <span>Nhật ký hoạt động</span>
+                        </div>
+                        <div class="system-item" id="security">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>Bảo mật hệ thống</span>
+                        </div>
+                        <div class="system-item" id="support">
+                            <i class="fa-solid fa-headset"></i>
+                            <span>Hỗ trợ kỹ thuật</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </main>
     </div>
@@ -1828,10 +1856,47 @@
                     <strong>Tổng Tiền:</strong> <span id="newTotalAmount"></span> VND
                 </div>
             </div>
-        </div>              
+        </div> 
+        <div id="userManagementModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('userManagement')">&times;</span>
+                <h2>Quản Lý Người Dùng</h2>
+                <!-- Danh sách tài khoản -->
+                <div class="form-section">
+                    <h3>Danh sách tài khoản</h3>
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Tên tài khoản</th>
+                                <th>Quyền</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody"></tbody>
+                    </table>
+                </div>
+                <!-- Thêm tài khoản -->
+                <div class="form-section">
+                    <h3>Thêm tài khoản</h3>
+                    <label for="usernameInput">Tên tài khoản:</label>
+                    <input type="text" id="usernameInput" placeholder="Nhập tên tài khoản" />
+                    <label for="userRoleInput">Quyền:</label>
+                    <select id="userRoleInput">
+                        <option value="admin">Admin</option>
+                        <option value="superadmin">Super Admin</option>
+                        <option value="staff">Nhân viên</option>
+                    </select>
+                    <button class="btn-add" onclick="addUser()">Thêm tài khoản mới</button>
+                </div>
+        
+                <!-- Nút Lưu thay đổi -->
+                <button class="btn-save" onclick="saveChanges()">Lưu thay đổi</button>
+            </div>
+        </div>                                
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./javacript/admin.js"></script>
+    <script src="./javacript/logicAdmin.js"></script>
 </body>
 
 </html>
