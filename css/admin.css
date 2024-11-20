@@ -1519,7 +1519,7 @@ h2 {
         left: 0 !important;
     }
 }
-/* -suppliers------------------------------------------------ */
+/* ------------------------------------suppliers------------------------------------------- */
 #suppliers .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -1527,121 +1527,155 @@ h2 {
     padding: 20px;
 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  #suppliers .container h1 {
+}
+
+
+#suppliers .container h1 {
     text-align: center;
     font-size: 40px;
     color: #333333;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  #supplierTable {
+}
+
+
+#supplierTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     font-size: 14px;
     text-align: left;
-  } 
-  #supplierTable th {
+}
+
+
+#supplierTable th {
     text-align: center;
     vertical-align: middle;
     text-transform: uppercase;
     font-weight: 600;
     padding: 12px 15px;
-   
-  }  
-  #supplierTable td {
+
+}
+
+#supplierTable td {
     padding: 12px 15px;
     vertical-align: middle;
     font-size: 14px;
     color: #333333;
-    line-height: 1.6;   
-  }
-  #supplierTable tr:nth-child(even) {
+    line-height: 1.6;
+
+}
+
+
+#supplierTable tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  #supplierTable tr:nth-child(odd) {
+}
+
+#supplierTable tr:nth-child(odd) {
     background-color: #ffffff;
-  }
-  #supplierTable tr:hover {
+}
+
+
+#supplierTable tr:hover {
     background-color: #e3f2fd;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-  }
-  #supplierTable td span.status {
+}
+
+
+#supplierTable td span.status {
     display: inline-block;
     width: 12px;
     height: 12px;
     margin-right: 8px;
     vertical-align: middle;
-  } 
-  #supplierTable {
+}
+
+#supplierTable {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
-  }
- #suppliers .container2 {
+}
+/* Container chung */
+#suppliers .container2 {
     max-width: 1200px;
     margin: 20px auto;
     background: #ffffff;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+}
+
 #transactions .container2 {
     max-width: 1200px;
     margin: 20px auto;
     background: #ffffff;
     padding: 20px;
+
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  #suppliers  .container2 h1 {
+}
+
+
+#suppliers .container2 h1 {
     text-align: center;
     font-size: 40px;
     color: #333333;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  #transactionTable {
+}
+
+#transactionTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     font-size: 14px;
     text-align: left;
-  }
-  #transactionTable th {
+}
+
+
+#transactionTable th {
+
     text-transform: uppercase;
     font-weight: 600;
     padding: 12px 15px;
-  }
-  #transactionTable td {
+
+}
+
+
+#transactionTable td {
     padding: 12px 15px;
+
     color: #555555;
     text-align: center;
-  }
-  #transactionTable tr:hover {
+}
+
+
+
+#transactionTable tr:hover {
     background-color: #e3f2fd;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-  }
-  #transactionTable td span.status {
+}
+
+
+#transactionTable td span.status {
     display: inline-block;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     margin-right: 8px;
     vertical-align: middle;
-  }
-  
-  #transactionTable td span.status.orange {
-    background-color: #ffa726;
-  }
-  
-  #transactionTable td span.status.red {
-    background-color: #e53935;
-  }
-  
+}
 
-  #transactionTable .view-details {
+#transactionTable td span.status.orange {
+    background-color: #ffa726;
+}
+
+#transactionTable td span.status.red {
+    background-color: #e53935;
+}
+
+
+#transactionTable .view-details {
     background-color: #e9b03f;
     color: white;
     border: none;
@@ -1650,100 +1684,117 @@ h2 {
     font-size: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  #transactionTable .view-details:hover {
+}
+
+#transactionTable .view-details:hover {
     background-color: #e9b03f;
-  }
-  #suppliers .container3 {
+}
+
+#suppliers .container3 {
     max-width: 1200px;
     margin: 20px auto;
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+}
 
-  #suppliers .container3 h1 {
+
+#suppliers .container3 h1 {
     text-align: center;
-    font-size: 24px;
+    font-size: 40px;
     color: #333333;
     font-weight: bold;
     margin-bottom: 20px;
-  }
-  
+}
 
-  #ratingTable {
+
+#ratingTable {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     font-size: 14px;
     text-align: left;
-  }
-  
+}
 
-  #ratingTable th {
-   text-align: center;
+
+#ratingTable th {
+    text-align: center;
     text-transform: uppercase;
     font-weight: 600;
     padding: 12px 15px;
-   
-  }
-  
- 
-  #ratingTable td {
+
+}
+
+
+#ratingTable td {
     padding: 12px 15px;
- 
+
     color: #555555;
     text-align: center;
-  }
-  
+}
 
-  #ratingTable tr:nth-child(even) {
+
+#ratingTable tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  #ratingTable tr:nth-child(odd) {
-    background-color: #ffffff;
-  }
-  
+}
 
-  #ratingTable tr:hover {
+#ratingTable tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+
+#ratingTable tr:hover {
     background-color: #e3f2fd;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-  }
-  
+}
 
-  #ratingTable td .rating {
+
+#ratingTable td .rating {
     font-weight: bold;
     color: orange;
-  }
-  
-
-  #ratingTable .action-btn {
+}
+#ratingTable .action-btn {
     border: none;
     padding: 5px 10px;
     font-size: 12px;
     cursor: pointer;
     margin: 0 5px;
     transition: background-color 0.3s ease;
-  }
-  
-  #ratingTable .action-btn:hover {
+}
+
+#ratingTable .action-btn:hover {
     background-color: black;
-  }
-  
-  #ratingTable .action-btn.edit {
+}
+
+#ratingTable .action-btn.edit {
     background-color: #fbc02d;
-  }
-  
-  #ratingTable .action-btn.edit:hover {
+}
+
+#ratingTable .action-btn.edit:hover {
     background-color: #f9a825;
-  }
-  /* Modal Styles */
-#detailModal {
+}
+/* nút "Chỉnh sửa" */
+#ratingTable .action-btn.edit {
+    background-color: #fbc02d;
+    /* Màu vàng */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+#ratingTable .action-btn.edit:hover {
+    background-color: #f9a825;
+}
+
+/* Modal cho chỉnh sửa */
+#editModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -1751,36 +1802,107 @@ h2 {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center; 
-    align-items: center;    
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
-  }
-  
-  #detailModal .modal-content {
+    display: none;
+    /* Ẩn mặc định */
+}
+
+#editModal .modal-content {
     position: relative;
     background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 400px; 
+    width: 400px;
     max-width: 90%;
-    text-align: left;
-    animation: fadeIn 0.3s ease; 
-  }
-  
-  #detailModal .modal-content h2 {
+}
+
+#editModal .modal-content h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333333;
-  }
-  
-  #detailModal .modal-content p {
+}
+
+#editModal .modal-content input,
+#editModal .modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#editModal .modal-content button {
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#editModal .modal-content button:hover {
+    background-color: #0277bd;
+}
+
+#editModal .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+}
+
+#editModal .close-btn:hover {
+    color: #ff0000;
+}
+
+/* Modal Styles */
+#detailModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#detailModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 400px;
+
+}
+
+#detailModal .modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+#detailModal .modal-content p {
     margin: 10px 0;
     font-size: 16px;
     color: #555555;
-  }
-  
-  #detailModal .close-btn {
+}
+
+#detailModal .close-btn {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -1789,20 +1911,9 @@ h2 {
     color: #333333;
     cursor: pointer;
     transition: color 0.3s ease;
-  }
-  
-  #detailModal .close-btn:hover {
+}
+
+#detailModal .close-btn:hover {
     color: #ff0000;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}
+
