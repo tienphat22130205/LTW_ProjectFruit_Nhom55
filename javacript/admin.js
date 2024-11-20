@@ -610,15 +610,15 @@ document.querySelectorAll(".button-user-management").forEach(button => {
         openModal(userManagementData, "userManagement");
     });
 });
-// suppliers------
+// ----------------------------suppliers---------------------------
 function viewDetails(transactionId) {
     alert(`Chi tiết giao dịch ${transactionId}`);
   }
   document.addEventListener("DOMContentLoaded", () => {
-   
+    // Tạo Modal để hiển thị chi tiết
     const modal = document.createElement("div");
     modal.id = "detailModal";
-    modal.style.display = "none";
+    modal.style.display = "none"; // Ẩn modal ban đầu
     modal.innerHTML = `
       <div class="modal-content">
         <span class="close-btn">&times;</span>
@@ -665,10 +665,76 @@ function viewDetails(transactionId) {
         `;
   
         modal.style.display = "block";
-        document.body.style.overflow = "hidden"; 
+        document.body.style.overflow = "hidden"; // Tắt cuộn trang
       });
     });
   });
-
-
+  document.addEventListener("DOMContentLoaded", () => {
+    const editModal = document.getElementById("editModal");
+    const editForm = document.getElementById("editForm");
+    const closeModalBtn = document.querySelector("#editModal .close-btn");
+    let currentRow = null; // Biến lưu hàng hiện tại được chỉnh sửa
+  
+    // Mở modal chỉnh sửa
+    document.querySelectorAll(".action-btn.edit").forEach((button) => {
+      button.addEventListener("click", () => {
+        editModal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+  
+        // Lấy dữ liệu từ hàng
+        currentRow = button.closest("tr");
+        const supplierName = currentRow.children[1].textContent;
+        const rating = currentRow.children[2].textContent.split(" ")[0]; // Lấy điểm đánh giá
+        const priority = currentRow.children[3].textContent;
+        const errors = currentRow.children[4].textContent;
+        const responseTime = currentRow.children[5].textContent;
+  
+        // Điền dữ liệu vào form
+        editForm.supplierName.value = supplierName;
+        editForm.rating.value = rating;
+        editForm.priority.value = priority;
+        editForm.errors.value = errors;
+        editForm.responseTime.value = responseTime;
+      });
+    });
+  
+    // Lưu thay đổi
+    editForm.addEventListener("submit", (e) => {
+      e.preventDefault(); // Ngăn chặn reload trang
+  
+      // Lấy giá trị từ form
+      const updatedName = editForm.supplierName.value;
+      const updatedRating = editForm.rating.value;
+      const updatedPriority = editForm.priority.value;
+      const updatedErrors = editForm.errors.value;
+      const updatedResponseTime = editForm.responseTime.value;
+  
+      // Cập nhật hàng hiện tại
+      currentRow.children[1].textContent = updatedName;
+      currentRow.children[2].innerHTML = `<span class="rating">${updatedRating}</span> ⭐`;
+      currentRow.children[3].textContent = updatedPriority;
+      currentRow.children[4].textContent = updatedErrors;
+      currentRow.children[5].textContent = updatedResponseTime;
+  
+      // Đóng modal
+      editModal.style.display = "none";
+      document.body.style.overflow = "auto";
+      alert("Thông tin đã được cập nhật!");
+    });
+  
+    // Đóng modal
+    closeModalBtn.addEventListener("click", () => {
+      editModal.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+  
+    // Đóng modal khi nhấn bên ngoài nội dung
+    editModal.addEventListener("click", (e) => {
+      if (e.target === editModal) {
+        editModal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    });
+  });
+  
 
