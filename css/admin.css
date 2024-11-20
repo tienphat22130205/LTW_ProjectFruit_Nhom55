@@ -1252,7 +1252,63 @@ h2 {
     align-items: center; /* Căn giữa nút theo chiều dọc */
 }
 
+/*--css của phần phản hồi khách hàng--*/
+.feedback-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.feedback-content {
+    font-size: 16px;
+    color: #555;
+}
+
+.feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.feedback-table th,
+.feedback-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.feedback-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+.feedback-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.feedback-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.sta {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.sta.read {
+    background-color: #4caf50;
+}
+
+.sta.unread {
+    background-color: #f44336;
+}
+/*--kết thúc css của phần phản hồi khách hàng--*/
 
 
 
