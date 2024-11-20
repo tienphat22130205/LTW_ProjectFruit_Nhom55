@@ -736,5 +736,40 @@ function viewDetails(transactionId) {
       }
     });
   });
+//   ------------------------inventory---------------------
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const table = document.getElementById("inventoryTable");
+    const rows = table.querySelectorAll("tbody tr");
+  
+    // Tìm kiếm sản phẩm
+    searchInput.addEventListener("input", () => {
+      const searchValue = searchInput.value.toLowerCase();
+      rows.forEach((row) => {
+        const productName = row.children[1].textContent.toLowerCase();
+        row.style.display = productName.includes(searchValue) ? "" : "none";
+      });
+    });
+// Thêm sản phẩm
+document.getElementById("addProductBtn").addEventListener("click", () => {
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>SP004</td>
+      <td>Nho Mỹ</td>
+      <td>50 kg</td>
+      <td>90,000 VND</td>
+      <td>120,000 VND</td>
+      <td>20/11/2024</td>
+      <td><span class="status sufficient">Đủ hàng</span></td>
+    `;
+    table.querySelector("tbody").appendChild(newRow);
+    alert("Sản phẩm mới đã được thêm!");
+  });
+
+  // Xuất dữ liệu
+  document.getElementById("exportDataBtn").addEventListener("click", () => {
+    alert("Dữ liệu kho hàng đã được xuất!");
+  });
+});  
   
 
