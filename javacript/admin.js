@@ -326,8 +326,8 @@ new Chart(productStatsChartCtx, {
             label: 'Thống kê sản phẩm',
             data: [80, 120, 4.5],
             backgroundColor: [
-                'rgba(255, 159, 64, 0.7)', 
-                'rgba(255, 205, 86, 0.7)', 
+                'rgba(255, 159, 64, 0.7)',
+                'rgba(255, 205, 86, 0.7)',
                 'rgba(75, 192, 192, 0.7)'
             ],
             borderColor: [
@@ -395,6 +395,8 @@ function openModal(data, modalType) {
     document.getElementById("productDescriptionModal").style.display = "none";
     document.getElementById("newInvoiceModal").style.display = "none";
     document.getElementById("userManagementModal").style.display = "none";
+    document.getElementById("systemConfigModal").style.display = "none";
+
 
     if (modalType === "invoice") {
         // Mở modal chi tiết hóa đơn (cũ)
@@ -511,6 +513,16 @@ function openModal(data, modalType) {
             `;
             userTable.appendChild(row);
         });
+    } else if (modalType === "systemConfig") {
+        document.getElementById("systemConfigModal").style.display = "block";
+
+        // Điền dữ liệu vào các input
+        document.getElementById("systemName").value = data.systemName || "";
+        document.getElementById("adminEmail").value = data.adminEmail || "";
+        document.getElementById("language").value = data.language || "vi";
+        document.getElementById("timeZone").value = data.timeZone || "UTC+7";
+        document.getElementById("maintenanceMode").value = data.maintenanceMode || "off";
+        document.getElementById("maxUsers").value = data.maxUsers || "";
     }
 }
 
@@ -531,6 +543,8 @@ function closeModal(modalType) {
         document.getElementById("newInvoiceTable").style.display = "none";
     } else if (modalType === "userManagement") {
         document.getElementById("userManagementModal").style.display = "none";
+    } else if (modalType === "systemConfig") {
+        document.getElementById("systemConfigModal").style.display = "none";
     }
 }
 
@@ -603,18 +617,39 @@ document.querySelectorAll(".button-new-invoice-detail").forEach(button => {
 // Sự kiện nhấn nút "Quản lý người dùng"
 document.querySelectorAll(".button-user-management").forEach(button => {
     button.addEventListener("click", () => {
-        const userManagementData = [
-            { username: "admin1", role: "Super Admin" },
-            { username: "staff1", role: "Nhân viên" }
-        ];
+        // Lấy dữ liệu từ localStorage (hoặc backend API)
+        let userManagementData = JSON.parse(localStorage.getItem("userManagementData")) || [];
+
+        // Nếu chưa có dữ liệu, hiển thị thông báo "Chưa có tài khoản nào"
+        if (userManagementData.length === 0) {
+            userManagementData = []; // Khởi tạo mảng rỗng
+        }
+
+        // Mở modal với dữ liệu thực tế
         openModal(userManagementData, "userManagement");
+    });
+});
+document.querySelectorAll(".button-system-config").forEach(button => {
+    button.addEventListener("click", () => {
+        // Lấy dữ liệu cấu hình từ localStorage hoặc tạo mặc định
+        const systemConfigData = JSON.parse(localStorage.getItem("systemConfig")) || {
+            systemName: "Quản Lý Hệ Thống",
+            adminEmail: "admin@system.com",
+            language: "vi",
+            timeZone: "UTC+7",
+            maintenanceMode: "off",
+            maxUsers: 100
+        };
+
+        // Gọi hàm mở modal và điền dữ liệu
+        openModal(systemConfigData, "systemConfig");
     });
 });
 // ----------------------------suppliers---------------------------
 function viewDetails(transactionId) {
     alert(`Chi tiết giao dịch ${transactionId}`);
-  }
-  document.addEventListener("DOMContentLoaded", () => {
+}
+document.addEventListener("DOMContentLoaded", () => {
     // Tạo Modal để hiển thị chi tiết
     const modal = document.createElement("div");
     modal.id = "detailModal";
@@ -627,35 +662,35 @@ function viewDetails(transactionId) {
       </div>
     `;
     document.body.appendChild(modal);
-  
-    
+
+
     const closeModal = () => {
-      modal.style.display = "none";
-      document.body.style.overflow = "auto"; 
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
     };
-  
+
     document.querySelector(".close-btn").addEventListener("click", closeModal);
-  
-    
+
+
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
+        if (e.target === modal) {
+            closeModal();
+        }
     });
-  
-   
+
+
     document.querySelectorAll(".action-btn.view").forEach((button) => {
-      button.addEventListener("click", () => {
-        const row = button.closest("tr");
-        const supplierId = row.children[0].textContent;
-        const supplierName = row.children[1].textContent;
-        const rating = row.children[2].textContent;
-        const priority = row.children[3].textContent;
-        const totalErrors = row.children[4].textContent;
-        const responseTime = row.children[5].textContent;
-  
-        const modalBody = document.querySelector("#modal-body");
-        modalBody.innerHTML = `
+        button.addEventListener("click", () => {
+            const row = button.closest("tr");
+            const supplierId = row.children[0].textContent;
+            const supplierName = row.children[1].textContent;
+            const rating = row.children[2].textContent;
+            const priority = row.children[3].textContent;
+            const totalErrors = row.children[4].textContent;
+            const responseTime = row.children[5].textContent;
+
+            const modalBody = document.querySelector("#modal-body");
+            modalBody.innerHTML = `
           <p><strong>Mã nhà cung cấp:</strong> ${supplierId}</p>
           <p><strong>Tên nhà cung cấp:</strong> ${supplierName}</p>
           <p><strong>Điểm đánh giá:</strong> ${rating}</p>
@@ -663,97 +698,97 @@ function viewDetails(transactionId) {
           <p><strong>Tổng số lỗi:</strong> ${totalErrors}</p>
           <p><strong>Thời gian phản hồi:</strong> ${responseTime}</p>
         `;
-  
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Tắt cuộn trang
-      });
+
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Tắt cuộn trang
+        });
     });
-  });
-  document.addEventListener("DOMContentLoaded", () => {
+});
+document.addEventListener("DOMContentLoaded", () => {
     const editModal = document.getElementById("editModal");
     const editForm = document.getElementById("editForm");
     const closeModalBtn = document.querySelector("#editModal .close-btn");
     let currentRow = null; // Biến lưu hàng hiện tại được chỉnh sửa
-  
+
     // Mở modal chỉnh sửa
     document.querySelectorAll(".action-btn.edit").forEach((button) => {
-      button.addEventListener("click", () => {
-        editModal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-  
-        // Lấy dữ liệu từ hàng
-        currentRow = button.closest("tr");
-        const supplierName = currentRow.children[1].textContent;
-        const rating = currentRow.children[2].textContent.split(" ")[0]; // Lấy điểm đánh giá
-        const priority = currentRow.children[3].textContent;
-        const errors = currentRow.children[4].textContent;
-        const responseTime = currentRow.children[5].textContent;
-  
-        // Điền dữ liệu vào form
-        editForm.supplierName.value = supplierName;
-        editForm.rating.value = rating;
-        editForm.priority.value = priority;
-        editForm.errors.value = errors;
-        editForm.responseTime.value = responseTime;
-      });
+        button.addEventListener("click", () => {
+            editModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+
+            // Lấy dữ liệu từ hàng
+            currentRow = button.closest("tr");
+            const supplierName = currentRow.children[1].textContent;
+            const rating = currentRow.children[2].textContent.split(" ")[0]; // Lấy điểm đánh giá
+            const priority = currentRow.children[3].textContent;
+            const errors = currentRow.children[4].textContent;
+            const responseTime = currentRow.children[5].textContent;
+
+            // Điền dữ liệu vào form
+            editForm.supplierName.value = supplierName;
+            editForm.rating.value = rating;
+            editForm.priority.value = priority;
+            editForm.errors.value = errors;
+            editForm.responseTime.value = responseTime;
+        });
     });
-  
+
     // Lưu thay đổi
     editForm.addEventListener("submit", (e) => {
-      e.preventDefault(); // Ngăn chặn reload trang
-  
-      // Lấy giá trị từ form
-      const updatedName = editForm.supplierName.value;
-      const updatedRating = editForm.rating.value;
-      const updatedPriority = editForm.priority.value;
-      const updatedErrors = editForm.errors.value;
-      const updatedResponseTime = editForm.responseTime.value;
-  
-      // Cập nhật hàng hiện tại
-      currentRow.children[1].textContent = updatedName;
-      currentRow.children[2].innerHTML = `<span class="rating">${updatedRating}</span> ⭐`;
-      currentRow.children[3].textContent = updatedPriority;
-      currentRow.children[4].textContent = updatedErrors;
-      currentRow.children[5].textContent = updatedResponseTime;
-  
-      // Đóng modal
-      editModal.style.display = "none";
-      document.body.style.overflow = "auto";
-      alert("Thông tin đã được cập nhật!");
-    });
-  
-    // Đóng modal
-    closeModalBtn.addEventListener("click", () => {
-      editModal.style.display = "none";
-      document.body.style.overflow = "auto";
-    });
-  
-    // Đóng modal khi nhấn bên ngoài nội dung
-    editModal.addEventListener("click", (e) => {
-      if (e.target === editModal) {
+        e.preventDefault(); // Ngăn chặn reload trang
+
+        // Lấy giá trị từ form
+        const updatedName = editForm.supplierName.value;
+        const updatedRating = editForm.rating.value;
+        const updatedPriority = editForm.priority.value;
+        const updatedErrors = editForm.errors.value;
+        const updatedResponseTime = editForm.responseTime.value;
+
+        // Cập nhật hàng hiện tại
+        currentRow.children[1].textContent = updatedName;
+        currentRow.children[2].innerHTML = `<span class="rating">${updatedRating}</span> ⭐`;
+        currentRow.children[3].textContent = updatedPriority;
+        currentRow.children[4].textContent = updatedErrors;
+        currentRow.children[5].textContent = updatedResponseTime;
+
+        // Đóng modal
         editModal.style.display = "none";
         document.body.style.overflow = "auto";
-      }
+        alert("Thông tin đã được cập nhật!");
     });
-  });
+
+    // Đóng modal
+    closeModalBtn.addEventListener("click", () => {
+        editModal.style.display = "none";
+        document.body.style.overflow = "auto";
+    });
+
+    // Đóng modal khi nhấn bên ngoài nội dung
+    editModal.addEventListener("click", (e) => {
+        if (e.target === editModal) {
+            editModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    });
+});
 //   ------------------------inventory---------------------
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
     const table = document.getElementById("inventoryTable");
     const rows = table.querySelectorAll("tbody tr");
-  
+
     // Tìm kiếm sản phẩm
     searchInput.addEventListener("input", () => {
-      const searchValue = searchInput.value.toLowerCase();
-      rows.forEach((row) => {
-        const productName = row.children[1].textContent.toLowerCase();
-        row.style.display = productName.includes(searchValue) ? "" : "none";
-      });
+        const searchValue = searchInput.value.toLowerCase();
+        rows.forEach((row) => {
+            const productName = row.children[1].textContent.toLowerCase();
+            row.style.display = productName.includes(searchValue) ? "" : "none";
+        });
     });
-// Thêm sản phẩm
-document.getElementById("addProductBtn").addEventListener("click", () => {
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
+    // Thêm sản phẩm
+    document.getElementById("addProductBtn").addEventListener("click", () => {
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
       <td>SP004</td>
       <td>Nho Mỹ</td>
       <td>50 kg</td>
@@ -762,14 +797,14 @@ document.getElementById("addProductBtn").addEventListener("click", () => {
       <td>20/11/2024</td>
       <td><span class="status sufficient">Đủ hàng</span></td>
     `;
-    table.querySelector("tbody").appendChild(newRow);
-    alert("Sản phẩm mới đã được thêm!");
-  });
+        table.querySelector("tbody").appendChild(newRow);
+        alert("Sản phẩm mới đã được thêm!");
+    });
 
-  // Xuất dữ liệu
-  document.getElementById("exportDataBtn").addEventListener("click", () => {
-    alert("Dữ liệu kho hàng đã được xuất!");
-  });
-});  
-  
+    // Xuất dữ liệu
+    document.getElementById("exportDataBtn").addEventListener("click", () => {
+        alert("Dữ liệu kho hàng đã được xuất!");
+    });
+});
+
 

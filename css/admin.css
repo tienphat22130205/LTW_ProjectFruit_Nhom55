@@ -1091,7 +1091,13 @@ h2 {
     text-align: center;
     color: #555;
 }
-/* Quản lý người dùng */
+/* ----------------------------------------Quản lý người dùng---------------------- */
+.system-user .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 .form-section {
     margin-top: 30px;
     padding: 20px; /* Thêm khoảng cách bên trong */
@@ -1120,16 +1126,16 @@ h2 {
 #usernameInput,
 #userRoleInput,
 #useremailInput {
-    font-size: 1.2rem; /* Tăng kích thước chữ */
-    padding: 12px; /* Tăng khoảng cách bên trong */
-    border: 1px solid #ddd; /* Viền nhẹ */
-    border-radius: 8px; /* Bo góc mềm mại */
-    width: 100%; /* Độ rộng full theo container */
-    max-width: 350px; /* Giới hạn chiều rộng tối đa */
-    background-color: #fdfdfd; /* Nền nhạt hơn */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
-    margin-bottom: 15px; /* Khoảng cách dưới */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi focus */
+    font-size: 1.2rem; 
+    padding: 12px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    width: 100%; 
+    max-width: 350px; 
+    background-color: #fdfdfd; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 15px; 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 #usernameInput:focus,
@@ -1150,24 +1156,36 @@ h2 {
 }
 
 /* Nút Thêm/Sửa/Xóa */
+.addInfo {
+    display: flex;
+    flex-direction: column; /* Bố trí các thành phần theo chiều dọc */
+    gap: 15px; /* Khoảng cách giữa các phần tử */
+}
+
+.addInfo label,
+.addInfo input,
+.addInfo select,
+.addInfo .btn-add {
+    width: 40%; /* Đặt các phần tử rộng theo container */
+}
+
 .btn-add {
-    display: block; /* Nút riêng thành một khối */
-    width: auto; /* Tự động theo nội dung */
-    margin: 20px 0 0 auto; /* Canh phải */
+    margin-top: 10px; /* Khoảng cách phía trên */
     padding: 12px 20px;
     font-size: 1.1rem;
-    border-radius: 8px;
-    background-color: #28a745;
-    color: #fff;
+    border-radius: 6px;
+    background-color: #28a745; /* Màu nền */
+    color: #fff; /* Màu chữ */
     border: none;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ */
     transition: background-color 0.3s ease;
 }
 
 .btn-add:hover {
-    background-color: #218838; /* Đổi màu khi hover */
+    background-color: #218838; /* Màu khi hover */
 }
+
 .btn-save {
     background-color: #007bff;
     color: #fff;
@@ -1175,9 +1193,10 @@ h2 {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
-    margin-left: 10px;
+    font-size: 1.1rem;
     margin-top: 20px;
+    margin-left: auto; 
+    display: block; 
 }
 
 .btn-save:hover {
@@ -1250,6 +1269,111 @@ h2 {
     gap: 10px; /* Khoảng cách giữa các nút */
     align-items: center; /* Căn giữa nút theo chiều dọc */
 }
+/* Modal Cấu Hình Hệ Thống */
+/* Modal Header */
+.system-config-modal .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.system-config-modal .header h2 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.system-config-modal .header h2 i {
+    margin-right: 10px;
+    font-size: 2rem;
+}
+
+/* Form Section */
+.system-config-modal .form-section {
+    display: grid;
+    gap: 20px;
+}
+
+.system-config-modal .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.system-config-modal .form-group label {
+    font-size: 1.2rem;
+    color: #333;
+    margin-right: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.system-config-modal .form-group label i {
+    color: var(--dark-color);
+    margin-right: 8px;
+    font-size: 1.5rem;
+}
+
+.system-config-modal .form-group input,
+.system-config-modal .form-group select {
+    font-size: 1rem;
+    padding: 10px 12px;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+.system-config-modal .form-group input:focus,
+.system-config-modal .form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+.system-config-modal .btn-save {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.system-config-modal .btn-save {
+    background-color: #007bff;
+    margin-top: 20px;
+    float: right;
+}
+
+.system-config-modal .btn-save:hover {
+    background-color: #0160c7;
+}
+
+.system-config-modal .btn-edit {
+    background-color: #ffc107;
+    float: left;
+}
+
+.system-config-modal .btn-edit:hover {
+    background-color: #e0a800;
+}
+/* ket thuc css cau hinh he thong */
+
+
+
+
 
 /*--css của phần phản hồi khách hàng--*/
 .feedback-container {
