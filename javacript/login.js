@@ -22,22 +22,11 @@ function login() {
     } else if (email === storedEmail && password === storedPassword) {
         // Đăng nhập người dùng thường thành công
         loginForm.style.display = "none";
-        const accountSection = document.querySelector(".account");
-        accountSection.classList.add("logged-in");
+        localStorage.setItem("isLoggedIn", true); // Lưu trạng thái đăng nhập
 
-        // Thêm avatar người dùng
-        const avatarImg = document.createElement("img");
-        avatarImg.src = "./img/anhdaidien.jpg"; // Đường dẫn ảnh đại diện
-        avatarImg.alt = "Avatar";
-        avatarImg.classList.add("avatar");
-        accountSection.appendChild(avatarImg);
+        // Hiển thị avatar và tên người dùng
+        updateUserHeader(userName);
 
-         // Hiển thị tên người dùng trong dropdown
-         document.getElementById("userNameDisplay").textContent = userName;
-
-         // Hiển thị dropdown khi nhấp vào avatar
-         avatarImg.addEventListener("click", toggleUserMenu);
-         
         alert(`Chào mừng ${userName}!`);
     } else {
         // Hiển thị thông báo lỗi nếu thông tin không đúng
@@ -46,3 +35,40 @@ function login() {
         document.getElementById("password").value = "";
     }
 }
+
+function updateUserHeader(userName) {
+    const accountSection = document.querySelector(".account");
+    accountSection.innerHTML = `
+        <img src="./img/anhdaidien.jpg" alt="Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
+        <span>${userName}</span>
+    `;
+
+    // Hiển thị menu dropdown khi nhấp vào avatar
+    const avatarImg = accountSection.querySelector(".avatar");
+    avatarImg.addEventListener("click", toggleUserMenu);
+    document.querySelector('.account img').style.display = "block";
+}
+
+function toggleUserMenu() {
+    const userMenu = document.getElementById("userMenu");
+    userMenu.style.display = userMenu.style.display === "block" ? "none" : "block";
+}
+
+// Kiểm tra trạng thái đăng nhập khi tải trang
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userName = localStorage.getItem("userName");
+
+    if (isLoggedIn && userName) {
+        updateUserHeader(userName);
+    }
+}
+
+// Đăng xuất
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href = "index.html"; // Quay về trang chủ sau khi đăng xuất
+}
+
+// Gọi hàm kiểm tra trạng thái khi trang được tải
+window.addEventListener("DOMContentLoaded", checkLoginStatus);
