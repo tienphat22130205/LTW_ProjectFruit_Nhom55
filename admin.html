@@ -1000,10 +1000,27 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2>Tất Cả Sản Phẩm Trong Cửa Hàng</h2>
-                                <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
+                               <button id="addButton">Thêm Sản Phẩm</button>
                             </div>
                             <div class="card-body">
                                 <div class="table-reponsive">
+                                    <div class="add-modal" id="addModal">
+                                        <div class="add-modal-content">
+                                            <h3>Thêm sản phẩm mới</h3>
+                                            <form id="addForm">
+                                                <input type="text" name="productName" placeholder="Tên sản phẩm" required>
+                                                <input type="text" name="productCode" placeholder="Mã sản phẩm" required>
+                                                <input type="text" name="productType" placeholder="Loại sản phẩm" required>
+                                                <input type="text" name="productOrigin" placeholder="Xuất xứ" required>
+                                                <select name="productStatus" required>
+                                                    <option value="Còn Hàng">Còn Hàng</option>
+                                                    <option value="Tạm Hết">Tạm Hết</option>
+                                                </select>
+                                                   <button type="submit">Thêm</button>
+                                                <button type="button" id="closeAddModal">Đóng</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                     <table width="100%">
                                         <thead>
                                             <tr>
@@ -1030,112 +1047,11 @@
                                                     Còn Hàng
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                    
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Xoài Cát</td>
-                                                <td>XC</td>
-                                                <td>Trái Cây Việt Nam</td>
-                                                <td>Đồng Tháp, Việt Nam</td>
-                                                <td>
-                                                    <button class="button-product-description">Xem chi tiết</button>
-                                                </td>
-                                                <td>
-                                                    <span class="status red"></span>
-                                                    Tạm Hết
-                                                </td>
-                                                <td>
-                                                    <button class="edit-button">Sửa</button>
-                                                    <button class="delete-button">Xóa</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Măng cụt</td>
-                                                <td>MC</td>
-                                                <td>Trái Cây Việt Nam</td>
-                                                <td>Bình Dương, Việt Nam</td>
-                                                <td>
-                                                    <button class="button-product-description">Xem chi tiết</button>
-                                                </td>
-                                                <td>
-                                                    <span class="status blue"></span>
-                                                    Còn Hàng
-                                                </td>
-                                                <td>
-                                                    <button class="edit-button">Sửa</button>
-                                                    <button class="delete-button">Xóa</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chanh Vàng Nội Địa Trung</td>
-                                                <td>CVN</td>
-                                                <td>Trái Cây Nhập Khẩu</td>
-                                                <td>Trung Quốc</td>
-                                                <td>
-                                                    <button class="button-product-description">Xem chi tiết</button>
-                                                </td>
-                                                <td>
-                                                    <span class="status blue"></span>
-                                                    Còn Hàng
-                                                </td>
-                                                <td>
-                                                    <button class="edit-button">Sửa</button>
-                                                    <button class="delete-button">Xóa</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cherry Đỏ</td>
-                                                <td>CRD</td>
-                                                <td>Trái Cây Nhập Khẩu</td>
-                                                <td>Mỹ</td>
-                                                <td>
-                                                    <button class="button-product-description">Xem chi tiết</button>
-                                                </td>
-                                                <td>
-                                                    <span class="status red"></span>
-                                                    Tạm Hết
-                                                </td>
-                                                <td>
-                                                    <button class="edit-button">Sửa</button>
-                                                    <button class="delete-button">Xóa</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mứt Đào</td>
-                                                <td>MD</td>
-                                                <td>Mứt Trái Cây</td>
-                                                <td>Đà Lạt, Việt Nam</td>
-                                                <td>
-                                                    <button class="button-product-description">Xem chi tiết</button>
-                                                </td>
-                                                <td>
-                                                    <span class="status blue"></span>
-                                                    Còn Hàng
-                                                </td>
-                                                <td>
-                                                    <button class="edit-button">Sửa</button>
-                                                    <button class="delete-button">Xóa</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mứt Vải</td>
-                                                <td>MV</td>
-                                                <td>Mứt Trái Cây</td>
-                                                <td>Hải Dương, Việt Nam</td>
-                                                <td>
-                                                    <button class="button-product-description">Xem chi tiết</button>
-                                                </td>
-                                                <td>
-                                                    <span class="status red"></span>
-                                                    Tạm Hết
-                                                </td>
-                                                <td>
-                                                    <button class="edit-button">Sửa</button>
-                                                    <button class="delete-button">Xóa</button>
-                                                </td>
-                                            </tr>
+                                           
                                             <tr>
                                                 <td>Mứt Cam Nha Đam</td>
                                                 <td>MCND</td>
@@ -1149,7 +1065,7 @@
                                                     Còn Hàng
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                    
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1166,7 +1082,7 @@
                                                     Tạm Hết
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                    
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1183,7 +1099,7 @@
                                                     Còn Hàng
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                   
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1200,7 +1116,7 @@
                                                     Còn Hàng
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                   
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1217,7 +1133,7 @@
                                                     Còn Hàng
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                  
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1234,7 +1150,7 @@
                                                     Tạm Hết
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                  
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1251,7 +1167,7 @@
                                                     Còn Hàng
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                   
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
@@ -1268,7 +1184,7 @@
                                                     Tạm Hết
                                                 </td>
                                                 <td>
-                                                    <button class="edit-button">Sửa</button>
+                                                    
                                                     <button class="delete-button">Xóa</button>
                                                 </td>
                                             </tr>
