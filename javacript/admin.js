@@ -815,40 +815,83 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-//   ------------------------inventory---------------------
+//-------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
-    const table = document.getElementById("inventoryTable");
-    const rows = table.querySelectorAll("tbody tr");
+    const addModal = document.getElementById("addModal");
+    const addForm = document.getElementById("addForm");
+    const closeAddModal = document.getElementById("closeAddModal");
+    const addButton = document.getElementById("addButton");
+    const productTable = document.querySelector(".table-reponsive table tbody");
 
-    // Tìm kiếm sản phẩm
-    searchInput.addEventListener("input", () => {
-        const searchValue = searchInput.value.toLowerCase();
-        rows.forEach((row) => {
-            const productName = row.children[1].textContent.toLowerCase();
-            row.style.display = productName.includes(searchValue) ? "" : "none";
-        });
+    // Hiển thị modal khi nhấn nút "Thêm"
+    addButton.addEventListener("click", () => {
+        addModal.style.display = "flex";
     });
-    // Thêm sản phẩm
-    document.getElementById("addProductBtn").addEventListener("click", () => {
+
+    // Đóng modal khi nhấn nút "Đóng"
+    closeAddModal.addEventListener("click", () => {
+        addModal.style.display = "none";
+        addForm.reset();
+    });
+
+    // Đóng modal khi nhấn bên ngoài modal
+    window.addEventListener("click", (event) => {
+        if (event.target === addModal) {
+            addModal.style.display = "none";
+            addForm.reset();
+        }
+    });
+
+    // Thêm sản phẩm mới vào bảng
+    addForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn chặn reload trang
+
+        // Lấy dữ liệu từ form
+        const name = addForm.productName.value.trim();
+        const code = addForm.productCode.value.trim();
+        const type = addForm.productType.value.trim();
+        const origin = addForm.productOrigin.value.trim();
+        const status = addForm.productStatus.value;
+
+        // Tạo hàng mới trong bảng
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
-      <td>SP004</td>
-      <td>Nho Mỹ</td>
-      <td>50 kg</td>
-      <td>90,000 VND</td>
-      <td>120,000 VND</td>
-      <td>20/11/2024</td>
-      <td><span class="status sufficient">Đủ hàng</span></td>
-    `;
-        table.querySelector("tbody").appendChild(newRow);
-        alert("Sản phẩm mới đã được thêm!");
+            <td>${name}</td>
+            <td>${code}</td>
+            <td>${type}</td>
+            <td>${origin}</td>
+            <td>
+                <button class="button-description">Xem chi tiết</button>
+            </td>
+            <td>
+                <span class="status ${status === "Còn Hàng" ? "blue" : "red"}"></span>
+                ${status}
+            </td>
+            <td>
+                <button class="button-delete">Xóa</button>
+            </td>
+        `;
+        productTable.appendChild(newRow);
+
+        // Thêm sự kiện "Xóa" cho nút mới
+        const deleteButton = newRow.querySelector(".button-delete");
+        deleteButton.addEventListener("click", () => {
+            newRow.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+
+        // Đóng modal và reset form
+        addModal.style.display = "none";
+        addForm.reset();
     });
 
-    // Xuất dữ liệu
-    document.getElementById("exportDataBtn").addEventListener("click", () => {
-        alert("Dữ liệu kho hàng đã được xuất!");
+    // Thêm sự kiện "Xóa" cho các nút hiện tại
+    document.querySelectorAll(".delete-button").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const row = event.target.closest("tr");
+            row.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
     });
 });
-
 
