@@ -396,6 +396,7 @@ function openModal(data, modalType) {
     document.getElementById("newInvoiceModal").style.display = "none";
     document.getElementById("userManagementModal").style.display = "none";
     document.getElementById("systemConfigModal").style.display = "none";
+    document.getElementById("activityLogModal").style.display = "none";
 
 
     if (modalType === "invoice") {
@@ -523,6 +524,33 @@ function openModal(data, modalType) {
         document.getElementById("timeZone").value = data.timeZone || "UTC+7";
         document.getElementById("maintenanceMode").value = data.maintenanceMode || "off";
         document.getElementById("maxUsers").value = data.maxUsers || "";
+    } else if (modalType === "activityLog") {
+        // Mở modal Nhật ký hoạt động
+        document.getElementById("activityLogModal").style.display = "block";
+
+        // Điền dữ liệu vào bảng nhật ký
+        const logTableBody = document.getElementById("activityLogBody");
+        logTableBody.innerHTML = ""; // Xóa dữ liệu cũ
+
+        if (data.logs && data.logs.length > 0) {
+            data.logs.forEach((log, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${log.time}</td>
+                    <td>${log.user}</td>
+                    <td>${log.action}</td>
+                    <td>${log.result}</td>
+                    <td>${log.note}</td>
+                `;
+                logTableBody.appendChild(row);
+            });
+        } else {
+            // Hiển thị thông báo nếu không có nhật ký
+            const row = document.createElement("tr");
+            row.innerHTML = `<td colspan="6" style="text-align: center; color: #888;">Không có nhật ký hoạt động nào</td>`;
+            logTableBody.appendChild(row);
+        }
     }
 }
 
@@ -545,6 +573,8 @@ function closeModal(modalType) {
         document.getElementById("userManagementModal").style.display = "none";
     } else if (modalType === "systemConfig") {
         document.getElementById("systemConfigModal").style.display = "none";
+    } else if (modalType === "activityLog") {
+        document.getElementById("activityLogModal").style.display = "none";
     }
 }
 
@@ -629,6 +659,7 @@ document.querySelectorAll(".button-user-management").forEach(button => {
         openModal(userManagementData, "userManagement");
     });
 });
+// Sự kiện nút cấu hình hệ thống
 document.querySelectorAll(".button-system-config").forEach(button => {
     button.addEventListener("click", () => {
         // Lấy dữ liệu cấu hình từ localStorage hoặc tạo mặc định
@@ -643,6 +674,19 @@ document.querySelectorAll(".button-system-config").forEach(button => {
 
         // Gọi hàm mở modal và điền dữ liệu
         openModal(systemConfigData, "systemConfig");
+    });
+});
+// Sự kiện nút nhật ký hoạt động
+document.querySelectorAll(".button-activity-log").forEach(button => {
+    button.addEventListener("click", () => {
+        const activityLogData = {
+            logs: [
+                { time: "2023-11-22 10:30", user: "admin", action: "Đăng nhập", result: "Thành công", note: "" },
+                { time: "2023-11-22 11:00", user: "staff1", action: "Xóa sản phẩm", result: "Thành công", note: "Đã xóa sản phẩm ID: 123" },
+                { time: "2023-11-22 12:00", user: "admin", action: "Cập nhật cấu hình", result: "Thành công", note: "Đổi ngôn ngữ sang Tiếng Anh" },
+            ],
+        };
+        openModal(activityLogData, "activityLog");
     });
 });
 // ----------------------------suppliers---------------------------

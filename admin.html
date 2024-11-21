@@ -1935,7 +1935,7 @@
                             <i class="fa-solid fa-cogs"></i>
                             <span>Cấu hình hệ thống</span>
                         </div>
-                        <div class="system-item" id="activity-log">
+                        <div class="system-item button-activity-log" id="activity-log">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             <span>Nhật ký hoạt động</span>
                         </div>
@@ -2160,6 +2160,68 @@
                 </div>
             </div>
         </div>
+        <div id="activityLogModal" class="modal system-activity">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('activityLog')">&times;</span>
+                <h2>Nhật Ký Hoạt Động</h2>
+                
+                <!-- Bộ lọc -->
+                <div class="filters">
+                    <!-- Phần Tìm kiếm -->
+                    <div class="filter-item">
+                        <label for="searchInput">
+                            <i class="fas fa-search"></i> Tìm kiếm:
+                        </label>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên, hoạt động..." />
+                    </div>
+                
+                    <!-- Phần Từ ngày -->
+                    <div class="filter-item">
+                        <label for="fromDate">
+                            <i class="fas fa-calendar-alt"></i> Từ ngày:
+                        </label>
+                        <input type="date" id="fromDate" />
+                    </div>
+                
+                    <!-- Phần Đến ngày -->
+                    <div class="filter-item">
+                        <label for="toDate">
+                            <i class="fas fa-calendar-alt"></i> Đến ngày:
+                        </label>
+                        <input type="date" id="toDate" />
+                    </div>
+                
+                    <!-- Nút Lọc -->
+                    <div class="filter-button">
+                        <button class="btn-filter" onclick="filterLogs()">Lọc</button>
+                    </div>
+                </div>                
+                
+                <!-- Bảng nhật ký -->
+                <table class="activity-log">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Thời gian</th>
+                            <th>Người thực hiện</th>
+                            <th>Hành động</th>
+                            <th>Kết quả</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activityLogBody">
+                        <!-- Nhật ký sẽ được thêm bằng JS -->
+                    </tbody>
+                </table>
+                
+                <!-- Nút hành động -->
+                <div class="action-buttons">
+                    <button class="btn-clear" onclick="clearLogs()">Xóa toàn bộ nhật ký</button>
+                    <button class="btn-export" onclick="exportLogs()">Xuất File</button>
+                </div>
+            </div>
+        </div>          
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./javacript/admin.js"></script>

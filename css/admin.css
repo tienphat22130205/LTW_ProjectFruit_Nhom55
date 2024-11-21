@@ -1229,7 +1229,7 @@ h2 {
     background-color: rgb(63, 122, 206);
 }
 .btn-delete:hover {
-    background-color: #c82333; /* Đậm hơn khi hover */
+    background-color: #c82333; 
 }
 
 /* Table Style */
@@ -1237,37 +1237,37 @@ h2 {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
-    border-radius: 8px; /* Bo góc bảng */
-    overflow: hidden; /* Ẩn viền tràn */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .user-table th,
 .user-table td {
-    text-align: left; /* Căn chữ sang trái */
-    padding: 14px; /* Tăng padding để giãn cách */
-    font-size: 1.2rem; /* Đồng nhất kích thước chữ */
+    text-align: left;
+    padding: 14px; 
+    font-size: 1.2rem; 
 }
 
 .user-table th {
-    background-color: #f1f1f1; /* Nền tiêu đề bảng */
-    font-weight: 600; /* Đậm chữ */
-    border-bottom: 2px solid #ddd; /* Đường kẻ dưới tiêu đề */
+    background-color: #f1f1f1; 
+    font-weight: 600; 
+    border-bottom: 2px solid #ddd; 
     color: #333;
 }
 
 .user-table td {
-    border-bottom: 1px solid #eee; /* Kẻ dưới các ô dữ liệu */
+    border-bottom: 1px solid #eee; 
     color: #555;
     font-size: 1.1rem;
 }
 
 /* Căn chỉnh các nút trong cột "Hành động" */
 .user-table td:last-child {
-    display: flex; /* Hiển thị nội dung dưới dạng hàng ngang */
-    justify-content: flex-start; /* Canh trái các nút */
-    gap: 10px; /* Khoảng cách giữa các nút */
-    align-items: center; /* Căn giữa nút theo chiều dọc */
+    display: flex; 
+    justify-content: flex-start; 
+    gap: 10px; 
+    align-items: center; 
 }
 /* Modal Cấu Hình Hệ Thống */
 /* Modal Header */
@@ -1370,6 +1370,170 @@ h2 {
     background-color: #e0a800;
 }
 /* ket thuc css cau hinh he thong */
+/* css nhật ký hoạt động */
+/* Modal Title */
+/* Modal Styles */
+.system-activity {
+    background-color: #fff;
+    border-radius: 12px;
+    width: 90%; /* Tăng chiều rộng */
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    transition: all 0.3s ease-in-out;
+    min-height: 500px;
+}
+
+/* Title Alignment */
+.system-activity h2 {
+    font-size: 2.5rem; /* Tăng kích thước tiêu đề */
+    color: #007bff;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Table Styles */
+.activity-log {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px; /* Tăng khoảng cách phía dưới */
+    font-size: 1rem; /* Tăng kích thước font */
+}
+.activity-log th,
+.activity-log td {
+    padding: 15px; /* Tăng padding */
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Filters Section */
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto; /* 3 phần bằng nhau và 1 phần cho nút */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    margin-bottom: 20px;
+    align-items: start; /* Căn label và input từ trên xuống */
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column; /* Xếp label ở trên, input ở dưới */
+    gap: 8px; /* Khoảng cách giữa label và input */
+}
+
+.filter-item label {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa icon và text */
+}
+
+.filter-item input[type="text"],
+.filter-item input[type="date"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%; /* Đảm bảo input chiếm toàn bộ chiều rộng cột */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-button {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa nút lọc */
+}
+
+.btn-filter {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.btn-filter:hover {
+    background-color: #0056b3;
+}
+
+/* Đáp ứng cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .filters {
+        grid-template-columns: 1fr; /* Chuyển về 1 cột cho màn hình nhỏ */
+    }
+
+    .filter-button {
+        justify-content: start; /* Nút canh trái để đồng bộ với input */
+    }
+}
+
+
+
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Tăng khoảng cách giữa các nút */
+    margin-top: 30px;
+}
+
+.action-buttons .btn-clear,
+.action-buttons .btn-export {
+    padding: 12px 20px;
+    font-size: 1.1rem; /* Tăng kích thước font */
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .btn-clear {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.action-buttons .btn-clear:hover {
+    background-color: #b71c1c;
+}
+
+.action-buttons .btn-export {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.action-buttons .btn-export:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filters input[type="text"],
+    .filters input[type="date"] {
+        width: 100%; /* Chiều rộng toàn màn hình trên thiết bị nhỏ */
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+
 
 
 
