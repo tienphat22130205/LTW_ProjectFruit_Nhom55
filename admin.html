@@ -1730,7 +1730,59 @@
                   </div>
             </div>
             <div id="inventory" class="section">
-                <p>Phan noi dung cua Quan Ly Kho Hang</p>
+                <div class="container">
+                    <h1>Quản lý kho hàng</h1>
+                    <div class="controls">
+                        <button id="addProductBtn">Thêm sản phẩm</button>
+                        <button id="exportDataBtn">Xuất dữ liệu</button>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." />
+                    </div>
+                    <table id="inventoryTable">
+                        <thead>
+                            <tr>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng tồn</th>
+                                <th>Giá nhập</th>
+                                <th>Giá bán</th>
+                                <th>Ngày nhập</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dữ liệu mẫu -->
+                            <tr>
+                                <td>SP001</td>
+                                <td>Táo Fuji</td>
+                                <td>100 kg</td>
+                                <td>50,000 VND</td>
+                                <td>70,000 VND</td>
+                                <td>18/11/2024</td>
+                                <td><span class="product-status sufficient">Đủ hàng</span></td>
+                            </tr>
+                            <tr>
+                                <td>SP002</td>
+                                <td>Cam Sành</td>
+                                <td>20 kg</td>
+                                <td>30,000 VND</td>
+                                <td>40,000 VND</td>
+                                <td>15/11/2024</td>
+                                <td><span class="product-status warning">Sắp hết hàng</span></td>
+                            </tr>
+                            <tr>
+                                <td>SP003</td>
+                                <td>Lê Nam Phi</td>
+                                <td>0 kg</td>
+                                <td>80,000 VND</td>
+                                <td>100,000 VND</td>
+                                <td>10/11/2024</td>
+                                <td><span class="product-status danger">Hết hàng</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+
             </div>
             <div id="promotions" class="section">
                 <p>Phan noi dung cua Quan Ly Khuyen Mai</p>
