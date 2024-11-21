@@ -753,7 +753,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const editForm = document.getElementById("editForm");
     const closeModalBtn = document.querySelector("#editModal .close-btn");
     let currentRow = null; // Biến lưu hàng hiện tại được chỉnh sửa
+ // Hàm hiển thị thông báo thành công
+    const showSuccessToast = (message) => {
+        const toast = document.createElement("div");
+        toast.className = "toast-success";
+        toast.textContent = message;
 
+        // Thêm thông báo vào trang
+        document.body.appendChild(toast);
+
+        // Tự động ẩn thông báo sau 3 giây
+        setTimeout(() => {
+            toast.style.opacity = "0"; // Hiệu ứng mờ dần
+            setTimeout(() => {
+                toast.remove(); // Xóa khỏi DOM
+            }, 500); // Đợi hiệu ứng mờ hoàn tất
+        }, 3000);
+    };
     // Mở modal chỉnh sửa
     document.querySelectorAll(".action-btn.edit").forEach((button) => {
         button.addEventListener("click", () => {
