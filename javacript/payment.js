@@ -93,7 +93,13 @@ function showSuccessImage() {
 }
 
 function goBack() {
-    switchTab("infoTab"); // Quay lại tab "Thông tin"
+    // Nếu đang ở tab "paymentTab", quay lại tab "infoTab"
+    if (document.getElementById("paymentTab").classList.contains("active")) {
+        switchTab("infoTab");
+    } else {
+        // Quay lại trang trước đó trong lịch sử trình duyệt
+        window.history.back();
+    }
 }
 
 function selectMethod(element, contentId) {
