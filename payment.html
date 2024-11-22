@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,110 +8,137 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="./css/payment.css">
 </head>
+
 <body>
-    <div class="container">
-        <p><i class="fa-solid fa-arrow-left"></i> Về trang chủ</p>
-        <header class="header">
-            <div class="header-bar">
-                <div class="user-info">
-                    <h2>Ngô Tiến Phát</h2>
-                    <p>22130205@st.hcmuaf.edu.vn | 0334286049</p>
-                </div>
-            </div>
-            <div class="order-info">
-                <div class="order-item">
-                    <p><strong>Mã đơn hàng:</strong></p>
-                    <p>5693</p>
-                </div>
-                <div class="order-item">
-                    <p><strong>Giá trị đơn hàng:</strong></p>
-                    <p>750.000 đ</p>
-                </div>
-                <div class="order-item">
-                    <p><strong>Mã giảm giá</strong></p>
-                    <p>Giảm 15%</p>
-                </div>
-                <div class="order-item">
-                    <p><strong>Phí Giao dịch:</strong></p>
-                    <p>Miễn phí</p>
-                </div>
-                <div class="order-item">
-                    <p><strong>Thành tiền:</strong></p>
-                    <p class="total-amount">638.000 đ</p>
-                </div>
-            </div>
-        </header>
-        
-
-        <div class="payment-form">
-            <h3>Thanh toán Online bằng thẻ ATM</h3>
-            <div class="bank-selection">
-                <label>
-                    <input type="radio" name="bank" value="vietcombank">
-                    <img src="./img/logoBank/VietCom.png" alt="Vietcombank">
-                </label>
-                <label>
-                    <input type="radio" name="bank" value="bidv">
-                    <img src="./img/logoBank/BIDV.png" alt="BIDV">
-                </label>
-                <label>
-                    <input type="radio" name="bank" value="techcombank">
-                    <img src="./img/logoBank/techcom.png" alt="Techcombank">
-                </label>
-                <label>
-                    <input type="radio" name="bank" value="agribank">
-                    <img src="./img/logoBank/TP.png" alt="TP Bank">
-                </label>
-            </div>
-            
-            <form action="/payment" method="POST">
-                <label for="address">Địa chỉ:</label>
-                <input type="text" id="address" name="address" placeholder="Việt Nam">
-
-                <label for="atm-number">Số thẻ ATM:</label>
-                <input type="text" id="atm-number" name="atm-number" placeholder="">
-
-                <label for="cardholder">Tên chủ thẻ:</label>
-                <input type="text" id="cardholder" name="cardholder" placeholder="">
-
-                <label for="issue-month">Ngày phát hành:</label>
-                <div class="issue-date">
-                    <select id="issue-month" name="issue-month">
-                        <option>Tháng 1</option>
-                        <option>Tháng 2</option>
-                        <option>Tháng 3</option>
-                        <option>Tháng 4</option>
-                        <option>Tháng 5</option>
-                        <option>Tháng 6</option>
-                        <option>Tháng 7</option>
-                        <option>Tháng 8</option>
-                        <option>Tháng 9</option>
-                        <option>Tháng 10</option>
-                        <option>Tháng 11</option>
-                        <option>Tháng 12</option>
-
-                        <!-- Add other months as options -->
-                    </select>
-                    <select id="issue-year" name="issue-year">
-                        <option>2020</option>
-                        <option>2021</option>
-                        <option>2022</option>
-                        <option>2023</option>
-                        <option>2024</option>
-                        <!-- Add other years as options -->
-                    </select>
-                </div>
-
-                <label for="security-code">Mã bảo mật:</label>
-                <input type="text" id="security-code" name="security-code" placeholder="Nhập đầy ký tự bên cạnh">
-                <div class="captcha">6E7J7687</div>
-
-                <div class="buttons">
-                    <button type="submit" class="btn-pay">Thanh toán</button>
-                    <button type="button" class="btn-cancel">Hủy đơn hàng</button>
-                </div>
-            </form>
+    <div class="checkout-container">
+        <div class="header">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Quay lại
+            </button>
+            <h2 class="page-title">Thanh toán</h2>
+        </div>             
+        <div class="tab-navigation">
+            <div class="tab active" id="infoTabButton">1. THÔNG TIN</div>
+            <div class="tab" id="paymentTabButton" onclick="switchToPaymentTab()">2. THANH TOÁN</div>
         </div>
+        <div class="information">
+            <div id="infoTab" class="tab-content active">
+                <!-- Sản phẩm -->
+                <div class="section">
+                    <div class="section-header">SẢN PHẨM</div>
+                    <div class="section-content">
+                        <div class="product-summary">
+                            <img src="./img/hqnc1.png" alt="Sản phẩm">
+                            <div>
+                                <h4>Hộp quà nguyên cát 1</h4>
+                                <p>2.590.000đ</p>
+                                <p><del>2.990.000đ</del></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Thông tin khách hàng -->
+                <div class="section">
+                    <div class="section-header">THÔNG TIN KHÁCH HÀNG</div>
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col">
+                                <label for="name">Họ và tên:</label>
+                                <input type="text" id="name" placeholder="Nhập họ và tên">
+                            </div>
+                            <div class="col">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" placeholder="Nhập email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="phone">Số điện thoại:</label>
+                                <input type="text" id="phone" placeholder="Nhập số điện thoại">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Thông tin nhận hàng -->
+                <div class="section">
+                    <div class="section-header">THÔNG TIN NHẬN HÀNG</div>
+                    <div class="section-content">
+                        <div class="delivery-method">
+                            <div class="method-option active" onclick="selectMethod(this, 'storePickupContent')">Nhận tại cửa hàng</div>
+                            <div class="method-option" onclick="selectMethod(this, 'homeDeliveryContent')">Giao hàng tận nơi</div>
+                        </div>
+                        <!-- Nội dung của từng hình thức -->
+                        <div id="storePickupContent" class="method-content active-content">
+                            <label for="storeBranch">Chọn chi nhánh:</label>
+                            <select id="storeBranch">
+                                <option>Chi nhánh 1 - 43 Nguyễn Thái Học</option>
+                                <option>Chi nhánh 2 - 28 Mai Chí Thọ</option>
+                            </select>
+                        </div>
+    
+                        <div id="homeDeliveryContent" class="method-content">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="province">Tỉnh/Thành phố:</label>
+                                    <select id="province">
+                                        <option>Hồ Chí Minh</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="district">Quận/Huyện:</label>
+                                    <select id="district">
+                                        <option>Quận 1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="ward">Phường/Xã:</label>
+                                    <select id="ward">
+                                        <option>Phường 1</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="address">Số nhà, tên đường:</label>
+                                    <input type="text" id="address" placeholder="Nhập địa chỉ">
+                                </div>
+                            </div>
+                            <label for="note">Ghi chú khác (nếu có):</label>
+                            <textarea id="note" placeholder="Nhập ghi chú..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip-and-invoice">
+                <div class="invoice-request">
+                    <label class="invoice-checkbox">
+                        <input type="checkbox" id="companyInvoice" />
+                        <span>Yêu cầu xuất hóa đơn công ty</span>
+                    </label>
+                    <p class="invoice-note">
+                        Với đơn hàng <strong>trên 20 triệu đồng</strong>, vui lòng thanh toán bằng phương thức chuyển khoản từ tài khoản công ty hoặc bằng thẻ công ty.
+                        <a href="#" class="policy-link">Xem chính sách</a>
+                    </p>
+                </div>
+            </div>
+            <div class="checkout-summary">
+                <div class="total-summary">
+                    <p class="summary-text">Tổng tiền tạm tính:</p>
+                    <p class="summary-amount">20.590.000đ</p>
+                </div>
+                <button class="continue-button" onclick="nextTab()">Tiếp tục</button>
+            </div>
+        </div>
+        <div id="paymentTab" class="tab-content">
+            <h3>Tab Thanh Toán</h3>
+            <p>Đây là nội dung tạm thời của tab "Thanh toán". Bạn có thể tùy chỉnh sau.</p>
+        </div>        
     </div>
+    
+
+    <script src="./javacript/payment.js"></script>
 </body>
+
 </html>
