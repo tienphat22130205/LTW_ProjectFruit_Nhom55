@@ -909,5 +909,63 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Sản phẩm đã được xóa!");
         });
     });
+    // -----------------
+document.addEventListener("DOMContentLoaded", () => {
+    const addModal = document.getElementById("addModal1");
+    const addForm = document.getElementById("addForm1");
+    const closeAddModal = document.getElementById("closeAddModal1");
+    const addButton = document.getElementById("addButton1");
+    const productTable = document.querySelector(".table-reponsive1 table tbody");
+
+    // Hiển thị modal khi nhấn nút "Thêm"
+    addButton.addEventListener("click", () => {
+        addModal1.style.display = "flex";
+    });
+
+    // Đóng modal khi nhấn nút "Đóng"
+    closeAddModal.addEventListener("click", () => {
+        addModal1.style.display = "none";
+        addForm1addForm1.reset();
+    });
+
+    // Đóng modal khi nhấn bên ngoài modal
+    window.addEventListener("click", (event) => {
+        if (event.target === addModal) {
+            addModal1.style.display = "none";
+            addForm1addForm1.reset();
+        }
+    });
+
+    // Thêm sản phẩm mới vào bảng
+    addForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn chặn reload trang
+
+        // Lấy dữ liệu từ form
+        const name = addForm1.productName.value.trim();
+        const code = addForm1.productCode.value.trim();
+        const type = addForm1.productType.value.trim();
+        const origin = addForm1.productOrigin.value.trim();
+        const status = addForm1.productStatus.value;
+ // Thêm sự kiện "Xóa" cho nút mới
+        const deleteButton = newRow.querySelector(".button-delete");
+        deleteButton.addEventListener("click", () => {
+            newRow.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+
+        // Đóng modal và reset form
+        addModal1.style.display = "none";
+        addForm1.reset();
+    });
+
+    // Thêm sự kiện "Xóa" cho các nút hiện tại
+    document.querySelectorAll(".delete-button").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const row = event.target.closest("tr");
+            row.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+    });
 });
+
 
