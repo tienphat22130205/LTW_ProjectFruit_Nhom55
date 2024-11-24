@@ -753,7 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const editForm = document.getElementById("editForm");
     const closeModalBtn = document.querySelector("#editModal .close-btn");
     let currentRow = null; // Biến lưu hàng hiện tại được chỉnh sửa
- // Hàm hiển thị thông báo thành công
+    // Hàm hiển thị thông báo thành công
     const showSuccessToast = (message) => {
         const toast = document.createElement("div");
         toast.className = "toast-success";
@@ -833,43 +833,42 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 //-------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-    const addModal = document.getElementById("addModal");
-    const addForm = document.getElementById("addForm");
-    const closeAddModal = document.getElementById("closeAddModal");
-    const addButton = document.getElementById("addButton");
-    const productTable = document.querySelector(".table-reponsive table tbody");
+    // Modal 1
+    const addModal1 = document.getElementById("addModal1");
+    const addForm1 = document.getElementById("addForm1");
+    const closeAddModal1 = document.getElementById("closeAddModal1");
+    const addButton1 = document.getElementById("addButton1");
+    const productTable1 = document.querySelector(".table-reponsive1 table tbody");
 
-    // Hiển thị modal khi nhấn nút "Thêm"
-    addButton.addEventListener("click", () => {
-        addModal.style.display = "flex";
+    // Hiển thị modal 1
+    addButton1.addEventListener("click", () => {
+        addModal1.style.display = "flex";
     });
 
-    // Đóng modal khi nhấn nút "Đóng"
-    closeAddModal.addEventListener("click", () => {
-        addModal.style.display = "none";
-        addForm.reset();
+    // Đóng modal 1
+    closeAddModal1.addEventListener("click", () => {
+        addModal1.style.display = "none";
+        addForm1.reset();
     });
 
     // Đóng modal khi nhấn bên ngoài modal
     window.addEventListener("click", (event) => {
-        if (event.target === addModal) {
-            addModal.style.display = "none";
-            addForm.reset();
+        if (event.target === addModal1) {
+            addModal1.style.display = "none";
+            addForm1.reset();
         }
     });
 
-    // Thêm sản phẩm mới vào bảng
-    addForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Ngăn chặn reload trang
+    // Thêm sản phẩm vào bảng trong modal 1
+    addForm1.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn reload trang
 
-        // Lấy dữ liệu từ form
-        const name = addForm.productName.value.trim();
-        const code = addForm.productCode.value.trim();
-        const type = addForm.productType.value.trim();
-        const origin = addForm.productOrigin.value.trim();
-        const status = addForm.productStatus.value;
+        const name = addForm1.productName.value.trim();
+        const code = addForm1.productCode.value.trim();
+        const type = addForm1.productType.value.trim();
+        const origin = addForm1.productOrigin.value.trim();
+        const status = addForm1.productStatus.value;
 
-        // Tạo hàng mới trong bảng
         const newRow = document.createElement("tr");
         newRow.innerHTML = `
             <td>${name}</td>
@@ -887,79 +886,93 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="button-delete">Xóa</button>
             </td>
         `;
-        productTable.appendChild(newRow);
 
-        // Thêm sự kiện "Xóa" cho nút mới
+        productTable1.appendChild(newRow);
+
+        // Thêm sự kiện "Xóa"
         const deleteButton = newRow.querySelector(".button-delete");
         deleteButton.addEventListener("click", () => {
             newRow.remove();
             alert("Sản phẩm đã được xóa!");
         });
 
-        // Đóng modal và reset form
-        addModal.style.display = "none";
-        addForm.reset();
+        // Reset và đóng modal
+        addModal1.style.display = "none";
+        addForm1.reset();
     });
 
-    // Thêm sự kiện "Xóa" cho các nút hiện tại
-    document.querySelectorAll(".delete-button").forEach((button) => {
+    // Xóa sản phẩm đã tồn tại
+    document.querySelectorAll(".button-delete").forEach((button) => {
         button.addEventListener("click", (event) => {
             const row = event.target.closest("tr");
             row.remove();
             alert("Sản phẩm đã được xóa!");
         });
     });
-    // -----------------
-document.addEventListener("DOMContentLoaded", () => {
-    const addModal = document.getElementById("addModal1");
-    const addForm = document.getElementById("addForm1");
-    const closeAddModal = document.getElementById("closeAddModal1");
-    const addButton = document.getElementById("addButton1");
-    const productTable = document.querySelector(".table-reponsive1 table tbody");
 
-    // Hiển thị modal khi nhấn nút "Thêm"
-    addButton.addEventListener("click", () => {
-        addModal1.style.display = "flex";
+    // Modal 2
+    const addModal2 = document.getElementById("addModal");
+    const addForm2 = document.getElementById("addForm");
+    const closeAddModal2 = document.getElementById("closeAddModal");
+    const addButton2 = document.getElementById("addButton");
+    const productTable2 = document.querySelector(".table-reponsive table tbody");
+
+    addButton2.addEventListener("click", () => {
+        addModal2.style.display = "flex";
     });
 
-    // Đóng modal khi nhấn nút "Đóng"
-    closeAddModal.addEventListener("click", () => {
-        addModal1.style.display = "none";
-        addForm1addForm1.reset();
+    closeAddModal2.addEventListener("click", () => {
+        addModal2.style.display = "none";
+        addForm2.reset();
     });
 
-    // Đóng modal khi nhấn bên ngoài modal
     window.addEventListener("click", (event) => {
-        if (event.target === addModal) {
-            addModal1.style.display = "none";
-            addForm1addForm1.reset();
+        if (event.target === addModal2) {
+            addModal2.style.display = "none";
+            addForm2.reset();
         }
     });
 
-    // Thêm sản phẩm mới vào bảng
-    addForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Ngăn chặn reload trang
+    addForm2.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-        // Lấy dữ liệu từ form
-        const name = addForm1.productName.value.trim();
-        const code = addForm1.productCode.value.trim();
-        const type = addForm1.productType.value.trim();
-        const origin = addForm1.productOrigin.value.trim();
-        const status = addForm1.productStatus.value;
- // Thêm sự kiện "Xóa" cho nút mới
+        const name = addForm2.productName.value.trim();
+        const code = addForm2.productCode.value.trim();
+        const type = addForm2.productType.value.trim();
+        const origin = addForm2.productOrigin.value.trim();
+        const status = addForm2.productStatus.value;
+
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${name}</td>
+            <td>${code}</td>
+            <td>${type}</td>
+            <td>${origin}</td>
+            <td>
+                <button class="button-description">Xem chi tiết</button>
+            </td>
+            <td>
+                <span class="status ${status === "Còn Hàng" ? "blue" : "red"}"></span>
+                ${status}
+            </td>
+            <td>
+                <button class="button-delete">Xóa</button>
+            </td>
+        `;
+
+        productTable2.appendChild(newRow);
+
         const deleteButton = newRow.querySelector(".button-delete");
         deleteButton.addEventListener("click", () => {
             newRow.remove();
             alert("Sản phẩm đã được xóa!");
         });
 
-        // Đóng modal và reset form
-        addModal1.style.display = "none";
-        addForm1.reset();
+        addModal2.style.display = "none";
+        addForm2.reset();
     });
 
-    // Thêm sự kiện "Xóa" cho các nút hiện tại
-    document.querySelectorAll(".delete-button").forEach((button) => {
+    document.querySelectorAll(".button-delete").forEach((button) => {
         button.addEventListener("click", (event) => {
             const row = event.target.closest("tr");
             row.remove();
@@ -967,5 +980,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
-
