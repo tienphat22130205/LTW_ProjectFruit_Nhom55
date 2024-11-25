@@ -809,15 +809,13 @@ td:first-child, td:nth-child(3), td:nth-child(4) {
     background-color: #fff;
     border-radius: 12px;
     width: 70%;
-    max-width: 900px;
+    max-width: 800px;
     padding: 40px;
     position: relative;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     transform: scale(0.8);
     transition: all 0.3s ease-in-out;
     width: 80%; 
-    max-width: 1000px; 
-    min-height: 400px;
 }
 .modal.active {
     transform: scale(1);
@@ -1098,13 +1096,7 @@ h2 {
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.form-section {
-    margin-top: 30px;
-    padding: 20px; /* Thêm khoảng cách bên trong */
-    background-color: #f9f9f9; /* Màu nền nhạt cho phần section */
-    border-radius: 8px; /* Bo góc section */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
-}
+
 
 /* Tiêu đề trong Form Section */
 .form-section h3 {
@@ -1114,6 +1106,51 @@ h2 {
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px; 
 }
+/* Container cuộn cho bảng */
+.table-scroll-container {
+    max-height: 200px;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    background-color: #fff; 
+    padding: 10px; 
+}
+
+/* Bảng bên trong container */
+.user-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 14px; 
+}
+
+/* Header của bảng */
+.user-table th {
+    background-color: #007bff;
+    color: #fff; 
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd; 
+}
+
+/* Ô của bảng */
+.user-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; 
+    color: #333;
+}
+
+/* Hiệu ứng xen kẽ màu cho hàng */
+.user-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hiệu ứng hover cho hàng */
+.user-table tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
 
 /* Mô tả trong Form Section */
 .form-section p {
@@ -1596,6 +1633,221 @@ h2 {
     background-color: #f44336;
 }
 /*--kết thúc css của phần phản hồi khách hàng--*/
+
+/* --- CSS cho Quản Lý Khuyến Mãi --- */
+
+/* Vùng chứa chính */
+#promotions {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+#promotions .promotion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#promotions .promotion-header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+#openPromotionModal {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#openPromotionModal:hover {
+    background-color: #218838;
+}
+
+/* Thanh tìm kiếm */
+#promotions .search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#promotions .search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+}
+
+#promotions .search-bar button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#promotions .search-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* Bảng quản lý khuyến mãi */
+.promotion-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.promotion-table thead {
+    background-color: #007bff;
+    color: #fff;
+    text-align: left;
+}
+
+.promotion-table th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.promotion-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+/* Màu xen kẽ dòng */
+.promotion-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Nút hành động */
+.promotion-table .edit-btn {
+    background-color: #ffc107;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.promotion-table .delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* --- CSS cho Modal Thêm Khuyến Mãi --- */
+
+/* Overlay cho modal */
+#promotionModal1{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    max-width: 90%;
+}
+
+/* Nội dung modal */
+.custom-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Tiêu đề modal */
+.custom-modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Nút đóng modal */
+.custom-close-button {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.custom-close-button:hover {
+    color: #f00;
+}
+
+/* Form bên trong modal */
+#promotionForm .form-group {
+    margin-bottom: 15px;
+}
+
+#promotionForm .form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#promotionForm .form-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#promotionForm .form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+#promotionForm .form-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#savePromotionBtn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#savePromotionBtn:hover {
+    background-color: #0056b3;
+}
 
 
 

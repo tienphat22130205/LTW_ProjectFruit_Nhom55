@@ -397,7 +397,9 @@ function openModal(data, modalType) {
     document.getElementById("userManagementModal").style.display = "none";
     document.getElementById("systemConfigModal").style.display = "none";
     document.getElementById("activityLogModal").style.display = "none";
-
+    document.querySelectorAll(".custom-modal").forEach(modal => {
+        modal.style.display = "none";
+    });
 
     if (modalType === "invoice") {
         // Mở modal chi tiết hóa đơn (cũ)
@@ -551,6 +553,20 @@ function openModal(data, modalType) {
             row.innerHTML = `<td colspan="6" style="text-align: center; color: #888;">Không có nhật ký hoạt động nào</td>`;
             logTableBody.appendChild(row);
         }
+    } else if (modalType === "promotion") {
+        const modal = document.getElementById("promotionModal1");
+        modal.style.display = "block";
+
+        if (data) {
+            // Điền dữ liệu nếu có
+            document.getElementById("promotionName").value = data.promotionName || "";
+            document.getElementById("discount").value = data.discount || "";
+            document.getElementById("startDate").value = data.startDate || "";
+            document.getElementById("endDate").value = data.endDate || "";
+        } else {
+            // Reset form nếu không có dữ liệu
+            document.getElementById("promotionForm").reset();
+        }
     }
 }
 
@@ -575,6 +591,8 @@ function closeModal(modalType) {
         document.getElementById("systemConfigModal").style.display = "none";
     } else if (modalType === "activityLog") {
         document.getElementById("activityLogModal").style.display = "none";
+    } else if (modalType === "promotion") {
+        document.getElementById("promotionModal1").style.display = "none";
     }
 }
 
@@ -688,6 +706,50 @@ document.querySelectorAll(".button-activity-log").forEach(button => {
         };
         openModal(activityLogData, "activityLog");
     });
+});
+// Sự kiện nhấn nút "Thêm Khuyến Mãi"
+document.querySelectorAll(".button-add-promotion").forEach(button => {
+    button.addEventListener("click", () => {
+        openModal(null, "promotion"); // Mở modal thêm khuyến mãi
+    });
+});
+// Xử lý khi nhấn "Lưu" trong form thêm khuyến mãi
+document.getElementById("promotionForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Ngăn chặn hành vi submit mặc định
+
+    // Lấy dữ liệu từ form
+    const promotionName = document.getElementById("promotionName").value;
+    const promotionStartDate = document.getElementById("startDate").value;
+    const promotionEndDate = document.getElementById("endDate").value;
+    const promotionDiscount = document.getElementById("discount").value;
+
+    // Kiểm tra dữ liệu
+    if (!promotionName || !promotionStartDate || !promotionEndDate || !promotionDiscount) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    // Thêm khuyến mãi vào bảng
+    const promotionTable = document.querySelector(".promotion-table tbody");
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <td>${promotionName}</td>
+        <td>${promotionStartDate} - ${promotionEndDate}</td>
+        <td>${promotionDiscount}%</td>
+        <td>
+            <button class="edit-btn">Sửa</button>
+            <button class="delete-btn">Xóa</button>
+        </td>
+    `;
+
+    promotionTable.appendChild(newRow); // Thêm dòng mới vào bảng
+
+    // Đặt lại form và đóng modal
+    document.getElementById("promotionForm").reset();
+    closeModal("promotion");
+
+    // Thông báo thành công
+    alert("Khuyến mãi đã được thêm thành công!");
 });
 // ----------------------------suppliers---------------------------
 function viewDetails(transactionId) {
