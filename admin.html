@@ -43,11 +43,6 @@
                         <span>Quản lý nhà cung cấp</span></a>
                 </li>
                 <li>
-                    <a href="#" class="menu-item" onclick="showSection('inventory', 'Quản lý kho hàng')"><span><i
-                                class="fa-solid fa-warehouse"></i></span>
-                        <span>Quản lý kho hàng</span></a>
-                </li>
-                <li>
                     <a href="#" class="menu-item" onclick="showSection('promotions', 'Quản lý khuyến mãi')"><span><i
                                 class="fa-solid fa-tags"></i></span>
                         <span>Quản lý khuyến mãi</span></a>
@@ -136,15 +131,6 @@
                     </div>
                     <div class="card-single">
                         <div>
-                            <h1>15</h1>
-                            <span>Kho hàng</span>
-                        </div>
-                        <div>
-                            <span class="fa-solid fa-warehouse"></span>
-                        </div>
-                    </div>
-                    <div class="card-single">
-                        <div>
                             <h1>10</h1>
                             <span>Khuyến mãi</span>
                         </div>
@@ -171,6 +157,14 @@
                         </div>
                         <div>
                             <span class="fa-solid fa-chart-line"></span>
+                        </div>
+                    </div>
+                    <div class="card-single">
+                        <div>
+                            <h1>Hệ thống</h1>
+                        </div>
+                        <div>
+                            <span class="fa-solid fa-cogs"></span>
                         </div>
                     </div>
                 </div>
@@ -1646,60 +1640,6 @@
                     </div>
                 </div>
             </div>
-            <div id="inventory" class="section">
-                <div class="container">
-                    <h1>Quản lý kho hàng</h1>
-                    <div class="controls">
-                        <button id="addProductBtn">Thêm sản phẩm</button>
-                        <button id="exportDataBtn">Xuất dữ liệu</button>
-                        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." />
-                    </div>
-                    <table id="inventoryTable">
-                        <thead>
-                            <tr>
-                                <th>Mã sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Số lượng tồn</th>
-                                <th>Giá nhập</th>
-                                <th>Giá bán</th>
-                                <th>Ngày nhập</th>
-                                <th>Trạng thái</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Dữ liệu mẫu -->
-                            <tr>
-                                <td>SP001</td>
-                                <td>Táo Fuji</td>
-                                <td>100 kg</td>
-                                <td>50,000 VND</td>
-                                <td>70,000 VND</td>
-                                <td>18/11/2024</td>
-                                <td><span class="product-status sufficient">Đủ hàng</span></td>
-                            </tr>
-                            <tr>
-                                <td>SP002</td>
-                                <td>Cam Sành</td>
-                                <td>20 kg</td>
-                                <td>30,000 VND</td>
-                                <td>40,000 VND</td>
-                                <td>15/11/2024</td>
-                                <td><span class="product-status warning">Sắp hết hàng</span></td>
-                            </tr>
-                            <tr>
-                                <td>SP003</td>
-                                <td>Lê Nam Phi</td>
-                                <td>0 kg</td>
-                                <td>80,000 VND</td>
-                                <td>100,000 VND</td>
-                                <td>10/11/2024</td>
-                                <td><span class="product-status danger">Hết hàng</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
             <div id="promotions" class="section">
                 <div class="promotion-container">
                     <div class="promotion-header">
@@ -2091,7 +2031,7 @@
                             <tbody id="userTableBody"></tbody>
                         </table>
                     </div>
-                </div>                
+                </div>
                 <!-- Thêm tài khoản -->
                 <div class="form-section addInfo">
                     <h3>Thêm tài khoản</h3>
@@ -2254,7 +2194,9 @@
                     </div>
                 </form>
             </div>
-        </div>        
+        </div>
+        
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="./javacript/admin.js"></script>
         <script src="./javacript/logicAdmin.js"></script>
