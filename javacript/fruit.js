@@ -19,6 +19,29 @@ var swiper = new Swiper(".product-slider", {
     },
   },
 });
+var swiper = new Swiper(".brand-slider", {
+  loop: true,
+  spaceBetween: 20,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1020: {
+      slidesPerView: 6,
+    },
+  },
+});
 // su kien trang web
 function closeAllForms() {
   document.getElementById("loginForm").style.display = "none";
@@ -424,6 +447,7 @@ function updateQuantity(name, change) {
     updateCart();
   }
 }
+
 
 
 
