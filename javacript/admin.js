@@ -400,7 +400,10 @@ function openModal(data, modalType) {
     document.querySelectorAll(".custom-modal").forEach(modal => {
         modal.style.display = "none";
     });
-
+    document.querySelectorAll(".modal").forEach(modal => {
+        modal.style.display = "none";
+    });
+    
     if (modalType === "invoice") {
         // Mở modal chi tiết hóa đơn (cũ)
         document.getElementById("invoiceModal").style.display = "block";
@@ -568,6 +571,26 @@ function openModal(data, modalType) {
             document.getElementById("promotionForm").reset();
         }
     }
+    
+    if (modalType === "editPromotion") {
+        const modal = document.getElementById("editPromotionModal");
+        modal.style.display = "block";
+
+        document.getElementById("promoTitle").value = data.promoTitle || "";
+        document.getElementById("promoDiscount").value = data.promoDiscount || "";
+        document.getElementById("promoStart").value = data.promoStart || "";
+        document.getElementById("promoEnd").value = data.promoEnd || "";
+    } else if (modalType === "deletePromotion") {
+        const modal = document.getElementById("deletePromotionModal");
+        modal.style.display = "block";
+
+        document.getElementById("promoToDelete").textContent = data.promoTitle || "Chương Trình Không Xác Định";
+
+        document.getElementById("confirmDeleteButton").onclick = () => {
+            console.log(`Chương trình "${data.promoTitle}" đã bị xóa.`);
+            closeModal("deletePromotion");
+        };
+    }
 }
 
 // Hàm đóng modal và ẩn overlay
@@ -734,11 +757,11 @@ document.getElementById("promotionForm").addEventListener("submit", function (e)
     const newRow = document.createElement("tr");
     newRow.innerHTML = `
         <td>${promotionName}</td>
-        <td>${promotionStartDate} - ${promotionEndDate}</td>
+        <td style="text-align: center">${promotionStartDate} - ${promotionEndDate}</td>
         <td>${promotionDiscount}%</td>
         <td>
-            <button class="edit-btn">Sửa</button>
-            <button class="delete-btn">Xóa</button>
+            <button class="edit-btn" onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
+            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
         </td>
     `;
 
