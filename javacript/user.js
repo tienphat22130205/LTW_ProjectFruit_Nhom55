@@ -7,10 +7,10 @@ function closeAllForms() {
   
   function setPositionRelativeToButton(form, button) {
     const buttonRect = button.getBoundingClientRect();
-    const offset = 20; // Khoảng cách cụ thể giữa nút và form (20px)
-    form.style.position = "fixed"; // Đặt form ở vị trí cố định trên màn hình
-    form.style.top = `${buttonRect.bottom + offset}px`; // Đặt form bên dưới nút và cách 20px
-    form.style.left = `${buttonRect.right - form.offsetWidth - 280}px`; // Căn chỉnh viền phải của form với viền phải của nút
+    const offset = 20; 
+    form.style.position = "fixed"; 
+    form.style.top = `${buttonRect.bottom + offset}px`; 
+    form.style.left = `${buttonRect.right - form.offsetWidth - 280}px`; 
   }
   
   
@@ -158,3 +158,4 @@ function searchOrders() {
         // Thêm logic tìm kiếm thực tế ở đây
     }
 }
+
