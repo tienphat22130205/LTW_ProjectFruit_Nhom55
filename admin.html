@@ -1640,94 +1640,42 @@
                     </div>
                 </div>
             </div>
-            <div id="promotions" class="section">
-                <div class="promotion-container">
-                    <div class="promotion-header">
-                        <h1>Quản Lý Khuyến Mãi</h1>
-                        <button id="openPromotionModal" class="button-add-promotion">Thêm Khuyến Mãi</button>
-                        <!-- Modal Thêm Khuyến Mãi -->
-                    </div>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Tìm khuyến mãi..." />
-                        <button>Tìm kiếm</button>
-                    </div>
-                    <table class="promotion-table">
-                        <thead>
-                            <tr>
-                                <th>Tên Khuyến Mãi</th>
-                                <th>Thời Gian</th>
-                                <th>Trạng Thái</th>
-                                <th>Hành Động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Ngày Nhà Giáo Việt Nam</td>
-                                <td>19/11/2024 - 20/11/2024</td>
-                                <td>Đang Hoạt Động</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ưu Đãi Black Friday</td>
-                                <td>24/11/2024 - 26/11/2024</td>
-                                <td>Chưa Bắt Đầu</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Khuyến Mãi Cyber Monday</td>
-                                <td>27/11/2024 - 29/11/2024</td>
-                                <td>Chưa Bắt Đầu</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Khuyến Mãi Tết Nguyên Đán</td>
-                                <td>10/01/2025 - 28/01/2025</td>
-                                <td>Chưa Bắt Đầu</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Khuyến Mãi Quốc Tế Phụ Nữ</td>
-                                <td>06/03/2025 - 10/03/2025</td>
-                                <td>Chưa Bắt Đầu</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ưu Đãi Ngày Lễ Tình Nhân</td>
-                                <td>10/02/2025 - 14/02/2025</td>
-                                <td>Chưa Bắt Đầu</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Khuyến Mãi Ngày Quốc Tế Lao Động</td>
-                                <td>25/04/2025 - 01/05/2025</td>
-                                <td>Chưa Bắt Đầu</td>
-                                <td>
-                                    <button class="edit-btn">Sửa</button>
-                                    <button class="delete-btn">Xóa</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+           <div id="promotions" class="section">
+            <div class="promotion-container">
+                <div class="promotion-header">
+                    <h1>Quản Lý Khuyến Mãi</h1>
+                    <button id="openPromotionModal" class="button-add-promotion">Thêm Khuyến Mãi</button>
+                    <!-- Modal Thêm Khuyến Mãi -->
                 </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm khuyến mãi..."/>
+                    <button>Tìm kiếm</button>
+                </div>
+                <table class="promotion-table">
+                    <thead>
+                    <tr style="text-align: center">
+                        <th>Tên Khuyến Mãi</th>
+                        <th>Thời Gian</th>
+                        <th>Phần Trăm Giảm Giá</th>
+                        <th>Hành Động</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Ngày Nhà Giáo Việt Nam</td>
+                        <td style="text-align: center">19/11/2024 - 20/11/2024</td>
+                        <td>25%</td>
+
+                        <td>
+                            <button class="edit-btn" onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
+                            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
             <div id="feedback" class="section">
                 <div class="feedback-container">
                     <div class="feedback-content">
@@ -2195,6 +2143,38 @@
                 </form>
             </div>
         </div>
+
+     <!-- Modal Sửa Khuyến Mãi -->
+    <div id="editPromotionModal" class="modal">
+        <div class="editPromotionModal-content">
+            <h3>Chỉnh Sửa Chương Trình Khuyến Mãi</h3>
+            <form id="editPromotionForm">
+                <label for="promoTitle">Tên Chương Trình</label>
+                <input type="text" id="promoTitle" name="promoTitle" placeholder="Nhập tên chương trình" required>
+
+                <label for="promoDiscount">Phần Trăm Giảm Giá</label>
+                <input type="number" id="promoDiscount" name="promoDiscount" placeholder="Nhập % giảm giá" required>
+
+                <label for="promoStart">Thời Gian Bắt Đầu</label>
+                <input type="date" id="promoStart" name="promoStart" required>
+
+                <label for="promoEnd">Thời Gian Kết Thúc</label>
+                <input type="date" id="promoEnd" name="promoEnd" required>
+
+                <button type="submit">Lưu Thay Đổi</button>
+                <button type="button" onclick="closeModal('editPromotion')">Hủy</button>
+            </form>
+        </div>
+    </div>
+    <!-- Modal Xóa Khuyến Mãi -->
+    <div id="deletePromotionModal" class="modal">
+        <div class="deletePromotionModal-content">
+            <h3>Xác Nhận Xóa Chương Trình</h3>
+            <p>Bạn có chắc chắn muốn xóa chương trình khuyến mãi "<span id="promoToDelete"></span>" không?</p>
+            <button id="confirmDeleteButton">Xóa Ngay</button>
+            <button type="button" onclick="closeModal('deletePromotion')">Hủy</button>
+        </div>
+    </div>
         
     </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
