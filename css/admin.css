@@ -1848,6 +1848,123 @@ h2 {
 #savePromotionBtn:hover {
     background-color: #0056b3;
 }
+/*-----------------------------------------------------------------------------
+/* Nội dung modal Sửa Khuyến Mãi */
+.editPromotionModal-content {
+    background-color: #fff; /* Nền trắng */
+    border-radius: 10px; /* Bo góc */
+    width: auto; /* Chiều rộng modal */
+    padding: 20px; /* Khoảng cách bên trong */
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Xếp nội dung theo cột */
+    align-items: center; /* Canh giữa nội dung */
+}
+
+/* Nội dung modal Xóa Khuyến Mãi */
+.deletePromotionModal-content {
+    background-color: #fff; /* Nền trắng */
+    border-radius: 10px; /* Bo góc */
+    width:auto; /* Chiều rộng modal */
+    padding: 20px; /* Khoảng cách bên trong */
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Xếp nội dung theo cột */
+    align-items: center; /* Canh giữa nội dung */
+    text-align: center; /* Văn bản căn giữa */
+}
+
+/* Tiêu đề */
+.editPromotionModal-content h3,
+.deletePromotionModal-content h3 {
+    margin-bottom: 20px;
+    font-size: 22px; /* Chữ to hơn */
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Label và Input */
+.editPromotionModal-content label {
+    font-size: 16px; /* Chữ to hơn */
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left; /* Căn trái label */
+    width: 100%;
+}
+
+.editPromotionModal-content input {
+    width: 100%;
+    padding: 12px; /* Khoảng cách lớn hơn */
+    font-size: 16px; /* Chữ to hơn */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.editPromotionModal-content input:focus {
+    outline: none;
+    border-color: #ffc107; /* Màu vàng khi focus */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); /* Hiệu ứng focus */
+}
+
+/* Nút hành động */
+.editPromotionModal-content button,
+.deletePromotionModal-content button {
+    padding: 12px 20px; /* Tăng kích thước nút */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; /* Chữ to hơn */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Nút Lưu */
+.editPromotionModal-content button[type="submit"] {
+    background-color: #28a745; /* Màu xanh */
+    color: #fff;
+    margin-right: 10px;
+}
+
+.editPromotionModal-content button[type="submit"]:hover {
+    background-color: #218838; /* Màu xanh đậm hơn */
+}
+
+/* Nút Hủy */
+.editPromotionModal-content button[type="button"],
+.deletePromotionModal-content button[type="button"] {
+    background-color: #6c757d; /* Màu xám */
+    color: #fff;
+    margin-right: 10px;
+}
+
+.editPromotionModal-content button[type="button"]:hover,
+.deletePromotionModal-content button[type="button"]:hover {
+    background-color: #5a6268; /* Màu xám đậm hơn */
+}
+
+/* Nút Xóa */
+.deletePromotionModal-content button#confirmDeleteButton {
+    background-color: #dc3545; /* Màu đỏ */
+    color: #fff;
+    margin-right: 10px;
+}
+
+.deletePromotionModal-content button#confirmDeleteButton:hover {
+    background-color: #c82333; /* Màu đỏ đậm hơn */
+}
+
+/* Văn bản mô tả trong modal Xóa */
+.deletePromotionModal-content p {
+    font-size: 16px; /* Chữ to hơn */
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5; /* Khoảng cách giữa các dòng */
+}
+/* --- kết thúc CSS cho Modal Thêm Khuyến Mãi --- */
 
 
 
