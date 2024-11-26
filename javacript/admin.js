@@ -1065,3 +1065,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+// Thông báo 
+document.addEventListener("DOMContentLoaded", () => {
+    const notificationBell = document.getElementById("notificationBell");
+    const notificationDropdown = document.getElementById("notificationDropdown");
+
+    // Hiển thị / ẩn form khi click chuông
+    notificationBell.addEventListener("click", (e) => {
+        e.stopPropagation(); // Ngăn sự kiện click lan ra ngoài
+        const isDropdownVisible = notificationDropdown.style.display === "block";
+        notificationDropdown.style.display = isDropdownVisible ? "none" : "block";
+    });
+
+    // Ẩn form khi click ra ngoài
+    document.addEventListener("click", (e) => {
+        if (notificationDropdown.style.display === "block") {
+            notificationDropdown.style.display = "none";
+        }
+    });
+
+    // Ngăn click vào bên trong form không đóng form
+    notificationDropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+    window.addEventListener("scroll", () => {
+        notificationDropdown.style.display = "none";
+    });
+});
+
