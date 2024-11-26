@@ -227,13 +227,6 @@ header label span {
 .user-wrapper h4 {
     margin-bottom: 0rem !important;
 }
-
-.user-wrapper small {
-    display: inline-block;
-    color: var(--text-gray);
-    margin-top: -10px !important;
-}
-
 main {
     margin-top: 80px;
     padding: .5rem 1.5rem;

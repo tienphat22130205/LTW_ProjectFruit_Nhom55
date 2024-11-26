@@ -1,4 +1,5 @@
 function login() {
+    event.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const errorMessage = document.getElementById("error-message");
@@ -15,10 +16,17 @@ function login() {
 
     if (email === adminEmail && password === adminPassword) {
         // Chuyển hướng đến trang Admin
-        loginForm.style.display = "none";
-        setTimeout(() => {
+        Swal.fire({
+            title: "Đăng nhập thành công!",
+            text: "Chào mừng bạn đến với trang quản trị.",
+            icon: "success",
+            confirmButtonText: "Đến trang quản trị",
+            customClass: {
+                confirmButton: 'swal-button-large'
+            }
+        }).then(() => {
             window.location.href = "admin.html";
-        }, 500);
+        });
     } else if (email === storedEmail && password === storedPassword) {
         // Đăng nhập người dùng thường thành công
         loginForm.style.display = "none";
@@ -27,7 +35,12 @@ function login() {
         // Hiển thị avatar và tên người dùng
         updateUserHeader(userName);
 
-        alert(`Chào mừng ${userName}!`);
+        Swal.fire({
+            title: `Chào mừng, ${userName}!`,
+            text: "Đăng nhập thành công.",
+            icon: "success",
+            confirmText: "OK",
+        });
     } else {
         // Hiển thị thông báo lỗi nếu thông tin không đúng
         errorMessage.style.display = "block";
@@ -40,13 +53,15 @@ function updateUserHeader(userName) {
     const accountSection = document.querySelector(".account");
     accountSection.innerHTML = `
         <img src="./img/anhdaidien.jpg" alt="Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
-        <span>${userName}</span>
-    `;
+`;
 
     // Hiển thị menu dropdown khi nhấp vào avatar
     const avatarImg = accountSection.querySelector(".avatar");
     avatarImg.addEventListener("click", toggleUserMenu);
     document.querySelector('.account img').style.display = "block";
+    if (userNameDisplay) {
+        userNameDisplay.textContent = userName; // Thay "User" bằng tên người dùng
+    }
 }
 
 function toggleUserMenu() {
@@ -67,7 +82,19 @@ function checkLoginStatus() {
 // Đăng xuất
 function logout() {
     localStorage.removeItem("isLoggedIn");
-    window.location.href = "index.html"; // Quay về trang chủ sau khi đăng xuất
+    Swal.fire({
+        title: "Đăng xuất thành công!",
+        text: "Bạn sẽ được chuyển về trang chủ.",
+        icon: "success",
+        showConfirmButton: false, 
+        timer: 3000, 
+        timerProgressBar: true
+    });
+
+    
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 3000); 
 }
 
 // Gọi hàm kiểm tra trạng thái khi trang được tải

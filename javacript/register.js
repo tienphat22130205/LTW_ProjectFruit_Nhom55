@@ -6,7 +6,12 @@ function register(event) {
   const confirmPassword = document.getElementById("confirm-password").value;
 
   if (password !== confirmPassword) {
-      alert("Mật khẩu không khớp!");
+    Swal.fire({
+      title: "Lỗi!",
+      text: "Mật khẩu không khớp!",
+      icon: "error",
+      confirmButtonText: "Thử lại"
+  });
       return;
   }
 
@@ -15,6 +20,12 @@ function register(event) {
   localStorage.setItem("userEmail", email);
   localStorage.setItem("userPassword", password);
 
-  alert("Đăng ký thành công!");
-  window.location.href = "index.html"; // Chuyển hướng về trang chủ sau khi đăng ký thành công
+  Swal.fire({
+    title: "Đăng ký thành công!",
+    text: "Tài khoản của bạn đã được tạo.",
+    icon: "success",
+    confirmText: "OK",
+}).then(() => {
+    window.location.href = "index.html"; // Chuyển hướng về trang chủ
+});
 }
