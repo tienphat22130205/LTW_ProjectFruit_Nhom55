@@ -815,27 +815,38 @@ body.scrolled-up .menu-bar {
     border-radius: 10px;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
+.swiper-button-pre,
+.swiper-button-nex {
     position: absolute;
-    top: 60%;
+    top: 57%;
     transform: translateY(-50%);
-    color: white;
-    font-size: 3rem;
-    padding: 10px;
+    background-color: #fff;
+    color: #333;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 10;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.swiper-button-prev {
+.swiper-button-pre {
     left: 15px;
     /* Adjust the position to the left */
 }
-
-.swiper-button-next {
+.swiper-button-nex {
     right: 15px;
     /* Adjust the position to the right */
+}
+.swiper-button-pre:hover,
+.swiper-button-nex:hover {
+    transform: translateY(-50%) scale(1.2);
+    background-color: var(--orange);
+    color: #fff;
 }
 
 
@@ -954,6 +965,36 @@ body.scrolled-up .menu-bar {
 .brand  .brand-slider .box h3 {
     font-size: 1.5rem;
     color: var(--black);
+}
+.button-prev, .button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    color: #333;
+    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.button-prev {
+    left: 2px; 
+}
+
+.button-next {
+    right: 2px;
+}
+
+/* Hover effects for buttons */
+.button-prev:hover, .button-next:hover {
+    transform: translateY(-50%) scale(1.2);
 }
 .categories .box-container {
     display: grid;
@@ -1309,18 +1350,20 @@ body.scrolled-up .menu-bar {
     .header-container {
         padding: 1rem;
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
     }
 
     .left,
     .right {
         justify-content: space-around;
         gap: 20px;
+        width: 100%;
     }
-
+    .center{
+        display: none;
+    }
     .menu-bar {
         display: none;
-        /* Hidden by default */
         flex-direction: column;
         position: fixed;
         top: 60px;
@@ -1339,23 +1382,66 @@ body.scrolled-up .menu-bar {
 
     .menu-bar ul {
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
     }
 
     .menu-bar ul li {
         width: 100%;
         text-align: center;
         padding: 10px 0;
+        border-bottom: 1px solid #eee;
     }
-
-    .search {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
     .menu {
+        display: block;
         font-size: 24px;
-        /* Enlarge menu icon */
+        color: #fff;
+        cursor: pointer;
+    }
+    .menu-bar a {
+        text-decoration: none;
+        color: var(--black);
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-bar a:hover {
+        background-color: #f9f9f9;
+    }
+    .button-prev, .button-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    .home {
+        height: 400px;
+        margin-top: 100px;
+    }
+
+    .background-slider .swiper-slide img {
+        height: 60vh; /* Điều chỉnh chiều cao hình ảnh */
+        object-fit: cover; /* Phù hợp với màn hình nhỏ */
+    }
+
+    .swiper-button-pre,
+    .swiper-button-nex {
+        width: 30px; /* Giảm kích thước nút */
+        height: 30px;
+        font-size: 1.5rem; /* Giảm kích thước biểu tượng */
+    }
+
+    .swiper-button-pre {
+        left: 10px; /* Căn lề trái gần hơn */
+    }
+
+    .swiper-button-nex {
+        right: 10px; /* Căn lề phải gần hơn */
+    }
+
+    .swiper-button-pre:hover,
+    .swiper-button-nex:hover {
+        transform: translateY(-50%) scale(1.1); /* Giảm hiệu ứng scale khi hover */
     }
 }
 
@@ -1364,6 +1450,14 @@ body.scrolled-up .menu-bar {
         padding: 0.5rem 1rem;
         flex-direction: column;
         align-items: center;
+    }
+    .left,
+    .right {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 10px;
     }
 
     .menu-bar {
@@ -1375,6 +1469,7 @@ body.scrolled-up .menu-bar {
 
     .menu-bar ul {
         gap: 8px;
+        margin: auto;
     }
 
     .menu-bar ul li {
@@ -1382,8 +1477,40 @@ body.scrolled-up .menu-bar {
         padding: 8px 0;
     }
 
+    .menu-bar ul li:last-child {
+        border-bottom: none;
+    }
+
+    .menu-bar a {
+        font-size: 14px;
+        color: var(--black);
+    }
+
     .menu {
-        font-size: 18px;
-        /* Adjust icon size */
+        font-size: 20px;
+    }
+
+    .search {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .menu-bar.active {
+        display: flex;
+    }
+
+    .menu-bar a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .menu-bar a:hover {
+        background-color: #f0f0f0;
+    }
+
+    .cart-badge {
+        top: -2px;
+        right: -5px;
+        font-size: 10px;
     }
 }

@@ -27,8 +27,8 @@ var swiper = new Swiper(".brand-slider", {
     disableOnInteraction: false,
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.button-next',
+    prevEl: '.button-prev',
   },
   breakpoints: {
     0: {
@@ -162,8 +162,8 @@ var swiper = new Swiper(".background-slider", {
   effect: 'fade',
   speed: 1000,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-nex',
+    prevEl: '.swiper-button-pre',
   },
   breakpoints: {
     0: {
