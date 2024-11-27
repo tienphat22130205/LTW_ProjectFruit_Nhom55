@@ -2476,7 +2476,13 @@ h2 {
     text-align: left;
 }
 
-
+#ratingTable .action-container {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; 
+    gap: 10px; 
+    flex-wrap: nowrap; 
+}
 #ratingTable th {
     text-align: center;
     text-transform: uppercase;
@@ -2515,12 +2521,15 @@ h2 {
     color: orange;
 }
 #ratingTable .action-btn {
+  background-color: #fbc02d;
+    color: white;
     border: none;
+    border-radius: 5px;
     padding: 5px 10px;
     font-size: 12px;
     cursor: pointer;
-    margin: 0 5px;
     transition: background-color 0.3s ease;
+    white-space: nowrap; 
 }
 
 #ratingTable .action-btn:hover {
