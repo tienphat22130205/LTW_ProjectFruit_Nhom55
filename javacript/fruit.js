@@ -447,6 +447,15 @@ function updateQuantity(name, change) {
     updateCart();
   }
 }
+const sidebar = document.querySelector('.sidebar-menu');
+const toggleButton = document.querySelector('.toggle-button');
+
+toggleButton.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+
+
 
 
 

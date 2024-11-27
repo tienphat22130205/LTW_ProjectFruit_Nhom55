@@ -1362,6 +1362,7 @@ body.scrolled-up .menu-bar {
     .search {
         width: 100%;
         margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .menu {
@@ -1383,6 +1384,7 @@ body.scrolled-up .menu-bar {
         justify-content: space-around;
         gap: 20px;
         width: 100%;
+        margin: 5px;
     }
     .center{
         display: none;
@@ -1391,7 +1393,7 @@ body.scrolled-up .menu-bar {
         display: none;
         flex-direction: column;
         position: fixed;
-        top: 60px;
+        top: 130px;
         left: 0;
         width: 100%;
         background-color: white;
@@ -1441,7 +1443,7 @@ body.scrolled-up .menu-bar {
     }
     .home {
         height: 400px;
-        margin-top: 100px;
+        margin-top: 170px;
     }
 
     .background-slider .swiper-slide img {
@@ -1468,21 +1470,125 @@ body.scrolled-up .menu-bar {
     .swiper-button-nex:hover {
         transform: translateY(-50%) scale(1.1); /* Giảm hiệu ứng scale khi hover */
     }
+    .login-form{
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        color: #333;
+        text-align: center;
+    }
+    .sidebar-menu{
+        display: none;
+        position: fixed;
+        top: 150px;
+        left: 0;
+        width: 100vw;
+        background-color: #eee;
+        box-shadow: var(--box-shadow);
+        z-index: 1000;
+        padding: 10px 20px;
+        max-height: calc(100vh - 50px);
+        overflow-y: auto;
+        border-radius: 0 0 8px 8px;
+        height: 100vh;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .sidebar-menu.active {
+        display: block; 
+        opacity: 1; 
+        transform: translateX(0);
+    }
+    .search {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .search input{
+        flex: 6;
+        border-radius: 5px;
+    }
 }
 
 @media (max-width: 450px) {
     .header-container {
         padding: 0.5rem 1rem;
-        flex-direction: column;
+        justify-content: space-between;
+    }
+    .hotline span,
+    .account span,
+    .cart span {
+        display: none; /* Ẩn chữ */
+    }
+    .home{
+        height: 250px;
+    }
+    .home .swiper-slide {
+        object-fit: cover;
+    }
+    .left,
+    .center,
+    .right {
+        flex-direction: row; 
+        justify-content: space-around; 
         align-items: center;
+    }
+    .logo h1 {
+        font-size: 18px; /* Thu nhỏ logo */
+        text-align: center;
+    }
+    .hotline i,
+    .account i,
+    .cart i {
+        font-size: 20px; /* Kích thước icon phù hợp */
+        margin: 0; /* Xóa khoảng cách dư thừa */
+    }
+    .search {
+        width: auto; /* Thu nhỏ kích thước thanh tìm kiếm */
+        padding: 0; /* Xóa padding */
+        background-color: transparent; /* Ẩn nền của thanh tìm kiếm */
+    }
+
+    .search input {
+        display: none; /* Ẩn ô nhập liệu */
+    }
+
+    .search i {
+        font-size: 20px; /* Kích thước icon phù hợp */
+        color: #fff; /* Màu icon (nếu cần thay đổi) */
+        cursor: pointer;
     }
     .left,
     .right {
-        gap: 15px;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin: 10px;
+        gap: 10px; /* Khoảng cách nhỏ hơn giữa các icon */
+    }
+    .sidebar-menu{
+        display: none;
+        position: fixed;
+        top: 90px;
+        left: 0;
+        width: 100vw;
+        background-color: #eee;
+        box-shadow: var(--box-shadow);
+        z-index: 1000;
+        padding: 10px 20px;
+        max-height: calc(100vh - 50px);
+        overflow-y: auto;
+        border-radius: 0 0 8px 8px;
+        height: 100vh;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .sidebar-menu.active {
+        display: block; 
+        opacity: 1; 
+        transform: translateX(0);
     }
 
     .menu-bar {
@@ -1513,11 +1619,6 @@ body.scrolled-up .menu-bar {
 
     .menu {
         font-size: 20px;
-    }
-
-    .search {
-        width: 100%;
-        margin-bottom: 15px;
     }
 
     .menu-bar.active {
