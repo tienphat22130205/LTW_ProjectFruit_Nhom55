@@ -2402,9 +2402,7 @@ h2 {
 
 #transactionTable td {
     padding: 12px 15px;
-
     color: #555555;
-    text-align: center;
 }
 
 
@@ -2533,7 +2531,7 @@ h2 {
 }
 
 #ratingTable .action-btn:hover {
-    background-color: black;
+    background-color: #f9a825;
 }
 
 #ratingTable .action-btn.edit {
