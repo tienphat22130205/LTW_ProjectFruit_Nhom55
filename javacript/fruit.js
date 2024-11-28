@@ -4,7 +4,7 @@ var swiper = new Swiper(".product-slider", {
   loop: true,
   spaceBetween: 20,
   autoplay: {
-    delay: 7500,
+    delay: 10000,
     disableOnInteraction: false,
   },
   breakpoints: {
@@ -19,6 +19,45 @@ var swiper = new Swiper(".product-slider", {
     },
   },
 });
+var swiper = new Swiper(".brand-slider", {
+  loop: true,
+  spaceBetween: 20,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: '.button-next',
+    prevEl: '.button-prev',
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    1020: {
+      slidesPerView: 6,
+    },
+  },
+});
+// SỰ kiện xem thêm sản phẩm
+document.getElementById('view-more-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const productSlider = document.getElementById('product-slider-1');
+  if (productSlider.classList.contains('hidden')) {   
+      productSlider.classList.remove('hidden');   
+      productSlider.classList.add('visible');
+      this.textContent = 'Ẩn sản phẩm';
+  } else {
+    productSlider.classList.remove('visible');
+      productSlider.classList.add('hidden');
+      this.textContent = 'Xem tất cả sản phẩm ưu đãi';
+  }
+});
+
+
 // su kien trang web
 function closeAllForms() {
   document.getElementById("loginForm").style.display = "none";
@@ -139,8 +178,8 @@ var swiper = new Swiper(".background-slider", {
   effect: 'fade',
   speed: 1000,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-nex',
+    prevEl: '.swiper-button-pre',
   },
   breakpoints: {
     0: {
@@ -424,6 +463,24 @@ function updateQuantity(name, change) {
     updateCart();
   }
 }
+const sidebar = document.querySelector('.sidebar-menu');
+const toggleButton = document.querySelector('.toggle-button');
+
+toggleButton.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

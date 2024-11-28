@@ -326,8 +326,8 @@ new Chart(productStatsChartCtx, {
             label: 'Thống kê sản phẩm',
             data: [80, 120, 4.5],
             backgroundColor: [
-                'rgba(255, 159, 64, 0.7)', 
-                'rgba(255, 205, 86, 0.7)', 
+                'rgba(255, 159, 64, 0.7)',
+                'rgba(255, 205, 86, 0.7)',
                 'rgba(75, 192, 192, 0.7)'
             ],
             borderColor: [
@@ -395,7 +395,15 @@ function openModal(data, modalType) {
     document.getElementById("productDescriptionModal").style.display = "none";
     document.getElementById("newInvoiceModal").style.display = "none";
     document.getElementById("userManagementModal").style.display = "none";
-
+    document.getElementById("systemConfigModal").style.display = "none";
+    document.getElementById("activityLogModal").style.display = "none";
+    document.querySelectorAll(".custom-modal").forEach(modal => {
+        modal.style.display = "none";
+    });
+    document.querySelectorAll(".modal").forEach(modal => {
+        modal.style.display = "none";
+    });
+    
     if (modalType === "invoice") {
         // Mở modal chi tiết hóa đơn (cũ)
         document.getElementById("invoiceModal").style.display = "block";
@@ -511,6 +519,77 @@ function openModal(data, modalType) {
             `;
             userTable.appendChild(row);
         });
+    } else if (modalType === "systemConfig") {
+        document.getElementById("systemConfigModal").style.display = "block";
+
+        // Điền dữ liệu vào các input
+        document.getElementById("systemName").value = data.systemName || "";
+        document.getElementById("adminEmail").value = data.adminEmail || "";
+        document.getElementById("language").value = data.language || "vi";
+        document.getElementById("timeZone").value = data.timeZone || "UTC+7";
+        document.getElementById("maintenanceMode").value = data.maintenanceMode || "off";
+        document.getElementById("maxUsers").value = data.maxUsers || "";
+    } else if (modalType === "activityLog") {
+        // Mở modal Nhật ký hoạt động
+        document.getElementById("activityLogModal").style.display = "block";
+
+        // Điền dữ liệu vào bảng nhật ký
+        const logTableBody = document.getElementById("activityLogBody");
+        logTableBody.innerHTML = ""; // Xóa dữ liệu cũ
+
+        if (data.logs && data.logs.length > 0) {
+            data.logs.forEach((log, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${log.time}</td>
+                    <td>${log.user}</td>
+                    <td>${log.action}</td>
+                    <td>${log.result}</td>
+                    <td>${log.note}</td>
+                `;
+                logTableBody.appendChild(row);
+            });
+        } else {
+            // Hiển thị thông báo nếu không có nhật ký
+            const row = document.createElement("tr");
+            row.innerHTML = `<td colspan="6" style="text-align: center; color: #888;">Không có nhật ký hoạt động nào</td>`;
+            logTableBody.appendChild(row);
+        }
+    } else if (modalType === "promotion") {
+        const modal = document.getElementById("promotionModal1");
+        modal.style.display = "block";
+
+        if (data) {
+            // Điền dữ liệu nếu có
+            document.getElementById("promotionName").value = data.promotionName || "";
+            document.getElementById("discount").value = data.discount || "";
+            document.getElementById("startDate").value = data.startDate || "";
+            document.getElementById("endDate").value = data.endDate || "";
+        } else {
+            // Reset form nếu không có dữ liệu
+            document.getElementById("promotionForm").reset();
+        }
+    }
+    
+    if (modalType === "editPromotion") {
+        const modal = document.getElementById("editPromotionModal");
+        modal.style.display = "block";
+
+        document.getElementById("promoTitle").value = data.promoTitle || "";
+        document.getElementById("promoDiscount").value = data.promoDiscount || "";
+        document.getElementById("promoStart").value = data.promoStart || "";
+        document.getElementById("promoEnd").value = data.promoEnd || "";
+    } else if (modalType === "deletePromotion") {
+        const modal = document.getElementById("deletePromotionModal");
+        modal.style.display = "block";
+
+        document.getElementById("promoToDelete").textContent = data.promoTitle || "Chương Trình Không Xác Định";
+
+        document.getElementById("confirmDeleteButton").onclick = () => {
+            console.log(`Chương trình "${data.promoTitle}" đã bị xóa.`);
+            closeModal("deletePromotion");
+        };
     }
 }
 
@@ -531,6 +610,12 @@ function closeModal(modalType) {
         document.getElementById("newInvoiceTable").style.display = "none";
     } else if (modalType === "userManagement") {
         document.getElementById("userManagementModal").style.display = "none";
+    } else if (modalType === "systemConfig") {
+        document.getElementById("systemConfigModal").style.display = "none";
+    } else if (modalType === "activityLog") {
+        document.getElementById("activityLogModal").style.display = "none";
+    } else if (modalType === "promotion") {
+        document.getElementById("promotionModal1").style.display = "none";
     }
 }
 
@@ -603,173 +688,408 @@ document.querySelectorAll(".button-new-invoice-detail").forEach(button => {
 // Sự kiện nhấn nút "Quản lý người dùng"
 document.querySelectorAll(".button-user-management").forEach(button => {
     button.addEventListener("click", () => {
-        const userManagementData = [
-            { username: "admin1", role: "Super Admin" },
-            { username: "staff1", role: "Nhân viên" }
-        ];
+        // Lấy dữ liệu từ localStorage (hoặc backend API)
+        let userManagementData = JSON.parse(localStorage.getItem("userManagementData")) || [];
+
+        // Nếu chưa có dữ liệu, hiển thị thông báo "Chưa có tài khoản nào"
+        if (userManagementData.length === 0) {
+            userManagementData = []; // Khởi tạo mảng rỗng
+        }
+
+        // Mở modal với dữ liệu thực tế
         openModal(userManagementData, "userManagement");
     });
+});
+// Sự kiện nút cấu hình hệ thống
+document.querySelectorAll(".button-system-config").forEach(button => {
+    button.addEventListener("click", () => {
+        // Lấy dữ liệu cấu hình từ localStorage hoặc tạo mặc định
+        const systemConfigData = JSON.parse(localStorage.getItem("systemConfig")) || {
+            systemName: "Quản Lý Hệ Thống",
+            adminEmail: "admin@system.com",
+            language: "vi",
+            timeZone: "UTC+7",
+            maintenanceMode: "off",
+            maxUsers: 100
+        };
+
+        // Gọi hàm mở modal và điền dữ liệu
+        openModal(systemConfigData, "systemConfig");
+    });
+});
+// Sự kiện nút nhật ký hoạt động
+document.querySelectorAll(".button-activity-log").forEach(button => {
+    button.addEventListener("click", () => {
+        const activityLogData = {
+            logs: [
+                { time: "2023-11-22 10:30", user: "admin", action: "Đăng nhập", result: "Thành công", note: "" },
+                { time: "2023-11-22 11:00", user: "staff1", action: "Xóa sản phẩm", result: "Thành công", note: "Đã xóa sản phẩm ID: 123" },
+                { time: "2023-11-22 12:00", user: "admin", action: "Cập nhật cấu hình", result: "Thành công", note: "Đổi ngôn ngữ sang Tiếng Anh" },
+            ],
+        };
+        openModal(activityLogData, "activityLog");
+    });
+});
+// Sự kiện nhấn nút "Thêm Khuyến Mãi"
+document.querySelectorAll(".button-add-promotion").forEach(button => {
+    button.addEventListener("click", () => {
+        openModal(null, "promotion"); // Mở modal thêm khuyến mãi
+    });
+});
+// Xử lý khi nhấn "Lưu" trong form thêm khuyến mãi
+document.getElementById("promotionForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Ngăn chặn hành vi submit mặc định
+
+    // Lấy dữ liệu từ form
+    const promotionName = document.getElementById("promotionName").value;
+    const promotionStartDate = document.getElementById("startDate").value;
+    const promotionEndDate = document.getElementById("endDate").value;
+    const promotionDiscount = document.getElementById("discount").value;
+
+    // Kiểm tra dữ liệu
+    if (!promotionName || !promotionStartDate || !promotionEndDate || !promotionDiscount) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    // Thêm khuyến mãi vào bảng
+    const promotionTable = document.querySelector(".promotion-table tbody");
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+        <td>${promotionName}</td>
+        <td style="text-align: center">${promotionStartDate} - ${promotionEndDate}</td>
+        <td>${promotionDiscount}%</td>
+        <td>
+            <button class="edit-btn" onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
+            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
+        </td>
+    `;
+
+    promotionTable.appendChild(newRow); // Thêm dòng mới vào bảng
+
+    // Đặt lại form và đóng modal
+    document.getElementById("promotionForm").reset();
+    closeModal("promotion");
+
+    // Thông báo thành công
+    alert("Khuyến mãi đã được thêm thành công!");
 });
 // ----------------------------suppliers---------------------------
 function viewDetails(transactionId) {
     alert(`Chi tiết giao dịch ${transactionId}`);
-  }
-  document.addEventListener("DOMContentLoaded", () => {
-    // Tạo Modal để hiển thị chi tiết
+}
+document.addEventListener("DOMContentLoaded", () => {
     const modal = document.createElement("div");
     modal.id = "detailModal";
     modal.style.display = "none"; // Ẩn modal ban đầu
     modal.innerHTML = `
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Chi tiết nhà cung cấp</h2>
-        <div id="modal-body"></div>
-      </div>
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Chi tiết nhà cung cấp</h2>
+            <div id="modal-body"></div>
+        </div>
     `;
     document.body.appendChild(modal);
-  
-    
+
     const closeModal = () => {
-      modal.style.display = "none";
-      document.body.style.overflow = "auto"; 
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
     };
-  
-    document.querySelector(".close-btn").addEventListener("click", closeModal);
-  
-    
+
+    // Gắn sự kiện cho nút "X" trong modal chi tiết
+    modal.querySelector(".close-btn").addEventListener("click", closeModal);
+
+    // Đóng modal khi nhấn bên ngoài nội dung
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
+        if (e.target === modal) {
+            closeModal();
+        }
     });
-  
-   
+
+    // Gắn sự kiện hiển thị modal cho các nút "view"
     document.querySelectorAll(".action-btn.view").forEach((button) => {
-      button.addEventListener("click", () => {
-        const row = button.closest("tr");
-        const supplierId = row.children[0].textContent;
-        const supplierName = row.children[1].textContent;
-        const rating = row.children[2].textContent;
-        const priority = row.children[3].textContent;
-        const totalErrors = row.children[4].textContent;
-        const responseTime = row.children[5].textContent;
-  
-        const modalBody = document.querySelector("#modal-body");
-        modalBody.innerHTML = `
-          <p><strong>Mã nhà cung cấp:</strong> ${supplierId}</p>
-          <p><strong>Tên nhà cung cấp:</strong> ${supplierName}</p>
-          <p><strong>Điểm đánh giá:</strong> ${rating}</p>
-          <p><strong>Hạng ưu tiên:</strong> ${priority}</p>
-          <p><strong>Tổng số lỗi:</strong> ${totalErrors}</p>
-          <p><strong>Thời gian phản hồi:</strong> ${responseTime}</p>
-        `;
-  
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Tắt cuộn trang
-      });
+        button.addEventListener("click", () => {
+            const row = button.closest("tr");
+            const supplierId = row.children[0].textContent;
+            const supplierName = row.children[1].textContent;
+            const rating = row.children[2].textContent;
+            const priority = row.children[3].textContent;
+            const totalErrors = row.children[4].textContent;
+            const responseTime = row.children[5].textContent;
+
+            const modalBody = document.querySelector("#modal-body");
+            modalBody.innerHTML = `
+                <p><strong>Mã nhà cung cấp:</strong> ${supplierId}</p>
+                <p><strong>Tên nhà cung cấp:</strong> ${supplierName}</p>
+                <p><strong>Điểm đánh giá:</strong> ${rating}</p>
+                <p><strong>Hạng ưu tiên:</strong> ${priority}</p>
+                <p><strong>Tổng số lỗi:</strong> ${totalErrors}</p>
+                <p><strong>Thời gian phản hồi:</strong> ${responseTime}</p>
+            `;
+
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Tắt cuộn trang
+        });
     });
-  });
-  document.addEventListener("DOMContentLoaded", () => {
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     const editModal = document.getElementById("editModal");
     const editForm = document.getElementById("editForm");
     const closeModalBtn = document.querySelector("#editModal .close-btn");
     let currentRow = null; // Biến lưu hàng hiện tại được chỉnh sửa
-  
+    // Hàm hiển thị thông báo thành công
+    const showSuccessToast = (message) => {
+        const toast = document.createElement("div");
+        toast.className = "toast-success";
+        toast.textContent = message;
+
+        // Thêm thông báo vào trang
+        document.body.appendChild(toast);
+
+        // Tự động ẩn thông báo sau 3 giây
+        setTimeout(() => {
+            toast.style.opacity = "0"; // Hiệu ứng mờ dần
+            setTimeout(() => {
+                toast.remove(); // Xóa khỏi DOM
+            }, 500); // Đợi hiệu ứng mờ hoàn tất
+        }, 3000);
+    };
     // Mở modal chỉnh sửa
     document.querySelectorAll(".action-btn.edit").forEach((button) => {
-      button.addEventListener("click", () => {
-        editModal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-  
-        // Lấy dữ liệu từ hàng
-        currentRow = button.closest("tr");
-        const supplierName = currentRow.children[1].textContent;
-        const rating = currentRow.children[2].textContent.split(" ")[0]; // Lấy điểm đánh giá
-        const priority = currentRow.children[3].textContent;
-        const errors = currentRow.children[4].textContent;
-        const responseTime = currentRow.children[5].textContent;
-  
-        // Điền dữ liệu vào form
-        editForm.supplierName.value = supplierName;
-        editForm.rating.value = rating;
-        editForm.priority.value = priority;
-        editForm.errors.value = errors;
-        editForm.responseTime.value = responseTime;
-      });
+        button.addEventListener("click", () => {
+            editModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+
+            // Lấy dữ liệu từ hàng
+            currentRow = button.closest("tr");
+            const supplierName = currentRow.children[1].textContent;
+            const rating = currentRow.children[2].textContent.split(" ")[0]; // Lấy điểm đánh giá
+            const priority = currentRow.children[3].textContent;
+            const errors = currentRow.children[4].textContent;
+            const responseTime = currentRow.children[5].textContent;
+
+            // Điền dữ liệu vào form
+            editForm.supplierName.value = supplierName;
+            editForm.rating.value = rating;
+            editForm.priority.value = priority;
+            editForm.errors.value = errors;
+            editForm.responseTime.value = responseTime;
+        });
     });
-  
+
     // Lưu thay đổi
     editForm.addEventListener("submit", (e) => {
-      e.preventDefault(); // Ngăn chặn reload trang
-  
-      // Lấy giá trị từ form
-      const updatedName = editForm.supplierName.value;
-      const updatedRating = editForm.rating.value;
-      const updatedPriority = editForm.priority.value;
-      const updatedErrors = editForm.errors.value;
-      const updatedResponseTime = editForm.responseTime.value;
-  
-      // Cập nhật hàng hiện tại
-      currentRow.children[1].textContent = updatedName;
-      currentRow.children[2].innerHTML = `<span class="rating">${updatedRating}</span> ⭐`;
-      currentRow.children[3].textContent = updatedPriority;
-      currentRow.children[4].textContent = updatedErrors;
-      currentRow.children[5].textContent = updatedResponseTime;
-  
-      // Đóng modal
-      editModal.style.display = "none";
-      document.body.style.overflow = "auto";
-      alert("Thông tin đã được cập nhật!");
-    });
-  
-    // Đóng modal
-    closeModalBtn.addEventListener("click", () => {
-      editModal.style.display = "none";
-      document.body.style.overflow = "auto";
-    });
-  
-    // Đóng modal khi nhấn bên ngoài nội dung
-    editModal.addEventListener("click", (e) => {
-      if (e.target === editModal) {
+        e.preventDefault(); // Ngăn chặn reload trang
+
+        // Lấy giá trị từ form
+        const updatedName = editForm.supplierName.value;
+        const updatedRating = editForm.rating.value;
+        const updatedPriority = editForm.priority.value;
+        const updatedErrors = editForm.errors.value;
+        const updatedResponseTime = editForm.responseTime.value;
+
+        // Cập nhật hàng hiện tại
+        currentRow.children[1].textContent = updatedName;
+        currentRow.children[2].innerHTML = `<span class="rating">${updatedRating}</span> ⭐`;
+        currentRow.children[3].textContent = updatedPriority;
+        currentRow.children[4].textContent = updatedErrors;
+        currentRow.children[5].textContent = updatedResponseTime;
+
+        // Đóng modal
         editModal.style.display = "none";
         document.body.style.overflow = "auto";
-      }
+        alert("Thông tin đã được cập nhật!");
     });
-  });
-//   ------------------------inventory---------------------
-document.addEventListener("DOMContentLoaded", () => {
-    const searchInput = document.getElementById("searchInput");
-    const table = document.getElementById("inventoryTable");
-    const rows = table.querySelectorAll("tbody tr");
-  
-    // Tìm kiếm sản phẩm
-    searchInput.addEventListener("input", () => {
-      const searchValue = searchInput.value.toLowerCase();
-      rows.forEach((row) => {
-        const productName = row.children[1].textContent.toLowerCase();
-        row.style.display = productName.includes(searchValue) ? "" : "none";
-      });
-    });
-// Thêm sản phẩm
-document.getElementById("addProductBtn").addEventListener("click", () => {
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-      <td>SP004</td>
-      <td>Nho Mỹ</td>
-      <td>50 kg</td>
-      <td>90,000 VND</td>
-      <td>120,000 VND</td>
-      <td>20/11/2024</td>
-      <td><span class="status sufficient">Đủ hàng</span></td>
-    `;
-    table.querySelector("tbody").appendChild(newRow);
-    alert("Sản phẩm mới đã được thêm!");
-  });
 
-  // Xuất dữ liệu
-  document.getElementById("exportDataBtn").addEventListener("click", () => {
-    alert("Dữ liệu kho hàng đã được xuất!");
-  });
-});  
-  
+    // Đóng modal
+    closeModalBtn.addEventListener("click", () => {
+        editModal.style.display = "none";
+        document.body.style.overflow = "auto";
+    });
+
+    // Đóng modal khi nhấn bên ngoài nội dung
+    editModal.addEventListener("click", (e) => {
+        if (e.target === editModal) {
+            editModal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    });
+});
+//-------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    // Modal 1
+    const addModal1 = document.getElementById("addModal1");
+    const addForm1 = document.getElementById("addForm1");
+    const closeAddModal1 = document.getElementById("closeAddModal1");
+    const addButton1 = document.getElementById("addButton1");
+    const productTable1 = document.querySelector(".table-reponsive1 table tbody");
+
+    // Hiển thị modal 1
+    addButton1.addEventListener("click", () => {
+        addModal1.style.display = "flex";
+    });
+
+    // Đóng modal 1
+    closeAddModal1.addEventListener("click", () => {
+        addModal1.style.display = "none";
+        addForm1.reset();
+    });
+
+    // Đóng modal khi nhấn bên ngoài modal
+    window.addEventListener("click", (event) => {
+        if (event.target === addModal1) {
+            addModal1.style.display = "none";
+            addForm1.reset();
+        }
+    });
+
+    // Thêm sản phẩm vào bảng trong modal 1
+    addForm1.addEventListener("submit", (e) => {
+        e.preventDefault(); // Ngăn reload trang
+
+        const name = addForm1.productName.value.trim();
+        const code = addForm1.productCode.value.trim();
+        const type = addForm1.productType.value.trim();
+        const origin = addForm1.productOrigin.value.trim();
+        const status = addForm1.productStatus.value;
+
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${name}</td>
+            <td>${code}</td>
+            <td>${type}</td>
+            <td>${origin}</td>
+            <td>
+                <button class="button-description">Xem chi tiết</button>
+            </td>
+            <td>
+                <span class="status ${status === "Còn Hàng" ? "blue" : "red"}"></span>
+                ${status}
+            </td>
+            <td>
+                <button class="button-delete">Xóa</button>
+            </td>
+        `;
+
+        productTable1.appendChild(newRow);
+
+        // Thêm sự kiện "Xóa"
+        const deleteButton = newRow.querySelector(".button-delete");
+        deleteButton.addEventListener("click", () => {
+            newRow.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+
+        // Reset và đóng modal
+        addModal1.style.display = "none";
+        addForm1.reset();
+    });
+
+    // Xóa sản phẩm đã tồn tại
+    document.querySelectorAll(".button-delete").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const row = event.target.closest("tr");
+            row.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+    });
+
+    // Modal 2
+    const addModal2 = document.getElementById("addModal");
+    const addForm2 = document.getElementById("addForm");
+    const closeAddModal2 = document.getElementById("closeAddModal");
+    const addButton2 = document.getElementById("addButton");
+    const productTable2 = document.querySelector(".table-reponsive table tbody");
+
+    addButton2.addEventListener("click", () => {
+        addModal2.style.display = "flex";
+    });
+
+    closeAddModal2.addEventListener("click", () => {
+        addModal2.style.display = "none";
+        addForm2.reset();
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === addModal2) {
+            addModal2.style.display = "none";
+            addForm2.reset();
+        }
+    });
+
+    addForm2.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = addForm2.productName.value.trim();
+        const code = addForm2.productCode.value.trim();
+        const type = addForm2.productType.value.trim();
+        const origin = addForm2.productOrigin.value.trim();
+        const status = addForm2.productStatus.value;
+
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+            <td>${name}</td>
+            <td>${code}</td>
+            <td>${type}</td>
+            <td>${origin}</td>
+            <td>
+                <button class="button-description">Xem chi tiết</button>
+            </td>
+            <td>
+                <span class="status ${status === "Còn Hàng" ? "blue" : "red"}"></span>
+                ${status}
+            </td>
+            <td>
+                <button class="button-delete">Xóa</button>
+            </td>
+        `;
+
+        productTable2.appendChild(newRow);
+
+        const deleteButton = newRow.querySelector(".button-delete");
+        deleteButton.addEventListener("click", () => {
+            newRow.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+
+        addModal2.style.display = "none";
+        addForm2.reset();
+    });
+
+    document.querySelectorAll(".button-delete").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const row = event.target.closest("tr");
+            row.remove();
+            alert("Sản phẩm đã được xóa!");
+        });
+    });
+});
+// Thông báo 
+document.addEventListener("DOMContentLoaded", () => {
+    const notificationBell = document.getElementById("notificationBell");
+    const notificationDropdown = document.getElementById("notificationDropdown");
+
+    // Hiển thị / ẩn form khi click chuông
+    notificationBell.addEventListener("click", (e) => {
+        e.stopPropagation(); // Ngăn sự kiện click lan ra ngoài
+        const isDropdownVisible = notificationDropdown.style.display === "block";
+        notificationDropdown.style.display = isDropdownVisible ? "none" : "block";
+    });
+
+    // Ẩn form khi click ra ngoài
+    document.addEventListener("click", (e) => {
+        if (notificationDropdown.style.display === "block") {
+            notificationDropdown.style.display = "none";
+        }
+    });
+
+    // Ngăn click vào bên trong form không đóng form
+    notificationDropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+    window.addEventListener("scroll", () => {
+        notificationDropdown.style.display = "none";
+    });
+});
 

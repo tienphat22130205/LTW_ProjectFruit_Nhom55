@@ -1,4 +1,5 @@
 function login() {
+    event.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const errorMessage = document.getElementById("error-message");
@@ -15,30 +16,31 @@ function login() {
 
     if (email === adminEmail && password === adminPassword) {
         // Chuyển hướng đến trang Admin
-        loginForm.style.display = "none";
-        setTimeout(() => {
+        Swal.fire({
+            title: "Đăng nhập thành công!",
+            text: "Chào mừng bạn đến với trang quản trị.",
+            icon: "success",
+            confirmButtonText: "Đến trang quản trị",
+            customClass: {
+                confirmButton: 'swal-button-large'
+            }
+        }).then(() => {
             window.location.href = "admin.html";
-        }, 500);
+        });
     } else if (email === storedEmail && password === storedPassword) {
         // Đăng nhập người dùng thường thành công
         loginForm.style.display = "none";
-        const accountSection = document.querySelector(".account");
-        accountSection.classList.add("logged-in");
+        localStorage.setItem("isLoggedIn", true); // Lưu trạng thái đăng nhập
 
-        // Thêm avatar người dùng
-        const avatarImg = document.createElement("img");
-        avatarImg.src = "./img/anhdaidien.jpg"; // Đường dẫn ảnh đại diện
-        avatarImg.alt = "Avatar";
-        avatarImg.classList.add("avatar");
-        accountSection.appendChild(avatarImg);
+        // Hiển thị avatar và tên người dùng
+        updateUserHeader(userName);
 
-         // Hiển thị tên người dùng trong dropdown
-         document.getElementById("userNameDisplay").textContent = userName;
-
-         // Hiển thị dropdown khi nhấp vào avatar
-         avatarImg.addEventListener("click", toggleUserMenu);
-         
-        alert(`Chào mừng ${userName}!`);
+        Swal.fire({
+            title: `Chào mừng, ${userName}!`,
+            text: "Đăng nhập thành công.",
+            icon: "success",
+            confirmText: "OK",
+        });
     } else {
         // Hiển thị thông báo lỗi nếu thông tin không đúng
         errorMessage.style.display = "block";
@@ -46,3 +48,54 @@ function login() {
         document.getElementById("password").value = "";
     }
 }
+
+function updateUserHeader(userName) {
+    const accountSection = document.querySelector(".account");
+    accountSection.innerHTML = `
+        <img src="./img/anhdaidien.jpg" alt="Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
+`;
+
+    // Hiển thị menu dropdown khi nhấp vào avatar
+    const avatarImg = accountSection.querySelector(".avatar");
+    avatarImg.addEventListener("click", toggleUserMenu);
+    document.querySelector('.account img').style.display = "block";
+    if (userNameDisplay) {
+        userNameDisplay.textContent = userName; // Thay "User" bằng tên người dùng
+    }
+}
+
+function toggleUserMenu() {
+    const userMenu = document.getElementById("userMenu");
+    userMenu.style.display = userMenu.style.display === "block" ? "none" : "block";
+}
+
+// Kiểm tra trạng thái đăng nhập khi tải trang
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userName = localStorage.getItem("userName");
+
+    if (isLoggedIn && userName) {
+        updateUserHeader(userName);
+    }
+}
+
+// Đăng xuất
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    Swal.fire({
+        title: "Đăng xuất thành công!",
+        text: "Bạn sẽ được chuyển về trang chủ.",
+        icon: "success",
+        showConfirmButton: false, 
+        timer: 3000, 
+        timerProgressBar: true
+    });
+
+    
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 3000); 
+}
+
+// Gọi hàm kiểm tra trạng thái khi trang được tải
+window.addEventListener("DOMContentLoaded", checkLoginStatus);

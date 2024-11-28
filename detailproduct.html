@@ -2,15 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- link swiper -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <!-- link style css -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/detail.css">
+  <!-- Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <title>Chi tiết sản phẩm</title>
-  <link rel="stylesheet" href="./css/detail.css" />
+  <!-- link logo anh -->
+  <link rel="icon" href="./img/logoBank/logoweb.png" type="image/x-icon">
+  <title>Selling Fruit</title>
 </head>
 
 <body>
+  <!-- header section stars -->
   <header>
     <div class="header-container">
       <div class="left">
@@ -37,18 +46,17 @@
           <i class="fas fa-phone"></i>
           <span>Hotline: 0865660775</span>
         </div>
-        <div class="account">
-          <i class="fa-solid fa-user"></i>
-          <span>Tài khoản</span>
-        </div>
         <div class="cart">
           <i class="fa-solid fa-cart-shopping"></i>
           <span>Giỏ hàng</span>
           <span class="cart-badge">0</span>
         </div>
+        <div class="account">
+          <i class="fa-solid fa-user"></i>
+          <span>Tài khoản</span>
+        </div>
       </div>
     </div>
-
     <!-- Branch Selection Form -->
     <div class="branch-selection" id="branchSelection">
       <h2>KHU VỰC MUA HÀNG</h2>
@@ -86,8 +94,7 @@
         </div>
         <div class="branch">
           <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
-          <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức,
-            Phường An
+          <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức, Phường An
             Phú, Thành phố Thủ Đức</p>
         </div>
       </div>
@@ -103,19 +110,41 @@
         <label for="password">Mật khẩu</label>
         <input type="password" id="password" placeholder="Mật khẩu">
       </div>
+      <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
       <p class="captcha-text">
         Trang web này được bảo vệ bởi reCAPTCHA và Google
         <a href="https://policies.google.com/privacy">Privacy Policy</a> and
         <a href="https://policies.google.com/terms">Terms of Service</a> apply.
       </p>
-      <button class="login-button">ĐĂNG NHẬP</button>
+      <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
       <p class="additional-links">
 
         Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
 
-
         Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
       </p>
+    </div>
+    <div class="user-menu" id="userMenu" style="display: none;">
+      <p>Xin chào, <span id="userNameDisplay">User</span></p>
+      <ul>
+          <li><a href="user.html"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
+          <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
+          <li><a href="" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+      </ul>
+  </div>  
+    <div class="cart-form" id="cartForm">
+      <h2>GIỎ HÀNG</h2>
+      <hr>
+      <div class="cart-content">
+        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+        <p>Hiện chưa có sản phẩm</p>
+      </div>
+      <hr>
+      <div class="cart-total">
+        <span>TỔNG TIỀN:</span>
+        <span class="total-amount">0₫</span>
+      </div>
+      <a href="card.html" class="view-cart-button">XEM GIỎ HÀNG</a>
     </div>
   </header>
   <!-- Menu Bar dưới Header -->
@@ -411,8 +440,7 @@
       <div class="box">
         <h3>VitaminFruit</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias,
-          optio!
+          "Chăm sóc sức khỏe bạn từ thiên nhiên! VitaminFruit – nguồn dinh dưỡng hoàn hảo cho cơ thể và tâm trí."
         </p>
         <div class="share">
           <a href="#" class="fab fa-facebook-f"></a>
@@ -448,24 +476,23 @@
         <a href="#blogs" class="links"><i class="fas fa-arrow-right"></i>Chính sách bảo mật</a>
       </div>
       <div class="box">
-        <h3>bản tin</h3>
-        <p>đăng ký để cập nhật mới nhất</p>
-        <input type="email" placeholder="Nhập email của bạn" class="email" />
-        <input type="submit" value="đăng ký" class="btn" />
-        <div class="payments">
-          <a href="#"><i class="fa-brands fa-cc-visa"></i></a>
-          <a href="#"><i class="fa-solid fa-credit-card"></i></a>
-          <a href="#"><i class="fa-solid fa-wallet"></i></a>
+        <h3>Đơn vị vận chuyển</h3>
+        <p>"Chúng tôi sử dụng các đơn vị vận chuyển uy tín như Grab, Giao Hàng Tiết Kiệm, VNPost và nhiều đơn vị khác."</p>
+        <div class="shipping-brands">
+          <img src="./img/logoBank/grab.jpg" alt="Grab" />
+          <img src="./img/logoBank/giaohangtietkiem.png" alt="Giao Hàng Tiết Kiệm" />
+          <img src="./img/logoBank/vnpost.webp" alt="VNPost" />
         </div>
-      </div>
+      </div> 
     </div>
     <div class="credit">Copyright © 2024 <span>Nhom 55 - Trái Cây Chất Lượng Cao</span></div>
   </section>
   <!-- footer section end -->
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="./javacript/fruit.js"></script>
+  <script src="./javacript/login.js"></script>
 </body>
 
 </html>

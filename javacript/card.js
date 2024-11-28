@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const sampleProducts = [
       {
           name: "Dâu tây Đà Lạt",
-          price: 150000,
+          price: 161000,
           quantity: 3,
-          imageUrl: "./img/dau.jpg"
+          imageUrl: "./img/traicaynhapkhau/dautaygiongmy.png"
       },
       {
           name: "Hộp quà Nguyên Cát 03",
@@ -123,10 +123,55 @@ document.addEventListener("DOMContentLoaded", function () {
   function toggleLoginForm() {
     closeAllForms();
     const loginForm = document.getElementById("loginForm");
+    const userMenu = document.getElementById("userMenu");
     const button = document.querySelector(".account");
-    setPositionRelativeToButton(loginForm, button);
-    loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
+    const avatarImg = document.querySelector(".account .avatar");
+  
+    if (avatarImg) {
+      // Khi đã đăng nhập (có avatar), hiển thị menu người dùng
+      setPositionRelativeToButton(userMenu, button);
+      userMenu.style.display = userMenu.style.display === "none" || userMenu.style.display === "" ? "block" : "none";
+    } else {
+      // Khi chưa đăng nhập (không có avatar), hiển thị form đăng nhập
+      setPositionRelativeToButton(loginForm, button);
+      loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
+    }
   }
+  
+  // Thêm sự kiện cho avatar để mở menu người dùng
+  function toggleUserMenu() {
+    const userMenu = document.getElementById("userMenu");
+    userMenu.style.display = userMenu.style.display === "none" || userMenu.style.display === "" ? "block" : "none";
+  }
+  
+  // Sự kiện cho avatar
+  document.querySelector(".account").addEventListener("click", toggleLoginForm);
+  // Đăng xuất
+  function logout() {
+    // Xóa thông tin người dùng từ giao diện
+    const accountSection = document.querySelector(".account");
+    const avatarImg = document.querySelector(".account .avatar");
+    const userMenu = document.getElementById("userMenu");
+  
+    if (avatarImg) {
+        avatarImg.remove(); // Xóa ảnh đại diện
+    }
+  
+    // Đặt lại trạng thái mặc định (icon tài khoản)
+    accountSection.classList.remove("logged-in");
+  
+    // Ẩn menu người dùng
+    userMenu.style.display = "none";
+  
+    // Hiển thị lại form đăng nhập hoặc đặt lại giao diện icon tài khoản
+    alert("Bạn đã đăng xuất thành công!");
+  }
+  
+  // Gắn sự kiện cho nút đăng xuất
+  document.getElementById("logout").addEventListener("click", (event) => {
+    event.preventDefault(); // Ngăn tải lại trang
+    logout();
+  });
   
   function toggleBranchForm() {
     closeAllForms();
@@ -137,8 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   document.querySelector(".account").addEventListener("click", toggleLoginForm);
-//   document.querySelector(".cart").addEventListener("click", toggleCartForm);
   document.querySelector(".delivery").addEventListener("click", toggleBranchForm);
+  document.querySelector(".user-menu").addEventListener("click", toggleUserMenu);
   
   window.onclick = function (event) {
     if (!event.target.closest('.login-form') &&
@@ -230,11 +275,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Đảm bảo giá trị không bị âm
   });
-  
-  
-  
-  
-  
   
   
   

@@ -11,6 +11,7 @@ function loadFromLocalStorage() {
     const storedUsers = localStorage.getItem("users");
     users = storedUsers ? JSON.parse(storedUsers) : [];
 }
+
 // Hàm hiển thị danh sách tài khoản trên bảng
 function renderUserTable() {
     const userTableBody = document.getElementById("userTableBody");
@@ -56,7 +57,6 @@ function addUser() {
 
     // Thêm tài khoản vào danh sách
     users.push({ username, role });
-    saveToLocalStorage(); // Lưu trạng thái vào Local Storage
     renderUserTable(); // Cập nhật bảng
     alert("Tài khoản mới đã được thêm!");
 
@@ -71,9 +71,29 @@ function editUser(index) {
     document.getElementById("usernameInput").value = user.username;
     document.getElementById("userRoleInput").value = user.role;
 
-    // Lưu trạng thái chỉnh sửa
-    document.getElementById("usernameInput").dataset.editIndex = index; // Gắn chỉ số tài khoản đang sửa
+    // Gắn trạng thái chỉnh sửa
+    document.getElementById("usernameInput").dataset.editIndex = index; // Lưu chỉ số tài khoản đang sửa
     alert("Đang chỉnh sửa tài khoản. Sau khi chỉnh sửa, nhấn Lưu để cập nhật.");
+}
+
+// Hàm lưu chỉnh sửa tài khoản
+function saveChanges() {
+    const editIndex = document.getElementById("usernameInput").dataset.editIndex;
+    const username = document.getElementById("usernameInput").value.trim();
+    const role = document.getElementById("userRoleInput").value;
+
+    if (editIndex !== undefined) {
+        // Cập nhật tài khoản nếu đang ở chế độ chỉnh sửa
+        users[editIndex] = { username, role };
+        delete document.getElementById("usernameInput").dataset.editIndex; // Xóa trạng thái chỉnh sửa
+        alert("Tài khoản đã được cập nhật!");
+    } else {
+        alert("Không có thay đổi nào để lưu!");
+    }
+
+    // Lưu trạng thái vào Local Storage
+    saveToLocalStorage();
+    renderUserTable(); // Cập nhật bảng
 }
 
 // Hàm xóa tài khoản
@@ -85,16 +105,36 @@ function deleteUser(index) {
     }
 }
 
-// Hàm lưu thay đổi (sau khi thêm, sửa hoặc xóa)
-function saveChanges() {
-    saveToLocalStorage(); // Lưu toàn bộ danh sách vào Local Storage
-    renderUserTable(); // Đảm bảo bảng hiển thị đúng
-    alert("Các thay đổi đã được lưu!");
+// Khi mở form "Quản lý người dùng"
+function openUserManagementModal() {
+    loadFromLocalStorage(); // Tải dữ liệu từ Local Storage
+    renderUserTable(); // Hiển thị danh sách
+    document.getElementById("userManagementModal").style.display = "block";
 }
-
 // Khởi tạo dữ liệu khi tải trang
 window.onload = () => {
-    console.log("Dữ liệu từ Local Storage:", localStorage.getItem("users"));
-    console.log("Biến users sau khi load:", users);
+    loadFromLocalStorage(); // Tải dữ liệu từ Local Storage
+    renderUserTable(); // Cập nhật bảng
 };
+
+
+
+// Hệ thống
+function saveSystemConfig() {
+    // Lấy giá trị từ các input trong form
+    const systemConfigData = {
+        systemName: document.getElementById("systemName").value,
+        adminEmail: document.getElementById("adminEmail").value,
+        language: document.getElementById("language").value,
+        timeZone: document.getElementById("timeZone").value,
+        maintenanceMode: document.getElementById("maintenanceMode").value,
+        maxUsers: document.getElementById("maxUsers").value
+    };
+
+    // Lưu vào localStorage
+    localStorage.setItem("systemConfig", JSON.stringify(systemConfigData));
+    alert("Cấu hình hệ thống đã được lưu thành công!");
+    closeModal("systemConfig");
+}
+
 
