@@ -1074,7 +1074,7 @@ body.scrolled-up .menu-bar {
     background: var(--orange);
     color: #fff;
 }
-
+/* Ẩn sản phẩm */
 .hidden {
     opacity: 0;
     height: 0;

@@ -42,7 +42,7 @@ var swiper = new Swiper(".brand-slider", {
     },
   },
 });
-// SỰ kiện xem thêm sản phẩm
+// ----------------------------------------------Sựkiện xem thêm sản phẩm
 document.getElementById('view-more-btn').addEventListener('click', function(e) {
   e.preventDefault();
   const productSlider = document.getElementById('product-slider-1');
@@ -56,7 +56,7 @@ document.getElementById('view-more-btn').addEventListener('click', function(e) {
       this.textContent = 'Xem tất cả sản phẩm ưu đãi';
   }
 });
-
+// -------------------------------------------------------------------------------
 
 // su kien trang web
 function closeAllForms() {
