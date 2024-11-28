@@ -982,26 +982,22 @@ body.scrolled-up .menu-bar {
 
 }
 
-.footer .box-container .box .payments {
-    margin: .8rem 0;
+.footer .box-container .box .shipping-brands {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.footer .box-container .box .payments i {
-    height: 4.5rem;
-    width: 4.5rem;
-    line-height: 4.5rem;
-    border-radius: .5rem;
-    background: #eee;
-    color: var(--black);
-    font-size: 2rem;
-    margin-right: .3rem;
-    cursor: pointer;
-    text-align: center
+.footer .box-container .box .shipping-brands img {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.footer .box-container .box .payments i:hover {
-    background-color: var(--orange);
-    color: #fff;
+.footer .box-container .box .shipping-brands img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .footer .credit {
