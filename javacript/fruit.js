@@ -4,7 +4,7 @@ var swiper = new Swiper(".product-slider", {
   loop: true,
   spaceBetween: 20,
   autoplay: {
-    delay: 7500,
+    delay: 10000,
     disableOnInteraction: false,
   },
   breakpoints: {
@@ -42,6 +42,22 @@ var swiper = new Swiper(".brand-slider", {
     },
   },
 });
+// SỰ kiện xem thêm sản phẩm
+document.getElementById('view-more-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const productSlider = document.getElementById('product-slider-1');
+  if (productSlider.classList.contains('hidden')) {   
+      productSlider.classList.remove('hidden');   
+      productSlider.classList.add('visible');
+      this.textContent = 'Ẩn sản phẩm';
+  } else {
+    productSlider.classList.remove('visible');
+      productSlider.classList.add('hidden');
+      this.textContent = 'Xem tất cả sản phẩm ưu đãi';
+  }
+});
+
+
 // su kien trang web
 function closeAllForms() {
   document.getElementById("loginForm").style.display = "none";
