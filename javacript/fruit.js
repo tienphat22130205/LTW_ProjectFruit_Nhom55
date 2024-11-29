@@ -56,6 +56,20 @@ document.getElementById('view-more-btn').addEventListener('click', function(e) {
       this.textContent = 'Xem tất cả sản phẩm ưu đãi';
   }
 });
+// ---------------------------------------------sự khiện xem thêm trang hộp quà nguyệt cát 
+document.getElementById('view-more-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const productSlider = document.getElementById('product-slider-2');
+  if (productSlider.classList.contains('hidden')) {   
+      productSlider.classList.remove('hidden');   
+      productSlider.classList.add('visible');
+      this.textContent = 'Ẩn sản phẩm';
+  } else {
+    productSlider.classList.remove('visible');
+      productSlider.classList.add('hidden');
+      this.textContent = 'Xem tất cả sản phẩm ưu đãi';
+  }
+});
 // -------------------------------------------------------------------------------
 
 // su kien trang web
