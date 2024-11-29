@@ -216,7 +216,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2>Khách hàng gần đây</h2>
-                                <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -545,7 +544,23 @@
             <div id="customers" class="section">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Khách hàng</h2>
+                        <div class="search-box">
+                            <input type="text" placeholder="Tìm kiếm..." />
+                            <div class="search">
+                                <button class="search-btn">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <div class="sort-options">
+                            <select>
+                                <option value="#">Chọn lựa chọn</option>
+                                <option value="date">Ngày đăng ký</option>
+                                <option value="phone">Số điện thoại</option>
+                            </select>
+                            <div class="sort-icon">
+                                <i class="fas fa-sort"></i>
+                                <span class="sort-label">Sắp xếp</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -561,195 +576,27 @@
                                         <td style="text-align: center">Chi tiết sản phẩm đã mua</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <!-- Khách hàng 1 -->
-                                    <tr>
-                                        <td>VIP001</td>
-                                        <td>Nguyễn Phương Mai</td>
-                                        <td style="text-align: center">phuongmai@gmail.com</td>
-                                        <td style="text-align: center">0901234567</td>
-                                        <td style="text-align: center">15 Nguyễn Trãi, TP.HCM</td>
-                                        <td style="text-align: center">2020-06-10</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <!-- Khách hàng 2 -->
-                                    <tr>
-                                        <td>VIP002</td>
-                                        <td>Trần Quang Huy</td>
-                                        <td style="text-align: center">quanghuy88@gmail.com</td>
-                                        <td style="text-align: center">0912345678</td>
-                                        <td style="text-align: center">40 Lý Thường Kiệt, Hà Nội</td>
-                                        <td style="text-align: center">2021-03-05</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <!-- Khách hàng 3 -->
-                                    <tr>
-                                        <td>VIP003</td>
-                                        <td>Lê Thanh Tú</td>
-                                        <td style="text-align: center">thanhtu95@gmail.com</td>
-                                        <td style="text-align: center">0987654321</td>
-                                        <td style="text-align: center">12 Phan Đình Phùng, Đà Nẵng</td>
-                                        <td style="text-align: center">2019-11-25</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <!-- Khách hàng 4 -->
-                                    <tr>
-                                        <td>VIP004</td>
-                                        <td>Vũ Minh Tuấn</td>
-                                        <td style="text-align: center">minhtuan85@gmail.com</td>
-                                        <td style="text-align: center">0978765432</td>
-                                        <td style="text-align: center">68 Nguyễn Văn Cừ, Hà Nội</td>
-                                        <td style="text-align: center">2022-01-20</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <!-- Khách hàng 5 -->
-                                    <tr>
-                                        <td>VIP005</td>
-                                        <td>Phan Thị Thảo</td>
-                                        <td style="text-align: center">phanthithao@gmail.com</td>
-                                        <td style="text-align: center">0908765432</td>
-                                        <td style="text-align: center">100 Hoàng Quốc Việt, TP.HCM</td>
-                                        <td style="text-align: center">2020-07-30</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>VIP006</td>
-                                        <td>Nguyễn Quang Hảo</td>
-                                        <td style="text-align: center">quanghao92@gmail.com</td>
-                                        <td style="text-align: center">0912345679</td>
-                                        <td style="text-align: center">45 Lý Thường Kiệt, TP.HCM</td>
-                                        <td style="text-align: center">2020-08-05</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 7 (Tên mới) -->
-                                    <tr>
-                                        <td>VIP007</td>
-                                        <td>Trần Minh Tuấn</td>
-                                        <td style="text-align: center">minhtuan89@gmail.com</td>
-                                        <td style="text-align: center">0934345678</td>
-                                        <td style="text-align: center">32 Nguyễn Thái Học, Hà Nội</td>
-                                        <td style="text-align: center">2021-02-15</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 8 (Tên mới) -->
-                                    <tr>
-                                        <td>VIP008</td>
-                                        <td>Phan Thị Thu Hà</td>
-                                        <td style="text-align: center">thanhtuha94@gmail.com</td>
-                                        <td style="text-align: center">0917564345</td>
-                                        <td style="text-align: center">45 Nguyễn Trãi, Đà Nẵng</td>
-                                        <td style="text-align: center">2021-05-12</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 9 (Tên mới) -->
-                                    <tr>
-                                        <td>VIP009</td>
-                                        <td>Nguyễn Thanh Tùng</td>
-                                        <td style="text-align: center">thanhtung90@gmail.com</td>
-                                        <td style="text-align: center">0971234567</td>
-                                        <td style="text-align: center">34 Trần Phú, TP.HCM</td>
-                                        <td style="text-align: center">2020-11-25</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 10 (Tên mới) -->
-                                    <tr>
-                                        <td>VIP010</td>
-                                        <td>Vũ Hoàng Nam</td>
-                                        <td style="text-align: center">hoangnam92@gmail.com</td>
-                                        <td style="text-align: center">0909876543</td>
-                                        <td style="text-align: center">55 Đào Duy Anh, Hà Nội</td>
-                                        <td style="text-align: center">2021-01-12</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>VIP011</td>
-                                        <td>Nguyễn Thanh Hương</td>
-                                        <td style="text-align: center">thanhuong93@gmail.com</td>
-                                        <td style="text-align: center">0976789123</td>
-                                        <td style="text-align: center">20 Bạch Đằng, TP.HCM</td>
-                                        <td style="text-align: center">2021-06-18</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 12 -->
-                                    <tr>
-                                        <td>VIP012</td>
-                                        <td>Trần Đức Anh</td>
-                                        <td style="text-align: center">ducanh90@gmail.com</td>
-                                        <td style="text-align: center">0986123456</td>
-                                        <td style="text-align: center">12 Trần Phú, Hà Nội</td>
-                                        <td style="text-align: center">2020-12-25</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 13 -->
-                                    <tr>
-                                        <td>VIP013</td>
-                                        <td>Phạm Minh Quang</td>
-                                        <td style="text-align: center">minhquang88@gmail.com</td>
-                                        <td style="text-align: center">0912345670</td>
-                                        <td style="text-align: center">80 Nguyễn Trãi, TP.HCM</td>
-                                        <td style="text-align: center">2021-02-08</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 14 -->
-                                    <tr>
-                                        <td>VIP014</td>
-                                        <td>Võ Minh Tâm</td>
-                                        <td style="text-align: center">minhtam95@gmail.com</td>
-                                        <td style="text-align: center">0902345678</td>
-                                        <td style="text-align: center">15 Lê Lợi, TP.HCM</td>
-                                        <td style="text-align: center">2020-08-19</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Khách hàng 15 -->
-                                    <tr>
-                                        <td>VIP015</td>
-                                        <td>Lê Hồng Sơn</td>
-                                        <td style="text-align: center">hongson96@gmail.com</td>
-                                        <td style="text-align: center">0974321567</td>
-                                        <td style="text-align: center">28 Trần Hưng Đạo, Hà Nội</td>
-                                        <td style="text-align: center">2021-09-14</td>
-                                        <td style="text-align: center">
-                                            <button class="button-product-detail">Xem chi tiết</button>
-                                        </td>
-                                    </tr>
+                                <tbody id="customer-list">
+                                    <!-- khach ben js -->
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="left-section">
+                            <!-- Nội dung bên trái, ví dụ: thông tin thêm, icon, v.v. -->
+                            <span class="info">Hiển thị thêm khách hàng</span>
+                        </div>
+                        <div class="right-section">
+                            <div class="pagination">
+                                <button class="prev" onclick="changePage('prev')">Trước</button>
+                                <span class="page-num" id="page-1" onclick="goToPage(1)">1</span>
+                                <span class="page-num" id="page-2" onclick="goToPage(2)">2</span>
+                                <span class="page-num" id="page-3" onclick="goToPage(3)">3</span>
+                                <span class="page-num">...</span>
+                                <button class="next" onclick="changePage('next')">Tiếp</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1527,9 +1374,9 @@
                                 <td><button class="view-details" onclick="viewDetails('#GD003')">Xem</button></td>
                             </tr>
                         </tbody>
-                    </table>                   
+                    </table>
                 </div>
-                
+
                 <div class="container3">
                     <h1>Đánh giá và hợp tác</h1>
                     <table id="ratingTable">
@@ -1717,42 +1564,44 @@
                     </table>
                 </div>
             </div>
-           <div id="promotions" class="section">
-            <div class="promotion-container">
-                <div class="promotion-header">
-                    <h1>Quản Lý Khuyến Mãi</h1>
-                    <button id="openPromotionModal" class="button-add-promotion">Thêm Khuyến Mãi</button>
-                    <!-- Modal Thêm Khuyến Mãi -->
-                </div>
-                <div class="search-bar">
-                    <input type="text" placeholder="Tìm khuyến mãi..."/>
-                    <button>Tìm kiếm</button>
-                </div>
-                <table class="promotion-table">
-                    <thead>
-                    <tr style="text-align: center">
-                        <th>Tên Khuyến Mãi</th>
-                        <th>Thời Gian</th>
-                        <th>Phần Trăm Giảm Giá</th>
-                        <th>Hành Động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Ngày Nhà Giáo Việt Nam</td>
-                        <td style="text-align: center">19/11/2024 - 20/11/2024</td>
-                        <td>25%</td>
+            <div id="promotions" class="section">
+                <div class="promotion-container">
+                    <div class="promotion-header">
+                        <h1>Quản Lý Khuyến Mãi</h1>
+                        <button id="openPromotionModal" class="button-add-promotion">Thêm Khuyến Mãi</button>
+                        <!-- Modal Thêm Khuyến Mãi -->
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Tìm khuyến mãi..." />
+                        <button>Tìm kiếm</button>
+                    </div>
+                    <table class="promotion-table">
+                        <thead>
+                            <tr style="text-align: center">
+                                <th>Tên Khuyến Mãi</th>
+                                <th>Thời Gian</th>
+                                <th>Phần Trăm Giảm Giá</th>
+                                <th>Hành Động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ngày Nhà Giáo Việt Nam</td>
+                                <td style="text-align: center">19/11/2024 - 20/11/2024</td>
+                                <td>25%</td>
 
-                        <td>
-                            <button class="edit-btn" onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
-                            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
-                        </td>
+                                <td>
+                                    <button class="edit-btn"
+                                        onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
+                                    <button class="delete-btn"
+                                        onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
+                                </td>
 
-                    </tr>
-                    </tbody>
-                </table>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
             <div id="feedback" class="section">
                 <div class="feedback-container">
                     <div class="feedback-content">
@@ -2253,9 +2102,9 @@
         </div>
     </div>
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="./javacript/admin.js"></script>
-        <script src="./javacript/logicAdmin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./javacript/admin.js"></script>
+    <script src="./javacript/logicAdmin.js"></script>
 </body>
 
 </html>

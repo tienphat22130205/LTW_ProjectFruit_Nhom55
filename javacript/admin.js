@@ -1092,4 +1092,100 @@ document.addEventListener("DOMContentLoaded", () => {
         notificationDropdown.style.display = "none";
     });
 });
+// Dữ liệu khách hàng (mô phỏng)
+const customers = [
+    { id: 'VIP001', name: 'Nguyễn Phương Mai', email: 'phuongmai@gmail.com', phone: '0901234567', address: '15 Nguyễn Trãi, TP.HCM', registerDate: '2020-06-10' },
+    { id: 'VIP002', name: 'Trần Quang Huy', email: 'quanghuy88@gmail.com', phone: '0912345678', address: '40 Lý Thường Kiệt, Hà Nội', registerDate: '2021-03-05' },
+    { id: 'VIP003', name: 'Lê Thanh Tú', email: 'thanhtu95@gmail.com', phone: '0987654321', address: '12 Phan Đình Phùng, Đà Nẵng', registerDate: '2019-11-25' },
+    { id: 'VIP004', name: 'Vũ Minh Tuấn', email: 'minhtuan85@gmail.com', phone: '0978765432', address: '68 Nguyễn Văn Cừ, Hà Nội', registerDate: '2022-01-20' },
+    { id: 'VIP005', name: 'Phan Thị Thảo', email: 'phanthithao@gmail.com', phone: '0908765432', address: '100 Hoàng Quốc Việt, TP.HCM', registerDate: '2020-07-30' },
+    { id: 'VIP006', name: 'Nguyễn Quang Hảo', email: 'quanghao92@gmail.com', phone: '0912345679', address: '45 Lý Thường Kiệt, TP.HCM', registerDate: '2020-08-05' },
+    { id: 'VIP007', name: 'Trần Minh Tuấn', email: 'minhtuan89@gmail.com', phone: '0934345678', address: '32 Nguyễn Thái Học, Hà Nội', registerDate: '2021-02-15' },
+    { id: 'VIP008', name: 'Phan Thị Thu Hà', email: 'thanhtuha94@gmail.com', phone: '0917564345', address: '45 Nguyễn Trãi, Đà Nẵng', registerDate: '2021-05-12' },
+    { id: 'VIP009', name: 'Nguyễn Thanh Tùng', email: 'thanhtung90@gmail.com', phone: '0971234567', address: '34 Trần Phú, TP.HCM', registerDate: '2020-11-25' },
+    { id: 'VIP010', name: 'Vũ Hoàng Nam', email: 'hoangnam92@gmail.com', phone: '0909876543', address: '55 Đào Duy Anh, Hà Nội', registerDate: '2021-01-12' },
+    { id: 'VIP011', name: 'Nguyễn Thanh Hương', email: 'thanhuong93@gmail.com', phone: '0976789123', address: '20 Bạch Đằng, TP.HCM', registerDate: '2021-06-18' },
+    { id: 'VIP012', name: 'Trần Đức Anh', email: 'ducanh90@gmail.com', phone: '0986123456', address: '12 Trần Phú, Hà Nội', registerDate: '2020-12-25' },
+    { id: 'VIP013', name: 'Phạm Minh Quang', email: 'minhquang88@gmail.com', phone: '0912345670', address: '80 Nguyễn Trãi, TP.HCM', registerDate: '2021-02-08' },
+    { id: 'VIP014', name: 'Võ Minh Tâm', email: 'minhtam95@gmail.com', phone: '0902345678', address: '15 Lê Lợi, TP.HCM', registerDate: '2020-08-19' },
+    { id: 'VIP015', name: 'Lê Hồng Sơn', email: 'hongson96@gmail.com', phone: '0974321567', address: '28 Trần Hưng Đạo, Hà Nội', registerDate: '2021-09-14' },
+];
+
+const customersPerPage = 7;  // Số khách hàng hiển thị trên mỗi trang
+let currentPage = 1;        // Trang hiện tại
+
+// Hàm hiển thị khách hàng theo trang
+function displayCustomers(page) {
+    const start = (page - 1) * customersPerPage;
+    const end = start + customersPerPage;
+    const customersToShow = customers.slice(start, end);
+    const customerList = document.getElementById('customer-list');
+
+    customerList.innerHTML = '';  // Xóa danh sách cũ
+
+    customersToShow.forEach(customer => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${customer.id}</td>
+            <td>${customer.name}</td>
+            <td style="text-align: center">${customer.email}</td>
+            <td style="text-align: center">${customer.phone}</td>
+            <td style="text-align: center">${customer.address}</td>
+            <td style="text-align: center">${customer.registerDate}</td>
+            <td style="text-align: center">
+                <button class="button-product-detail">Xem chi tiết</button>
+            </td>
+        `;
+        customerList.appendChild(row);
+    });
+    
+    // Cập nhật các nút trang
+    updatePagination(page);
+}
+// Hàm sắp xếp danh sách khách hàng theo ngày đăng ký hoặc số điện thoại
+function sortCustomers(criteria) {
+    let sortedCustomers = [...customers]; // Sao chép danh sách khách hàng ban đầu
+
+    if (criteria === 'date') {
+        sortedCustomers.sort((a, b) => new Date(a.registerDate) - new Date(b.registerDate)); // Sắp xếp theo ngày đăng ký
+    } else if (criteria === 'phone') {
+        sortedCustomers.sort((a, b) => a.phone.localeCompare(b.phone)); // Sắp xếp theo số điện thoại
+    }
+
+    // Hiển thị khách hàng đã sắp xếp
+    displayCustomers(sortedCustomers.slice((currentPage - 1) * customersPerPage, currentPage * customersPerPage));
+}
+
+// Hàm cập nhật các nút phân trang
+function updatePagination(page) {
+    const totalPages = Math.ceil(customers.length / customersPerPage);
+    for (let i = 1; i <= totalPages; i++) {
+        const pageNum = document.getElementById(`page-${i}`);
+        if (i === page) {
+            pageNum.classList.add('active');
+        } else {
+            pageNum.classList.remove('active');
+        }
+    }
+}
+
+// Hàm thay đổi trang
+function changePage(direction) {
+    if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 'next' && currentPage < Math.ceil(customers.length / customersPerPage)) {
+        currentPage++;
+    }
+    displayCustomers(currentPage);
+}
+
+// Hàm chuyển đến trang cụ thể
+function goToPage(page) {
+    currentPage = page;
+    displayCustomers(currentPage);
+}
+
+// Khởi tạo trang ban đầu
+displayCustomers(currentPage);
+
 
