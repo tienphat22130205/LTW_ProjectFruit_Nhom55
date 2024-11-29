@@ -384,7 +384,6 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h2>Khách hàng mới </h2>
-                                        <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
                                     </div>
                                     <div class="card-body">
                                         <div class="customer">
@@ -459,7 +458,6 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <h2>Sản phẩm được mua nhiều nhất</h2>
-                                        <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -672,7 +670,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2>Sản Phẩm Mới</h2>
-                                <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
                             </div>
                             <div class="card-body">
                                 <div class="table-reponsive">
@@ -1040,26 +1037,27 @@
                 <div class="orders">
                     <div class="card">
                         <div class="card-header">
-                            <h2>Đơn đặt hàng gần đây</h2>
-                            <div class="options">
-                                <select id="filterSelect">
-                                    <option value="">Chọn</option>
-                                    <option value="all">Tất cả khách hàng</option>
-                                    <option value="new">Khách hàng mới</option>
-                                    <option value="pending">Đang chờ thanh toán</option>
-                                    <option value="completed">Đã hoàn thành đơn hàng</option>
-                                </select>
-
-                                <!-- Nút sắp xếp -->
-                                <button id="sortButton" class="sort-button">
-                                    Sắp xếp <span class="sort-icon fas fa-sort"></span>
-                                </button>
+                            <div class="search-box">
+                                <input type="text" placeholder="Tìm kiếm..." />
+                                <div class="search">
+                                    <button class="search-btn">Tìm kiếm</button>
+                                </div>
                             </div>
-                            <button>Xem tất cả <span class="fas fa-arrow-right"></span></button>
+                            <div class="sort-options">
+                                <select>
+                                    <option value="#">Chọn lựa chọn</option>
+                                    <option value="date">Ngày đăng ký</option>
+                                    <option value="phone">Số điện thoại</option>
+                                </select>
+                                <div class="sort-icon">
+                                    <i class="fas fa-sort"></i>
+                                    <span class="sort-label">Sắp xếp</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="table-reponsive">
-                                <table width="100%">
+                                <table id="orderTable" width="100%">
                                     <thead>
                                         <tr>
                                             <td>Mã đơn hàng</td>
@@ -1071,149 +1069,26 @@
                                             <td>Tình trạng</td>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>#ORD001</td>
-                                            <td>Nguyễn Minh Khoa</td>
-                                            <td>123 Đường ABC, TP.HCM</td>
-                                            <td>12/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Chuyển khoản</td>
-                                            <td>
-                                                <span class="status yellow"></span>
-                                                Chờ xử lý
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD002</td>
-                                            <td>Trần Thị Lan Anh</td>
-                                            <td>456 Đường XYZ, Hà Nội</td>
-                                            <td>10/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Tiền mặt</td>
-                                            <td>
-                                                <span class="status yellow"></span>
-                                                Chờ xử lý
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD003</td>
-                                            <td>Ngô Văn Dũng</td>
-                                            <td>789 Đường MNO, Đà Nẵng</td>
-                                            <td>09/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Ví điện tử</td>
-                                            <td>
-                                                <span class="status green"></span>
-                                                Đã thanh toán
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD004</td>
-                                            <td>Lê Thị Bích Ngọc</td>
-                                            <td>101 Đường PQR, Cần Thơ</td>
-                                            <td>05/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Chuyển khoản</td>
-                                            <td>
-                                                <span class="status blue"></span>
-                                                Đang giao hàng
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD005</td>
-                                            <td>Hoàng Văn Sơn</td>
-                                            <td>202 Đường STU, Hải Phòng</td>
-                                            <td>03/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Tiền mặt</td>
-                                            <td>
-                                                <span class="status blue"></span>
-                                                Đang giao hàng
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD006</td>
-                                            <td>Phạm Văn Bình</td>
-                                            <td>303 Đường VWX, TP.HCM</td>
-                                            <td>02/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Ví điện tử</td>
-                                            <td>
-                                                <span class="status green"></span>
-                                                Đã thanh toán
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD007</td>
-                                            <td>Phạm Văn Toàn</td>
-                                            <td>404 Đường YZ, Đà Nẵng</td>
-                                            <td>02/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Chuyển khoản</td>
-                                            <td>
-                                                <span class="status green"></span>
-                                                Đã thanh toán
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD008</td>
-                                            <td>Phạm Văn Huy</td>
-                                            <td>505 Đường ABC, Hà Nội</td>
-                                            <td>02/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Tiền mặt</td>
-                                            <td>
-                                                <span class="status red"></span>
-                                                Đã hủy
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD009</td>
-                                            <td>Bùi Lệ Huyên</td>
-                                            <td>606 Đường DEF, TP.HCM</td>
-                                            <td>02/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Ví điện tử</td>
-                                            <td>
-                                                <span class="status green"></span>
-                                                Đã thanh toán
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>#ORD010</td>
-                                            <td>Phạm Văn Bình</td>
-                                            <td>707 Đường GHI, Cần Thơ</td>
-                                            <td>02/11/2023</td>
-                                            <td>
-                                                <button class="button-new-invoice-detail">Xem chi tiết</button>
-                                            </td>
-                                            <td>Chuyển khoản</td>
-                                            <td>
-                                                <span class="status red"></span>
-                                                Đã hủy
-                                            </td>
-                                        </tr>
+                                    <tbody id="orderList">
+                                        <!-- Dữ liệu đơn hàng sẽ được thêm ở đây bằng JavaScript -->
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                        <div class="card-bottom">
+                            <div class="left-section">
+                                <!-- Nội dung bên trái, ví dụ: thông tin thêm, icon, v.v. -->
+                                <span class="info">Hiển thị thêm đơn hàng </span>
+                            </div>
+                            <div class="right-section">
+                                <div class="pagination">
+                                    <button class="prev" onclick="changePage('prev')">Trước</button>
+                                    <span class="page-num" id="page-1" onclick="goToPage(1)">1</span>
+                                    <span class="page-num" id="page-2" onclick="goToPage(2)">2</span>
+                                    <span class="page-num" id="page-3" onclick="goToPage(3)">3</span>
+                                    <span class="page-num">...</span>
+                                    <button class="next" onclick="changePage('next')">Tiếp</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1538,46 +1413,6 @@
                         <button>Tìm kiếm</button>
                     </div>
                     <table class="promotion-table">
-                    <thead>
-                    <tr style="text-align: center">
-                        <th>Tên Khuyến Mãi</th>
-                        <th>Thời Gian</th>
-                        <th>Phần Trăm Giảm Giá</th>
-                        <th>Loại Sản Phẩm Áp Dụng</th>
-                        <th>Hành Động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Ngày Nhà Giáo Việt Nam</td>
-                        <td style="text-align: center">19/11/2024 - 20/11/2024</td>
-                        <td>25%</td>
-                        <td>Tất cả sản phẩm</td>
-                        <td>
-                            <button class="edit-btn"
-                                    onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">
-                                Sửa
-                            </button>
-                            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                </div>
-            </div>
-            <div id="promotions" class="section">
-                <div class="promotion-container">
-                    <div class="promotion-header">
-                        <h1>Quản Lý Khuyến Mãi</h1>
-                        <button id="openPromotionModal" class="button-add-promotion">Thêm Khuyến Mãi</button>
-                        <!-- Modal Thêm Khuyến Mãi -->
-                    </div>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Tìm khuyến mãi..." />
-                        <button>Tìm kiếm</button>
-                    </div>
-                    <table class="promotion-table">
                         <thead>
                             <tr style="text-align: center">
                                 <th>Tên Khuyến Mãi</th>
@@ -1592,14 +1427,16 @@
                                 <td>Ngày Nhà Giáo Việt Nam</td>
                                 <td style="text-align: center">19/11/2024 - 20/11/2024</td>
                                 <td>25%</td>
-
+                                <td>Tất cả sản phẩm</td>
                                 <td>
                                     <button class="edit-btn"
-                                        onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
+                                        onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">
+                                        Sửa
+                                    </button>
                                     <button class="delete-btn"
-                                        onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
+                                        onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa
+                                    </button>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
@@ -2044,8 +1881,8 @@
                 </div>
             </div>
         </div>
-         <!-- Quản lý khuyến mãi -->
-         <div id="promotionModal1" class="custom-modal">
+        <!-- Quản lý khuyến mãi -->
+        <div id="promotionModal1" class="custom-modal">
             <div class="custom-modal-content">
                 <span class="custom-close-button" onclick="closeModal('promotion')">&times;</span>
                 <h2>Thêm Khuyến Mãi</h2>
@@ -2087,51 +1924,52 @@
                     </div>
                 </form>
             </div>
-    <!-- Modal Sửa Khuyến Mãi -->
-    <div id="editPromotionModal" class="modal">
-        <div class="editPromotionModal-content">
-            <h3>Chỉnh Sửa Chương Trình Khuyến Mãi</h3>
-            <form id="editPromotionForm" class="editPromotion">
-                <label for="promoTitle">Tên Chương Trình</label>
-                <input type="text" id="promoTitle" placeholder="Nhập tên chương trình">
-                <label for="promoDiscount">Phần Trăm Giảm Giá</label>
-                <input type="number" id="promoDiscount" placeholder="Nhập % giảm giá">
-                <label for="promoStart">Thời Gian Bắt Đầu</label>
-                <input type="date" id="promoStart">
-                <label for="promoEnd">Thời Gian Kết Thúc</label>
-                <input type="date" id="promoEnd">
-                <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
-                <select id="productTypeSelect">
-                    <option value="all">Tất cả sản phẩm</option>
-                    <option value="domestic">Sản phẩm trong nước</option>
-                    <option value="imported">Sản phẩm nhập khẩu</option>
-                    <option value="today_fruits">Trái Ngon Hôm Nay</option>
-                    <option value="vietnam_fruits">Trái Cây Việt Nam</option>
-                    <option value="imported_fruits">Trái Cây Nhập Khẩu</option>
-                    <option value="precut_fruits">Trái Cây Cắt Sẵn</option>
-                    <option value="fruit_gifts">Quà Tặng Trái Cây</option>
-                    <option value="mooncake_gifts">Hộp Quà Nguyệt Cát</option>
-                    <option value="dried_fruits">Trái Cây Sấy Khô</option>
-                    <option value="fruit_jam">Mứt Trái Cây</option>
-                </select>
-            </form>
-            <div class ="save-close" style="padding-top: 30px">
-                <button type="submit">Lưu</button>
-                <button type="button" onclick="closeModal()">Hủy</button>
+            <!-- Modal Sửa Khuyến Mãi -->
+            <div id="editPromotionModal" class="modal">
+                <div class="editPromotionModal-content">
+                    <h3>Chỉnh Sửa Chương Trình Khuyến Mãi</h3>
+                    <form id="editPromotionForm" class="editPromotion">
+                        <label for="promoTitle">Tên Chương Trình</label>
+                        <input type="text" id="promoTitle" placeholder="Nhập tên chương trình">
+                        <label for="promoDiscount">Phần Trăm Giảm Giá</label>
+                        <input type="number" id="promoDiscount" placeholder="Nhập % giảm giá">
+                        <label for="promoStart">Thời Gian Bắt Đầu</label>
+                        <input type="date" id="promoStart">
+                        <label for="promoEnd">Thời Gian Kết Thúc</label>
+                        <input type="date" id="promoEnd">
+                        <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
+                        <select id="productTypeSelect">
+                            <option value="all">Tất cả sản phẩm</option>
+                            <option value="domestic">Sản phẩm trong nước</option>
+                            <option value="imported">Sản phẩm nhập khẩu</option>
+                            <option value="today_fruits">Trái Ngon Hôm Nay</option>
+                            <option value="vietnam_fruits">Trái Cây Việt Nam</option>
+                            <option value="imported_fruits">Trái Cây Nhập Khẩu</option>
+                            <option value="precut_fruits">Trái Cây Cắt Sẵn</option>
+                            <option value="fruit_gifts">Quà Tặng Trái Cây</option>
+                            <option value="mooncake_gifts">Hộp Quà Nguyệt Cát</option>
+                            <option value="dried_fruits">Trái Cây Sấy Khô</option>
+                            <option value="fruit_jam">Mứt Trái Cây</option>
+                        </select>
+                    </form>
+                    <div class="save-close" style="padding-top: 30px">
+                        <button type="submit">Lưu</button>
+                        <button type="button" onclick="closeModal()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Xóa Khuyến Mãi -->
+            <div id="deletePromotionModal" class="modal">
+                <div class="deletePromotionModal-content">
+                    <h3>Xác Nhận Xóa Chương Trình</h3>
+                    <p>Bạn có chắc chắn muốn xóa chương trình khuyến mãi này không?</p>
+                    <div class="delete-cancel">
+                        <button id="confirmDeleteButton">Xóa</button>
+                        <button type="button" onclick="closeModal('deletePromotion')">Hủy</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Modal Xóa Khuyến Mãi -->
-    <div id="deletePromotionModal" class="modal">
-        <div class="deletePromotionModal-content">
-            <h3>Xác Nhận Xóa Chương Trình</h3>
-            <p>Bạn có chắc chắn muốn xóa chương trình khuyến mãi này không?</p>
-            <div class="delete-cancel">
-                <button id="confirmDeleteButton">Xóa</button>
-                <button type="button" onclick="closeModal('deletePromotion')">Hủy</button>
-            </div>
-        </div>
-    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./javacript/admin.js"></script>

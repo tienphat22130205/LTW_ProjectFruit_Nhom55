@@ -618,7 +618,6 @@ function closeModal(modalType) {
         document.getElementById("promotionModal1").style.display = "none";
     }
 }
-
 // Sự kiện nhấn nút "Xem chi tiết"
 document.querySelectorAll(".button-invoice-detail").forEach(button => {
     button.addEventListener("click", () => {
@@ -637,8 +636,25 @@ document.querySelectorAll(".button-invoice-detail").forEach(button => {
     });
 });
 
-document.querySelectorAll(".button-product-detail").forEach(button => {
-    button.addEventListener("click", () => {
+document.getElementById('customer-list').addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('button-product-detail')) {
+        const customerData = {
+            customerName: "Ngô Tiến Phát",
+            customerAddress: "123 Đường ABC",
+            customerPhone: "0987654321",
+            customerDateSell: "12/11/2023",
+            products: [
+                { name: "Đào Tiên Úc", quantity: 5, unitPrice: "90,000", totalPrice: "450,000" },
+                { name: "Dâu Nghệ Nhân", quantity: 3, unitPrice: "72,000", totalPrice: "213,000" }
+            ],
+            totalAmount: "663,000"
+        };
+        openModal(customerData, "invoice");
+    }
+});
+
+document.getElementById('orderList').addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('button-product-order')) {
         const productDetailData = {
             customerID: "VIP001",
             customerName1: "Nguyễn Phương Mai",
@@ -650,7 +666,7 @@ document.querySelectorAll(".button-product-detail").forEach(button => {
             grandTotal: "46,390,000"
         };
         openModal(productDetailData, "productDetail");
-    });
+    }
 });
 
 document.querySelectorAll(".button-product-description").forEach(button => {
@@ -1110,8 +1126,22 @@ const customers = [
     { id: 'VIP014', name: 'Võ Minh Tâm', email: 'minhtam95@gmail.com', phone: '0902345678', address: '15 Lê Lợi, TP.HCM', registerDate: '2020-08-19' },
     { id: 'VIP015', name: 'Lê Hồng Sơn', email: 'hongson96@gmail.com', phone: '0974321567', address: '28 Trần Hưng Đạo, Hà Nội', registerDate: '2021-09-14' },
 ];
+const orders = [
+    { orderId: '#ORD001', customerName: 'Nguyễn Minh Khoa', address: '123 Đường ABC, TP.HCM', date: '12/11/2023', paymentMethod: 'Chuyển khoản', status: 'Chờ xử lý' },
+    { orderId: '#ORD002', customerName: 'Trần Thị Lan Anh', address: '456 Đường XYZ, Hà Nội', date: '10/11/2023', paymentMethod: 'Tiền mặt', status: 'Chờ xử lý' },
+    { orderId: '#ORD003', customerName: 'Ngô Văn Dũng', address: '789 Đường MNO, Đà Nẵng', date: '09/11/2023', paymentMethod: 'Ví điện tử', status: 'Đã thanh toán' },
+    { orderId: '#ORD004', customerName: 'Lê Thị Bích Ngọc', address: '101 Đường PQR, Cần Thơ', date: '05/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đang giao hàng' },
+    { orderId: '#ORD005', customerName: 'Hoàng Văn Sơn', address: '202 Đường STU, Hải Phòng', date: '03/11/2023', paymentMethod: 'Tiền mặt', status: 'Đang giao hàng' },
+    { orderId: '#ORD006', customerName: 'Phạm Văn Bình', address: '303 Đường VWX, TP.HCM', date: '02/11/2023', paymentMethod: 'Ví điện tử', status: 'Đã thanh toán' },
+    { orderId: '#ORD007', customerName: 'Phạm Văn Toàn', address: '404 Đường YZ, Đà Nẵng', date: '02/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đã thanh toán' },
+    { orderId: '#ORD008', customerName: 'Phạm Văn Huy', address: '505 Đường ABC, Hà Nội', date: '02/11/2023', paymentMethod: 'Tiền mặt', status: 'Đã hủy' },
+    { orderId: '#ORD009', customerName: 'Bùi Lệ Huyên', address: '606 Đường DEF, TP.HCM', date: '02/11/2023', paymentMethod: 'Ví điện tử', status: 'Đã thanh toán' },
+    { orderId: '#ORD010', customerName: 'Phạm Văn Bình', address: '707 Đường GHI, Cần Thơ', date: '02/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đã hủy' },
+    // Thêm nhiều đơn hàng nếu cần
+];
 
 const customersPerPage = 7;  // Số khách hàng hiển thị trên mỗi trang
+const ordersPerPage = 5;
 let currentPage = 1;        // Trang hiện tại
 
 // Hàm hiển thị khách hàng theo trang
@@ -1142,6 +1172,47 @@ function displayCustomers(page) {
     // Cập nhật các nút trang
     updatePagination(page);
 }
+// Hàm hiển thị đơn hàng
+function displayOrders(page) {
+    const start = (page - 1) * ordersPerPage;
+    const end = start + ordersPerPage;
+    const ordersToShow = orders.slice(start, end);
+    const orderList = document.getElementById('orderList');
+
+    orderList.innerHTML = '';  // Xóa danh sách cũ
+
+    ordersToShow.forEach(order => {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${order.customerName}</td>
+            <td>${order.address}</td>
+            <td>${order.date}</td>
+            <td>
+                <!-- Nút Xem chi tiết hóa đơn -->
+                <button class="button-product-order">Xem chi tiết</button>
+            </td>
+            <td>${order.paymentMethod}</td>
+            <td class="status">
+                <div class="status-dot" style="background-color: ${getOrderStatusColor(order.status)}"></div>
+                <span class="status-text">${order.status}</span>
+            </td>
+        `;
+        
+        orderList.appendChild(row);
+    });
+}
+// Hàm lấy màu của trạng thái đơn hàng
+function getOrderStatusColor(status) {
+    switch (status) {
+        case 'Chờ xử lý': return 'orange';
+        case 'Đang giao hàng': return 'blue';
+        case 'Đã thanh toán': return 'green';
+        case 'Đã hủy': return 'red';
+        default: return 'black';
+    }
+}
 // Hàm sắp xếp danh sách khách hàng theo ngày đăng ký hoặc số điện thoại
 function sortCustomers(criteria) {
     let sortedCustomers = [...customers]; // Sao chép danh sách khách hàng ban đầu
@@ -1158,7 +1229,9 @@ function sortCustomers(criteria) {
 
 // Hàm cập nhật các nút phân trang
 function updatePagination(page) {
-    const totalPages = Math.ceil(customers.length / customersPerPage);
+    const totalCustomersPages = Math.ceil(customers.length / customersPerPage);
+    const totalOrdersPages = Math.ceil(orders.length / ordersPerPage);
+    const totalPages = Math.max(totalCustomersPages, totalOrdersPages);
     for (let i = 1; i <= totalPages; i++) {
         const pageNum = document.getElementById(`page-${i}`);
         if (i === page) {
@@ -1177,15 +1250,18 @@ function changePage(direction) {
         currentPage++;
     }
     displayCustomers(currentPage);
+    displayOrders(currentPage);
 }
 
 // Hàm chuyển đến trang cụ thể
 function goToPage(page) {
     currentPage = page;
     displayCustomers(currentPage);
+    displayOrders(currentPage);
 }
 
 // Khởi tạo trang ban đầu
 displayCustomers(currentPage);
-
+displayOrders(currentPage);
+// -------------------------------trang don hang----------------------------
 
