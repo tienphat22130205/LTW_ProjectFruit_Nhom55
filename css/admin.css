@@ -2357,11 +2357,32 @@ h2 {
     line-height: 1.5;
     /* Khoảng cách giữa các dòng */
 }
+#productTypeSelect {
+    max-width: 320px;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    width: 320px;
+    padding: 5px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none; /* Ẩn mũi tên mặc định */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23999" d="M2 0L0 2h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px 12px;
+}
+#productTypeSelect:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
 
 /* --- kết thúc CSS cho Modal Thêm Khuyến Mãi --- */
-
-
-
 
 
 

@@ -1583,6 +1583,7 @@
                                 <th>Tên Khuyến Mãi</th>
                                 <th>Thời Gian</th>
                                 <th>Phần Trăm Giảm Giá</th>
+                                <th>Loại Sản Phẩm Áp Dụng</th>
                                 <th>Hành Động</th>
                             </tr>
                         </thead>
@@ -2044,49 +2045,48 @@
             </div>
         </div>
          <!-- Quản lý khuyến mãi -->
-    <div id="promotionModal1" class="custom-modal">
-        <div class="custom-modal-content">
-            <span class="custom-close-button" onclick="closeModal('promotion')">&times;</span>
-            <h2>Thêm Khuyến Mãi</h2>
-            <form id="promotionForm">
-                <div class="form-group">
-                    <label for="promotionName">Tên Khuyến Mãi:</label>
-                    <input type="text" id="promotionName" placeholder="Nhập tên khuyến mãi" required>
-                </div>
-                <div class="form-group">
-                    <label for="discount">Giảm Giá (%):</label>
-                    <input type="text" id="discount" min="1" max="100" placeholder="Nhập giảm giá" required>
-                </div>
-                <div class="form-group">
-                    <label for="startDate">Ngày Bắt Đầu:</label>
-                    <input type="date" id="startDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="endDate">Ngày Kết Thúc:</label>
-                    <input type="date" id="endDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
-                    <select id="productTypeSelect">
-                        <option value="all">Tất cả sản phẩm</option>
-                        <option value="domestic">Sản phẩm trong nước</option>
-                        <option value="imported">Sản phẩm nhập khẩu</option>
-                        <option value="today_fruits">Trái Ngon Hôm Nay</option>
-                        <option value="vietnam_fruits">Trái Cây Việt Nam</option>
-                        <option value="imported_fruits">Trái Cây Nhập Khẩu</option>
-                        <option value="precut_fruits">Trái Cây Cắt Sẵn</option>
-                        <option value="fruit_gifts">Quà Tặng Trái Cây</option>
-                        <option value="mooncake_gifts">Hộp Quà Nguyệt Cát</option>
-                        <option value="dried_fruits">Trái Cây Sấy Khô</option>
-                        <option value="fruit_jam">Mứt Trái Cây</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" id="savePromotionBtn" class="btn-save">Lưu</button>
-                </div>
-            </form>
-        </div>
-    </div>
+         <div id="promotionModal1" class="custom-modal">
+            <div class="custom-modal-content">
+                <span class="custom-close-button" onclick="closeModal('promotion')">&times;</span>
+                <h2>Thêm Khuyến Mãi</h2>
+                <form id="promotionForm">
+                    <div class="form-group">
+                        <label for="promotionName">Tên Khuyến Mãi:</label>
+                        <input type="text" id="promotionName" placeholder="Nhập tên khuyến mãi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discount">Giảm Giá (%):</label>
+                        <input type="text" id="discount" min="1" max="100" placeholder="Nhập giảm giá" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Ngày Bắt Đầu:</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Ngày Kết Thúc:</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
+                        <select id="productTypeSelect">
+                            <option value="all">Tất cả sản phẩm</option>
+                            <option value="domestic">Sản phẩm trong nước</option>
+                            <option value="imported">Sản phẩm nhập khẩu</option>
+                            <option value="today_fruits">Trái Ngon Hôm Nay</option>
+                            <option value="vietnam_fruits">Trái Cây Việt Nam</option>
+                            <option value="imported_fruits">Trái Cây Nhập Khẩu</option>
+                            <option value="precut_fruits">Trái Cây Cắt Sẵn</option>
+                            <option value="fruit_gifts">Quà Tặng Trái Cây</option>
+                            <option value="mooncake_gifts">Hộp Quà Nguyệt Cát</option>
+                            <option value="dried_fruits">Trái Cây Sấy Khô</option>
+                            <option value="fruit_jam">Mứt Trái Cây</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="savePromotionBtn" class="btn-save">Lưu</button>
+                    </div>
+                </form>
+            </div>
     <!-- Modal Sửa Khuyến Mãi -->
     <div id="editPromotionModal" class="modal">
         <div class="editPromotionModal-content">
@@ -2094,16 +2094,12 @@
             <form id="editPromotionForm" class="editPromotion">
                 <label for="promoTitle">Tên Chương Trình</label>
                 <input type="text" id="promoTitle" placeholder="Nhập tên chương trình">
-
                 <label for="promoDiscount">Phần Trăm Giảm Giá</label>
                 <input type="number" id="promoDiscount" placeholder="Nhập % giảm giá">
-
                 <label for="promoStart">Thời Gian Bắt Đầu</label>
                 <input type="date" id="promoStart">
-
                 <label for="promoEnd">Thời Gian Kết Thúc</label>
                 <input type="date" id="promoEnd">
-
                 <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
                 <select id="productTypeSelect">
                     <option value="all">Tất cả sản phẩm</option>
