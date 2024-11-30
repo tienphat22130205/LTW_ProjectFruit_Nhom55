@@ -65,8 +65,9 @@
             </ul>
         </div>
         <div class="logout">
-            <a href="index.html" class="menu-item"><span><i class="fa-solid fa-right-from-bracket"></i></span><span>Đăng
-                    xuất</span></a>
+            <a href="javascript:void(0);" class="menu-item" id="logoutBtn">
+                <span><i class="fa-solid fa-right-from-bracket"></i></span><span>Đăng xuất</span>
+            </a>
         </div>
     </div>
     <div class="main-content">
@@ -77,10 +78,6 @@
                 </label>
                 Dashboard
             </h1>
-            <!-- <div class="search-wrapper">
-                <span class="fa-solid fa-search"></span>
-                <input type="search" placeholder="Bạn muốn tìm gì...">
-            </div> -->
             <div class="user-wrapper">
                 <div class="notification-icon" id="notificationBell">
                     <i class="fas fa-bell"></i>
@@ -390,7 +387,7 @@
                                         <span class="page-num">...</span>
                                         <button class="next" onclick="changePage('next')">Tiếp</button>
                                     </div>
-        
+
                                 </div>
                             </div>
                         </div>
@@ -1059,7 +1056,7 @@
                                         <span class="page-num">...</span>
                                         <button class="next" onclick="changePage('next')">Tiếp</button>
                                     </div>
-        
+
                                 </div>
                             </div>
                         </div>
@@ -1639,6 +1636,14 @@
                 </div>
             </div>
         </main>
+    </div>
+    <div id="logoutOverlay" class="logout-overlay" style="display: none;"></div>
+    <div id="logoutNotification" class="logout-notification" style="display: none;">
+        <div class="notification-content">
+            <p>Bạn có muốn đăng xuất ?</p>
+            <button id="confirmLogoutBtn">Có</button>
+            <button id="cancelLogoutBtn">Không</button>
+        </div>
     </div>
     <div id="overlay" class="overlay">
         <!-- Modal chi tiết hóa đơn -->

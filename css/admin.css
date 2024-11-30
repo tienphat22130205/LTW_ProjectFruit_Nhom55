@@ -157,6 +157,57 @@
     color: var(--main--color);
     background: #fff;
 }
+/* Kiểu cho overlay nền đen mờ */
+.logout-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền đen mờ */
+    z-index: 999; /* Để nền mờ nằm dưới thông báo */
+    display: none; /* Ẩn overlay khi không cần thiết */
+}
+
+/* Kiểu cho thông báo đăng xuất */
+.logout-notification {
+    position: fixed;
+    top: 50%;                  
+    left: 50%;                   
+    transform: translate(-50%, -50%); 
+    background-color: #fff;      
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;               
+    max-width: 360px;           
+    width: 100%;
+    text-align: center;
+}
+
+/* Style cho nút */
+.notification-content button {
+    padding: 10px 20px;
+    margin: 20px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.notification-content button:hover {
+    background-color: #45a049;
+}
+
+.notification-content button#cancelLogoutBtn {
+    background-color: #f44336;
+}
+
+.notification-content button#cancelLogoutBtn:hover {
+    background-color: #e53935;
+}
 
 .main-content {
     transition: margin-left 300ms;

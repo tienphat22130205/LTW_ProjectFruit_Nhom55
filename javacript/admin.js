@@ -383,6 +383,30 @@ new Chart(productStatsChartCtx, {
         },
     },
 });
+// Khi người dùng nhấn vào "Đăng xuất"
+document.getElementById("logoutBtn").onclick = function() {
+    // Hiển thị cả overlay và thông báo đăng xuất
+    document.getElementById("logoutOverlay").style.display = "block";
+    document.getElementById("logoutNotification").style.display = "block";
+};
+
+// Khi người dùng nhấn "Có" (Xác nhận đăng xuất)
+document.getElementById("confirmLogoutBtn").onclick = function() {
+    window.location.href = "index.html"; // Chuyển hướng đến trang đăng xuất
+};
+
+// Khi người dùng nhấn "Không" (Hủy đăng xuất)
+document.getElementById("cancelLogoutBtn").onclick = function() {
+    // Ẩn cả overlay và thông báo đăng xuất
+    document.getElementById("logoutOverlay").style.display = "none";
+    document.getElementById("logoutNotification").style.display = "none";
+};
+
+// Khi người dùng nhấn vào overlay (bên ngoài thông báo), đóng thông báo
+document.getElementById("logoutOverlay").onclick = function() {
+    document.getElementById("logoutOverlay").style.display = "none";
+    document.getElementById("logoutNotification").style.display = "none";
+};
 
 // Hàm mở modal chung
 function openModal(data, modalType) {
