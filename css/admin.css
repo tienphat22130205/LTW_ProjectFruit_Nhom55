@@ -1357,14 +1357,14 @@ td:nth-child(4) {
     margin: 10px;
     border: none;
     border-radius: 6px;
-    background-color: #e69500;
+    background-color: var(--green);
     color: white;
     cursor: pointer;
     font-size: medium;
 }
 
 .admin-actions button:hover {
-    background-color: #c67800;
+    background-color: #1e7833;
 }
 
 /* -----------------------------------------------css phan hoi khach hang -----------------------------*/
