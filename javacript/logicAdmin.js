@@ -138,3 +138,69 @@ function saveSystemConfig() {
 }
 
 
+function editProduct() {
+    // Chuyển tất cả các trường thông tin từ chế độ xem sang chế độ chỉnh sửa
+    document.getElementById('product-description-name').style.display = 'none';
+    document.getElementById('edit-product-name').style.display = 'inline-block';
+    
+    document.getElementById('product-description-code').style.display = 'none';
+    document.getElementById('edit-product-code').style.display = 'inline-block';
+    
+    document.getElementById('product-description-price').style.display = 'none';
+    document.getElementById('edit-product-price').style.display = 'inline-block';
+    
+    document.getElementById('product-description-category').style.display = 'none';
+    document.getElementById('edit-product-category').style.display = 'inline-block';
+    
+    document.getElementById('product-description-origin').style.display = 'none';
+    document.getElementById('edit-product-origin').style.display = 'inline-block';
+    
+    document.getElementById('product-description-description').style.display = 'none';
+    document.getElementById('edit-product-description').style.display = 'inline-block';
+    
+    // Hiển thị nút Lưu
+    document.getElementById('edit-product-button').style.display = 'none';
+    document.getElementById('save-product-button').style.display = 'inline-block';
+}
+
+function saveProduct() {
+    // Lấy dữ liệu từ các input sau khi chỉnh sửa
+    const productName = document.getElementById('edit-product-name').value;
+    const productCode = document.getElementById('edit-product-code').value;
+    const productPrice = document.getElementById('edit-product-price').value;
+    const productCategory = document.getElementById('edit-product-category').value;
+    const productOrigin = document.getElementById('edit-product-origin').value;
+    const productDescription = document.getElementById('edit-product-description').value;
+
+    // Cập nhật thông tin vào các span
+    document.getElementById('product-description-name').innerText = productName;
+    document.getElementById('product-description-code').innerText = productCode;
+    document.getElementById('product-description-price').innerText = productPrice;
+    document.getElementById('product-description-category').innerText = productCategory;
+    document.getElementById('product-description-origin').innerText = productOrigin;
+    document.getElementById('product-description-description').innerText = productDescription;
+
+    // Chuyển các input trở lại chế độ xem
+    document.getElementById('product-description-name').style.display = 'inline-block';
+    document.getElementById('edit-product-name').style.display = 'none';
+    
+    document.getElementById('product-description-code').style.display = 'inline-block';
+    document.getElementById('edit-product-code').style.display = 'none';
+    
+    document.getElementById('product-description-price').style.display = 'inline-block';
+    document.getElementById('edit-product-price').style.display = 'none';
+    
+    document.getElementById('product-description-category').style.display = 'inline-block';
+    document.getElementById('edit-product-category').style.display = 'none';
+    
+    document.getElementById('product-description-origin').style.display = 'inline-block';
+    document.getElementById('edit-product-origin').style.display = 'none';
+    
+    document.getElementById('product-description-description').style.display = 'inline-block';
+    document.getElementById('edit-product-description').style.display = 'none';
+
+    // Ẩn nút Lưu và hiển thị nút Chỉnh sửa
+    document.getElementById('edit-product-button').style.display = 'inline-block';
+    document.getElementById('save-product-button').style.display = 'none';
+}
+
