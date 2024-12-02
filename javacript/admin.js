@@ -752,44 +752,72 @@ document.querySelectorAll(".button-add-promotion").forEach(button => {
         openModal(null, "promotion"); // Mở modal thêm khuyến mãi
     });
 });
+
 // Xử lý khi nhấn "Lưu" trong form thêm khuyến mãi
-document.getElementById("promotionForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // Ngăn chặn hành vi submit mặc định
+document.addEventListener('DOMContentLoaded', function () {
+    // Lấy form promotionForm
+    const promotionForm = document.getElementById("promotionForm");
 
-    // Lấy dữ liệu từ form
-    const promotionName = document.getElementById("promotionName").value;
-    const promotionStartDate = document.getElementById("startDate").value;
-    const promotionEndDate = document.getElementById("endDate").value;
-    const promotionDiscount = document.getElementById("discount").value;
+    // Kiểm tra nếu form tồn tại
+    if (promotionForm) {
+        promotionForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Ngăn hành vi submit mặc định
 
-    // Kiểm tra dữ liệu
-    if (!promotionName || !promotionStartDate || !promotionEndDate || !promotionDiscount) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
-        return;
+            // Lấy giá trị từ các input trong form
+            const promotionName = document.getElementById("promotionName").value;
+            const promotionStartDate = document.getElementById("startDate").value;
+            const promotionEndDate = document.getElementById("endDate").value;
+            const promotionDiscount = document.getElementById("discount").value;
+            const promotionProductTypeSelect = document.getElementById("productTypeSelect");
+
+            // Kiểm tra nếu phần tử select tồn tại
+            if (!promotionProductTypeSelect) {
+                alert("Loại sản phẩm không hợp lệ!");
+                return;
+            }
+
+            const selectedOption = promotionProductTypeSelect.options[promotionProductTypeSelect.selectedIndex];
+            const selectedText = selectedOption.textContent || selectedOption.innerText;
+
+            // Kiểm tra nếu các trường nhập liệu chưa được điền đầy đủ
+            if (!promotionName || !promotionStartDate || !promotionEndDate || !promotionDiscount || !selectedText) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            // Thêm khuyến mãi vào bảng
+            const promotionTable = document.querySelector(".promotion-table tbody");
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${promotionName}</td>
+                <td style="text-align: center">${promotionStartDate} - ${promotionEndDate}</td>
+                <td>${promotionDiscount}%</td>
+                <td>${selectedText}</td>
+                <td>
+                    <button class="edit-btn" onclick="openModal({
+                        promoTitle: '${promotionName}', 
+                        promoDiscount: ${promotionDiscount}, 
+                        promoStart: '${promotionStartDate}', 
+                        promoEnd: '${promotionEndDate}', 
+                        promoProductType: '${selectedText}'
+                    }, 'editPromotion')">Sửa</button>
+                    <button class="delete-btn" onclick="openModal({
+                        promoTitle: '${promotionName}'
+                    }, 'deletePromotion')">Xóa</button>
+                </td>
+            `;
+            promotionTable.appendChild(newRow); // Thêm dòng mới vào bảng
+
+            // Đặt lại form và đóng modal
+            promotionForm.reset();
+            closeModal("promotion");
+
+            // Thông báo thành công
+            alert("Khuyến mãi đã được thêm thành công!");
+        });
     }
-
-    // Thêm khuyến mãi vào bảng
-    const promotionTable = document.querySelector(".promotion-table tbody");
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td>${promotionName}</td>
-        <td style="text-align: center">${promotionStartDate} - ${promotionEndDate}</td>
-        <td>${promotionDiscount}%</td>
-        <td>
-            <button class="edit-btn" onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
-            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
-        </td>
-    `;
-
-    promotionTable.appendChild(newRow); // Thêm dòng mới vào bảng
-
-    // Đặt lại form và đóng modal
-    document.getElementById("promotionForm").reset();
-    closeModal("promotion");
-
-    // Thông báo thành công
-    alert("Khuyến mãi đã được thêm thành công!");
 });
+
 // ----------------------------suppliers---------------------------
 function viewDetails(transactionId) {
     alert(`Chi tiết giao dịch ${transactionId}`);
