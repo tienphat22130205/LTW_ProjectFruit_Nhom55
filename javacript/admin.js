@@ -407,6 +407,42 @@ document.getElementById("logoutOverlay").onclick = function() {
     document.getElementById("logoutOverlay").style.display = "none";
     document.getElementById("logoutNotification").style.display = "none";
 };
+// Khi người dùng nhấn vào "Xóa"
+document.querySelectorAll('.delete-button').forEach(button => {
+    button.onclick = function() {
+        // Lưu dòng sản phẩm cần xóa
+        currentRowToDelete = this.closest('tr');
+        
+        // Hiển thị cả overlay và thông báo xóa sản phẩm
+        document.getElementById("deleteOverlay").style.display = "block";
+        document.getElementById("deleteNotification").style.display = "block";
+    };
+});
+
+// Khi người dùng nhấn "Có" (Xác nhận xóa sản phẩm)
+document.getElementById("confirmDeleteBtn").onclick = function() {
+    // Xóa dòng sản phẩm
+    currentRowToDelete.remove();
+    
+    // Ẩn cả overlay và thông báo xóa
+    document.getElementById("deleteOverlay").style.display = "none";
+    document.getElementById("deleteNotification").style.display = "none";
+};
+
+// Khi người dùng nhấn "Không" (Hủy xóa sản phẩm)
+document.getElementById("cancelDeleteBtn").onclick = function() {
+    // Ẩn cả overlay và thông báo xóa mà không làm gì
+    document.getElementById("deleteOverlay").style.display = "none";
+    document.getElementById("deleteNotification").style.display = "none";
+};
+
+// Khi người dùng nhấn vào overlay (bên ngoài thông báo), đóng thông báo xóa
+document.getElementById("deleteOverlay").onclick = function() {
+    document.getElementById("deleteOverlay").style.display = "none";
+    document.getElementById("deleteNotification").style.display = "none";
+};
+
+
 
 // Hàm mở modal chung
 function openModal(data, modalType) {
@@ -1191,7 +1227,6 @@ const orders = [
     { orderId: '#ORD010', customerName: 'Phạm Văn Bình', address: '707 Đường GHI, Cần Thơ', date: '02/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đã hủy' },
     // Thêm nhiều đơn hàng nếu cần
 ];
-
 const customersPerPage = 7;  // Số khách hàng hiển thị trên mỗi trang
 const ordersPerPage = 5;
 let currentPage = 1;        // Trang hiện tại

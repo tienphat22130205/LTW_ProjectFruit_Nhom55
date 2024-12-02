@@ -208,6 +208,64 @@
 .notification-content button#cancelLogoutBtn:hover {
     background-color: #e53935;
 }
+/* Overlay khi modal hiển thị */
+.delete-overlay {
+    display: none; /* Mặc định ẩn */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền đen mờ */
+    z-index: 999; /* Để nền mờ nằm dưới thông báo */
+    display: none;
+}
+
+/* CSS cho modal */
+.delete-notification {
+    position: fixed;
+    top: 50%;                  
+    left: 50%;                   
+    transform: translate(-50%, -50%); 
+    background-color: #fff;      
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;               
+    max-width: 360px;           
+    width: 100%;
+    text-align: center;
+}
+
+.delete-notification h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.notification-content button {
+    padding: 10px 20px;
+    margin: 20px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+}
+
+#confirmDeleteBtn {
+    background-color: #ff4d4d; /* Màu đỏ cho Xóa */
+    color: white;
+}
+
+#cancelDeleteBtn {
+    background-color: #4caf50; /* Màu xanh cho Hủy */
+    color: white;
+}
+
+#confirmDeleteBtn:hover, #cancelDeleteBtn:hover {
+    opacity: 0.8;
+}
 
 .main-content {
     transition: margin-left 300ms;
@@ -1356,68 +1414,126 @@ td:nth-child(4) {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-#productDescriptionModal .modal-content {
+/* Cấu trúc modal */
+/* Chỉnh sửa modal */
+#product-description-modal-content {
     background-color: #fff;
-    padding: 20px;
-    /* border-radius: 12px; */
+    border-radius: 10px;
+    padding: 5px;
     width: 100%;
-    /* Điều chỉnh độ rộng */
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+    max-width: 1200px;
+}
+/* Phần tiêu đề */
+#product-description-title {
+    font-size: 28px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
-.product-detail-container {
+/* Container cho ảnh và thông tin sản phẩm */
+#product-detail-container {
     display: flex;
-    gap: 30px;
+    justify-content: space-between;
+    gap: 20px;
     align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Hình ảnh sản phẩm */
+#product-description-image-container {
+    width: 40%;
+    display: flex;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
-.product-image img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
+#product-description-image {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Thêm hiệu ứng shadow cho ảnh */
+    object-fit: cover;
 }
 
-.product-info {
-    flex: 1;
-    font-size: 20px;
+/* Thông tin sản phẩm */
+#product-description-info {
+    width: 55%;
+    font-size: 15hupx;
+    color: #555;
 }
 
-.product-info p {
-    margin: 10px;
+/* Các trường thông tin */
+#product-description-info .form-group {
+    margin-bottom: 20px;
 }
 
-.product-info strong {
+#product-description-info strong {
+    font-weight: 500;
     color: #333;
 }
 
-.admin-actions {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.admin-actions button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
+/* Các input và textarea */
+#product-description-info input[type="text"],
+#product-description-info textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
     border-radius: 6px;
-    background-color: var(--green);
+    border: 1px solid #ccc;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+#product-description-info input[type="text"]:focus,
+#product-description-info textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Nút chỉnh sửa và lưu */
+#edit-product-button,
+#save-product-button {
+    background-color: #4CAF50;
     color: white;
+    padding: 14px 22px;
+    border-radius: 6px;
+    border: none;
     cursor: pointer;
-    font-size: medium;
+    font-size: 18px;
+    transition: background-color 0.3s;
 }
 
-.admin-actions button:hover {
-    background-color: #1e7833;
+#edit-product-button:hover,
+#save-product-button:hover {
+    background-color: #45a049;
 }
 
+/* Nút lưu thay đổi */
+#save-product-button {
+    background-color: #2196F3;
+    display: none;
+}
+
+#save-product-button:hover {
+    background-color: #1976D2;
+}
+
+#product-description-modal-content {
+    animation: fadeIn 0.5s;
+}
+
+/* Hiệu ứng fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 /* -----------------------------------------------css phan hoi khach hang -----------------------------*/
 
 
