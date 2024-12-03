@@ -1351,4 +1351,15 @@ function goToPage(page) {
 displayCustomers(currentPage);
 displayOrders(currentPage);
 // -------------------------------trang don hang----------------------------
+// Set trạng thái phản hồi khách hàng
+function toggleStatus(element) {
+    // Kiểm tra nếu trạng thái hiện tại là 'unread' (màu đỏ)
+    if (element.classList.contains('unread')) {
+        // Chuyển thành 'read' (màu xanh)
+        element.classList.remove('unread');
+        element.classList.add('read');
+        element.textContent = "Đã đọc";
+   
+    }
+}
 

@@ -387,7 +387,10 @@
                                         <span class="page-num">...</span>
                                         <button class="next" onclick="changePage('next')">Tiếp</button>
                                     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch_dndphong2703
                                 </div>
                             </div>
                         </div>
@@ -898,7 +901,10 @@
                                         <span class="page-num">...</span>
                                         <button class="next" onclick="changePage('next')">Tiếp</button>
                                     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch_dndphong2703
                                 </div>
                             </div>
                         </div>
@@ -1315,8 +1321,27 @@
                     </table>
                 </div>
             </div>
-            <div id="feedback" class="section">
+            <div id="feedback" class="section">               
                 <div class="feedback-container">
+                    <div class="card-header">
+                        <div class="search-box">
+                            <input type="text" placeholder="Tìm kiếm..." />
+                            <div class="search">
+                                <button class="search-btn">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <div class="sort-options">
+                            <select>
+                                <option value="#">Chọn lựa chọn</option>
+                                <option value="date">Ngày gửi</option>
+                                <option value="phone">Trạng thái</option>
+                            </select>
+                            <div class="sort-icon">
+                                <i class="fas fa-sort"></i>
+                                <span class="sort-label">Sắp xếp</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="feedback-content">
                         <table class="feedback-table">
                             <thead>
@@ -1336,7 +1361,7 @@
                                     <td>nguyenvana@gmail.com</td>
                                     <td>Sản phẩm rất tốt, tôi rất hài lòng!</td>
                                     <td>20/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP02</td>
@@ -1344,7 +1369,7 @@
                                     <td>tranthib@gmail.com</td>
                                     <td>Giao hàng nhanh, nhân viên thân thiện.</td>
                                     <td>19/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP03</td>
@@ -1352,7 +1377,7 @@
                                     <td>hoangminhc@gmail.com</td>
                                     <td>Cần cải thiện chất lượng đóng gói.</td>
                                     <td>18/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td> <span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP04</td>
@@ -1360,7 +1385,7 @@
                                     <td>phamthid@gmail.com</td>
                                     <td>Nhân viên hỗ trợ rất nhiệt tình!</td>
                                     <td>17/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP05</td>
@@ -1368,7 +1393,7 @@
                                     <td>ngovane@gmail.com</td>
                                     <td>Giao hàng bị chậm hơn dự kiến.</td>
                                     <td>16/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP06</td>
@@ -1376,7 +1401,7 @@
                                     <td>dangthif@gmail.com</td>
                                     <td>Chất lượng sản phẩm rất tuyệt vời.</td>
                                     <td>15/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP07</td>
@@ -1384,7 +1409,7 @@
                                     <td>trinhvang@gmail.com</td>
                                     <td>Đề nghị cải thiện chất lượng dịch vụ chăm sóc khách hàng.</td>
                                     <td>14/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP08</td>
@@ -1392,7 +1417,7 @@
                                     <td>hoangthih@gmail.com</td>
                                     <td>Đóng gói rất đẹp, hàng giao nhanh.</td>
                                     <td>13/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP09</td>
@@ -1400,7 +1425,7 @@
                                     <td>levani@gmail.com</td>
                                     <td>Sản phẩm không đúng với mô tả.</td>
                                     <td>12/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP010</td>
@@ -1408,7 +1433,7 @@
                                     <td>tranthij@gmail.com</td>
                                     <td>Giao hàng đúng hẹn, nhân viên lịch sự.</td>
                                     <td>11/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP011</td>
@@ -1416,7 +1441,7 @@
                                     <td>vovank@gmail.com</td>
                                     <td>Hàng giao sai mẫu, cần hỗ trợ đổi trả.</td>
                                     <td>10/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP012</td>
@@ -1424,7 +1449,7 @@
                                     <td>nguyenthil@gmail.com</td>
                                     <td>Nhân viên rất nhiệt tình, tôi rất hài lòng.</td>
                                     <td>09/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP013</td>
@@ -1432,7 +1457,7 @@
                                     <td>phamvanm@gmail.com</td>
                                     <td>Giao hàng nhanh nhưng sản phẩm bị hỏng.</td>
                                     <td>08/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP014</td>
@@ -1440,7 +1465,7 @@
                                     <td>hoangthin@gmail.com</td>
                                     <td>Chất lượng rất tốt, sẽ tiếp tục ủng hộ.</td>
                                     <td>07/11/2024</td>
-                                    <td><span class="sta read">Đã đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center">VIP015</td>
@@ -1448,7 +1473,7 @@
                                     <td>tranvano@gmail.com</td>
                                     <td>Cần cải thiện thêm về thời gian giao hàng.</td>
                                     <td>06/11/2024</td>
-                                    <td><span class="sta unread">Chưa đọc</span></td>
+                                    <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
                                 </tr>
                             </tbody>
                         </table>

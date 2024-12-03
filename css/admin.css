@@ -1485,6 +1485,7 @@ td:nth-child(4) {
     margin-bottom: 4px;
     background-color: #f9f9f9;
     transition: border-color 0.3s;
+<<<<<<< HEAD
 }
 
 #product-description-info input[type="text"]:focus,
@@ -1509,6 +1510,56 @@ td:nth-child(4) {
 #edit-product-button:hover,
 #save-product-button:hover {
     background-color: #45a049;
+=======
+}
+
+#product-description-info input[type="text"]:focus,
+#product-description-info textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Nút chỉnh sửa và lưu */
+#edit-product-button,
+#save-product-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+#edit-product-button:hover,
+#save-product-button:hover {
+    background-color: #45a049;
+}
+
+/* Nút lưu thay đổi */
+#save-product-button {
+    background-color: #2196F3;
+    display: none;
+}
+
+#save-product-button:hover {
+    background-color: #1976D2;
+}
+
+#product-description-modal-content {
+    animation: fadeIn 0.5s;
+}
+
+/* Hiệu ứng fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+>>>>>>> branch_dndphong2703
 }
 
 /* Nút lưu thay đổi */
@@ -2136,35 +2187,105 @@ h2 {
 
 
 /*--css của phần phản hồi khách hàng--*/
+/* -- CSS của phần phản hồi khách hàng -- */
 .feedback-container {
     margin: 20px;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 12px;  /* Bo góc nhẹ hơn */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Bóng mờ sâu hơn */
 }
 
-.feedback-content {
-    font-size: 16px;
-    color: #555;
+/* Định dạng phần tiêu đề và các box tìm kiếm, sắp xếp */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #f4eeee;
+    border-radius: 25px;
+    padding: 8px 16px;
+}
+
+.search-box input {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    padding: 6px 12px;
+    outline: none;
+    width: 200px;
+    border-radius: 20px;
+}
+
+.search-btn {
+    background-color: #007bff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #45a049;
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-options select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.sort-options .sort-icon {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #888;
+    cursor: pointer;
+}
+
+.sort-options .sort-icon i {
+    margin-right: 5px;
+}
+
+/* Định dạng bảng phản hồi khách hàng */
 .feedback-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 
-.feedback-table th,
-.feedback-table td {
-    padding: 12px;
-    text-align: left;
 }
 
 .feedback-table th {
     background-color: #f4f4f4;
     color: #333;
     font-weight: bold;
+    text-align: center;
+    padding: 12px 15px;
+    border-bottom: 2px solid #ddd;
+}
+
+.feedback-table td {
+    text-align: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
 }
 
 .feedback-table tr:nth-child(even) {
@@ -2175,24 +2296,41 @@ h2 {
     background-color: #f1f1f1;
 }
 
+/* Chỉnh lại các trạng thái */
 .sta {
-    padding: 4px 4px;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: bold;
+    display: inline-block;
+    padding: 8px 16px;  /* Đảm bảo các phần tử không bị chật */
+    border-radius: 30px;  /* Bo góc mềm mại */
+    font-size: 14px;  /* Kích thước chữ nhỏ và dễ đọc */
+    font-weight: 600;  /* Đậm vừa phải */
     color: #fff;
-
+    text-align: center;
+    vertical-align: middle;
+    width: 120px;  /* Đảm bảo chiều rộng các trạng thái bằng nhau */
+    height: 40px;  /* Đảm bảo chiều cao các trạng thái bằng nhau */
+    line-height: 24px;  /* Căn chỉnh văn bản theo chiều dọc */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Thêm bóng mờ nhẹ */
+    margin-top: 5px;
 }
 
+/* Trạng thái "Đã đọc" */
 .sta.read {
     background-color: #4caf50;
 }
 
+/* Trạng thái "Chưa đọc" */
 .sta.unread {
     background-color: #f44336;
-    width: 90px;
+    width: 120px;
 }
 
+/* Hiệu ứng khi hover vào */
+.sta:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Tăng bóng mờ khi hover */
+}
 /*--kết thúc css của phần phản hồi khách hàng--*/
 
 /* --- CSS cho Quản Lý Khuyến Mãi --- */
