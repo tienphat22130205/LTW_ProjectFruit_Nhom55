@@ -131,6 +131,7 @@ textarea {
     border-radius: 5px;
     text-align: center;
 }
+
 .sale_sort {
     display: flex;
     justify-content: space-between;
@@ -138,6 +139,7 @@ textarea {
     margin: 20px 0;
     gap: 20px;
 }
+
 .sale {
     display: flex;
     align-items: center;
@@ -150,13 +152,16 @@ textarea {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     max-width: 400px;
 }
+
 /* Bố cục cho phần Sort */
 .sort {
     display: flex;
     align-items: center;
     font-size: 15px;
-    gap: 10px; /* Khoảng cách giữa title và select */
+    gap: 10px;
+    /* Khoảng cách giữa title và select */
 }
+
 /* Style cho select */
 .sort-menu select {
     padding: 7px;
@@ -165,11 +170,13 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
-    width: 200px; /* Kích thước cho select */
+    width: 200px;
+    /* Kích thước cho select */
     transition: border-color 0.3s ease;
     margin-right: 10px;
     margin-top: 30px;
 }
+
 .discount-text {
     font-size: 1.5rem;
     font-weight: bold;
@@ -616,6 +623,112 @@ textarea {
 .additional-links a:hover {
     text-decoration: underline;
 }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);  /* Màu nền đen với độ trong suốt */
+    z-index: 999;  /* Đảm bảo overlay nằm trên các phần tử khác */
+    display: none;  /* Ẩn overlay mặc định */
+  }
+.forgot-password-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    color: #333;
+    text-align: center;
+    z-index: 1000;
+}
+
+.forgot-password-form {
+    display: none;
+    /* Ẩn form khôi phục mật khẩu ban đầu */
+}
+
+
+.forgot-password-form h2 {
+    font-size: 18px;
+    color: #f36a43;
+    margin-bottom: 10px;
+}
+
+.forgot-password-form p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.forgot-password-form .form-group {
+    margin-bottom: 15px;
+}
+
+.forgot-password-form .form-group label {
+    display: none;
+    /* Ẩn label để giống với placeholder */
+}
+
+.forgot-password-form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.forgot-password-form .captcha-text {
+    font-size: 12px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.forgot-password-form .captcha-text a {
+    color: #3367d6;
+    text-decoration: none;
+}
+
+.forgot-password-form .captcha-text a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password-form .forgot-password-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f36a43;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.forgot-password-form .additional-links {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+}
+
+.forgot-password-form .additional-links a {
+    color: #f36a43;
+    text-decoration: none;
+}
+
+.forgot-password-form .additional-links a:hover {
+    text-decoration: underline;
+}
+
+/* quên mật khẩu */
+
 
 .cart-form h2 {
     font-size: 18px;
@@ -1013,6 +1126,7 @@ body.scrolled-up .menu-bar {
     background: var(--orange);
     color: #fff;
 }
+
 .products .product-slider .box .discount {
     position: absolute;
     top: 10px;
@@ -1110,6 +1224,7 @@ body.scrolled-up .menu-bar {
     background: var(--orange);
     color: #fff;
 }
+
 /* Ẩn sản phẩm */
 .hidden {
     opacity: 0;
@@ -1438,9 +1553,10 @@ body.scrolled-up .menu-bar {
     border-radius: 50%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .footer .box-container .box .shipping-brands img:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .footer .credit {

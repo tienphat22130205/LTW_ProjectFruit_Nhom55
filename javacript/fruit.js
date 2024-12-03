@@ -483,6 +483,30 @@ const toggleButton = document.querySelector('.toggle-button');
 toggleButton.addEventListener('click', () => {
     sidebar.classList.toggle('active');
 });
+function showForgotPasswordForm() {
+  // Ẩn form đăng nhập và hiển thị form khôi phục mật khẩu
+  document.getElementById("loginForm").style.display = "none";  // Ẩn form đăng nhập
+  document.getElementById("forgotPasswordForm").style.display = "block";  // Hiển thị form khôi phục mật khẩu
+  document.getElementById("overlay").style.display = "block";  // Hiển thị overlay
+}
+
+function showLoginForm() {
+  // Ẩn form khôi phục mật khẩu và hiển thị form đăng nhập
+  document.getElementById("forgotPasswordForm").style.display = "none";  // Ẩn form khôi phục mật khẩu
+  document.getElementById("loginForm").style.display = "block";  // Hiển thị form đăng nhập
+  document.getElementById("overlay").style.display = "none";  // Ẩn overlay
+}
+
+function login() {
+  // Xử lý đăng nhập (thêm logic của bạn ở đây)
+  alert('Đăng nhập thành công!');
+}
+
+function resetPassword() {
+  // Xử lý khôi phục mật khẩu (thêm logic của bạn ở đây)
+  alert('Yêu cầu khôi phục mật khẩu đã được gửi!');
+}
+
 
 
 

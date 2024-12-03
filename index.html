@@ -98,31 +98,44 @@
         </div>
       </div>
     </div>
-    <div class="login-form" id="loginForm">
-      <h2>ĐĂNG NHẬP</h2>
-      <p>Nhập email và mật khẩu của bạn:</p>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Email">
-      </div>
-      <div class="form-group">
-        <label for="password">Mật khẩu</label>
-        <input type="password" id="password" placeholder="Mật khẩu">
-      </div>
-      <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
-      <p class="captcha-text">
-        Trang web này được bảo vệ bởi reCAPTCHA và Google
-        <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-        <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-      </p>
-      <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
-      <p class="additional-links">
+      <div class="login-form" id="loginForm">
+        <h2>ĐĂNG NHẬP</h2>
+        <p>Nhập email và mật khẩu của bạn:</p>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" placeholder="Mật khẩu">
+        </div>
+        <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
+        <p class="captcha-text">
+          Trang web này được bảo vệ bởi reCAPTCHA và Google
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        </p>
+        <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
+        <p class="additional-links">
 
-        Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
+          Khách hàng mới? <a href="register.html">Tạo tài khoản</a><br>
 
-        Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
-      </p>
-    </div>
+          Quên mật khẩu? <a href="#" onclick="showForgotPasswordForm()">Khôi phục mật khẩu</a>
+        </p>
+      </div>
+      <div class="overlay" id="overlay"></div>
+      <div class="forgot-password-form" id="forgotPasswordForm">
+        <h2>KHÔI PHỤC MẬT KHẨU</h2>
+        <p>Nhập email của bạn để khôi phục mật khẩu:</p>
+        <div class="form-group">
+          <label for="forgot-email">Email</label>
+          <input type="email" id="forgot-email" placeholder="Email">
+        </div>
+        <button class="forgot-password-button" onclick="resetPassword()">Gửi yêu cầu khôi phục</button>
+        <p class="additional-links">
+          <a href="#" onclick="showLoginForm()">Quay lại đăng nhập</a>
+        </p>
+      </div>
     <div class="user-menu" id="userMenu" style="display: none;">
       <p><i class="fa fa-handshake"></i> Xin chào,<span id="userNameDisplay">User</span></p>
       <ul>
@@ -1196,14 +1209,14 @@
   </section>
   <!-- quà tặng trái cây -->
   <section class="products" id="products">
-   <h1 class="heading"><span>quà tặng trái cây</span></h1>
+    <h1 class="heading"><span>quà tặng trái cây</span></h1>
     <div class="swiper product-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide box">
           <img src="./img/gq24.webp" alt="" />
           <h3>Hộp Quà Niềm Vui</h3>
           <h3 class="price">666.000đ</h3>
-         
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1217,7 +1230,7 @@
           <img src="./img/gq19.webp" alt="" />
           <h3>Hộp Quà Năm Mới 01</h3>
           <h3 class="price">800.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1231,7 +1244,7 @@
           <img src="./img/gq20.webp" alt="" />
           <h3>Hộp Quà Năm Mới 02</h3>
           <h3 class="price">1.111.000đ</h3>
-         
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1245,7 +1258,7 @@
           <img src="./img/gq21.webp" alt="" />
           <h3>Hộp Quà Năm Mới 03</h3>
           <h3 class="price">450.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1259,7 +1272,7 @@
           <img src="./img/gq22.webp" alt="" />
           <h3>Hộp Quà Năm Mới 04</h3>
           <h3 class="price">800.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1273,7 +1286,7 @@
           <img src="./img/gq23.webp" alt="" />
           <h3>Hộp Quà Năm Mới 05</h3>
           <h3 class="price">1.234.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1287,7 +1300,7 @@
           <img src="./img/gq23.webp" alt="" />
           <h3>Hộp Quà Năm Mới 06</h3>
           <h3 class="price">65.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1301,7 +1314,7 @@
           <img src="./img/gq23.webp" alt="" />
           <h3>Hộp Quà Năm Mới 07</h3>
           <h3 class="price">65.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1318,8 +1331,8 @@
         <div class="swiper-slide box">
           <img src="./img/gioqua2010.webp" alt="" />
           <h3>Giỏ Quà Tặng 20/10 01</h3>
-          <h3 class="price">999.000đ</h3>         
-          
+          <h3 class="price">999.000đ</h3>
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1333,7 +1346,7 @@
           <img src="./img/gq20101.webp" alt="" />
           <h3>Giỏ Quà Tặng 20/10 02</h3>
           <h3 class="price">890.000đ</h3>
-        
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1361,7 +1374,7 @@
           <img src="./img/gq201012.webp" alt="" />
           <h3>Hộp Quà Tặng 20/10 04</h3>
           <h3 class="price">450.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1375,7 +1388,7 @@
           <img src="./img/gq201013.webp" alt="" />
           <h3>Hộp Quà Tặng 20/10 05</h3>
           <h3 class="price">350.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1389,7 +1402,7 @@
           <img src="./img/gq201014.webp" alt="" />
           <h3>Hộp Quà Tặng 20/10 06</h3>
           <h3 class="price">700.000đ</h3>
-         
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1403,7 +1416,7 @@
           <img src="./img/gq201015.webp" alt="" />
           <h3>Hộp Quà Tặng 20/10 07</h3>
           <h3 class="price">760.000đ</h3>
-         
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1417,7 +1430,7 @@
           <img src="./img/gq201016.webp" alt="" />
           <h3>Hộp Quà Tặng 20/10 08</h3>
           <h3 class="price">800.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1434,7 +1447,7 @@
     </div>
   </section>
   <section class="products" id="products">
-  <h1 class="heading"><span>hộp quà nguyệt cát</span></h1>
+    <h1 class="heading"><span>hộp quà nguyệt cát</span></h1>
     <div class="swiper product-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide box">
@@ -1442,7 +1455,7 @@
           <img src="./img/hqnc1.png" alt="" />
           <h3>Hộp Nguyệt Cát 01</h3>
           <h3 class="price">3.200.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1457,7 +1470,7 @@
           <img src="./img/hqnc2.png" alt="" />
           <h3>Hộp Nguyệt Cát 02</h3>
           <h3 class="price">5.219.000đ</h3>
-          
+
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1551,7 +1564,7 @@
     </div>
     <div class="swiper product-slider">
       <div class="swiper-wrapper">
-        
+
         <div class="swiper-slide box">
           <img src="./img/hqnc9.png" alt="" />
           <h3>Hộp Nguyệt Cát 09</h3>
@@ -1666,10 +1679,10 @@
     <h1 class="heading"><span>trái cây sấy khô</span></h1>
     <div class="swiper product-slider">
       <div class="swiper-wrapper">
-       <div class="swiper-slide box">
+        <div class="swiper-slide box">
           <img src="./img/tcs1.jpg" alt="" />
           <h3>Thơm sấy dẻo ớt cay</h3>
-                   <h3 class="price">80.000đ</h3>
+          <h3 class="price">80.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1682,7 +1695,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs2.jpg" alt="" />
           <h3>Xoài sấy dẻo ớt cay</h3>
-                    <h3 class="price">100.000đ</h3>
+          <h3 class="price">100.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1695,7 +1708,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs3.jpg" alt="" />
           <h3>Xoài cát sấy dẻo</h3>
-                   <h3 class="price">9090.000đ</h3>
+          <h3 class="price">9090.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1708,7 +1721,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs4.jpg" alt="" />
           <h3>Mít sấy vị sầu riêng</h3>
-                   <h3 class="price">90.000đ</h3>
+          <h3 class="price">90.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1721,7 +1734,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs5.png" alt="" />
           <h3>Mãng cầu sấy dẻo ớt cay</h3>
-                    <h3 class="price">80.000đ</h3>
+          <h3 class="price">80.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1734,7 +1747,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs24.jpg" alt="" />
           <h3>Nấm hương sấy dẻo</h3>
-                   <h3 class="price">60.000đ</h3>
+          <h3 class="price">60.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1747,7 +1760,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs6.jpg" alt="" />
           <h3>Chuối già sấy dẻo</h3>
-                    <h3 class="price">70.000đ</h3>
+          <h3 class="price">70.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1760,7 +1773,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs7.jpg" alt="" />
           <h3>Chuối cau sấy dẻo</h3>
-                    <h3 class="price">90.000đ</h3>
+          <h3 class="price">90.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1773,11 +1786,11 @@
       </div>
     </div>
     <div class="swiper product-slider">
-      <div class="swiper-wrapper">        
+      <div class="swiper-wrapper">
         <div class="swiper-slide box">
           <img src="./img/tcs8.jpg" alt="" />
           <h3>Xoài sấy dẻo không đường</h3>
-                  <h3 class="price">100.000đ</h3>
+          <h3 class="price">100.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1790,7 +1803,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs9.jpg" alt="" />
           <h3>Thanh long sấy dẻo</h3>
-                    <h3 class="price">120120.000đ</h3>
+          <h3 class="price">120120.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1803,7 +1816,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs10.jpg" alt="" />
           <h3>Mẵng cầu sấy dẻo</h3>
-                    <h3 class="price">150.000đ</h3>
+          <h3 class="price">150.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1816,7 +1829,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs11.jpg" alt="" />
           <h3>Thơm sấy dẻo</h3>
-                   <h3 class="price">80.000đ</h3>
+          <h3 class="price">80.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1829,7 +1842,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs12.jpg" alt="" />
           <h3>Ổi sấy dẻo</h3>
-                    <h3 class="price">70.000đ</h3>
+          <h3 class="price">70.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1842,7 +1855,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs13.jpg" alt="" />
           <h3>Xoài keo sấy dẻo</h3>
-                    <h3 class="price">80.000đ</h3>
+          <h3 class="price">80.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1855,7 +1868,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs14.jpg" alt="" />
           <h3>Mận sấy dẻo</h3>
-                  <h3 class="price">110110.000đ</h3>
+          <h3 class="price">110110.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1868,7 +1881,7 @@
         <div class="swiper-slide box">
           <img src="./img/tcs15.png" alt="" />
           <h3>Thập cẩm sấy dẻo</h3>
-                    <h3 class="price">7070.000đ</h3>
+          <h3 class="price">7070.000đ</h3>
           <div class="stars">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
@@ -1877,7 +1890,7 @@
             <i class="fas fa-star"></i>
           </div>
           <a href="#" class="btn">thêm vào giỏ hàng</a>
-        </div>        
+        </div>
       </div>
     </div>
     <div class="view-more-container">
@@ -1886,7 +1899,7 @@
   </section>
   <!-- Mứt -->
   <section class="products" id="products">
-   <h1 class="heading"><span>Mứt trái cây</span></h1>
+    <h1 class="heading"><span>Mứt trái cây</span></h1>
     <div class="swiper product-slider">
       <div class="swiper-wrapper">
         <div class="swiper-slide box">
@@ -1996,7 +2009,7 @@
       </div>
     </div>
     <div class="swiper product-slider">
-      <div class="swiper-wrapper">        
+      <div class="swiper-wrapper">
         <div class="swiper-slide box">
           <img src="./img/mtc9.webp" alt="" />
           <h3>Mứt Dâu</h3>
@@ -2302,13 +2315,14 @@
       </div>
       <div class="box">
         <h3>Đơn vị vận chuyển</h3>
-        <p>"Chúng tôi sử dụng các đơn vị vận chuyển uy tín như Grab, Giao Hàng Tiết Kiệm, VNPost và nhiều đơn vị khác."</p>
+        <p>"Chúng tôi sử dụng các đơn vị vận chuyển uy tín như Grab, Giao Hàng Tiết Kiệm, VNPost và nhiều đơn vị khác."
+        </p>
         <div class="shipping-brands">
           <img src="./img/logoBank/grab.jpg" alt="Grab" />
           <img src="./img/logoBank/giaohangtietkiem.png" alt="Giao Hàng Tiết Kiệm" />
           <img src="./img/logoBank/vnpost.webp" alt="VNPost" />
         </div>
-      </div> 
+      </div>
     </div>
     <div class="credit">Copyright © 2024 <span>Nhom 55 - Trái Cây Chất Lượng Cao</span></div>
   </section>
