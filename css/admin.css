@@ -1534,6 +1534,7 @@ td:nth-child(4) {
         opacity: 1;
     }
 }
+
 /* -----------------------------------------------css phan hoi khach hang -----------------------------*/
 
 
@@ -2219,6 +2220,7 @@ h2 {
     margin-top: 20px;
     font-family: Arial, sans-serif;
     font-size: 14px;
+
 }
 
 .feedback-table th {
@@ -2270,6 +2272,7 @@ h2 {
 /* Trạng thái "Chưa đọc" */
 .sta.unread {
     background-color: #f44336;
+    width: 120px;
 }
 
 /* Hiệu ứng khi hover vào */
@@ -2278,7 +2281,6 @@ h2 {
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Tăng bóng mờ khi hover */
 }
-
 /*--kết thúc css của phần phản hồi khách hàng--*/
 
 /* --- CSS cho Quản Lý Khuyến Mãi --- */
