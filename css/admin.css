@@ -2564,25 +2564,22 @@ h2 {
     align-items: center;
     /* Canh giữa nội dung */
 }
-
+#deletePromotionModal.modal{
+    max-width: 360px;
+}
 /* Nội dung modal Xóa Khuyến Mãi */
 .deletePromotionModal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
-    /* Nền trắng */
-    border-radius: 10px;
-    /* Bo góc */
-    width: auto;
-    /* Chiều rộng modal */
-    padding: 20px;
-    /* Khoảng cách bên trong */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    /* Xếp nội dung theo cột */
-    align-items: center;
-    /* Canh giữa nội dung */
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 1000;
+    max-width: 360px;
+    width: 100%;
     text-align: center;
-    /* Văn bản căn giữa */
 }
 
 /* Tiêu đề */
