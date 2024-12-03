@@ -906,6 +906,28 @@
             <!-- Orders section -->
             <div id="orders" class="section">
                 <div class="orders">
+                     <div class="overview-grid">
+                        <div class="overview-item">
+                            <h3>39</h3>
+                            <p>Tổng đơn hàng</p>
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <div class="overview-item">
+                            <h3>6</h3>
+                            <p>Đơn hàng đang xử lý</p>
+                            <i class="fa-solid fa-hourglass-start"></i>
+                        </div>
+                        <div class="overview-item">
+                            <h3>31</h3>
+                            <p>Đơn hàng đã thanh toán</p>
+                            <i class="fa-regular fa-handshake"></i>
+                        </div>
+                        <div class="overview-item">
+                            <h3>2</h3>
+                            <p>Đơn hàng đã hủy</p>
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-header">
                             <div class="search-box">
@@ -1067,62 +1089,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="container2">
-                    <h1>Lịch Sử Cung Cấp</h1>
-                    <table id="transactionTable">
-                        <thead>
-                            <tr>
-                                <th>Mã giao dịch</th>
-                                <th>Mã Nhà Cung Cấp</th>
-                                <th>Ngày giao dịch</th>
-                                <th>Số lượng sản phẩm</th>
-                                <th>Giá trị giao dịch</th>
-                                <th>Trạng thái thanh toán</th>
-                                <th>Chi tiết</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Dữ liệu mẫu -->
-                            <tr>
-                                <td>#GD001</td>
-                                <td>NCC001</td>
-                                <td>12/11/2023</td>
-                                <td>200</td>
-                                <td>10,000,000 VND</td>
-                                <td><span class="status green"></span> Đã thanh toán</td>
-                                <td><button class="view-details" onclick="viewDetails('#GD001')">Xem</button></td>
-                            </tr>
-                            <tr>
-                                <td>#GD002</td>
-                                <td>NCC002</td>
-                                <td>10/11/2023</td>
-                                <td>150</td>
-                                <td>7,500,000 VND</td>
-                                <td><span class="status orange"></span> Chờ thanh toán</td>
-                                <td><button class="view-details" onclick="viewDetails('#GD002')">Xem</button></td>
-                            </tr>
-                            <tr>
-                                <td>#GD003</td>
-                                <td>NCC003</td>
-                                <td>08/11/2023</td>
-                                <td>300</td>
-                                <td>15,000,000 VND</td>
-                                <td><span class="status red"></span> Hủy</td>
-                                <td><button class="view-details" onclick="viewDetails('#GD003')">Xem</button></td>
-                            </tr>
-                            <tr>
-                                <td>#GD002</td>
-                                <td>NCC001</td>
-                                <td>08/9/2023</td>
-                                <td>300</td>
-                                <td>15,000,000 VND</td>
-                                <td><span class="status green"></span> Đã thanh toán</td>
-                                <td><button class="view-details" onclick="viewDetails('#GD003')">Xem</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
                 <div class="container3">
                     <h1>Đánh giá và hợp tác</h1>
                     <table id="ratingTable">
