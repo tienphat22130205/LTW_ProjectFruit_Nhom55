@@ -131,7 +131,13 @@ textarea {
     border-radius: 5px;
     text-align: center;
 }
-
+.sale_sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    gap: 20px;
+}
 .sale {
     display: flex;
     align-items: center;
@@ -144,7 +150,26 @@ textarea {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     max-width: 400px;
 }
-
+/* Bố cục cho phần Sort */
+.sort {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    gap: 10px; /* Khoảng cách giữa title và select */
+}
+/* Style cho select */
+.sort-menu select {
+    padding: 7px;
+    font-size: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px; /* Kích thước cho select */
+    transition: border-color 0.3s ease;
+    margin-right: 10px;
+    margin-top: 30px;
+}
 .discount-text {
     font-size: 1.5rem;
     font-weight: bold;
@@ -988,6 +1013,17 @@ body.scrolled-up .menu-bar {
     background: var(--orange);
     color: #fff;
 }
+.products .product-slider .box .discount {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    border-radius: .5rem;
+    margin: 5px;
+}
 
 /* Ưu đãi trong tuần */
 .products1 .product-slider {
@@ -1074,7 +1110,7 @@ body.scrolled-up .menu-bar {
     background: var(--orange);
     color: #fff;
 }
-
+/* Ẩn sản phẩm */
 .hidden {
     opacity: 0;
     height: 0;

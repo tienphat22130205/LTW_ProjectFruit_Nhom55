@@ -383,6 +383,66 @@ new Chart(productStatsChartCtx, {
         },
     },
 });
+// Khi người dùng nhấn vào "Đăng xuất"
+document.getElementById("logoutBtn").onclick = function() {
+    // Hiển thị cả overlay và thông báo đăng xuất
+    document.getElementById("logoutOverlay").style.display = "block";
+    document.getElementById("logoutNotification").style.display = "block";
+};
+
+// Khi người dùng nhấn "Có" (Xác nhận đăng xuất)
+document.getElementById("confirmLogoutBtn").onclick = function() {
+    window.location.href = "index.html"; // Chuyển hướng đến trang đăng xuất
+};
+
+// Khi người dùng nhấn "Không" (Hủy đăng xuất)
+document.getElementById("cancelLogoutBtn").onclick = function() {
+    // Ẩn cả overlay và thông báo đăng xuất
+    document.getElementById("logoutOverlay").style.display = "none";
+    document.getElementById("logoutNotification").style.display = "none";
+};
+
+// Khi người dùng nhấn vào overlay (bên ngoài thông báo), đóng thông báo
+document.getElementById("logoutOverlay").onclick = function() {
+    document.getElementById("logoutOverlay").style.display = "none";
+    document.getElementById("logoutNotification").style.display = "none";
+};
+// Khi người dùng nhấn vào "Xóa"
+document.querySelectorAll('.delete-button').forEach(button => {
+    button.onclick = function() {
+        // Lưu dòng sản phẩm cần xóa
+        currentRowToDelete = this.closest('tr');
+        
+        // Hiển thị cả overlay và thông báo xóa sản phẩm
+        document.getElementById("deleteOverlay").style.display = "block";
+        document.getElementById("deleteNotification").style.display = "block";
+    };
+});
+
+// Khi người dùng nhấn "Có" (Xác nhận xóa sản phẩm)
+document.getElementById("confirmDeleteBtn").onclick = function() {
+    // Xóa dòng sản phẩm
+    currentRowToDelete.remove();
+    
+    // Ẩn cả overlay và thông báo xóa
+    document.getElementById("deleteOverlay").style.display = "none";
+    document.getElementById("deleteNotification").style.display = "none";
+};
+
+// Khi người dùng nhấn "Không" (Hủy xóa sản phẩm)
+document.getElementById("cancelDeleteBtn").onclick = function() {
+    // Ẩn cả overlay và thông báo xóa mà không làm gì
+    document.getElementById("deleteOverlay").style.display = "none";
+    document.getElementById("deleteNotification").style.display = "none";
+};
+
+// Khi người dùng nhấn vào overlay (bên ngoài thông báo), đóng thông báo xóa
+document.getElementById("deleteOverlay").onclick = function() {
+    document.getElementById("deleteOverlay").style.display = "none";
+    document.getElementById("deleteNotification").style.display = "none";
+};
+
+
 
 // Hàm mở modal chung
 function openModal(data, modalType) {
@@ -618,7 +678,6 @@ function closeModal(modalType) {
         document.getElementById("promotionModal1").style.display = "none";
     }
 }
-
 // Sự kiện nhấn nút "Xem chi tiết"
 document.querySelectorAll(".button-invoice-detail").forEach(button => {
     button.addEventListener("click", () => {
@@ -637,8 +696,25 @@ document.querySelectorAll(".button-invoice-detail").forEach(button => {
     });
 });
 
-document.querySelectorAll(".button-product-detail").forEach(button => {
-    button.addEventListener("click", () => {
+document.getElementById('customer-list').addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('button-product-detail')) {
+        const customerData = {
+            customerName: "Ngô Tiến Phát",
+            customerAddress: "123 Đường ABC",
+            customerPhone: "0987654321",
+            customerDateSell: "12/11/2023",
+            products: [
+                { name: "Đào Tiên Úc", quantity: 5, unitPrice: "90,000", totalPrice: "450,000" },
+                { name: "Dâu Nghệ Nhân", quantity: 3, unitPrice: "72,000", totalPrice: "213,000" }
+            ],
+            totalAmount: "663,000"
+        };
+        openModal(customerData, "invoice");
+    }
+});
+
+document.getElementById('orderList').addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('button-product-order')) {
         const productDetailData = {
             customerID: "VIP001",
             customerName1: "Nguyễn Phương Mai",
@@ -650,7 +726,7 @@ document.querySelectorAll(".button-product-detail").forEach(button => {
             grandTotal: "46,390,000"
         };
         openModal(productDetailData, "productDetail");
-    });
+    }
 });
 
 document.querySelectorAll(".button-product-description").forEach(button => {
@@ -736,44 +812,72 @@ document.querySelectorAll(".button-add-promotion").forEach(button => {
         openModal(null, "promotion"); // Mở modal thêm khuyến mãi
     });
 });
+
 // Xử lý khi nhấn "Lưu" trong form thêm khuyến mãi
-document.getElementById("promotionForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // Ngăn chặn hành vi submit mặc định
+document.addEventListener('DOMContentLoaded', function () {
+    // Lấy form promotionForm
+    const promotionForm = document.getElementById("promotionForm");
 
-    // Lấy dữ liệu từ form
-    const promotionName = document.getElementById("promotionName").value;
-    const promotionStartDate = document.getElementById("startDate").value;
-    const promotionEndDate = document.getElementById("endDate").value;
-    const promotionDiscount = document.getElementById("discount").value;
+    // Kiểm tra nếu form tồn tại
+    if (promotionForm) {
+        promotionForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // Ngăn hành vi submit mặc định
 
-    // Kiểm tra dữ liệu
-    if (!promotionName || !promotionStartDate || !promotionEndDate || !promotionDiscount) {
-        alert("Vui lòng nhập đầy đủ thông tin!");
-        return;
+            // Lấy giá trị từ các input trong form
+            const promotionName = document.getElementById("promotionName").value;
+            const promotionStartDate = document.getElementById("startDate").value;
+            const promotionEndDate = document.getElementById("endDate").value;
+            const promotionDiscount = document.getElementById("discount").value;
+            const promotionProductTypeSelect = document.getElementById("productTypeSelect");
+
+            // Kiểm tra nếu phần tử select tồn tại
+            if (!promotionProductTypeSelect) {
+                alert("Loại sản phẩm không hợp lệ!");
+                return;
+            }
+
+            const selectedOption = promotionProductTypeSelect.options[promotionProductTypeSelect.selectedIndex];
+            const selectedText = selectedOption.textContent || selectedOption.innerText;
+
+            // Kiểm tra nếu các trường nhập liệu chưa được điền đầy đủ
+            if (!promotionName || !promotionStartDate || !promotionEndDate || !promotionDiscount || !selectedText) {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            // Thêm khuyến mãi vào bảng
+            const promotionTable = document.querySelector(".promotion-table tbody");
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${promotionName}</td>
+                <td style="text-align: center">${promotionStartDate} - ${promotionEndDate}</td>
+                <td>${promotionDiscount}%</td>
+                <td>${selectedText}</td>
+                <td>
+                    <button class="edit-btn" onclick="openModal({
+                        promoTitle: '${promotionName}', 
+                        promoDiscount: ${promotionDiscount}, 
+                        promoStart: '${promotionStartDate}', 
+                        promoEnd: '${promotionEndDate}', 
+                        promoProductType: '${selectedText}'
+                    }, 'editPromotion')">Sửa</button>
+                    <button class="delete-btn" onclick="openModal({
+                        promoTitle: '${promotionName}'
+                    }, 'deletePromotion')">Xóa</button>
+                </td>
+            `;
+            promotionTable.appendChild(newRow); // Thêm dòng mới vào bảng
+
+            // Đặt lại form và đóng modal
+            promotionForm.reset();
+            closeModal("promotion");
+
+            // Thông báo thành công
+            alert("Khuyến mãi đã được thêm thành công!");
+        });
     }
-
-    // Thêm khuyến mãi vào bảng
-    const promotionTable = document.querySelector(".promotion-table tbody");
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td>${promotionName}</td>
-        <td style="text-align: center">${promotionStartDate} - ${promotionEndDate}</td>
-        <td>${promotionDiscount}%</td>
-        <td>
-            <button class="edit-btn" onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
-            <button class="delete-btn" onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa</button>
-        </td>
-    `;
-
-    promotionTable.appendChild(newRow); // Thêm dòng mới vào bảng
-
-    // Đặt lại form và đóng modal
-    document.getElementById("promotionForm").reset();
-    closeModal("promotion");
-
-    // Thông báo thành công
-    alert("Khuyến mãi đã được thêm thành công!");
 });
+
 // ----------------------------suppliers---------------------------
 function viewDetails(transactionId) {
     alert(`Chi tiết giao dịch ${transactionId}`);
@@ -1092,4 +1196,170 @@ document.addEventListener("DOMContentLoaded", () => {
         notificationDropdown.style.display = "none";
     });
 });
+// Dữ liệu khách hàng (mô phỏng)
+const customers = [
+    { id: 'VIP001', name: 'Nguyễn Phương Mai', email: 'phuongmai@gmail.com', phone: '0901234567', address: '15 Nguyễn Trãi, TP.HCM', registerDate: '2020-06-10' },
+    { id: 'VIP002', name: 'Trần Quang Huy', email: 'quanghuy88@gmail.com', phone: '0912345678', address: '40 Lý Thường Kiệt, Hà Nội', registerDate: '2021-03-05' },
+    { id: 'VIP003', name: 'Lê Thanh Tú', email: 'thanhtu95@gmail.com', phone: '0987654321', address: '12 Phan Đình Phùng, Đà Nẵng', registerDate: '2019-11-25' },
+    { id: 'VIP004', name: 'Vũ Minh Tuấn', email: 'minhtuan85@gmail.com', phone: '0978765432', address: '68 Nguyễn Văn Cừ, Hà Nội', registerDate: '2022-01-20' },
+    { id: 'VIP005', name: 'Phan Thị Thảo', email: 'phanthithao@gmail.com', phone: '0908765432', address: '100 Hoàng Quốc Việt, TP.HCM', registerDate: '2020-07-30' },
+    { id: 'VIP006', name: 'Nguyễn Quang Hảo', email: 'quanghao92@gmail.com', phone: '0912345679', address: '45 Lý Thường Kiệt, TP.HCM', registerDate: '2020-08-05' },
+    { id: 'VIP007', name: 'Trần Minh Tuấn', email: 'minhtuan89@gmail.com', phone: '0934345678', address: '32 Nguyễn Thái Học, Hà Nội', registerDate: '2021-02-15' },
+    { id: 'VIP008', name: 'Phan Thị Thu Hà', email: 'thanhtuha94@gmail.com', phone: '0917564345', address: '45 Nguyễn Trãi, Đà Nẵng', registerDate: '2021-05-12' },
+    { id: 'VIP009', name: 'Nguyễn Thanh Tùng', email: 'thanhtung90@gmail.com', phone: '0971234567', address: '34 Trần Phú, TP.HCM', registerDate: '2020-11-25' },
+    { id: 'VIP010', name: 'Vũ Hoàng Nam', email: 'hoangnam92@gmail.com', phone: '0909876543', address: '55 Đào Duy Anh, Hà Nội', registerDate: '2021-01-12' },
+    { id: 'VIP011', name: 'Nguyễn Thanh Hương', email: 'thanhuong93@gmail.com', phone: '0976789123', address: '20 Bạch Đằng, TP.HCM', registerDate: '2021-06-18' },
+    { id: 'VIP012', name: 'Trần Đức Anh', email: 'ducanh90@gmail.com', phone: '0986123456', address: '12 Trần Phú, Hà Nội', registerDate: '2020-12-25' },
+    { id: 'VIP013', name: 'Phạm Minh Quang', email: 'minhquang88@gmail.com', phone: '0912345670', address: '80 Nguyễn Trãi, TP.HCM', registerDate: '2021-02-08' },
+    { id: 'VIP014', name: 'Võ Minh Tâm', email: 'minhtam95@gmail.com', phone: '0902345678', address: '15 Lê Lợi, TP.HCM', registerDate: '2020-08-19' },
+    { id: 'VIP015', name: 'Lê Hồng Sơn', email: 'hongson96@gmail.com', phone: '0974321567', address: '28 Trần Hưng Đạo, Hà Nội', registerDate: '2021-09-14' },
+];
+const orders = [
+    { orderId: '#ORD001', customerName: 'Nguyễn Minh Khoa', address: '123 Đường ABC, TP.HCM', date: '12/11/2023', paymentMethod: 'Chuyển khoản', status: 'Chờ xử lý' },
+    { orderId: '#ORD002', customerName: 'Trần Thị Lan Anh', address: '456 Đường XYZ, Hà Nội', date: '10/11/2023', paymentMethod: 'Tiền mặt', status: 'Chờ xử lý' },
+    { orderId: '#ORD003', customerName: 'Ngô Văn Dũng', address: '789 Đường MNO, Đà Nẵng', date: '09/11/2023', paymentMethod: 'Ví điện tử', status: 'Đã thanh toán' },
+    { orderId: '#ORD004', customerName: 'Lê Thị Bích Ngọc', address: '101 Đường PQR, Cần Thơ', date: '05/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đang giao hàng' },
+    { orderId: '#ORD005', customerName: 'Hoàng Văn Sơn', address: '202 Đường STU, Hải Phòng', date: '03/11/2023', paymentMethod: 'Tiền mặt', status: 'Đang giao hàng' },
+    { orderId: '#ORD006', customerName: 'Phạm Văn Bình', address: '303 Đường VWX, TP.HCM', date: '02/11/2023', paymentMethod: 'Ví điện tử', status: 'Đã thanh toán' },
+    { orderId: '#ORD007', customerName: 'Phạm Văn Toàn', address: '404 Đường YZ, Đà Nẵng', date: '02/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đã thanh toán' },
+    { orderId: '#ORD008', customerName: 'Phạm Văn Huy', address: '505 Đường ABC, Hà Nội', date: '02/11/2023', paymentMethod: 'Tiền mặt', status: 'Đã hủy' },
+    { orderId: '#ORD009', customerName: 'Bùi Lệ Huyên', address: '606 Đường DEF, TP.HCM', date: '02/11/2023', paymentMethod: 'Ví điện tử', status: 'Đã thanh toán' },
+    { orderId: '#ORD010', customerName: 'Phạm Văn Bình', address: '707 Đường GHI, Cần Thơ', date: '02/11/2023', paymentMethod: 'Chuyển khoản', status: 'Đã hủy' },
+    // Thêm nhiều đơn hàng nếu cần
+];
+const customersPerPage = 7;  // Số khách hàng hiển thị trên mỗi trang
+const ordersPerPage = 5;
+let currentPage = 1;        // Trang hiện tại
+
+// Hàm hiển thị khách hàng theo trang
+function displayCustomers(page) {
+    const start = (page - 1) * customersPerPage;
+    const end = start + customersPerPage;
+    const customersToShow = customers.slice(start, end);
+    const customerList = document.getElementById('customer-list');
+
+    customerList.innerHTML = '';  // Xóa danh sách cũ
+
+    customersToShow.forEach(customer => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${customer.id}</td>
+            <td>${customer.name}</td>
+            <td style="text-align: center">${customer.email}</td>
+            <td style="text-align: center">${customer.phone}</td>
+            <td style="text-align: center">${customer.address}</td>
+            <td style="text-align: center">${customer.registerDate}</td>
+            <td style="text-align: center">
+                <button class="button-product-detail">Xem chi tiết</button>
+            </td>
+        `;
+        customerList.appendChild(row);
+    });
+    
+    // Cập nhật các nút trang
+    updatePagination(page);
+}
+// Hàm hiển thị đơn hàng
+function displayOrders(page) {
+    const start = (page - 1) * ordersPerPage;
+    const end = start + ordersPerPage;
+    const ordersToShow = orders.slice(start, end);
+    const orderList = document.getElementById('orderList');
+
+    orderList.innerHTML = '';  // Xóa danh sách cũ
+
+    ordersToShow.forEach(order => {
+        const row = document.createElement('tr');
+        
+        row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${order.customerName}</td>
+            <td>${order.address}</td>
+            <td>${order.date}</td>
+            <td>
+                <!-- Nút Xem chi tiết hóa đơn -->
+                <button class="button-product-order">Xem chi tiết</button>
+            </td>
+            <td>${order.paymentMethod}</td>
+            <td class="status">
+                <div class="status-dot" style="background-color: ${getOrderStatusColor(order.status)}"></div>
+                <span class="status-text">${order.status}</span>
+            </td>
+        `;
+        
+        orderList.appendChild(row);
+    });
+}
+// Hàm lấy màu của trạng thái đơn hàng
+function getOrderStatusColor(status) {
+    switch (status) {
+        case 'Chờ xử lý': return 'orange';
+        case 'Đang giao hàng': return 'blue';
+        case 'Đã thanh toán': return 'green';
+        case 'Đã hủy': return 'red';
+        default: return 'black';
+    }
+}
+// Hàm sắp xếp danh sách khách hàng theo ngày đăng ký hoặc số điện thoại
+function sortCustomers(criteria) {
+    let sortedCustomers = [...customers]; // Sao chép danh sách khách hàng ban đầu
+
+    if (criteria === 'date') {
+        sortedCustomers.sort((a, b) => new Date(a.registerDate) - new Date(b.registerDate)); // Sắp xếp theo ngày đăng ký
+    } else if (criteria === 'phone') {
+        sortedCustomers.sort((a, b) => a.phone.localeCompare(b.phone)); // Sắp xếp theo số điện thoại
+    }
+
+    // Hiển thị khách hàng đã sắp xếp
+    displayCustomers(sortedCustomers.slice((currentPage - 1) * customersPerPage, currentPage * customersPerPage));
+}
+
+// Hàm cập nhật các nút phân trang
+function updatePagination(page) {
+    const totalCustomersPages = Math.ceil(customers.length / customersPerPage);
+    const totalOrdersPages = Math.ceil(orders.length / ordersPerPage);
+    const totalPages = Math.max(totalCustomersPages, totalOrdersPages);
+    for (let i = 1; i <= totalPages; i++) {
+        const pageNum = document.getElementById(`page-${i}`);
+        if (i === page) {
+            pageNum.classList.add('active');
+        } else {
+            pageNum.classList.remove('active');
+        }
+    }
+}
+
+// Hàm thay đổi trang
+function changePage(direction) {
+    if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 'next' && currentPage < Math.ceil(customers.length / customersPerPage)) {
+        currentPage++;
+    }
+    displayCustomers(currentPage);
+    displayOrders(currentPage);
+}
+
+// Hàm chuyển đến trang cụ thể
+function goToPage(page) {
+    currentPage = page;
+    displayCustomers(currentPage);
+    displayOrders(currentPage);
+}
+
+// Khởi tạo trang ban đầu
+displayCustomers(currentPage);
+displayOrders(currentPage);
+// -------------------------------trang don hang----------------------------
+// Set trạng thái phản hồi khách hàng
+function toggleStatus(element) {
+    // Kiểm tra nếu trạng thái hiện tại là 'unread' (màu đỏ)
+    if (element.classList.contains('unread')) {
+        // Chuyển thành 'read' (màu xanh)
+        element.classList.remove('unread');
+        element.classList.add('read');
+        element.textContent = "Đã đọc";
+   
+    }
+}
 
