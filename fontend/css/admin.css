@@ -1485,34 +1485,8 @@ td:nth-child(4) {
     margin-bottom: 4px;
     background-color: #f9f9f9;
     transition: border-color 0.3s;
-<<<<<<< HEAD
-}
 
-#product-description-info input[type="text"]:focus,
-#product-description-info textarea:focus {
-    border-color: #4CAF50;
-    outline: none;
 }
-
-/* Nút chỉnh sửa và lưu */
-#edit-product-button,
-#save-product-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 22px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-}
-
-#edit-product-button:hover,
-#save-product-button:hover {
-    background-color: #45a049;
-=======
-}
-
 #product-description-info input[type="text"]:focus,
 #product-description-info textarea:focus {
     border-color: #4CAF50;
@@ -1559,7 +1533,6 @@ td:nth-child(4) {
     to {
         opacity: 1;
     }
->>>>>>> branch_dndphong2703
 }
 
 /* Nút lưu thay đổi */
