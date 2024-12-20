@@ -99,16 +99,17 @@
             </div>
         </div>
     </div>
+    <form action="login" method="post">
     <div class="login-form" id="loginForm">
         <h2>ĐĂNG NHẬP</h2>
         <p>Nhập email và mật khẩu của bạn:</p>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Email">
+            <input type="email" id="email" placeholder="Email" name="useremail">
         </div>
         <div class="form-group">
             <label for="password">Mật khẩu</label>
-            <input type="password" id="password" placeholder="Mật khẩu">
+            <input type="password" id="password" placeholder="Mật khẩu" name="pass">
         </div>
         <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
         <p class="captcha-text">
@@ -124,6 +125,7 @@
             Quên mật khẩu? <a href="#" onclick="showForgotPasswordForm()">Khôi phục mật khẩu</a>
         </p>
     </div>
+    </form>
     <div class="overlay" id="overlay"></div>
     <div class="forgot-password-form" id="forgotPasswordForm">
         <h2>KHÔI PHỤC MẬT KHẨU</h2>
@@ -140,7 +142,7 @@
     <div class="user-menu" id="userMenu" style="display: none;">
         <p><i class="fa fa-handshake"></i> Xin chào,<span id="userNameDisplay">User</span></p>
         <ul>
-            <li><a href="./user/user.html"><i class="fas fa-box"></i>Thông tin cá nhân</a></li>
+            <li><a href="./user/user.jsp"><i class="fas fa-box"></i>Thông tin cá nhân</a></li>
             <li><a href="#"><i class="fas fa-headset"></i> Hỗ trợ khách hàng</a></li>
             <li><a href="" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
         </ul>
@@ -157,7 +159,7 @@
             <span>TỔNG TIỀN:</span>
             <span class="total-amount">0₫</span>
         </div>
-        <a href="card/card.html" class="view-cart-button">XEM GIỎ HÀNG</a>
+        <a href="./card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
     </div>
 </header>
 <!-- Menu Bar dưới Header -->
@@ -165,30 +167,30 @@
 <nav class="menu-bar">
     <ul>
         <li class="active"><a href="index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="./product/traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="./product/traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="./product/traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="./product/traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="./product/quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="./product/hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="./product/traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="./product/muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="./user/contact.html" onclick="setActive(this)">Liên hệ</a></li>
+        <li><a href="./product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="./product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="./product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="./product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="./product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="./product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="./product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="./product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="./user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
     </ul>
 </nav>
 <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
         <li><a href="index.jsp" onclick="setActive(this)">Trang chủ</a></li>
-        <li><a href="./product/traicayhomnay.html" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="./product/traicayvietnam.html" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="./product/traicaynhapkhau.html" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="./product/traicaycatsan.html" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="./product/quatangtraicay.html" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="./product/hopqua.html" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="./product/traicaysaykho.html" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="./product/muttraicay.html" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="./user/contact.html" onclick="setActive(this)">Liên hệ</a></li>
+        <li><a href="./product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="./product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="./product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="./product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="./product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="./product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="./product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="./product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="./user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
 
 
     </ul>

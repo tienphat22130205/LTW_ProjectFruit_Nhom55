@@ -25,8 +25,7 @@ function login() {
                 confirmButton: 'swal-button-large'
             }
         }).then(() => {
-            console.log("Chuyển đến:", "../../admin/admin.html");
-            window.location.href = "/project_fruit/admin/admin.html";
+            window.location.href = "/project_fruit/admin/admin.jsp";
         });
     } else if (email === storedEmail && password === storedPassword) {
         // Đăng nhập người dùng thường thành công
@@ -53,7 +52,7 @@ function login() {
 function updateUserHeader(userName) {
     const accountSection = document.querySelector(".account");
     accountSection.innerHTML = `
-        <img src="./img/anhdaidien.jpg" alt="Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
+        <img src="../img/anhdaidien.jpg" alt="Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
 `;
 
     // Hiển thị menu dropdown khi nhấp vào avatar
@@ -94,7 +93,7 @@ function logout() {
 
 
     setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "../index.jsp";
     }, 3000);
 }
 
