@@ -241,30 +241,20 @@
             <p><strong>Xuất xứ:</strong> ${p.origin}</p>
             <p><strong>Ngày nhập:</strong> ${p.entry_date}</p>
             <p><strong>Hạn sử dụng:</strong> ${p.shelf_life}</p>
-            <p><strong>Đặc Điểm Sản Phẩm:</strong></p>
-            <ul>
-                <li>${p.describe}</li
-            </ul>
+            <p><strong>Đặc Điểm Sản Phẩm:</strong> ${p.describe}</p>
             <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
-            <ul>
-                <li>Để dâu tây Hàn Quốc ở ngăn mát tủ lạnh, không rửa trước khi bảo quản để tránh nhanh hỏng.</li>
-                <li>Rửa sạch trước khi ăn hoặc làm sinh tố, mứt, trang trí món ăn.</li>
-            </ul>
+            <p>${p.info}</p>
             <p><strong>Lợi Ích Của Dưa Hấu Không Hạt:</strong></p>
-            <ul>
-                <li>Dâu tây Hàn Quốc chứa nhiều vitamin C, chất chống oxy hóa giúp tăng cường miễn dịch, làm đẹp da, và
-                    hỗ trợ sức khỏe tim mạch. Chúng cũng giàu chất xơ, hỗ trợ tiêu hóa và kiểm soát đường huyết.
-                </li>
-            </ul>
+            <p>${p.info}</p>
         </div>
+
         <div class="delivery-service">
             <h2>DỊCH VỤ GIAO HÀNG</h2>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Cam kết 100% chính hãng</li>
-                <li><i class="fas fa-clock"></i> Giao hàng dự kiến: Thứ 2 - Chủ nhật từ 8h00 - 21h00</li>
-                <li><i class="fas fa-headset"></i> Hỗ trợ 24/7 với các kênh facebook, instagram & phone</li>
-            </ul>
+            <p><i class="fas fa-check-circle"></i> ${service.serviceGuarantee}</p>
+            <p><i class="fas fa-clock"></i> ${service.deliveryTime}</p>
+            <p><i class="fas fa-headset"></i> ${service.supportInfo}</p>
         </div>
+
     </div>
 </section>
 <section class="products" id="products">
