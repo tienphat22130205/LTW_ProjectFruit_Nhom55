@@ -226,42 +226,12 @@
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/thanhlongvang.webp" alt="" />
-                <h3>Thanh long vàng</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">95.000đ</span> / <span
-                        style="color: #f00;">66.500đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/sori.webp" alt="" />
-                <h3>Sơ ri</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">35.000đ</span> / <span
-                        style="color: #f00;">24.500đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/sapoche.webp" alt="" />
-                <h3>Sapoche</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">75.000đ</span> / <span
-                        style="color: #f00;">52.500đ</span>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
                 </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
@@ -269,54 +239,6 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/chomchom.png" alt="" />
-                <h3>Chôm chôm</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">95.000đ</span> / <span
-                        style="color: #f00;">66.500đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/chuoicohat.jpg" alt="" />
-                <h3>Chuối sứ</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">55.000đ</span> / <span
-                        style="color: #f00;">38.500đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/duahau.png" alt="" />
-                <h3>Dưa Hấu</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">29.000đ</span> / <span
-                        style="color: #f00;">20.300đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
@@ -325,42 +247,12 @@
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/cam.png" alt="" />
-                <h3>Cam</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">50.000đ</span> / <span
-                        style="color: #f00;">35.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/thanhlong.png" alt="" />
-                <h3>Thanh Long ruột đỏ</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">65.000đ</span> / <span
-                        style="color: #f00;">45.500đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/thom.png" alt="" />
-                <h3>Thơm</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">55.000đ</span> / <span
-                        style="color: #f00;">38.500đ</span>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
                 </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
@@ -368,54 +260,6 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/mangcut.png" alt="" />
-                <h3>Măng cụt</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">115.000đ</span> / <span
-                        style="color: #f00;">80.500đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/manhanoi.jpg" alt="" />
-                <h3>Mận Hậu</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">165.000đ</span> / <span
-                        style="color: #f00;">115.500đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/duahau.png" alt="" />
-                <h3>Dưa Hấu</h3>
-                <div class="discount">-40%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">29.000đ</span> / <span
-                        style="color: #f00;">20.300đ</span>
-                </h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
@@ -424,9 +268,13 @@
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/oi.jpg" alt="" />
-                <h3>ỔI</h3>
-                <h3 class="price">60.000đ</h3>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
+                </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -436,152 +284,46 @@
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
+        </div>
+    </div>
+    <div class="swiper product-slider">
+        <div class="swiper-wrapper">
             <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/taoxanh.jpg" alt="" />
-                <h3>Táo xanh</h3>
-                <h3 class="price">80.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/bo.png" alt="" />
-                <h3>Bơ</h3>
-                <h3 class="price">95.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/na.png" alt="" />
-                <h3>Na</h3>
-                <h3 class="price">145.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/chuoi.png" alt="" />
-                <h3>Chuối</h3>
-                <h3 class="price">29.000đ</h3>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
+                </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicayvietnam/duagang.png" alt="" />
-                <h3>Dưa gang</h3>
-                <h3 class="price">25.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
         </div>
     </div>
     <div id="product-slider-1" class="hidden">
-        <!-- Các sản phẩm ưu đãi -->
         <div class="swiper product-slider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/vai.png" alt="" />
-                    <h3>Vải</h3>
-                    <h3 class="price">85.000đ</h3>
+                    <img src="${p.image}" alt="" />
+                    <h3>${p.name}</h3>
+                    <div class="discount">${p.discount}%</div>
+                    <h3 class="price">
+                        <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                        <span style="color: #f00;">${p.finalPrice}</span>
+                    </h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/dua.jpg" alt="" />
-                    <h3>Dừa</h3>
-                    <h3 class="price">15.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/hong.jpg" alt="" />
-                    <h3>Hồng</h3>
-                    <h3 class="price">125.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/man.jpg" alt="" />
-                    <h3>Mận</h3>
-                    <h3 class="price">85.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/mit.jpg" alt="" />
-                    <h3>Mít</h3>
-                    <h3 class="price">55.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/saurieng.jpg" alt="" />
-                    <h3>Sầu riêng</h3>
-                    <h3 class="price">420.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
                     </div>
                     <a href="#" class="btn">thêm vào giỏ hàng</a>
                 </div>
@@ -590,80 +332,19 @@
         <div class="swiper product-slider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/vusua.jpg" alt="" />
-                    <h3>Vú sữa</h3>
-                    <h3 class="price">120.000đ</h3>
+                    <img src="${p.image}" alt="" />
+                    <h3>${p.name}</h3>
+                    <div class="discount">${p.discount}%</div>
+                    <h3 class="price">
+                        <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                        <span style="color: #f00;">${p.finalPrice}</span>
+                    </h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/xoai.png" alt="" />
-                    <h3>Xoài</h3>
-                    <h3 class="price">60.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/buoi.jpg" alt="" />
-                    <h3>Bưởi</h3>
-                    <h3 class="price">85.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/coc.jpg" alt="" />
-                    <h3>Cốc</h3>
-                    <h3 class="price">60.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/quyt.jpg" alt="" />
-                    <h3>Quýt</h3>
-                    <h3 class="price">125.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/traicayvietnam/xoaituquy.png" alt="" />
-                    <h3>Xoài tứ quý</h3>
-                    <h3 class="price">55.000đ</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
                     </div>
                     <a href="#" class="btn">thêm vào giỏ hàng</a>
                 </div>

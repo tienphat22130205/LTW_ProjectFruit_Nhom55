@@ -223,12 +223,13 @@
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-
-                <img src="./img/hqnc1.png" alt="" />
-                <h3>Hộp Nguyệt Cát 01</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,200,000₫</span> /
-                    <span style="color: #f00;">2,240,000₫</span></h3>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
+                </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -238,80 +239,23 @@
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
+        </div>
+    <div class="swiper product-slider">
+        <div class="swiper-wrapper">
             <div class="swiper-slide box">
-
-                <img src="./img/hqnc2.png" alt="" />
-                <h3>Hộp Nguyệt Cát 02</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">5,219,000₫</span> /
-                    <span style="color: #f00;">3,653,300₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc3.png" alt="" />
-                <h3>Hộp Nguyệt Cát 03</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,409,000₫</span> /
-                    <span style="color: #f00;">2,386,300₫</span></h3>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
+                </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-
-                <img src="./img/hqnc4.png" alt="" />
-                <h3>Hộp Nguyệt Cát 04</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,109,000₫</span> /
-                    <span style="color: #f00;">2,876,300₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc5.png" alt="" />
-                <h3>Hộp Nguyệt Cát 05</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,309,000₫</span> /
-                    <span style="color: #f00;">2,316,300₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc6.png" alt="" />
-                <h3>Hộp Nguyệt Cát 06</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">1,234,000₫</span> /
-                    <span style="color: #f00;">863,800₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
@@ -320,93 +264,19 @@
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-                <img src="./img/hqnc7.png" alt="" />
-                <h3>Hộp Nguyệt Cát 07</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,415,000₫</span> /
-                    <span style="color: #f00;">3,090,000₫</span></h3>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
+                </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-
-                <img src="./img/hqnc8.png" alt="" />
-                <h3>Hộp Nguyệt Cát 08</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">2,600,000₫</span> /
-                    <span style="color: #f00;">1,820,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc9.png" alt="" />
-                <h3>Hộp Nguyệt Cát 09</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">5,300,000₫</span> /
-                    <span style="color: #f00;">3,710,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc10.png" alt="" />
-                <h3>Hộp Nguyệt Cát 10</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">6,500,000₫</span> /
-                    <span style="color: #f00;">4,255,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc11..png" alt="" />
-                <h3>Hộp Nguyệt Cát 11</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,000,000₫</span> /
-                    <span style="color: #f00;">2,100,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc12.png" alt="" />
-                <h3>Hộp Nguyệt Cát 12</h3>
-                <div class="discount">-30%</div>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,600,000₫</span> /
-                    <span style="color: #f00;">3,220,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
@@ -415,176 +285,19 @@
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-
-                <img src="./img/hqnc13.png" alt="" />
-                <h3>Hộp Nguyệt Cát 13</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">6,305,000₫</span> /
-                    <span style="color: #f00;">3,090,000₫</span></h3>
+                <img src="${p.image}" alt="" />
+                <h3>${p.name}</h3>
+                <div class="discount">${p.discount}%</div>
+                <h3 class="price">
+                    <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                    <span style="color: #f00;">${p.finalPrice}</span>
+                </h3>
                 <div class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc14.png" alt="" />
-                <h3>Hộp Nguyệt Cát 14</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">2,300,000₫</span> /
-                    <span style="color: #f00;">4,305,500₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc15.png" alt="" />
-                <h3>Hộp Nguyệt Cát 15</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,900,000₫</span> /
-                    <span style="color: #f00;">2,730,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <!-- aaaaaaaaaa -->
-            <div class="swiper-slide box">
-                <img src="./img/hqnc16.png" alt="" />
-                <h3>Hộp Nguyệt Cát 16</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">1,250,000₫</span> /
-                    <span style="color: #f00;">875,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc17.png" alt="" />
-                <h3>Hộp Nguyệt Cát 17</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,500,000₫</span> /
-                    <span style="color: #f00;">3,150,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc18.png" alt="" />
-                <h3>Hộp Nguyệt Cát 18</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,900,000₫</span> /
-                    <span style="color: #f00;">3,430,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-        </div>
-    </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide box">
-                <img src="./img/hqnc19.png" alt="" />
-                <h3>Hộp Nguyệt Cát 19</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">2,700,000₫</span> /
-                    <span style="color: #f00;">1,890,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc20.png" alt="" />
-                <h3>Hộp Nguyệt Cát 20</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,000,000₫</span> /
-                    <span style="color: #f00;">2,100,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc21.png" alt="" />
-                <h3>Hộp Nguyệt Cát 21</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,575,000₫</span> /
-                    <span style="color: #f00;">2,502,500₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc22.png" alt="" />
-                <h3>Hộp Nguyệt Cát 22</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,600,000₫</span> /
-                    <span style="color: #f00;">2,520,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc2.png" alt="" />
-                <h3>Hộp Nguyệt Cát 23</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,600,000₫</span> /
-                    <span style="color: #f00;">3,220,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/hqnc6.png" alt="" />
-                <h3>Hộp Nguyệt Cát 24</h3>
-                <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,950,000₫</span> /
-                    <span style="color: #f00;">2,765,000₫</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
@@ -592,10 +305,12 @@
         <div class="swiper product-slider hidden" id="product-slider-1">
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
-                    <img src="./img/hqnc7.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 07</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,415,000₫</span> /
-                        <span style="color: #f00;">3,090,000₫</span>
+                    <img src="${p.image}" alt="" />
+                    <h3>${p.name}</h3>
+                    <div class="discount">${p.discount}%</div>
+                    <h3 class="price">
+                        <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                        <span style="color: #f00;">${p.finalPrice}</span>
                     </h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -603,82 +318,6 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-
-                    <img src="./img/hqnc8.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 08</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">2,600,000₫</span> /
-                        <span style="color: #f00;">1,820,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc9.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 09</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">5,300,000₫</span> /
-                        <span style="color: #f00;">3,710,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc10.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 10</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">6,500,000₫</span> /
-                        <span style="color: #f00;">4,255,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc11..png" alt="" />
-                    <h3>Hộp Nguyệt Cát 11</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,000,000₫</span> /
-                        <span style="color: #f00;">2,100,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc12.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 12</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,600,000₫</span> /
-                        <span style="color: #f00;">3,220,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
                     </div>
                     <a href="#" class="btn">thêm vào giỏ hàng</a>
                 </div>
@@ -687,10 +326,12 @@
         <div class="swiper product-slider hidden" id="product-slider-2">
             <div class="swiper-wrapper">
                 <div class="swiper-slide box">
-                    <img src="./img/hqnc7.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 07</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,415,000₫</span> /
-                        <span style="color: #f00;">3,090,000₫</span>
+                    <img src="${p.image}" alt="" />
+                    <h3>${p.name}</h3>
+                    <div class="discount">${p.discount}%</div>
+                    <h3 class="price">
+                        <span style="text-decoration: line-through; color: #888;">${p.price}</span> /
+                        <span style="color: #f00;">${p.finalPrice}</span>
                     </h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -698,82 +339,6 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-
-                    <img src="./img/hqnc8.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 08</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">2,600,000₫</span> /
-                        <span style="color: #f00;">1,820,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc9.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 09</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">5,300,000₫</span> /
-                        <span style="color: #f00;">3,710,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc10.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 10</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">6,500,000₫</span> /
-                        <span style="color: #f00;">4,255,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc11..png" alt="" />
-                    <h3>Hộp Nguyệt Cát 11</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">3,000,000₫</span> /
-                        <span style="color: #f00;">2,100,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <a href="#" class="btn">thêm vào giỏ hàng</a>
-                </div>
-                <div class="swiper-slide box">
-                    <img src="./img/hqnc12.png" alt="" />
-                    <h3>Hộp Nguyệt Cát 12</h3>
-                    <h3 class="price"><span style="text-decoration: line-through; color: #888;">4,600,000₫</span> /
-                        <span style="color: #f00;">3,220,000₫</span>
-                    </h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
                     </div>
                     <a href="#" class="btn">thêm vào giỏ hàng</a>
                 </div>

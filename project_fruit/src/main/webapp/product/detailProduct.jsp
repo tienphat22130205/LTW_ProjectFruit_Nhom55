@@ -1,4 +1,3 @@
-<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
@@ -263,7 +262,29 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="content_detail">
+        <div class="product-description">
+            <h2>THÔNG TIN SẢN PHẨM</h2>
+            <h3>Mô tả sản phẩm</h3>
+            <p><strong>Xuất xứ:</strong> ${p.origin}</p>
+            <p><strong>Ngày nhập:</strong> ${p.entry_date}</p>
+            <p><strong>Hạn sử dụng:</strong> ${p.shelf_life}</p>
+            <p><strong>Đặc Điểm Sản Phẩm:</strong> ${p.describe}</p>
+            <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
+            <p>${p.info}</p>
+            <p><strong>Lợi Ích Của Dưa Hấu Không Hạt:</strong></p>
+            <p>${p.info}</p>
+        </div>
 
+        <div class="delivery-service">
+            <h2>DỊCH VỤ GIAO HÀNG</h2>
+            <p><i class="fas fa-check-circle"></i> ${service.serviceGuarantee}</p>
+            <p><i class="fas fa-clock"></i> ${service.deliveryTime}</p>
+            <p><i class="fas fa-headset"></i> ${service.supportInfo}</p>
+        </div>
+
+    </div>
 </section>
 
 
