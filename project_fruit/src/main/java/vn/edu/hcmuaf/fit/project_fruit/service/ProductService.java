@@ -10,7 +10,9 @@ public class ProductService {
     public List<Product> getAll(){
         return productDao.getAll();
     }
-    public Product getDetails(int id){
+    public Product getDetails(int id) {
+        ProductDao productDao = new ProductDao();
         return productDao.getById(id);
     }
 }
+

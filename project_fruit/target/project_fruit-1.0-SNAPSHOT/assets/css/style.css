@@ -1094,7 +1094,7 @@ body.scrolled-up .menu-bar {
 
 .products .product-slider .box .price {
     font-size: 1.5rem;
-    color: var(--light-color);
+    color: red;
     padding: .5rem 0;
 }
 
@@ -1178,7 +1178,7 @@ body.scrolled-up .menu-bar {
 
 .products1 .product-slider .box .price {
     font-size: 1.5rem;
-    color: var(--light-color);
+    color: red;
     padding: .5rem 0;
 }
 

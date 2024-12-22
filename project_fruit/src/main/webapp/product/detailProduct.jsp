@@ -1,6 +1,8 @@
+<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,121 +154,119 @@
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
-<nav class="menu-bar">
-    <ul>
+<%--<nav class="menu-bar">--%>
+<%--    <ul>--%>
 
-        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+<%--        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>--%>
+<%--        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>--%>
+<%--        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>--%>
+<%--        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>--%>
+<%--        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>--%>
+<%--        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>--%>
+<%--        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>--%>
+<%--        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>--%>
+<%--        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>--%>
+<%--        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>--%>
 
-    </ul>
-</nav>
-<!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
-<nav class="sidebar-menu" id="sidebarMenu">
-    <ul>
-        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+<%--    </ul>--%>
+<%--</nav>--%>
+<%--<!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->--%>
+<%--<nav class="sidebar-menu" id="sidebarMenu">--%>
+<%--    <ul>--%>
+<%--        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>--%>
+<%--        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>--%>
+<%--        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>--%>
+<%--        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>--%>
+<%--        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>--%>
+<%--        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>--%>
+<%--        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>--%>
+<%--        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>--%>
+<%--        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>--%>
+<%--        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>--%>
 
 
-    </ul>
-</nav>
-<!-- header section ends -->
+<%--    </ul>--%>
+<%--</nav>--%>
+<%--<!-- header section ends -->--%>
 
 <section class="container">
-    <div class="product-info">
-        <div class="product">
-            <div class="product-image">
-                <div class="carousel-images">
-                    <img src="${p.img}" alt="${p.name}" class="active">
-                    <img src="${p.img}" alt="" >
-<%--                    <img src="${pageContext.request.contextPath}/assets/img/traicayhomnay/dautayhanquoc2.jpg" alt="" >--%>
-<%--                    <img src="${pageContext.request.contextPath}/assets/img/traicayhomnay/dautayhanquoc3.jpg" alt="" >--%>
+        <div class="product-info">
+            <div class="product">
+                <!-- Phần hình ảnh sản phẩm -->
+                <div class="product-image">
+                    <div class="carousel-images">
+                        <!-- Hiển thị hình ảnh chính -->
+                        <img src="${not empty product.imageUrl ? product.imageUrl : '/assets/img/default.jpg'}"
+                             alt="${product.name}" class="carousel-img active">
+                    </div>
+                    <!-- Navigation Controls -->
+                    <div class="carousel-controls">
+                        <i class="fas fa-chevron-left prev"></i>
+                        <i class="fas fa-chevron-right next"></i>
+                    </div>
                 </div>
 
-                <!-- Navigation Controls -->
-                <div class="carousel-controls">
-                    <i class="fas fa-chevron-left prev"></i>
-                    <i class="fas fa-chevron-right next"></i>
-                </div>
+                <!-- Phần chi tiết sản phẩm -->
+                <div class="product-price-section">
+                    <h2>${product.name}</h2>
+                    <p class="product-code">Mã sản phẩm: ${product.id_product} | Tình trạng: ${product.statusDisplay}
+                    <p class="product-code">Số lượng: ${product.quantity}</p>
+                    <p class="discount-code">Chương trình giảm giá:</p>
+                   <div class="discount-buttons">
+                        <button>${not empty product.promotionName ? product.promotionName : "Không có chương trình giảm giá"}</button>
+                        <button> Giảm đến ${not empty product.percentDiscount ? product.percentDiscount : 0}% </button>
+                   </div>
+                    <p class="price">
+                        <f:formatNumber value="${product.price}"/>đ
+                     </p>
 
-                <!-- Thumbnail Images -->
-                <div class="thumbnails">
-                    <img src="${p.img}" alt=""  data-index="0"
-                         class="thumbnail active-thumbnail">
-<%--                    <img src="${pageContext.request.contextPath}/assets/img/traicayhomnay/dautayhanquoc1.webp" alt=""  data-index="1"--%>
-<%--                         class="thumbnail">--%>
-<%--                    <img src="${pageContext.request.contextPath}/assets/img/traicayhomnay/dautayhanquoc2.webp" alt="" data-index="2"--%>
-<%--                         class="thumbnail">--%>
-<%--                    <img src="${pageContext.request.contextPath}/assets/img/traicayhomnay/dautayhanquoc3.webp" alt=""  data-index="3"--%>
-<%--                         class="thumbnail">--%>
+                    <!-- Phần thêm số lượng -->
+                    <div class="quantity">
+                        <button class="minus"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" value="1" min="1"/>
+                        <button class="plus"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+
+                    <!-- Nút thêm vào giỏ hàng -->
+                    <button class="add-to-cart">THÊM VÀO GIỎ</button>
                 </div>
             </div>
-            <div class="product-price-section">
-                <h2>${p.name}</h2>
-                <p class="product-code">Mã sản phẩm: ${p.id} | Tình trạng: ${p.rating}</p>
-                <p class="product-code">Số lượng : ${p.quantity} </p>
-                <p class="discount-code">Chương trình giảm giá :</p>
-                <div class="discount-buttons">
-                    <button>${p.promotion}</button>
-                </div>
-                <p class="price"><f:formatNumber value="${p.price}"/></p>
-                <div class="quantity">
-                    <button class="minus"><i class="fa-solid fa-minus"></i></button>
-                    <input type="text" value="1" min="1"/>
-                    <button class="plus"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <button class="add-to-cart">THÊM VÀO GIỎ</button>
+        </div>
+
+        <div class="content_detail">
+            <div class="product-description">
+                <h2>THÔNG TIN SẢN PHẨM</h2>
+                <h3>Mô tả sản phẩm</h3>
+                <p><strong>Xuất xứ:</strong> ${not empty product.origin ? product.origin : 'Không xác định'}</p>
+                <p><strong>Ngày nhập:</strong> ${not empty product.entry_date ? product.entry_date : 'Không có thông tin'}</p>
+                <p><strong>Hạn sử dụng:</strong> ${not empty product.shelf_life ? product.shelf_life : 'Không có thông tin'}</p>
+                <p><strong>Đặc Điểm Sản Phẩm:</strong></p>
+                <ul>
+                    <li>${not empty product.characteristic ? product.characteristic : 'Không có thông tin'}</li>
+                </ul>
+                <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
+                <ul>
+                    <li>${not empty product.preserve_product ? product.preserve_product : 'Không có thông tin'}</li>
+                    <li>${not empty product.use_prodcut ? product.use_prodcut : 'Không có thông tin'}</li>
+                </ul>
+                <p><strong>Lợi Ích:</strong></p>
+                <ul>
+                    <li>${not empty product.benefit ? product.benefit : 'Không có thông tin'}</li>
+                </ul>
+            </div>
+            <div class="delivery-service">
+                <h2>DỊCH VỤ GIAO HÀNG</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Cam kết 100% chính hãng</li>
+                    <li><i class="fas fa-clock"></i> Giao hàng dự kiến: Thứ 2 - Chủ nhật từ 8h00 - 21h00</li>
+                    <li><i class="fas fa-headset"></i> Hỗ trợ 24/7 với các kênh facebook, instagram & phone</li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div class="content_detail">
-        <div class="product-description">
-            <h2>THÔNG TIN SẢN PHẨM</h2>
-            <h3>Mô tả sản phẩm</h3>
-            <p><strong>Xuất xứ:</strong> ${p.origin}</p>
-            <p><strong>Ngày nhập:</strong> ${p.entry_date}</p>
-            <p><strong>Hạn sử dụng:</strong> ${p.shelf_life}</p>
-            <p><strong>Đặc Điểm Sản Phẩm:</strong></p>
-            <ul>
-                <li>${p.describe}</li
-            </ul>
-            <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
-            <ul>
-                <li>Để dâu tây Hàn Quốc ở ngăn mát tủ lạnh, không rửa trước khi bảo quản để tránh nhanh hỏng.</li>
-                <li>Rửa sạch trước khi ăn hoặc làm sinh tố, mứt, trang trí món ăn.</li>
-            </ul>
-            <p><strong>Lợi Ích Của Dưa Hấu Không Hạt:</strong></p>
-            <ul>
-                <li>Dâu tây Hàn Quốc chứa nhiều vitamin C, chất chống oxy hóa giúp tăng cường miễn dịch, làm đẹp da, và
-                    hỗ trợ sức khỏe tim mạch. Chúng cũng giàu chất xơ, hỗ trợ tiêu hóa và kiểm soát đường huyết.
-                </li>
-            </ul>
-        </div>
-        <div class="delivery-service">
-            <h2>DỊCH VỤ GIAO HÀNG</h2>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Cam kết 100% chính hãng</li>
-                <li><i class="fas fa-clock"></i> Giao hàng dự kiến: Thứ 2 - Chủ nhật từ 8h00 - 21h00</li>
-                <li><i class="fas fa-headset"></i> Hỗ trợ 24/7 với các kênh facebook, instagram & phone</li>
-            </ul>
-        </div>
-    </div>
+
 </section>
+
+
 <section class="products" id="products">
     <h1 class="heading"><span>Sản phẩm liên quan</span></h1>
     <div class="swiper product-slider">

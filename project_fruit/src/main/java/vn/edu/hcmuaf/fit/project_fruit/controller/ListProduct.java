@@ -14,18 +14,18 @@ import java.util.List;
 
 @WebServlet(name = "ListProduct", value = "/list-product")
 public class ListProduct extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Gọi DAO để lấy danh sách sản phẩm
         ProductService service = new ProductService();
         List<Product> data = service.getAll();
         request.setAttribute("data", data);
-        request.getRequestDispatcher("/product/traicayhomnay.jsp").forward(request, response);
+        request.getRequestDispatcher("./index.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Không sử dụng doPost trong trường hợp này
     }
+
 }

@@ -228,12 +228,11 @@
     </div>
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
-            <c:forEach var="p" items="${data}">
-                <a href="product-detail?pid=${p.id}">
             <div class="swiper-slide box">
                 <img src="${p.img}" alt="" />
+                <h2>Mã sản phẩm : 1</h2>
                 <h3>${p.name}</h3>
-                <div class="discount">-40%</div>
+                <div class="discount">${p.id_promotion}</div>
                 <h3 class="price"><span style="text-decoration: line-through; color: #888;"><f:formatNumber value="${p.price}"/> </span> / <span
                         style="color: #f00;">75.000d</span></h3>
                 <div class="stars">
@@ -245,8 +244,6 @@
                 </div>
                 <a href="#" class="btn">thêm vào giỏ hàng</a>
             </div>
-                </a>
-            </c:forEach>
         </div>
     </div>
     <div class="swiper product-slider">
