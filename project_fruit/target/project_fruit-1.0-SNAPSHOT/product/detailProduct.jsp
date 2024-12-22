@@ -154,39 +154,39 @@
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
-<%--<nav class="menu-bar">--%>
-<%--    <ul>--%>
+<nav class="menu-bar">
+    <ul>
 
-<%--        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>--%>
-<%--        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>--%>
-<%--        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>--%>
-<%--        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>--%>
-<%--        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>--%>
-<%--        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>--%>
-<%--        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>--%>
-<%--        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>--%>
-<%--        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>--%>
-<%--        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>--%>
+        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
 
-<%--    </ul>--%>
-<%--</nav>--%>
+    </ul>
+</nav>
 <%--<!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->--%>
-<%--<nav class="sidebar-menu" id="sidebarMenu">--%>
-<%--    <ul>--%>
-<%--        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>--%>
-<%--        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>--%>
-<%--        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>--%>
-<%--        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>--%>
-<%--        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>--%>
-<%--        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>--%>
-<%--        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>--%>
-<%--        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>--%>
-<%--        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>--%>
-<%--        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>--%>
+<nav class="sidebar-menu" id="sidebarMenu">
+    <ul>
+        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
 
 
-<%--    </ul>--%>
-<%--</nav>--%>
+    </ul>
+</nav>
 <%--<!-- header section ends -->--%>
 
 <section class="container">
@@ -480,9 +480,9 @@
             <h3>Đơn vị vận chuyển</h3>
             <p>"Chúng tôi sử dụng các đơn vị vận chuyển uy tín như Grab, Giao Hàng Tiết Kiệm, VNPost và nhiều đơn vị khác."</p>
             <div class="shipping-brands">
-                <img src="./img/logoBank/grab.jpg" alt="Grab" />
-                <img src="./img/logoBank/giaohangtietkiem.png" alt="Giao Hàng Tiết Kiệm" />
-                <img src="./img/logoBank/vnpost.webp" alt="VNPost" />
+                <img src="../assets/img/logoBank/grab.jpg" alt="Grab" />
+                <img src="../assets/img/logoBank/giaohangtietkiem.png" alt="Giao Hàng Tiết Kiệm" />
+                <img src="../assets/img/logoBank/vnpost.webp" alt="VNPost" />
             </div>
         </div>
     </div>
