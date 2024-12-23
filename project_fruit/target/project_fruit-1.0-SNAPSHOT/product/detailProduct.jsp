@@ -1,8 +1,6 @@
-<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.model.Product" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +17,7 @@
     <!-- Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- link logo anh -->
-    <link rel="icon" href="../assets/img/logoBank/logoweb.png" type="image/x-icon">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/img/logoBank/logoweb.png"  type="image/x-icon">
     <title>Selling Fruit</title>
 </head>
 
@@ -104,36 +102,51 @@
             </div>
         </div>
     </div>
-    <div class="login-form" id="loginForm">
-        <h2>ĐĂNG NHẬP</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Email">
+    <form action="login" method="post">
+        <div class="login-form" id="loginForm">
+            <h2>ĐĂNG NHẬP</h2>
+            <p>Nhập email và mật khẩu của bạn:</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" name="useremail">
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" placeholder="Mật khẩu" name="pass">
+            </div>
+            <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
+            <p class="captcha-text">
+                Trang web này được bảo vệ bởi reCAPTCHA và Google
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            </p>
+            <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
+            <p class="additional-links">
+
+                Khách hàng mới? <a href="./user/register.html">Tạo tài khoản</a><br>
+
+                Quên mật khẩu? <a href="#" onclick="showForgotPasswordForm()">Khôi phục mật khẩu</a>
+            </p>
         </div>
+    </form>
+    <div class="overlay" id="overlay"></div>
+    <div class="forgot-password-form" id="forgotPasswordForm">
+        <h2>KHÔI PHỤC MẬT KHẨU</h2>
+        <p>Nhập email của bạn để khôi phục mật khẩu:</p>
         <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <input type="password" id="password" placeholder="Mật khẩu">
+            <label for="forgot-email">Email</label>
+            <input type="email" id="forgot-email" placeholder="Email">
         </div>
-        <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
-        <p class="captcha-text">
-            Trang web này được bảo vệ bởi reCAPTCHA và Google
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-        </p>
-        <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
+        <button class="forgot-password-button" onclick="resetPassword()">Gửi yêu cầu khôi phục</button>
         <p class="additional-links">
-
-            Khách hàng mới? <a href="../user/register.jsp">Tạo tài khoản</a><br>
-
-            Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
+            <a href="#" onclick="showLoginForm()">Quay lại đăng nhập</a>
         </p>
     </div>
     <div class="user-menu" id="userMenu" style="display: none;">
-        <p>Xin chào, <span id="userNameDisplay">User</span></p>
+        <p><i class="fa fa-handshake"></i> Xin chào,<span id="userNameDisplay">User</span></p>
         <ul>
-            <li><a href="../user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
-            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
+            <li><a href="./user/user.jsp"><i class="fas fa-box"></i>Thông tin cá nhân</a></li>
+            <li><a href="#"><i class="fas fa-headset"></i> Hỗ trợ khách hàng</a></li>
             <li><a href="" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
         </ul>
     </div>
@@ -149,42 +162,38 @@
             <span>TỔNG TIỀN:</span>
             <span class="total-amount">0₫</span>
         </div>
-        <a href="../card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
+        <a href="./card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
     </div>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
 <nav class="menu-bar">
     <ul>
-
-        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="/project_fruit/list-product" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/list-product?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="/project_fruit/list-product?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="/project_fruit/list-product?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="/project_fruit/list-product?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="/project_fruit/list-product?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="/project_fruit/list-product?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="/project_fruit/list-product?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="/project_fruit/list-product?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
         <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
-
     </ul>
 </nav>
 <%--<!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->--%>
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
-        <li><a href="../index.jsp" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="../product/traicayhomnay.jsp" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="../product/traicayvietnam.jsp" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="../product/traicaynhapkhau.jsp" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="../product/traicaycatsan.jsp" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="../product/quatangtraicay.jsp" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="../product/hopqua.jsp" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="../product/traicaysaykho.jsp" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="../product/muttraicay.jsp" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="/project_fruit/list-product" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/list-product?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="/project_fruit/list-product?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="/project_fruit/list-product?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="/project_fruit/list-product?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="/project_fruit/list-product?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="/project_fruit/list-product?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="/project_fruit/list-product?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="/project_fruit/list-product?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
         <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
-
-
     </ul>
 </nav>
 <%--<!-- header section ends -->--%>
@@ -217,8 +226,13 @@
                         <button> Giảm đến ${not empty product.percentDiscount ? product.percentDiscount : 0}% </button>
                    </div>
                     <p class="price">
-                        <f:formatNumber value="${product.price}"/>đ
-                     </p>
+                    <span style="color: red; font-size: 24px;">
+                        <f:formatNumber value="${product.discountedPrice}" type="number" /> đ
+                    </span>
+                        <del style="color: gray; text-decoration: line-through">
+                            <f:formatNumber value="${product.price}" type="number" /> đ
+                        </del>
+                    </p>
 
                     <!-- Phần thêm số lượng -->
                     <div class="quantity">
@@ -263,9 +277,8 @@
                 </ul>
             </div>
         </div>
-
+    </div>
 </section>
-
 
 <section class="products" id="products">
     <h1 class="heading"><span>Sản phẩm liên quan</span></h1>
@@ -491,9 +504,10 @@
 <!-- footer section end -->
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="${pageContext.request.contextPath}/assets/js/fruit.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/login.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

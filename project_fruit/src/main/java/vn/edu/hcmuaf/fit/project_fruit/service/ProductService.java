@@ -14,5 +14,9 @@ public class ProductService {
         ProductDao productDao = new ProductDao();
         return productDao.getById(id);
     }
+    // Lấy sản phẩm theo danh mục
+    public List<Product> getProductsByCategory(String category) {
+        return productDao.getProductsByCategory(category);
+    }
 }
 

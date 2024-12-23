@@ -22,6 +22,7 @@ public class Product implements Serializable {
     private String benefit;
     private String promotionName;
     private double percentDiscount;
+    private double discountedPrice;
 
    // danh sach san pham trang chu
     public Product(int id_product, String name, List<ProductImg> listImg, double price, String rating , double percentDiscount) {
@@ -31,6 +32,7 @@ public class Product implements Serializable {
         this.price = price;
         this.rating = rating;
         this.percentDiscount = percentDiscount;
+        calculateDiscountedPrice();
 
     }
     // Chi tiet san pham
@@ -197,6 +199,20 @@ public class Product implements Serializable {
         this.percentDiscount = percentDiscount;
     }
 
+
+    // Phương thức tính giá giảm
+    public void calculateDiscountedPrice() {
+        if (percentDiscount > 0) {
+            this.discountedPrice = price * (1 - percentDiscount / 100.0);
+        } else {
+            this.discountedPrice = price;
+        }
+    }
+
+    // Getter cho `discountedPrice`
+    public double getDiscountedPrice() {
+        return discountedPrice;
+    }
     // Lấy URL hình ảnh chính hoặc hình đầu tiên
     public String getImageUrl() {
         if (listImg == null || listImg.isEmpty()) {

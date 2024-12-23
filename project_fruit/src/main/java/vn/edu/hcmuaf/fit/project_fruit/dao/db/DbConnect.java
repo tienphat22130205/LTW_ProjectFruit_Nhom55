@@ -17,6 +17,18 @@ public class DbConnect {
             return null;
         }
     }
+    // Trả về đối tượng PreparedStatement
+    public static PreparedStatement getPreparedStatement(String query) {
+        try {
+            if (conn == null || conn.isClosed()) {
+                makeConnect();
+            }
+            return conn.prepareStatement(query);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     private static void makeConnect() throws ClassNotFoundException , SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
