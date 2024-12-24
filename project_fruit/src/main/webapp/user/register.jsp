@@ -5,59 +5,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Đăng Ký</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/register.css">
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/register.css">
+
+    <!-- ===== BOX ICONS ===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Login form responsive</title>
 </head>
 
 <body>
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center">
-                    Đăng Ký
+<div class="l-form">
+    <div class="shape1"></div>
+    <div class="shape2"></div>
+
+    <div class="form">
+        <img src="${pageContext.request.contextPath}/assets/img/authentication.svg" alt="Background 1">
+
+        <form action="" class="form__content">
+            <h1 class="form__title">VitaminFruit</h1>
+
+            <div class="form__div form__div-one">
+                <div class="form__icon">
+                    <i class='bx bx-user-circle'></i>
                 </div>
-                <div class="card-body">
-                    <form onsubmit="register(event)">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Họ và Tên</label>
-                            <input type="text" class="form-control" id="username" placeholder="Nhập họ và tên" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Mật Khẩu</label>
-                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirm-password" class="form-label">Xác Thực Mật Khẩu</label>
-                            <input type="password" class="form-control" id="confirm-password" placeholder="Nhập lại mật khẩu"
-                                   required>
-                        </div>
-                        <div class="form-text mb-3">
-                            Trang web này được bảo vệ bởi reCAPTCHA và Google
-                            <a href="https://policies.google.com/privacy">Privacy Policy</a> và
-                            <a href="https://policies.google.com/terms">Terms of Service</a>.
-                        </div>
-                        <div class="text-center my-3">Hoặc đăng ký với</div>
-                        <div class="social-buttons">
-                            <button class="btn btn-social btn-facebook"><i class="fa-brands fa-facebook"></i> Facebook</button>
-                            <button class="btn btn-social btn-google"><i class="fa-brands fa-google"></i> Google</button>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Đăng Ký</button>
-                    </form>
+
+                <div class="form__div-input">
+                    <label for="" class="form__label">Tên đầy đủ</label>
+                    <input type="text" class="form__input" required>
                 </div>
             </div>
-        </div>
+
+            <div class="form__div">
+                <div class="form__icon">
+                    <i class='bx bx-envelope'></i>
+                </div>
+
+                <div class="form__div-input">
+                    <label for="" class="form__label">Email</label>
+                    <input type="email" class="form__input" required>
+                </div>
+            </div>
+
+            <div class="form__div">
+                <div class="form__icon">
+                    <i class='bx bx-lock'></i>
+                </div>
+
+                <div class="form__div-input">
+                    <label for="" class="form__label">Mật khẩu</label>
+                    <input type="password" class="form__input" required>
+                </div>
+            </div>
+
+            <div class="form__div">
+                <div class="form__icon">
+                    <i class='bx bx-lock'></i>
+                </div>
+
+                <div class="form__div-input">
+                    <label for="" class="form__label">Xác nhận mật khẩu</label>
+                    <input type="password" class="form__input" required>
+                </div>
+            </div>
+
+            <input type="submit" class="form__button" value="Đăng Ký">
+
+            <div class="register">
+                <p>Đã có tài khoản?</p>
+                <a href="${pageContext.request.contextPath}/user/login.jsp">Đăng Nhập</a>
+            </div>
+            <div class="form__social">
+                <span class="form__social-text">Đăng ký bằng</span>
+
+                <a href="#" class="form__social-icon"><i class='bx bxl-facebook' ></i></a>
+                <a href="#" class="form__social-icon"><i class='bx bxl-google' ></i></a>
+                <a href="#" class="form__social-icon"><i class='bx bxl-instagram' ></i></a>
+            </div>
+        </form>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/register.js"></script>
+
+<script src="${pageContext.request.contextPath}/assets/js/formlogin.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

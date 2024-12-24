@@ -31,7 +31,9 @@
             <i id="menuIcon" class="fa-solid fa-bars"></i></span>
             </div>
             <div class="logo">
-                <h1>Vitamin<span>FRUIT</span></h1>
+                <a href="/index.jsp">
+                    <h1>Vitamin<span>FRUIT</span></h1>
+                </a>
             </div>
             <div class="search">
                 <input type="text" placeholder="Tìm kiếm sản phẩm...">
@@ -55,8 +57,20 @@
                 <span class="cart-badge">0</span>
             </div>
             <div class="account">
-                <i class="fa-solid fa-user"></i>
-                <span>Tài khoản</span>
+                <!-- Kiểm tra nếu người dùng đã đăng nhập -->
+                <c:if test="${not empty sessionScope.user}">
+                    <!-- Nếu người dùng đã đăng nhập, hiển thị avatar và thông tin -->
+                    <a href="${pageContext.request.contextPath}/user/user.jsp">
+                        <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar" class="avatar" onclick="toggleUserMenu()">
+                    </a>
+                </c:if>
+                <c:if test="${empty sessionScope.user}">
+                    <!-- Nếu chưa đăng nhập, hiển thị icon tài khoản -->
+                    <a href="${pageContext.request.contextPath}/user/login.jsp" style="color: white">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                </c:if>
             </div>
         </div>
     </div>
@@ -102,37 +116,13 @@
             </div>
         </div>
     </div>
-    <div class="login-form" id="loginForm">
-        <h2>ĐĂNG NHẬP</h2>
-        <p>Nhập email và mật khẩu của bạn:</p>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <label for="password">Mật khẩu</label>
-            <input type="password" id="password" placeholder="Mật khẩu">
-        </div>
-        <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
-        <p class="captcha-text">
-            Trang web này được bảo vệ bởi reCAPTCHA và Google
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-        </p>
-        <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>
-        <p class="additional-links">
-
-            Khách hàng mới? <a href="../user/register.jsp">Tạo tài khoản</a><br>
-
-            Quên mật khẩu? <a href="#">Khôi phục mật khẩu</a>
-        </p>
-    </div>
+    <!-- User Menu (ẩn khi chưa đăng nhập) -->
     <div class="user-menu" id="userMenu" style="display: none;">
-        <p>Xin chào, <span id="userNameDisplay">User</span></p>
+        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>
         <ul>
-            <li><a href="../user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
+            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
             <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
-            <li><a href="" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
         </ul>
     </div>
     <div class="cart-form" id="cartForm">

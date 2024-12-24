@@ -212,13 +212,10 @@ textarea {
 .cart {
     display: flex;
     flex-direction: column;
-    /* Chuyển thành cột để icon nằm trên chữ */
     align-items: center;
-    /* Căn giữa theo chiều ngang */
     font-size: 14px;
     text-align: center;
 }
-
 .hotline i,
 .account i,
 .cart i {
@@ -291,7 +288,6 @@ textarea {
 }
 
 .account .avatar {
-    display: none;
     /* Ẩn avatar trước khi đăng nhập */
     width: 30px;
     height: 30px;
@@ -455,7 +451,6 @@ textarea {
 
 /* thuoc tinh 3 form */
 .branch-selection,
-.login-form,
 .cart-form {
     display: none;
     position: absolute;
@@ -823,6 +818,17 @@ body.scrolled-up .menu-bar {
     transform: translateY(0);
     opacity: 1;
 }
+/* Khi cuộn xuống, ẩn thanh menu */
+/*.menu-bar.scrolled-down {*/
+/*    transform: translateY(-100%);  !* Đẩy menu ra khỏi màn hình *!*/
+/*    opacity: 0;  !* Ẩn thanh menu *!*/
+/*}*/
+
+/*!* Khi cuộn lên, hiển thị lại thanh menu *!*/
+/*.menu-bar.scrolled-up {*/
+/*    transform: translateY(0);  !* Đưa menu về vị trí ban đầu *!*/
+/*    opacity: 1;  !* Hiển thị thanh menu *!*/
+/*}*/
 
 .menu-bar ul {
     list-style-type: none;

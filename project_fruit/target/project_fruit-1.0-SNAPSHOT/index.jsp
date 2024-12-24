@@ -31,7 +31,9 @@
             <i id="menuIcon" class="fa-solid fa-bars"></i></span>
             </div>
             <div class="logo">
-                <h1>Vitamin<span>FRUIT</span></h1>
+                <a href="/index.jsp">
+                    <h1>Vitamin<span>FRUIT</span></h1>
+                </a>
             </div>
             <div class="search">
                 <input type="text" placeholder="Tìm kiếm sản phẩm...">
@@ -54,51 +56,22 @@
                 <span>Giỏ hàng</span>
                 <span class="cart-badge">0</span>
             </div>
-            <%-- Kiểm tra nếu người dùng đã đăng nhập --%>
-            <% User user = (User) session.getAttribute("user"); %>
-            <% if (user != null) { %>
-            <!-- Hiển thị avatar và tên người dùng khi đã đăng nhập -->
-            <div class="account" style="display: none;">
-                <i class="fa-solid fa-user"></i>
-                <span>Tài khoản</span>
+            <div class="account">
+                <!-- Kiểm tra nếu người dùng đã đăng nhập -->
+                <c:if test="${not empty sessionScope.user}">
+                    <!-- Nếu người dùng đã đăng nhập, hiển thị avatar và thông tin -->
+                    <a href="${pageContext.request.contextPath}/user/user.jsp">
+                        <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar" class="avatar" onclick="toggleUserMenu()">
+                    </a>
+                </c:if>
+                <c:if test="${empty sessionScope.user}">
+                    <!-- Nếu chưa đăng nhập, hiển thị icon tài khoản -->
+                    <a href="${pageContext.request.contextPath}/user/login.jsp" style="color: white">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                </c:if>
             </div>
-
-            <div class="user-menu" id="userMenu" style="display: block;">
-                <p><i class="fa fa-handshake"></i> Xin chào, <span id="userNameDisplay"><%= user.getEmail() %></span></p>
-                <ul>
-                    <li><a href="./user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
-                    <li><a href="#"><i class="fas fa-headset"></i> Hỗ trợ khách hàng</a></li>
-                    <li><a href="logout" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
-                </ul>
-            </div>
-
-            <!-- Hiển thị avatar của người dùng -->
-            <div class="avatar">
-                <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar" class="avatar-image">
-            </div>
-            <% } else { %>
-            <!-- Hiển thị form đăng nhập nếu người dùng chưa đăng nhập -->
-            <form action="login" method="post">
-                <div class="login-form" id="loginForm">
-                    <h2>ĐĂNG NHẬP</h2>
-                    <p>Nhập email và mật khẩu của bạn:</p>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Email" name="useremail">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Mật khẩu</label>
-                        <input type="password" id="password" placeholder="Mật khẩu" name="pass">
-                    </div>
-                    <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>
-                    <button class="login-button" type="submit">ĐĂNG NHẬP</button>
-                    <p class="additional-links">
-                        Khách hàng mới? <a href="./user/register.html">Tạo tài khoản</a><br>
-                        Quên mật khẩu? <a href="#" onclick="showForgotPasswordForm()">Khôi phục mật khẩu</a>
-                    </p>
-                </div>
-            </form>
-            <% } %>
         </div>
     </div>
     <!-- Branch Selection Form -->
@@ -143,45 +116,14 @@
             </div>
         </div>
     </div>
-<%--    <form action="login" method="post">--%>
-<%--    <div class="login-form" id="loginForm">--%>
-<%--        <h2>ĐĂNG NHẬP</h2>--%>
-<%--        <p>Nhập email và mật khẩu của bạn:</p>--%>
-<%--        <div class="form-group">--%>
-<%--            <label for="email">Email</label>--%>
-<%--            <input type="email" id="email" placeholder="Email" name="useremail">--%>
-<%--        </div>--%>
-<%--        <div class="form-group">--%>
-<%--            <label for="password">Mật khẩu</label>--%>
-<%--            <input type="password" id="password" placeholder="Mật khẩu" name="pass">--%>
-<%--        </div>--%>
-<%--        <p id="error-message" style="color: red; display: none;">Xin vui lòng kiểm tra lại thông tin đăng nhập</p>--%>
-<%--        <p class="captcha-text">--%>
-<%--            Trang web này được bảo vệ bởi reCAPTCHA và Google--%>
-<%--            <a href="https://policies.google.com/privacy">Privacy Policy</a> and--%>
-<%--            <a href="https://policies.google.com/terms">Terms of Service</a> apply.--%>
-<%--        </p>--%>
-<%--        <button class="login-button" onclick="login()">ĐĂNG NHẬP</button>--%>
-<%--        <p class="additional-links">--%>
-
-<%--            Khách hàng mới? <a href="./user/register.html">Tạo tài khoản</a><br>--%>
-
-<%--            Quên mật khẩu? <a href="#" onclick="showForgotPasswordForm()">Khôi phục mật khẩu</a>--%>
-<%--        </p>--%>
-<%--    </div>--%>
-<%--    </form>--%>
-    <div class="overlay" id="overlay"></div>
-    <div class="forgot-password-form" id="forgotPasswordForm">
-        <h2>KHÔI PHỤC MẬT KHẨU</h2>
-        <p>Nhập email của bạn để khôi phục mật khẩu:</p>
-        <div class="form-group">
-            <label for="forgot-email">Email</label>
-            <input type="email" id="forgot-email" placeholder="Email">
-        </div>
-        <button class="forgot-password-button" onclick="resetPassword()">Gửi yêu cầu khôi phục</button>
-        <p class="additional-links">
-            <a href="#" onclick="showLoginForm()">Quay lại đăng nhập</a>
-        </p>
+    <!-- User Menu (ẩn khi chưa đăng nhập) -->
+    <div class="user-menu" id="userMenu" style="display: none;">
+        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
+            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
+            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+        </ul>
     </div>
     <div class="cart-form" id="cartForm">
         <h2>GIỎ HÀNG</h2>
@@ -195,7 +137,7 @@
             <span>TỔNG TIỀN:</span>
             <span class="total-amount">0₫</span>
         </div>
-        <a href="./card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
+        <a href="../card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
     </div>
 </header>
 <!-- Menu Bar dưới Header -->
@@ -907,7 +849,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/fruit.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 

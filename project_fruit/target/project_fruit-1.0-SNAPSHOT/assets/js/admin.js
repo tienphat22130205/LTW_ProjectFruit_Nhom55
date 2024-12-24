@@ -392,7 +392,7 @@ document.getElementById("logoutBtn").onclick = function() {
 
 // Khi người dùng nhấn "Có" (Xác nhận đăng xuất)
 document.getElementById("confirmLogoutBtn").onclick = function() {
-    window.location.href = "../index.jsp"; // Chuyển hướng đến trang đăng xuất
+    window.location.href = "${pageContext.request.contextPath}/logout"; // Chuyển hướng đến trang đăng xuất
 };
 
 // Khi người dùng nhấn "Không" (Hủy đăng xuất)

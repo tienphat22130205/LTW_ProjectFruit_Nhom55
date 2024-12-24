@@ -158,4 +158,12 @@ function searchOrders() {
         // Thêm logic tìm kiếm thực tế ở đây
     }
 }
+// Sự kiện đăng xuất
+document.getElementById("logout").addEventListener("click", function(event) {
+    event.preventDefault();  // Ngừng hành động mặc định của link
+
+    // Gửi yêu cầu tới servlet để đăng xuất
+    window.location.href = "/logout";  // Đảm bảo URL này tương ứng với LogoutController
+});
+
 

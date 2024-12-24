@@ -93,17 +93,9 @@ function toggleLoginForm() {
     const loginForm = document.getElementById("loginForm");
     const userMenu = document.getElementById("userMenu");
     const button = document.querySelector(".account");
-    const avatarImg = document.querySelector(".account .avatar");
 
-    if (avatarImg) {
-        // Khi đã đăng nhập (có avatar), hiển thị menu người dùng
-        setPositionRelativeToButton(userMenu, button);
-        userMenu.style.display = userMenu.style.display === "none" || userMenu.style.display === "" ? "block" : "none";
-    } else {
-        // Khi chưa đăng nhập (không có avatar), hiển thị form đăng nhập
-        setPositionRelativeToButton(loginForm, button);
-        loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
-    }
+    loginForm.style.display = loginForm.style.display === "none" || loginForm.style.display === "" ? "block" : "none";
+    setPositionRelativeToButton(loginForm, button);
 }
 
 // Thêm sự kiện cho avatar để mở menu người dùng
@@ -133,7 +125,40 @@ function logout() {
 
     // Hiển thị lại form đăng nhập hoặc đặt lại giao diện icon tài khoản
     alert("Bạn đã đăng xuất thành công!");
+    checkLoginStatus();
 }
+function checkLoginStatus() {
+    const userMenu = document.getElementById("userMenu");
+    const loginForm = document.getElementById("loginForm");
+    const accountIcon = document.querySelector(".account");
+    const avatar = document.querySelector(".avatar");
+    const userNameDisplay = document.getElementById("userNameDisplay");
+
+    // Example: Use sessionStorage for demo (can be replaced with backend session checking)
+    const user = sessionStorage.getItem("user");  // Or use cookie/session for actual login check
+
+    if (user) {
+        // If user is logged in, show user menu and avatar, hide login form
+        userMenu.style.display = "block";
+        loginForm.style.display = "none"; // Hide login form
+        accountIcon.style.display = "none"; // Hide account icon
+
+        // Show user info (like avatar and name)
+        avatar.style.display = "block";  // Display avatar
+        userNameDisplay.textContent = user.email;  // Show username
+    } else {
+        // If user is not logged in, show login form
+        userMenu.style.display = "none";
+        loginForm.style.display = "block";
+        accountIcon.style.display = "block";  // Show account icon
+        avatar.style.display = "none";  // Hide avatar
+    }
+}
+// Run checkLoginStatus to update interface on page load
+window.onload = function () {
+    checkLoginStatus();
+};
+
 
 // Gắn sự kiện cho nút đăng xuất
 document.getElementById("logout").addEventListener("click", (event) => {
@@ -307,23 +332,23 @@ window.addEventListener("click", function (event) {
 
 
 
-// cuộn màn hình xuống thì ẩn menu lướt lên thì hiện menu
-let lastScrollTop = 0;
+let lastScrollTop = 0;  // Biến lưu vị trí cuộn cuối cùng
+const menu = document.querySelector('.menu-bar');  // Lấy phần tử menu thanh header
 
 window.addEventListener("scroll", function () {
-    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;  // Lấy vị trí cuộn hiện tại
 
     if (currentScroll > lastScrollTop) {
-        // Cuộn xuống
-        document.body.classList.remove("scrolled-up");
-        document.body.classList.add("scrolled-down");
+        // Khi cuộn xuống, ẩn menu
+        menu.classList.add("scrolled-down");
+        menu.classList.remove("scrolled-up");
     } else {
-        // Cuộn lên
-        document.body.classList.remove("scrolled-down");
-        document.body.classList.add("scrolled-up");
+        // Khi cuộn lên, hiện menu
+        menu.classList.add("scrolled-up");
+        menu.classList.remove("scrolled-down");
     }
 
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Đảm bảo giá trị không bị âm
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;  // Cập nhật vị trí cuộn cuối cùng
 });
 
 // loi ngo search
