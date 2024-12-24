@@ -5,32 +5,46 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.User;
+import vn.edu.hcmuaf.fit.project_fruit.service.UserService;
+
 import java.io.IOException;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
 
+    private final UserService userService = new UserService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Chuyển hướng đến trang login.jsp
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response); // Quay lại trang chủ
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Lấy thông tin username và password từ form
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
 
-        // Kiểm tra thông tin đăng nhập (giả sử username = admin và password = 1234)
-        if ("admin".equals(username) && "1234".equals(password)) {
-            // Đăng nhập thành công, chuyển hướng đến trang welcome.jsp
-            request.getSession().setAttribute("user", username);
-            response.sendRedirect("welcome.jsp");
+        // Lấy thông tin từ form đăng nhập
+        String email = request.getParameter("useremail");
+        String password = request.getParameter("pass");
+
+        // Kiểm tra đăng nhập
+        User user = userService.validateUser(email, password);
+
+        if (user != null) {
+            // Đăng nhập thành công, lưu thông tin người dùng vào session
+            request.getSession().setAttribute("user", user);
+
+            // Cập nhật icon tài khoản
+            request.setAttribute("userName", user.getEmail());  // Hiển thị tên người dùng trong giao diện
+
+            // Chuyển hướng về trang chủ
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
-            // Đăng nhập thất bại, quay lại login.jsp với thông báo lỗi
-            request.setAttribute("error", "Invalid username or password!");
-            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+            // Đăng nhập thất bại
+            request.setAttribute("errorMessage", "Email hoặc mật khẩu không chính xác.");
+            request.getRequestDispatcher("/index.jsp").forward(request, response); // Quay lại trang chủ
         }
     }
 }
