@@ -87,6 +87,40 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
+    public List<Product> getProductsByIdRange(int startId, int endId) {
+        Statement s = DbConnect.get();
+        if (s == null) return new ArrayList<>();
+        try {
+            ArrayList<Product> products = new ArrayList<>();
+            String query = """
+            SELECT p.*, pr.percent_discount
+            FROM products p
+            LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
+            WHERE p.id_product BETWEEN ? AND ?
+        """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, startId);
+            ps.setInt(2, endId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
+                Product product = new Product(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        listImg,
+                        rs.getDouble("price"),
+                        rs.getString("rating"),
+                        rs.getDouble("percent_discount")
+                );
+                product.calculateDiscountedPrice();
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
 
     // Lấy danh sách hình ảnh của sản phẩm từ bảng product_images
     private List<ProductImg> getImagesByProductId(int productId) {

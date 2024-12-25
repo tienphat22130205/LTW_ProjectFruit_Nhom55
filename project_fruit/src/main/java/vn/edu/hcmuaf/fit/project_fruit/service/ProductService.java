@@ -18,5 +18,9 @@ public class ProductService {
     public List<Product> getProductsByCategory(String category) {
         return productDao.getProductsByCategory(category);
     }
+    // Lấy sản phẩm theo khoảng id
+    public List<Product> getProductsByIdRange(int startId, int endId) {
+        return productDao.getProductsByIdRange(startId, endId);
+    }
 }
 
