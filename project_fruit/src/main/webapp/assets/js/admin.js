@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     showSection('dashboard', 'Dashboard');
 });
 // dong mo sidebar
-document.querySelector("#nav-toggle").addEventListener("change", function () {
-    document.querySelector(".sidebar").classList.toggle("active");
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("#nav-toggle").addEventListener("change", function () {
+        document.querySelector(".sidebar").classList.toggle("active");
+    });
 });
 // chart
 // Cấu hình biểu đồ Doanh thu 6 tháng qua

@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.project_fruit.dao.model;
 
-public class Supplier {
+import java.io.Serializable;
+
+public class Supplier implements Serializable {
     private int id_supplier;
     private String name;
     private String address;
@@ -8,8 +10,11 @@ public class Supplier {
     private String phone_number;
     private String status;
     private double rating;
+    private String name_category;
 
-    public Supplier(int id_supplier, String name, String address, String email, String phone_number, String status, double rating) {
+    // Constructor
+    public Supplier(int id_supplier, String name, String address, String email,
+                    String phone_number, String status, double rating, String name_category) {
         this.id_supplier = id_supplier;
         this.name = name;
         this.address = address;
@@ -17,8 +22,10 @@ public class Supplier {
         this.phone_number = phone_number;
         this.status = status;
         this.rating = rating;
+        this.name_category = name_category;
     }
 
+    // Getter và setter cho các thuộc tính
     public int getId_supplier() {
         return id_supplier;
     }
@@ -74,5 +81,26 @@ public class Supplier {
     public void setRating(double rating) {
         this.rating = rating;
     }
-}
 
+    public String getName_category() {
+        return name_category;
+    }
+
+    public void setName_category(String name_category) {
+        this.name_category = name_category;
+    }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "id_supplier=" + id_supplier +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", status='" + status + '\'' +
+                ", rating=" + rating +
+                ", name_category='" + name_category + '\''+
+        '}';
+    }
+}

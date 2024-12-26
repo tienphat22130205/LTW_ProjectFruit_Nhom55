@@ -506,6 +506,7 @@ function resetPassword() {
   // Xử lý khôi phục mật khẩu (thêm logic của bạn ở đây)
   alert('Yêu cầu khôi phục mật khẩu đã được gửi!');
 }
+// -----------------------------
 
 
 
