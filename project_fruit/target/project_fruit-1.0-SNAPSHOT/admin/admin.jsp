@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,9 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-</head>
 
 <body>
 <input type="checkbox" name="" id="nav-toggle">
@@ -131,7 +132,7 @@
                     </li>
                 </ul>
             </div>
-            <img src="./img/anhdaidien.jpg" width="40px" height="40px" alt="">
+            <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Ảnh đại diện" width="40px" height="40px" alt="">
             <div>
                 <h4>Admin</h4>
             </div>
@@ -409,7 +410,7 @@
                                 <div class="card-body">
                                     <div class="customer">
                                         <div class="info">
-                                            <img src="./img/user_admin.png" width="40px" height="40px" alt="">
+                                            <img src="${pageContext.request.contextPath}/assets/img/user_admin.png" alt="User Admin" width="40px" height="40px" alt="">
                                             <div>
                                                 <h4>Nguyen Van A</h4>
                                             </div>
@@ -653,7 +654,7 @@
                         <h2>Sản Phẩm Bán Chạy</h2>
                         <ul>
                             <li>
-                                <img src="./img/traicayvietnam/vusua.jpg" alt="Sản phẩm 1">
+                                <img src="<img src="${pageContext.request.contextPath}/assets/img/vusua.jpg" alt="Vú Sữa">" alt="Sản phẩm 1">
                                 <div>
                                     <h3>Vú Sữa</h3>
                                     <p>Giá: 121,000đ</p>
@@ -661,7 +662,7 @@
                                 <button class="button-product-description">Xem chi tiết</button>
                             </li>
                             <li>
-                                <img src="./img/traicayvietnam/xoai.png" alt="Sản phẩm 2">
+                                <img src="<img src="${pageContext.request.contextPath}/assets/img/xoai.png" alt="Xoài">" alt="Sản phẩm 2">
                                 <div>
                                     <h3>Xoài Cát</h3>
                                     <p>Giá: 75,000đ</p>
@@ -1016,201 +1017,61 @@
         <div id="suppliers" class="section">
             <div class="container">
                 <h1>Thông Tin Nhà Cung Cấp</h1>
+                <div class="card-header">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm..." />
+                        <div class="search">
+                            <button class="search-btn" id="searchButton">Tìm kiếm</button>
+                        </div>
+                    </div>
+                    <div class="sort-options">
+                        <select>
+                            <option value="#">Chọn lựa chọn</option>
+                            <option value="status">Trạng thái hợp tác</option>
+                            <option value="name_category">Danh sách sản phẩm</option>
+                        </select>
+                        <div class="sort-icon">
+                            <i class="fas fa-sort"></i>
+                            <span class="sort-label">Sắp xếp</span>
+                        </div>
+                    </div>
+                </div>
                 <table id="supplierTable">
                     <thead>
                     <tr>
                         <th>Mã nhà cung cấp</th>
                         <th>Tên nhà cung cấp</th>
                         <th>Địa chỉ</th>
-                        <th>Số điện thoại</th>
                         <th>Email</th>
-                        <th>Danh sách sản phẩm</th>
+                        <th>Số điện thoại</th>
                         <th>Trạng thái hợp tác</th>
+                        <th>Đánh giá</th>
+                        <th>Danh sách sản phẩm</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>NCC01</td>
-                        <td>Nhà Cung Cấp An Phát</td>
-                        <td>103 Phạm Ngũ Lão, Quận 1, TP.HCM</td>
-                        <td>0123456789</td>
-                        <td>anphatfruit@gmail.com</td>
-                        <td>Trái Cây Việt Nam</td>
-
-                        <td>
-                            <span class="status red"></span>
-                            Tạm Dừng
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NCC02</td>
-                        <td>Nhà Cung Cấp An Bình</td>
-                        <td>256 Phạm Văn Đồng, TP.Thủ Đức, TP.HCM</td>
-                        <td>0906211276</td>
-                        <td>nhacungcapanbinh@gmail.com</td>
-                        <td>Trái Cây Việt Nam</td>
-
-                        <td>
-                            <span class="status blue"></span>
-                            Đang Hợp Tác
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NCC03</td>
-                        <td>Nhà Cung Cấp FeshFruit</td>
-                        <td>111 Tân Sơn, Quận Tân Bình, TP.HCM</td>
-                        <td>0902866888</td>
-                        <td>freshfruit@gmail.com</td>
-                        <td>Trái Cây Nhập Khẩu</td>
-
-                        <td>
-                            <span class="status blue"></span>
-                            Đang Hợp Tác
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NCC04</td>
-                        <td>Nhà Cung Cấp GoodMorning</td>
-                        <td>96 Thảo Điền, TP.Thủ Đức, TP.HCM</td>
-                        <td>0906211222</td>
-                        <td>morningfruit@gmail.com</td>
-                        <td>Trái Cây Nhập Khẩu Và Giỏ Quà Trái Cây</td>
-
-                        <td>
-                            <span class="status blue"></span>
-                            Đang Hợp Tác
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NCC05</td>
-                        <td>Nhà Cung Cấp Tấn Lợi</td>
-                        <td>29 Đỗ Xuân Hợp, TP.Thủ Đức, TP.HCM</td>
-                        <td>0123456789</td>
-                        <td>tanloifruit@gmail.com</td>
-                        <td>Trái Cây Sấy</td>
-
-                        <td>
-                            <span class="status red"></span>
-                            Tạm Dừng
-                        </td>
-                    </tr>
+                    <!-- Lặp qua tất cả nhà cung cấp -->
+                    <c:forEach var="supplier" items="${suppliers}">
+                        <tr id="supplier-${supplier.id_supplier}">
+                            <td>${supplier.id_supplier}</td>
+                            <td>${supplier.name}</td>
+                            <td>${supplier.address}</td>
+                            <td>${supplier.email}</td>
+                            <td>${supplier.phone_number}</td>
+                            <td>${supplier.status} <c:choose>
+                                <c:when test="${supplier.status == 'Đang hợp tác'}">
+                                    <i class="fas fa-circle" style="color: blue;"></i>
+                                </c:when>
+                                <c:when test="${supplier.status == 'Đã dừng'}">
+                                    <i class="fas fa-circle" style="color: red;"></i>
+                                </c:when>
+                            </c:choose></td>
+                            <td>${supplier.rating} <i class="fas fa-star" style="color: #ffcc00;"></i></td>
+                            <td>${supplier.name_category}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
-            </div>
-            <div class="container3">
-                <h1>Đánh giá và hợp tác</h1>
-                <table id="ratingTable">
-                    <thead>
-                    <tr>
-                        <th>Mã nhà cung cấp</th>
-                        <th>Tên nhà cung cấp</th>
-                        <th>Điểm đánh giá</th>
-                        <th>Hạng ưu tiên</th>
-                        <th>Tổng số lỗi</th>
-                        <th>Thời gian phản hồi</th>
-                        <th>Hành động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Dữ liệu mẫu -->
-                    <tr>
-                        <td>NCC01</td>
-                        <td>Nhà Cung Cấp An Phát</td>
-                        <td><span class="rating">4.5</span> ⭐</td>
-                        <td>Cao</td>
-                        <td>2</td>
-                        <td>24 giờ</td>
-                        <td>
-                            <div class="action-container">
-                                <button class="action-btn view">Xem</button>
-                                <button class="action-btn edit">Chỉnh sửa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NCC02</td>
-                        <td>Nhà Cung Cấp GoodMorning</td>
-                        <td><span class="rating">3.8</span> ⭐</td>
-                        <td>Trung bình</td>
-                        <td>5</td>
-                        <td>48 giờ</td>
-                        <td>
-                            <div class="action-container">
-                                <button class="action-btn view">Xem</button>
-                                <button class="action-btn edit">Chỉnh sửa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>NCC03</td>
-                        <td>Nhà Cung Cấp Tấn Lợi</td>
-                        <td><span class="rating">2.0</span> ⭐</td>
-                        <td>Thấp</td>
-                        <td>10</td>
-                        <td>72 giờ</td>
-                        <td>
-                            <div class="action-container">
-                                <button class="action-btn view">Xem</button>
-                                <button class="action-btn edit">Chỉnh sửa</button>
-                            </div>
-                        </td>
-                    <tr>
-                        <td>NCC04</td>
-                        <td>Nhà Cung Cấp Tấn Lợi</td>
-                        <td><span class="rating">2.0</span> ⭐</td>
-                        <td>Thấp</td>
-                        <td>10</td>
-                        <td>72 giờ</td>
-                        <td>
-                            <div class="action-container">
-                                <button class="action-btn view">Xem</button>
-                                <button class="action-btn edit">Chỉnh sửa</button>
-                            </div>
-                        </td>
-                    <tr>
-                        <td>NCC05</td>
-                        <td>Nhà Cung Cấp Tấn Lợi</td>
-                        <td><span class="rating">2.0</span> ⭐</td>
-                        <td>Thấp</td>
-                        <td>10</td>
-                        <td>72 giờ</td>
-                        <td>
-                            <div class="action-container">
-                                <button class="action-btn view">Xem</button>
-                                <button class="action-btn edit">Chỉnh sửa</button>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="editModal">
-                <div class="modal-content">
-                    <span class="close-btn">&times;</span>
-                    <h2>Chỉnh sửa thông tin</h2>
-                    <form id="editForm">
-                        <label for="supplierName">Tên nhà cung cấp:</label>
-                        <input type="text" id="supplierName" name="supplierName" required />
-
-                        <label for="rating">Điểm đánh giá:</label>
-                        <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" required />
-
-                        <label for="priority">Hạng ưu tiên:</label>
-                        <select id="priority" name="priority">
-                            <option value="Cao">Cao</option>
-                            <option value="Trung bình">Trung bình</option>
-                            <option value="Thấp">Thấp</option>
-                        </select>
-
-                        <label for="errors">Tổng số lỗi:</label>
-                        <input type="number" id="errors" name="errors" min="0" required />
-
-                        <label for="responseTime">Thời gian phản hồi:</label>
-                        <input type="text" id="responseTime" name="responseTime" required />
-
-                        <button type="submit">Lưu thay đổi</button>
-                    </form>
-                </div>
             </div>
         </div>
         <div id="promotions" class="section">
@@ -1279,135 +1140,26 @@
                     <table class="feedback-table">
                         <thead>
                         <tr>
-                            <th style="text-align: center">ID</th>
+                            <th>ID Feedback</th>
+                            <th>Tên sản phẩm</th>
                             <th>Tên khách hàng</th>
-                            <th>Email</th>
-                            <th>Nội dung phản hồi</th>
-                            <th>Ngày gửi</th>
-                            <th>Trạng thái</th>
+                            <th>Nội dung</th>
+                            <th>Ngày tạo</th>
+                            <th>Đánh giá</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td style="text-align: center">VIP01</td>
-                            <td>Nguyễn Văn A</td>
-                            <td>nguyenvana@gmail.com</td>
-                            <td>Sản phẩm rất tốt, tôi rất hài lòng!</td>
-                            <td>20/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP02</td>
-                            <td>Trần Thị B</td>
-                            <td>tranthib@gmail.com</td>
-                            <td>Giao hàng nhanh, nhân viên thân thiện.</td>
-                            <td>19/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP03</td>
-                            <td>Hoàng Minh C</td>
-                            <td>hoangminhc@gmail.com</td>
-                            <td>Cần cải thiện chất lượng đóng gói.</td>
-                            <td>18/11/2024</td>
-                            <td> <span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP04</td>
-                            <td>Phạm Thị D</td>
-                            <td>phamthid@gmail.com</td>
-                            <td>Nhân viên hỗ trợ rất nhiệt tình!</td>
-                            <td>17/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP05</td>
-                            <td>Ngô Văn E</td>
-                            <td>ngovane@gmail.com</td>
-                            <td>Giao hàng bị chậm hơn dự kiến.</td>
-                            <td>16/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP06</td>
-                            <td>Đặng Thị F</td>
-                            <td>dangthif@gmail.com</td>
-                            <td>Chất lượng sản phẩm rất tuyệt vời.</td>
-                            <td>15/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP07</td>
-                            <td>Trịnh Văn G</td>
-                            <td>trinhvang@gmail.com</td>
-                            <td>Đề nghị cải thiện chất lượng dịch vụ chăm sóc khách hàng.</td>
-                            <td>14/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP08</td>
-                            <td>Hoàng Thị H</td>
-                            <td>hoangthih@gmail.com</td>
-                            <td>Đóng gói rất đẹp, hàng giao nhanh.</td>
-                            <td>13/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP09</td>
-                            <td>Lê Văn I</td>
-                            <td>levani@gmail.com</td>
-                            <td>Sản phẩm không đúng với mô tả.</td>
-                            <td>12/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP010</td>
-                            <td>Trần Thị J</td>
-                            <td>tranthij@gmail.com</td>
-                            <td>Giao hàng đúng hẹn, nhân viên lịch sự.</td>
-                            <td>11/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP011</td>
-                            <td>Võ Văn K</td>
-                            <td>vovank@gmail.com</td>
-                            <td>Hàng giao sai mẫu, cần hỗ trợ đổi trả.</td>
-                            <td>10/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP012</td>
-                            <td>Nguyễn Thị L</td>
-                            <td>nguyenthil@gmail.com</td>
-                            <td>Nhân viên rất nhiệt tình, tôi rất hài lòng.</td>
-                            <td>09/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP013</td>
-                            <td>Phạm Văn M</td>
-                            <td>phamvanm@gmail.com</td>
-                            <td>Giao hàng nhanh nhưng sản phẩm bị hỏng.</td>
-                            <td>08/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP014</td>
-                            <td>Hoàng Thị N</td>
-                            <td>hoangthin@gmail.com</td>
-                            <td>Chất lượng rất tốt, sẽ tiếp tục ủng hộ.</td>
-                            <td>07/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center">VIP015</td>
-                            <td>Trần Văn O</td>
-                            <td>tranvano@gmail.com</td>
-                            <td>Cần cải thiện thêm về thời gian giao hàng.</td>
-                            <td>06/11/2024</td>
-                            <td><span class="sta unread" onclick="toggleStatus(this)">Chưa đọc</span></td>
-                        </tr>
+                        <!-- Lặp qua danh sách feedback -->
+                        <c:forEach var="feedback" items="${feedback}">
+                            <tr>
+                                <td>${feedback.idFeedback}</td>
+                                <td>${feedback.idProduct}</td>
+                                <td>${feedback.cusName}</td>
+                                <td>${feedback.content}</td>
+                                <td>${feedback.dateCreate}</td>
+                                <td>${feedback.rating}</td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -1582,8 +1334,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- Chi tiết hóa đơn -->
     <div id="newInvoiceModal" class="modal">
         <div class="modal-content">
@@ -1865,8 +1615,8 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="../assets/js/admin.js"></script>
-<script src="../assets/js/logicAdmin.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/admin.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/logicAdmin.js"></script>
 </body>
 
 </html>

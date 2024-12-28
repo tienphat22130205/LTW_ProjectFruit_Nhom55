@@ -955,6 +955,26 @@
 
 <script src="${pageContext.request.contextPath}/assets/js/fruit.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // cuộn màn hình xuống thì ẩn menu lướt lên thì hiện menu
+    let lastScrollTop = 0;
+
+    window.addEventListener("scroll", function () {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll > lastScrollTop) {
+            // Cuộn xuống
+            document.body.classList.remove("scrolled-up");
+            document.body.classList.add("scrolled-down");
+        } else {
+            // Cuộn lên
+            document.body.classList.remove("scrolled-down");
+            document.body.classList.add("scrolled-up");
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Đảm bảo giá trị không bị âm
+    });
+</script>
 </body>
 
 </html>
