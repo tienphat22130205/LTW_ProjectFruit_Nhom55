@@ -1153,7 +1153,7 @@
                         <c:forEach var="feedback" items="${feedback}">
                             <tr>
                                 <td>${feedback.idFeedback}</td>
-                                <td>${feedback.idProduct}</td>
+                                <td>${feedback.productName}</td>
                                 <td>${feedback.cusName}</td>
                                 <td>${feedback.content}</td>
                                 <td>${feedback.dateCreate}</td>
