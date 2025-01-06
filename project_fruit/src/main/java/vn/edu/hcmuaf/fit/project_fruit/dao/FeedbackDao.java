@@ -16,9 +16,11 @@ public class FeedbackDao {
         List<Feedback> feedbackList = new ArrayList<>();
         try {
             // Câu truy vấn JOIN để lấy cus_name từ bảng accounts
-            String query = "SELECT f.id_feedback, f.id_product, f.id_account, f.content, f.date_create, f.rating, a.cus_name " +
+            String query = "SELECT f.id_feedback, f.id_account, f.content, f.date_create, f.rating, " +
+                    "a.cus_name, p.product_name " +  // Thêm product_name thay vì id_product
                     "FROM feedbacks f " +
-                    "JOIN accounts a ON f.id_account = a.id_account";
+                    "JOIN accounts a ON f.id_account = a.id_account " +
+                    "JOIN products p ON f.id_product = p.id_product";
             ResultSet rs = s.executeQuery(query);
 
             // Lặp qua tất cả các bản ghi phản hồi và thêm vào danh sách
@@ -26,8 +28,8 @@ public class FeedbackDao {
                 // Lấy thông tin phản hồi và tên khách hàng
                 Feedback feedback = new Feedback(
                         rs.getInt("id_feedback"),
-                        rs.getInt("id_product"),
-                        rs.getString("cus_name"),  // Thay thế id_account bằng cus_name
+                        rs.getString("product_name"),
+                        rs.getString("cus_name"), 
                         rs.getString("content"),
                         rs.getString("date_create"),
                         rs.getDouble("rating")
@@ -46,7 +48,7 @@ public class FeedbackDao {
         // Lặp qua danh sách phản hồi và in ra thông tin
         for (Feedback feedback : feedbacks) {
             System.out.println("Feedback ID: " + feedback.getIdFeedback());
-            System.out.println("Product ID: " + feedback.getIdProduct());
+            System.out.println("Product Name: " + feedback.getProductName());
             System.out.println("Customer Name: " + feedback.getCusName());
             System.out.println("Content: " + feedback.getContent());
             System.out.println("Date Created: " + feedback.getDateCreate());
