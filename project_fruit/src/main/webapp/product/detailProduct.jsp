@@ -423,6 +423,56 @@
         </div>
     </div>
 </section>
+
+
+<section class="product-reviews">
+    <h2 class="reviews-title">KHÁCH HÀNG NÓI VỀ SẢN PHẨM</h2>
+    <p class="reviews-subtitle">Trở thành người đầu tiên đánh giá về sản phẩm.</p>
+    <!-- Form Gửi Bình Luận -->
+    <form class="review-form">
+        <textarea name="comment" id="reviewComment" placeholder="Nhập nội dung bình luận" required></textarea>
+        <button type="submit" class="submit-review-btn">Gửi bình luận</button>
+    </form>
+
+    <!-- Danh Sách Bình Luận -->
+    <h3 class="reviews-count">3 Bình luận</h3>
+    <div class="reviews-list">
+        <div class="review-item">
+            <div class="review-avatar">
+                <img src="https://via.placeholder.com/50" alt="Nguyễn Văn A" />
+            </div>
+            <div class="review-content">
+                <p class="review-author">Nguyễn Văn A</p>
+                <p class="review-date">02/11/2024</p>
+                <p class="review-text">Sản phẩm tuyệt vời, tôi rất hài lòng với chất lượng và giá cả!</p>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-avatar">
+                <img src="https://via.placeholder.com/50" alt="Trần Thị B" />
+            </div>
+            <div class="review-content">
+                <p class="review-author">Trần Thị B</p>
+                <p class="review-date">01/11/2024</p>
+                <p class="review-text">Chất lượng sản phẩm tốt, giao hàng nhanh chóng, nhưng tôi nghĩ giá hơi cao.</p>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-avatar">
+                <img src="https://via.placeholder.com/50" alt="Lê Thị C" />
+            </div>
+            <div class="review-content">
+                <p class="review-author">Lê Thị C</p>
+                <p class="review-date">31/10/2024</p>
+                <p class="review-text">Tôi rất hài lòng, chắc chắn sẽ ủng hộ thêm lần sau!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <!-- footer section star -------------------------------------------------------------->
 <section class="footer">
     <div class="box-container">
