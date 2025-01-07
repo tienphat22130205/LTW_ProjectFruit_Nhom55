@@ -17,6 +17,14 @@
     <title>Admin</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#feedbackTable').DataTable();  // Khởi tạo DataTable
+        });
+    </script>
 
 <body>
 <input type="checkbox" name="" id="nav-toggle">
@@ -1017,26 +1025,27 @@
         <div id="suppliers" class="section">
             <div class="container">
                 <h1>Thông Tin Nhà Cung Cấp</h1>
-                <div class="card-header">
-                    <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="Tìm kiếm..." />
-                        <div class="search">
-                            <button class="search-btn" id="searchButton">Tìm kiếm</button>
+                    <div class="card-header">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm..." />
+                            <div class="search">
+                                <button class="search-btn" id="searchButton">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <!-- Sort Options -->
+                        <div class="sort-options">
+                            <select>
+                                <option value="#">Chọn lựa chọn</option>
+                                <option value="status">Trạng thái hợp tác</option>
+                                <option value="name_category">Danh sách sản phẩm</option>
+                            </select>
+                        </div>
+                        <div><button id="openPromotionModal" class="button-add-suppliers">Thêm Nhà Cung Cấp</button>
                         </div>
                     </div>
-                    <div class="sort-options">
-                        <select>
-                            <option value="#">Chọn lựa chọn</option>
-                            <option value="status">Trạng thái hợp tác</option>
-                            <option value="name_category">Danh sách sản phẩm</option>
-                        </select>
-                        <div class="sort-icon">
-                            <i class="fas fa-sort"></i>
-                            <span class="sort-label">Sắp xếp</span>
-                        </div>
-                    </div>
-                </div>
-                <table id="supplierTable">
+                    <!-- Supplier Table -->
+                    <table id="supplierTable">
                     <thead>
                     <tr>
                         <th>Mã nhà cung cấp</th>
@@ -1117,27 +1126,8 @@
         </div>
         <div id="feedback" class="section">
             <div class="feedback-container">
-                <div class="card-header">
-                    <div class="search-box">
-                        <input type="text" placeholder="Tìm kiếm..." />
-                        <div class="search">
-                            <button class="search-btn">Tìm kiếm</button>
-                        </div>
-                    </div>
-                    <div class="sort-options">
-                        <select>
-                            <option value="#">Chọn lựa chọn</option>
-                            <option value="date">Ngày gửi</option>
-                            <option value="phone">Trạng thái</option>
-                        </select>
-                        <div class="sort-icon">
-                            <i class="fas fa-sort"></i>
-                            <span class="sort-label">Sắp xếp</span>
-                        </div>
-                    </div>
-                </div>
                 <div class="feedback-content">
-                    <table class="feedback-table">
+                    <table id="feedbackTable" class="feedback-table">
                         <thead>
                         <tr>
                             <th>ID Feedback</th>
@@ -1153,7 +1143,7 @@
                         <c:forEach var="feedback" items="${feedback}">
                             <tr>
                                 <td>${feedback.idFeedback}</td>
-                                <td>${feedback.idProduct}</td>
+                                <td>${feedback.productName}</td>
                                 <td>${feedback.cusName}</td>
                                 <td>${feedback.content}</td>
                                 <td>${feedback.dateCreate}</td>
@@ -1569,6 +1559,7 @@
             </form>
         </div>
     </div>
+
     <!-- Modal Sửa Khuyến Mãi -->
     <div id="editPromotionModal" class="modal">
         <div class="editPromotionModal-content">
@@ -1614,9 +1605,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/admin.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/logicAdmin.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
 </body>
 
 </html>

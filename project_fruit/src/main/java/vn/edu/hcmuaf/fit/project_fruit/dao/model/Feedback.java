@@ -4,15 +4,16 @@ import java.io.Serializable;
 
 public class Feedback implements Serializable {
         private int idFeedback;
-        private int idProduct;
+        private String productName;
         private String cusName;
         private String content;
         private String dateCreate;
         private double rating;
 
-    public Feedback(int idFeedback, int idProduct, String cusName, String content, String dateCreate, double rating) {
+
+    public Feedback(int idFeedback, String productName, String cusName, String content, String dateCreate, double rating) {
         this.idFeedback = idFeedback;
-        this.idProduct = idProduct;
+        this.productName = productName;
         this.cusName = cusName;
         this.content = content;
         this.dateCreate = dateCreate;
@@ -28,14 +29,13 @@ public class Feedback implements Serializable {
             this.idFeedback = idFeedback;
         }
 
-        public int getIdProduct() {
-            return idProduct;
-        }
+    public String getProductName() {
+        return productName;
+    }
 
-        public void setIdProduct(int idProduct) {
-            this.idProduct = idProduct;
-        }
-
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
     public String getCusName() {
         return cusName;
     }
@@ -72,7 +72,7 @@ public class Feedback implements Serializable {
     public String toString() {
         return "Feedback{" +
                 "idFeedback=" + idFeedback +
-                ", idProduct=" + idProduct +
+                ", idProduct=" +  productName+
                 ", cusName=" + cusName +
                 ", content='" + content + '\'' +
                 ", dateCreate='" + dateCreate + '\'' +

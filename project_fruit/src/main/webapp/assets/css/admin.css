@@ -2258,9 +2258,11 @@ h2 {
 .feedback-table td {
     text-align: center;
     padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-}
 
+}
+table.dataTable td:nth-child(5) {
+    text-align: center;
+}
 .feedback-table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -2690,7 +2692,7 @@ h2 {
     box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
 }
 
-/* --- kết thúc CSS cho Modal Thêm Khuyến Mãi --- */
+/* --- -------------- --- */
 
 
 
@@ -3435,7 +3437,26 @@ h2 {
     border-radius: 50%;
     margin-right: 5px;
 }
-/*-----------------------*/
 
+/*-----------------------*/
+.dataTables_wrapper .dataTables_length {
+    display: none;
+}
+.dataTables_wrapper .dataTables_info {
+    display: none;
+}
+
+/* Cải thiện giao diện thanh tìm kiếm */
+.dataTables_wrapper .dataTables_filter  {
+    display: flex;
+    align-items: center;
+    background-color: #28a745;
+    border-radius: 25px;
+    padding: 8px 16px;
+    margin: 10px 0px;
+}
+tr td:last-child {
+    display: block;
+}
 
 
