@@ -10,6 +10,7 @@ public class Feedback implements Serializable {
         private String dateCreate;
         private double rating;
 
+
     public Feedback(int idFeedback, String productName, String cusName, String content, String dateCreate, double rating) {
         this.idFeedback = idFeedback;
         this.productName = productName;
@@ -71,7 +72,7 @@ public class Feedback implements Serializable {
     public String toString() {
         return "Feedback{" +
                 "idFeedback=" + idFeedback +
-                ", productName=" + productName +
+                ", idProduct=" + idProduct +
                 ", cusName=" + cusName +
                 ", content='" + content + '\'' +
                 ", dateCreate='" + dateCreate + '\'' +

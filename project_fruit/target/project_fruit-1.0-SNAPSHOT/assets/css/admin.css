@@ -3437,6 +3437,7 @@ table.dataTable td:nth-child(5) {
     border-radius: 50%;
     margin-right: 5px;
 }
+<<<<<<< HEAD
 
 /*-----------------------*/
 .dataTables_wrapper .dataTables_length {
@@ -3458,5 +3459,9 @@ table.dataTable td:nth-child(5) {
 tr td:last-child {
     display: block;
 }
+=======
+/*-----------------------*/
+
+>>>>>>> a62c92957089d2203ae63f49846ff52e9fb1426c
 
 

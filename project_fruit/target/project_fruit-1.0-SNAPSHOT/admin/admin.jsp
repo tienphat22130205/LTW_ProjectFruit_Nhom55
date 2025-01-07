@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin.css">
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
@@ -24,6 +25,9 @@
             $('#feedbackTable').DataTable();  // Khởi tạo DataTable
         });
     </script>
+=======
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+>>>>>>> a62c92957089d2203ae63f49846ff52e9fb1426c
 
 <body>
 <input type="checkbox" name="" id="nav-toggle">
@@ -1024,6 +1028,7 @@
         <div id="suppliers" class="section">
             <div class="container">
                 <h1>Thông Tin Nhà Cung Cấp</h1>
+<<<<<<< HEAD
                     <div class="card-header">
                         <!-- Search Box -->
                         <div class="search-box">
@@ -1045,6 +1050,28 @@
                     </div>
                     <!-- Supplier Table -->
                     <table id="supplierTable">
+=======
+                <div class="card-header">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm..." />
+                        <div class="search">
+                            <button class="search-btn" id="searchButton">Tìm kiếm</button>
+                        </div>
+                    </div>
+                    <div class="sort-options">
+                        <select>
+                            <option value="#">Chọn lựa chọn</option>
+                            <option value="status">Trạng thái hợp tác</option>
+                            <option value="name_category">Danh sách sản phẩm</option>
+                        </select>
+                        <div class="sort-icon">
+                            <i class="fas fa-sort"></i>
+                            <span class="sort-label">Sắp xếp</span>
+                        </div>
+                    </div>
+                </div>
+                <table id="supplierTable">
+>>>>>>> a62c92957089d2203ae63f49846ff52e9fb1426c
                     <thead>
                     <tr>
                         <th>Mã nhà cung cấp</th>
@@ -1142,7 +1169,11 @@
                         <c:forEach var="feedback" items="${feedback}">
                             <tr>
                                 <td>${feedback.idFeedback}</td>
+<<<<<<< HEAD
                                 <td>${feedback.productName}</td>
+=======
+                                <td>${feedback.idProduct}</td>
+>>>>>>> a62c92957089d2203ae63f49846ff52e9fb1426c
                                 <td>${feedback.cusName}</td>
                                 <td>${feedback.content}</td>
                                 <td>${feedback.dateCreate}</td>
@@ -1608,8 +1639,11 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/admin.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/logicAdmin.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
+=======
+>>>>>>> a62c92957089d2203ae63f49846ff52e9fb1426c
 </body>
 
 </html>

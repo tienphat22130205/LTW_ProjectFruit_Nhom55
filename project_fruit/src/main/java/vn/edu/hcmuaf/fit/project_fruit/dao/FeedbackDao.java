@@ -117,7 +117,6 @@ public class FeedbackDao {
     // Main để kiểm tra và in ra dữ liệu
     public static void main(String[] args) {
         FeedbackDao dao = new FeedbackDao();
-        dao.printAllFeedback();
-        // Gọi phương thức để in ra tất cả phản hồi
+        dao.printAllFeedback(); // Gọi phương thức để in ra tất cả phản hồi
     }
 }

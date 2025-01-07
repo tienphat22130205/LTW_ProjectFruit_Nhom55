@@ -14,6 +14,6 @@ public class LogoutController extends HttpServlet {
         if (session != null) {
             session.invalidate(); // Xóa session
         }
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/list-product");
     }
 }
