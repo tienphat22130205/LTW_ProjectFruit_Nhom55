@@ -72,7 +72,7 @@ public class Feedback implements Serializable {
     public String toString() {
         return "Feedback{" +
                 "idFeedback=" + idFeedback +
-                ", idProduct=" + idProduct +
+                ", idProduct=" +  productName+
                 ", cusName=" + cusName +
                 ", content='" + content + '\'' +
                 ", dateCreate='" + dateCreate + '\'' +
