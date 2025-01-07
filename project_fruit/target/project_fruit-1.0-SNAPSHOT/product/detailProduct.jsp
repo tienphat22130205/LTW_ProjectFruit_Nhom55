@@ -174,84 +174,84 @@
 <%--<!-- header section ends -->--%>
 
 <section class="container">
-        <div class="product-info">
-            <div class="product">
-                <!-- Phần hình ảnh sản phẩm -->
-                <div class="product-image">
-                    <div class="carousel-images">
-                        <!-- Hiển thị hình ảnh chính -->
-                        <img src="${not empty product.imageUrl ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" class="carousel-img active">
-                    </div>
-                    <!-- Navigation Controls -->
-                    <div class="carousel-controls">
-                        <i class="fas fa-chevron-left prev"></i>
-                        <i class="fas fa-chevron-right next"></i>
-                    </div>
+    <div class="product-info">
+        <div class="product">
+            <!-- Phần hình ảnh sản phẩm -->
+            <div class="product-image">
+                <div class="carousel-images">
+                    <!-- Hiển thị hình ảnh chính -->
+                    <img src="${not empty product.imageUrl ? product.imageUrl : '/assets/img/default.jpg'}"
+                         alt="${product.name}" class="carousel-img active">
                 </div>
+                <!-- Navigation Controls -->
+                <div class="carousel-controls">
+                    <i class="fas fa-chevron-left prev"></i>
+                    <i class="fas fa-chevron-right next"></i>
+                </div>
+            </div>
 
-                <!-- Phần chi tiết sản phẩm -->
-                <div class="product-price-section">
-                    <h2>${product.name}</h2>
-                    <p class="product-code">Mã sản phẩm: ${product.id_product} | Tình trạng: ${product.statusDisplay}
-                    <p class="product-code">Số lượng: ${product.quantity}</p>
-                    <p class="discount-code">Chương trình giảm giá:</p>
-                   <div class="discount-buttons">
-                        <button>${not empty product.promotionName ? product.promotionName : "Không có chương trình giảm giá"}</button>
-                        <button> Giảm đến ${not empty product.percentDiscount ? product.percentDiscount : 0}% </button>
-                   </div>
-                    <p class="price">
+            <!-- Phần chi tiết sản phẩm -->
+            <div class="product-price-section">
+                <h2>${product.name}</h2>
+                <p class="product-code">Mã sản phẩm: ${product.id_product} | Tình trạng: ${product.statusDisplay}
+                <p class="product-code">Số lượng: ${product.quantity}</p>
+                <p class="discount-code">Chương trình giảm giá:</p>
+                <div class="discount-buttons">
+                    <button>${not empty product.promotionName ? product.promotionName : "Không có chương trình giảm giá"}</button>
+                    <button> Giảm đến ${not empty product.percentDiscount ? product.percentDiscount : 0}% </button>
+                </div>
+                <p class="price">
                     <span style="color: red; font-size: 24px;">
                         <f:formatNumber value="${product.discountedPrice}" type="number" /> đ
                     </span>
-                        <del style="color: gray; text-decoration: line-through">
-                            <f:formatNumber value="${product.price}" type="number" /> đ
-                        </del>
-                    </p>
+                    <del style="color: gray; text-decoration: line-through">
+                        <f:formatNumber value="${product.price}" type="number" /> đ
+                    </del>
+                </p>
 
-                    <!-- Phần thêm số lượng -->
-                    <div class="quantity">
-                        <button class="minus"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" value="1" min="1"/>
-                        <button class="plus"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-
-                    <!-- Nút thêm vào giỏ hàng -->
-                    <button class="add-to-cart">THÊM VÀO GIỎ</button>
+                <!-- Phần thêm số lượng -->
+                <div class="quantity">
+                    <button class="minus"><i class="fa-solid fa-minus"></i></button>
+                    <input type="number" value="1" min="1"/>
+                    <button class="plus"><i class="fa-solid fa-plus"></i></button>
                 </div>
-            </div>
-        </div>
 
-        <div class="content_detail">
-            <div class="product-description">
-                <h2>THÔNG TIN SẢN PHẨM</h2>
-                <h3>Mô tả sản phẩm</h3>
-                <p><strong>Xuất xứ:</strong> ${not empty product.origin ? product.origin : 'Không xác định'}</p>
-                <p><strong>Ngày nhập:</strong> ${not empty product.entry_date ? product.entry_date : 'Không có thông tin'}</p>
-                <p><strong>Hạn sử dụng:</strong> ${not empty product.shelf_life ? product.shelf_life : 'Không có thông tin'}</p>
-                <p><strong>Đặc Điểm Sản Phẩm:</strong></p>
-                <ul>
-                    <li>${not empty product.characteristic ? product.characteristic : 'Không có thông tin'}</li>
-                </ul>
-                <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
-                <ul>
-                    <li>${not empty product.preserve_product ? product.preserve_product : 'Không có thông tin'}</li>
-                    <li>${not empty product.use_prodcut ? product.use_prodcut : 'Không có thông tin'}</li>
-                </ul>
-                <p><strong>Lợi Ích:</strong></p>
-                <ul>
-                    <li>${not empty product.benefit ? product.benefit : 'Không có thông tin'}</li>
-                </ul>
-            </div>
-            <div class="delivery-service">
-                <h2>DỊCH VỤ GIAO HÀNG</h2>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Cam kết 100% chính hãng</li>
-                    <li><i class="fas fa-clock"></i> Giao hàng dự kiến: Thứ 2 - Chủ nhật từ 8h00 - 21h00</li>
-                    <li><i class="fas fa-headset"></i> Hỗ trợ 24/7 với các kênh facebook, instagram & phone</li>
-                </ul>
+                <!-- Nút thêm vào giỏ hàng -->
+                <button class="add-to-cart">THÊM VÀO GIỎ</button>
             </div>
         </div>
+    </div>
+
+    <div class="content_detail">
+        <div class="product-description">
+            <h2>THÔNG TIN SẢN PHẨM</h2>
+            <h3>Mô tả sản phẩm</h3>
+            <p><strong>Xuất xứ:</strong> ${not empty product.origin ? product.origin : 'Không xác định'}</p>
+            <p><strong>Ngày nhập:</strong> ${not empty product.entry_date ? product.entry_date : 'Không có thông tin'}</p>
+            <p><strong>Hạn sử dụng:</strong> ${not empty product.shelf_life ? product.shelf_life : 'Không có thông tin'}</p>
+            <p><strong>Đặc Điểm Sản Phẩm:</strong></p>
+            <ul>
+                <li>${not empty product.characteristic ? product.characteristic : 'Không có thông tin'}</li>
+            </ul>
+            <p><strong>Bảo Quản Và Sử Dụng:</strong></p>
+            <ul>
+                <li>${not empty product.preserve_product ? product.preserve_product : 'Không có thông tin'}</li>
+                <li>${not empty product.use_prodcut ? product.use_prodcut : 'Không có thông tin'}</li>
+            </ul>
+            <p><strong>Lợi Ích:</strong></p>
+            <ul>
+                <li>${not empty product.benefit ? product.benefit : 'Không có thông tin'}</li>
+            </ul>
+        </div>
+        <div class="delivery-service">
+            <h2>DỊCH VỤ GIAO HÀNG</h2>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Cam kết 100% chính hãng</li>
+                <li><i class="fas fa-clock"></i> Giao hàng dự kiến: Thứ 2 - Chủ nhật từ 8h00 - 21h00</li>
+                <li><i class="fas fa-headset"></i> Hỗ trợ 24/7 với các kênh facebook, instagram & phone</li>
+            </ul>
+        </div>
+    </div>
     </div>
 </section>
 
@@ -423,6 +423,56 @@
         </div>
     </div>
 </section>
+
+
+<section class="product-reviews">
+    <h2 class="reviews-title">KHÁCH HÀNG NÓI VỀ SẢN PHẨM</h2>
+    <p class="reviews-subtitle">Trở thành người đầu tiên đánh giá về sản phẩm.</p>
+    <!-- Form Gửi Bình Luận -->
+    <form class="review-form">
+        <textarea name="comment" id="reviewComment" placeholder="Nhập nội dung bình luận" required></textarea>
+        <button type="submit" class="submit-review-btn">Gửi bình luận</button>
+    </form>
+
+    <!-- Danh Sách Bình Luận -->
+    <h3 class="reviews-count">3 Bình luận</h3>
+    <div class="reviews-list">
+        <div class="review-item">
+            <div class="review-avatar">
+                <img src="https://via.placeholder.com/50" alt="Nguyễn Văn A" />
+            </div>
+            <div class="review-content">
+                <p class="review-author">Nguyễn Văn A</p>
+                <p class="review-date">02/11/2024</p>
+                <p class="review-text">Sản phẩm tuyệt vời, tôi rất hài lòng với chất lượng và giá cả!</p>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-avatar">
+                <img src="https://via.placeholder.com/50" alt="Trần Thị B" />
+            </div>
+            <div class="review-content">
+                <p class="review-author">Trần Thị B</p>
+                <p class="review-date">01/11/2024</p>
+                <p class="review-text">Chất lượng sản phẩm tốt, giao hàng nhanh chóng, nhưng tôi nghĩ giá hơi cao.</p>
+            </div>
+        </div>
+
+        <div class="review-item">
+            <div class="review-avatar">
+                <img src="https://via.placeholder.com/50" alt="Lê Thị C" />
+            </div>
+            <div class="review-content">
+                <p class="review-author">Lê Thị C</p>
+                <p class="review-date">31/10/2024</p>
+                <p class="review-text">Tôi rất hài lòng, chắc chắn sẽ ủng hộ thêm lần sau!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <!-- footer section star -------------------------------------------------------------->
 <section class="footer">
     <div class="box-container">

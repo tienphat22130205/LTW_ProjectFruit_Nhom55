@@ -43,7 +43,7 @@ public class ListProduct extends HttpServlet {
         request.setAttribute("data5", data5);
         request.setAttribute("data6", data6);
         request.setAttribute("data7", data7);
-        request.setAttribute("data8", data9);
+        request.setAttribute("data8", data8);
         request.setAttribute("data9", data9);
         request.setAttribute("data10", data10);
 

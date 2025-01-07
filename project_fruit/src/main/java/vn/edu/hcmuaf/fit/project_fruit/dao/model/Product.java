@@ -77,10 +77,9 @@ public class Product implements Serializable {
         return listImg;
     }
 
-    public void setListimg(List<ProductImg> listimg) {
+    public void setListImg(List<ProductImg> listImg) {
         this.listImg = listImg;
     }
-
     public double getPrice() {
         return price;
     }
@@ -112,7 +111,7 @@ public class Product implements Serializable {
         this.describe_1 = describe_1;
     }
 
-    public int getQuantity() {
+    public int getQuantity(int i) {
         return quantity;
     }
 

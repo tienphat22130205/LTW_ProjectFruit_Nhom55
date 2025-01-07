@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- link style css -->
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/card.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
     <!-- Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- link logo anh -->
@@ -185,13 +185,34 @@
 <!-- header section ends -->
 <div class="cart-container">
     <div class="cart-details">
+        <c:if test="${not empty sessionScope.previousPage}">
+            <a href="${sessionScope.previousPage}" class="continue-shopping-btn">Tiếp tục mua hàng</a>
+        </c:if>
         <h2>Giỏ hàng của bạn</h2>
-        <p id="cart-empty-message">Giỏ hàng của bạn đang trống</p>
+        <!-- Hiển thị thông báo nếu giỏ hàng trống -->
+        <c:if test="${not empty message}">
+            <p>${message}</p>
+        </c:if>
 
-        <!-- Container cho các sản phẩm trong giỏ hàng -->
-        <div id="cart-items">
-            <!-- Các sản phẩm sẽ được thêm vào đây bằng JavaScript -->
-        </div>
+        <!-- Hiển thị các sản phẩm trong giỏ hàng -->
+        <c:forEach var="cp" items="${sessionScope.cart.getList()}">
+            <div class="cart-item">
+                <div class="product-image">
+                    <img src="${cp.listImg[0].url}" alt="${cp.name}">
+                </div>
+                <div class="product-info">
+                    <h4>${cp.name}</h4>
+                    <p>${cp.price}₫</p>
+                    <div class="quantity-controls">
+                        <button class="decrease" onclick="updateQuantity(${cp.id_product}, -1)">-</button>
+                        <span class="quantity">${cp.quantity}</span>
+                        <button class="increase" onclick="updateQuantity(${cp.id_product}, 1)">+</button>
+                    </div>
+                    <p><strong>Tổng:</strong> <span class="item-total">${cp.price * cp.quantity}₫</span></p>
+                </div>
+                <button class="remove-item" onclick="window.location.href='remove-cart?pid=${cp.id_product}'">Xóa</button>
+            </div>
+        </c:forEach>
 
         <!-- Ghi chú đơn hàng -->
         <div class="order-note">
@@ -245,7 +266,7 @@
             <button id="apply-voucher">Áp dụng</button>
         </div>
 
-        <p class="total"><strong>Tổng tiền:</strong> <span id="total-price">0₫</span></p>
+        <p class="total"><strong>Tổng tiền:</strong> <span>${sessionScope.cart.getTotalPrice()}</span></p>
         <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.</p>
         <p class="note">Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
         <div class="warning" id="minimum-warning">
@@ -315,8 +336,8 @@
 </section>
 <!-- footer section end -->
 
-<script src="../assets/js/card.js"></script>
-<script src="../assets/js/login.js"></script>
+<%--<script src="../assets/js/card.js"></script>--%>
+<%--<script src="../assets/js/login.js"></script>--%>
 </body>
 
 </html>

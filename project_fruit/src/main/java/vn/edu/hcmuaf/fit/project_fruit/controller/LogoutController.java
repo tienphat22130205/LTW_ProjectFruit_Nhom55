@@ -10,10 +10,15 @@ import java.io.IOException;
 public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Lấy session hiện tại
         HttpSession session = request.getSession(false);
+
         if (session != null) {
-            session.invalidate(); // Xóa session
+            // Xóa toàn bộ session
+            session.invalidate(); // Xóa tất cả dữ liệu session
         }
-        response.sendRedirect("/list-product");
+
+        // Chuyển hướng người dùng về trang danh sách sản phẩm (list-product)
+        response.sendRedirect("list-product");
     }
 }

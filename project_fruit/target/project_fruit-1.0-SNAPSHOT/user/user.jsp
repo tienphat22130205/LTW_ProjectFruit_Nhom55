@@ -188,7 +188,7 @@
                 Thông tin tài khoản</a></li>
             <li><a href="#" onclick="showSection('order-management', this)"><i class="fas fa-box"></i> Quản lý đơn
                 hàng</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout" id="logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            <li><a href="${pageContext.request.contextPath}/logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
         </ul>
     </div>
     <div class="content">
