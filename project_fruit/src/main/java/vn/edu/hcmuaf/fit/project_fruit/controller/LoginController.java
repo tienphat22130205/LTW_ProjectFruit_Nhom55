@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
             // Kiểm tra role của người dùng và chuyển hướng tương ứng
             if ("admin".equals(user.getRole())) {
                 // Nếu là admin, chuyển hướng đến trang admin
-                response.sendRedirect(request.getContextPath() + "/admin/admin.jsp");
+                response.sendRedirect(request.getContextPath() + "/admin");
             } else {
                 // Nếu không phải admin, chuyển hướng về trang chủ
                 response.sendRedirect(request.getContextPath() + "/list-product");
