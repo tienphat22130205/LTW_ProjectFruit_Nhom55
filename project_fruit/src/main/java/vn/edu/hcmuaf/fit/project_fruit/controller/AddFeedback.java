@@ -37,7 +37,7 @@ public class AddFeedback extends HttpServlet {
             if (content == null || content.trim().isEmpty() ||
                     ratingStr == null || ratingStr.trim().isEmpty() ||
                     idProductStr == null || idProductStr.trim().isEmpty()) {
-                response.sendRedirect("product/detailProduct.jsp?message=invalid_input");
+                response.sendRedirect("/product-detail?message=invalid_input");
                 return;
             }
 
@@ -61,15 +61,15 @@ public class AddFeedback extends HttpServlet {
 
                 // Kiểm tra kết quả và điều hướng
                 if (rowsInserted > 0) {
-                    response.sendRedirect("product/detailProduct.jsp?message=success");
+                    response.sendRedirect("/product-detail?message=success");
                 } else {
-                    response.sendRedirect("product/detailProduct.jsp?message=insert_failed");
+                    response.sendRedirect("/product-detail?message=insert_failed");
                 }
             }
         } catch (NumberFormatException e) {
-            response.sendRedirect("product/detailProduct.jsp?message=invalid_format");
+            response.sendRedirect("/product-detail?message=invalid_format");
         } catch (SQLException e) {
-            response.sendRedirect("product/detailProduct.jsp?message=error");
+            response.sendRedirect("/product-detail?message=error");
         }
     }
 }
