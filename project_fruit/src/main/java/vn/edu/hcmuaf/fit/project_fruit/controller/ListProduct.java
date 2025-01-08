@@ -12,7 +12,7 @@ import vn.edu.hcmuaf.fit.project_fruit.service.ProductService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ListProduct", value = "/list-product")
+@WebServlet(name = "ListProduct", value = "/home")
 public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,7 +43,7 @@ public class ListProduct extends HttpServlet {
         request.setAttribute("data5", data5);
         request.setAttribute("data6", data6);
         request.setAttribute("data7", data7);
-        request.setAttribute("data8", data9);
+        request.setAttribute("data8", data8);
         request.setAttribute("data9", data9);
         request.setAttribute("data10", data10);
 

@@ -393,9 +393,10 @@ document.getElementById("logoutBtn").onclick = function() {
 };
 
 // Khi người dùng nhấn "Có" (Xác nhận đăng xuất)
-document.getElementById("confirmLogoutBtn").onclick = function() {
-    window.location.href = "/project_fruit/logout"; // Chuyển hướng đến trang đăng xuất
-};
+// document.getElementById("confirmLogoutBtn").onclick = function() {
+//     window.location.href = "/logout";
+// };
+
 
 // Khi người dùng nhấn "Không" (Hủy đăng xuất)
 document.getElementById("cancelLogoutBtn").onclick = function() {

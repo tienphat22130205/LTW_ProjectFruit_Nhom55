@@ -23,31 +23,29 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-
         String email = request.getParameter("useremail");
         String password = request.getParameter("pass");
 
-        // Kiểm tra thông tin đăng nhập
-        User user = userService.validateUser(email, password);
+        // Xác thực người dùng
+        User user = new UserService().validateUser(email, password);
 
         if (user != null) {
-            // Đăng nhập thành công, lưu thông tin người dùng vào session
+            // Lưu user vào session
             request.getSession().setAttribute("user", user);
 
-            // Kiểm tra role của người dùng và chuyển hướng tương ứng
+            // Chuyển hướng theo vai trò
             if ("admin".equals(user.getRole())) {
-                // Nếu là admin, chuyển hướng đến trang admin
                 response.sendRedirect(request.getContextPath() + "/admin");
+            } else if ("user".equals(user.getRole())) {
+                response.sendRedirect(request.getContextPath() + "/home");
             } else {
-                // Nếu không phải admin, chuyển hướng về trang chủ
-                response.sendRedirect(request.getContextPath() + "/list-product");
+                // Nếu vai trò không hợp lệ, chuyển đến unauthorized
+                response.sendRedirect(request.getContextPath() + "/unauthorized");
             }
         } else {
             // Đăng nhập thất bại
             request.setAttribute("errorMessage", "Email hoặc mật khẩu không chính xác.");
-            request.getRequestDispatcher("/user/login.jsp").forward(request, response); // Quay lại trang login
+            request.getRequestDispatcher("/user/login.jsp").forward(request, response);
         }
     }
 }

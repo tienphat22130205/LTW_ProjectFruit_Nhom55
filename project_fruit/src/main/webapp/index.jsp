@@ -10,7 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- link swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Thêm CSS của Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- link style css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
@@ -52,9 +55,11 @@
                 <span>Hotline: 0865660775</span>
             </div>
             <div class="cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Giỏ hàng</span>
-                <span class="cart-badge">0</span>
+                <a href="${pageContext.request.contextPath}/show-cart" style="color: white">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">${sessionScope.cart != null ? sessionScope.cart.getTotalQuantity() : 0}</span>
+                </a>
             </div>
             <div class="account">
                 <!-- Kiểm tra nếu người dùng đã đăng nhập -->
@@ -117,59 +122,47 @@
         </div>
     </div>
     <!-- User Menu (ẩn khi chưa đăng nhập) -->
-    <div class="user-menu" id="userMenu" style="display: none;">
-        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
-            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
-        </ul>
-    </div>
-    <div class="cart-form" id="cartForm">
-        <h2>GIỎ HÀNG</h2>
-        <hr>
-        <div class="cart-content">
-            <i class="fa-solid fa-cart-shopping cart-icon"></i>
-            <p>Hiện chưa có sản phẩm</p>
-        </div>
-        <hr>
-        <div class="cart-total">
-            <span>TỔNG TIỀN:</span>
-            <span class="total-amount">0₫</span>
-        </div>
-        <a href="../card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
-    </div>
+<%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
+<%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
+<%--        <ul>--%>
+<%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
+<%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
+<%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
 <nav class="menu-bar">
     <ul>
-        <li class="active"><a href="/project_fruit/list-product" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="/project_fruit/list-product?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="/project_fruit/list-product?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="/project_fruit/list-product?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="/project_fruit/home?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="/project_fruit/home?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="/project_fruit/home?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="/project_fruit/home?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="/project_fruit/home?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
         <li><a href="/project_fruit/user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+
     </ul>
 </nav>
 
 <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
-        <li><a href="/project_fruit/list-product" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="/project_fruit/list-product?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="/project_fruit/list-product?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="/project_fruit/list-product?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="/project_fruit/home?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="/project_fruit/home?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="/project_fruit/home?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="/project_fruit/home?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="/project_fruit/home?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="/project_fruit/user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+
 
 
     </ul>
@@ -245,7 +238,7 @@
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="#" class="btn">thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -952,29 +945,8 @@
 <!-- footer section end -->
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/assets/js/fruit.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    // cuộn màn hình xuống thì ẩn menu lướt lên thì hiện menu
-    let lastScrollTop = 0;
-
-    window.addEventListener("scroll", function () {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (currentScroll > lastScrollTop) {
-            // Cuộn xuống
-            document.body.classList.remove("scrolled-up");
-            document.body.classList.add("scrolled-down");
-        } else {
-            // Cuộn lên
-            document.body.classList.remove("scrolled-down");
-            document.body.classList.add("scrolled-up");
-        }
-
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Đảm bảo giá trị không bị âm
-    });
-</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="./assets/js/fruit.js"></script>
 </body>
 
 </html>

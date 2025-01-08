@@ -77,10 +77,9 @@ public class Product implements Serializable {
         return listImg;
     }
 
-    public void setListimg(List<ProductImg> listimg) {
+    public void setListImg(List<ProductImg> listImg) {
         this.listImg = listImg;
     }
-
     public double getPrice() {
         return price;
     }

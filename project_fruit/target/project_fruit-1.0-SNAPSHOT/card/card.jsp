@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- link style css -->
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/card.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/card.css">
     <!-- Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- link logo anh -->
@@ -154,44 +154,65 @@
 <!-- Menu Bar dưới Header -->
 <nav class="menu-bar">
     <ul>
-        <li><a href="/project_fruit/list-product" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="/project_fruit/list-product?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="/project_fruit/list-product?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="/project_fruit/list-product?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+        <li><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="/project_fruit/home?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="/project_fruit/home?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="/project_fruit/home?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="/project_fruit/home?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="/project_fruit/home?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="/project_fruit/user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
 
     </ul>
 </nav>
 <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
-        <li><a href="/project_fruit/list-product" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
-        <li><a href="/project_fruit/list-product?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
-        <li><a href="/project_fruit/list-product?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
-        <li><a href="/project_fruit/list-product?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
-        <li><a href="/project_fruit/list-product?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
-        <li><a href="/project_fruit/list-product?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
-        <li><a href="../user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
+        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
+        <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
+        <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
+        <li><a href="/project_fruit/home?category=traicaycatsan" onclick="setActive(this)">Trái cây cắt sẵn</a></li>
+        <li><a href="/project_fruit/home?category=quatangtraicay" onclick="setActive(this)">Quà tặng trái cây</a></li>
+        <li><a href="/project_fruit/home?category=hopquanguyencat" onclick="setActive(this)">Hộp quà Nguyệt Cát</a></li>
+        <li><a href="/project_fruit/home?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
+        <li><a href="/project_fruit/home?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
+        <li><a href="/project_fruit/user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
     </ul>
 </nav>
 <!-- header section ends -->
 <div class="cart-container">
     <div class="cart-details">
+        <c:if test="${not empty sessionScope.previousPage}">
+            <a href="${sessionScope.previousPage}" class="continue-shopping-btn">Tiếp tục mua hàng</a>
+        </c:if>
         <h2>Giỏ hàng của bạn</h2>
-        <p id="cart-empty-message">Giỏ hàng của bạn đang trống</p>
+        <!-- Hiển thị thông báo nếu giỏ hàng trống -->
+        <c:if test="${not empty message}">
+            <p>${message}</p>
+        </c:if>
 
-        <!-- Container cho các sản phẩm trong giỏ hàng -->
-        <div id="cart-items">
-            <!-- Các sản phẩm sẽ được thêm vào đây bằng JavaScript -->
-        </div>
+        <!-- Hiển thị các sản phẩm trong giỏ hàng -->
+        <c:forEach var="cp" items="${sessionScope.cart.getList()}">
+            <div class="cart-item">
+                <div class="product-image">
+                    <img src="${cp.listImg[0].url}" alt="${cp.name}">
+                </div>
+                <div class="product-info">
+                    <h4>${cp.name}</h4>
+                    <p>${cp.price}₫</p>
+                    <div class="quantity-controls">
+                        <button class="decrease" onclick="updateQuantity(${cp.id_product}, -1)">-</button>
+                        <span class="quantity">${cp.quantity}</span>
+                        <button class="increase" onclick="updateQuantity(${cp.id_product}, 1)">+</button>
+                    </div>
+                    <p><strong>Tổng:</strong> <span class="item-total">${cp.price * cp.quantity}₫</span></p>
+                </div>
+                <button class="remove-item" onclick="window.location.href='remove-cart?pid=${cp.id_product}'">Xóa</button>
+            </div>
+        </c:forEach>
 
         <!-- Ghi chú đơn hàng -->
         <div class="order-note">
@@ -245,7 +266,7 @@
             <button id="apply-voucher">Áp dụng</button>
         </div>
 
-        <p class="total"><strong>Tổng tiền:</strong> <span id="total-price">0₫</span></p>
+        <p class="total"><strong>Tổng tiền:</strong> <span>${sessionScope.cart.getTotalPrice()}</span></p>
         <p class="note">Phí vận chuyển sẽ được tính ở trang thanh toán.</p>
         <p class="note">Bạn cũng có thể nhập mã giảm giá ở trang thanh toán.</p>
         <div class="warning" id="minimum-warning">
@@ -315,8 +336,8 @@
 </section>
 <!-- footer section end -->
 
-<script src="../assets/js/card.js"></script>
-<script src="../assets/js/login.js"></script>
+<%--<script src="../assets/js/card.js"></script>--%>
+<%--<script src="../assets/js/login.js"></script>--%>
 </body>
 
 </html>

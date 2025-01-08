@@ -32,6 +32,7 @@ public class ProductDetail extends HttpServlet {
                 return;
             }
             request.setAttribute("product", product);
+            System.out.println(product);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID format.");
         }
