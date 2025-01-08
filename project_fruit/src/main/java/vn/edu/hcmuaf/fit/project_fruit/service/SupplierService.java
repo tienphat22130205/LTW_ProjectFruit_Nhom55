@@ -11,6 +11,6 @@ public class SupplierService {
 
     // Lấy tất cả các nhà cung cấp
     public List<Supplier> getAll() {
-        return supplierDao.getAll();
+        return supplierDao.getAllSuppliers();
     }
 }

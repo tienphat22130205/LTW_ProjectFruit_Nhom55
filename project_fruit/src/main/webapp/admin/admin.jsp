@@ -19,6 +19,11 @@
             $('#feedbackTable').DataTable();  // Khởi tạo DataTable
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#supplierTable').DataTable();  // Khởi tạo DataTable
+        });
+    </script>
 
 <body>
 <input type="checkbox" name="" id="nav-toggle">
@@ -1019,25 +1024,6 @@
         <div id="suppliers" class="section">
             <div class="container">
                 <h1>Thông Tin Nhà Cung Cấp</h1>
-                    <div class="card-header">
-                        <!-- Search Box -->
-                        <div class="search-box">
-                            <input type="text" id="searchInput" placeholder="Tìm kiếm..." />
-                            <div class="search">
-                                <button class="search-btn" id="searchButton">Tìm kiếm</button>
-                            </div>
-                        </div>
-                        <!-- Sort Options -->
-                        <div class="sort-options">
-                            <select>
-                                <option value="#">Chọn lựa chọn</option>
-                                <option value="status">Trạng thái hợp tác</option>
-                                <option value="name_category">Danh sách sản phẩm</option>
-                            </select>
-                        </div>
-                        <div><button id="openPromotionModal" class="button-add-suppliers">Thêm Nhà Cung Cấp</button>
-                        </div>
-                    </div>
                     <!-- Supplier Table -->
                     <table id="supplierTable">
                     <thead>
