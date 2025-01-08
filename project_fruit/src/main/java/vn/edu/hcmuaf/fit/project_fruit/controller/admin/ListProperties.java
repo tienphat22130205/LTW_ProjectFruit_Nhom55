@@ -6,8 +6,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.project_fruit.dao.CustomerDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.FeedbackDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.SupplierDao;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.Customer;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Feedback;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Supplier;
 
@@ -56,6 +58,29 @@ public class ListProperties extends HttpServlet {
         // Kiểm tra xem có nhà cung cấp không
         if (suppliers.isEmpty()) {
             request.setAttribute("message", "Không có nhà cung cấp nào.");
+        }
+
+        // --------------------------------------------------------------------------------------
+        // Kiểm tra xem có khách hàng không
+        CustomerDao customerDao = new CustomerDao();
+        int customerPage = 1;
+        if (request.getParameter("customerPage") != null) {
+            customerPage = Integer.parseInt(request.getParameter("customerPage"));
+        }
+
+        int recordsPerPageCustomers = 10;  // Số lượng khách hàng hiển thị mỗi trang
+        List<Customer> customers = customerDao.getCustomersByPage(customerPage, recordsPerPageCustomers);
+        int totalCustomers = customerDao.getTotalRecords();  // Lấy tổng số khách hàng
+        int customerPages = (int) Math.ceil(totalCustomers * 1.0 / recordsPerPageCustomers);
+
+        // Đưa danh sách khách hàng vào request để hiển thị trong JSP
+        request.setAttribute("customers", customers);
+        request.setAttribute("customerPages", customerPages);
+        request.setAttribute("currentCustomerPage", customerPage);
+
+        // Kiểm tra xem có khách hàng không
+        if (customers.isEmpty()) {
+            request.setAttribute("customerMessage", "Không có khách hàng nào.");
         }
 
 

@@ -24,6 +24,11 @@
             $('#supplierTable').DataTable();  // Khởi tạo DataTable
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#customerTable').DataTable();  // Khởi tạo DataTable
+        });
+    </script>
 
 <body>
 <input type="checkbox" name="" id="nav-toggle">
@@ -569,65 +574,39 @@
         </div>
         <!-- Khach hang -->
         <div id="customers" class="section">
-            <div class="card">
-                <div class="card-header">
-                    <div class="search-box">
-                        <input type="text" placeholder="Tìm kiếm..." />
-                        <div class="search">
-                            <button class="search-btn">Tìm kiếm</button>
-                        </div>
-                    </div>
-                    <div class="sort-options">
-                        <select>
-                            <option value="#">Chọn lựa chọn</option>
-                            <option value="date">Ngày đăng ký</option>
-                            <option value="phone">Số điện thoại</option>
-                        </select>
-                        <div class="sort-icon">
-                            <i class="fas fa-sort"></i>
-                            <span class="sort-label">Sắp xếp</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table width="100%">
-                            <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Họ và tên</td>
-                                <td style="text-align: center">Email</td>
-                                <td style="text-align: center">Số điện thoại</td>
-                                <td style="text-align: center">Địa chỉ</td>
-                                <td style="text-align: center">Ngày đăng ký</td>
-                                <td style="text-align: center">Chi tiết sản phẩm đã mua</td>
-                            </tr>
-                            </thead>
-                            <tbody id="customer-list">
-                            <!-- khach ben js -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-bottom">
-                    <div class="left-section">
-                        <!-- Nội dung bên trái, ví dụ: thông tin thêm, icon, v.v. -->
-                        <span class="info">Hiển thị thêm khách hàng</span>
-                    </div>
-                    <div class="right-section">
-                        <div class="pagination">
-                            <button class="prev" onclick="changePage('prev')">Trước</button>
-                            <span class="page-num" id="page-1" onclick="goToPage(1)">1</span>
-                            <span class="page-num" id="page-2" onclick="goToPage(2)">2</span>
-                            <span class="page-num" id="page-3" onclick="goToPage(3)">3</span>
-                            <span class="page-num">...</span>
-                            <button class="next" onclick="changePage('next')">Tiếp</button>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="container">
+                <h1>Thông Tin Khách Hàng</h1>
+                <!-- Customer Table -->
+                <table id="customerTable">
+                    <thead>
+                    <tr>
+                        <th>Mã khách hàng</th>
+                        <th>Họ và tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Ngày đăng ký</th>
+                        <th>Chi tiết sản phẩm đã mua</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Lặp qua tất cả khách hàng -->
+                    <c:forEach var="customer" items="${customers}">
+                        <tr id="customer-${customer.idCustomer}">
+                            <td>${customer.idCustomer}</td>
+                            <td>${customer.customerName}</td>
+                            <td>${customer.email}</td>
+                            <td>${customer.customerPhone}</td>
+                            <td>${customer.address}</td>
+                            <td>${customer.dateRegister}</td>
+                            <td><a href="productDetails.jsp?customerId=${customer.idCustomer}">Xem chi tiết</a></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
+
         <!-- Products section -->
         <div id="products" class="section">
             <div class="overview-section">
