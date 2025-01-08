@@ -35,14 +35,29 @@ public class ListProperties extends HttpServlet {
         request.setAttribute("feedback", feedbacks);  // Chỉ cần gọi một lần
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
-
+//--------------------------------------------------------------------------------------
         // Kiểm tra xem có nhà cung cấp không
         SupplierDao supplierDao = new SupplierDao();
-        List<Supplier> suppliers = supplierDao.getAll();
+        int supplierPage = 1;
+        if (request.getParameter("supplierPage") != null) {
+            supplierPage = Integer.parseInt(request.getParameter("supplierPage"));
+        }
+
+        int recordsPerPageSuppliers = 25;  // Số lượng nhà cung cấp hiển thị mỗi trang
+        List<Supplier> suppliers = supplierDao.getSuppliersByPage(supplierPage, recordsPerPageSuppliers);
+        int totalSuppliers = supplierDao.getTotalRecords();  // Lấy tổng số nhà cung cấp
+        int supplierPages = (int) Math.ceil(totalSuppliers * 1.0 / recordsPerPageSuppliers);
+
+        // Đưa danh sách nhà cung cấp vào request để hiển thị trong JSP
+        request.setAttribute("suppliers", suppliers);
+        request.setAttribute("supplierPages", supplierPages);
+        request.setAttribute("currentSupplierPage", supplierPage);
+
+        // Kiểm tra xem có nhà cung cấp không
         if (suppliers.isEmpty()) {
             request.setAttribute("message", "Không có nhà cung cấp nào.");
         }
-        request.setAttribute("suppliers", suppliers);
+
 
         // Chuyển tiếp tới JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin.jsp");

@@ -252,7 +252,6 @@
                 </ul>
             </div>
         </div>
-    </div>
 </section>
 
 <section class="products" id="products">
