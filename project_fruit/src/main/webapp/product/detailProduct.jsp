@@ -52,9 +52,11 @@
                 <span>Hotline: 0865660775</span>
             </div>
             <div class="cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Giỏ hàng</span>
-                <span class="cart-badge">0</span>
+                <a href="${pageContext.request.contextPath}/show-cart" style="color: white">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">${sessionScope.cart != null ? sessionScope.cart.getTotalQuantity() : 0}</span>
+                </a>
             </div>
             <div class="account">
                 <!-- Kiểm tra nếu người dùng đã đăng nhập -->
@@ -117,34 +119,20 @@
         </div>
     </div>
     <!-- User Menu (ẩn khi chưa đăng nhập) -->
-    <div class="user-menu" id="userMenu" style="display: none;">
-        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
-            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
-        </ul>
-    </div>
-    <div class="cart-form" id="cartForm">
-        <h2>GIỎ HÀNG</h2>
-        <hr>
-        <div class="cart-content">
-            <i class="fa-solid fa-cart-shopping cart-icon"></i>
-            <p>Hiện chưa có sản phẩm</p>
-        </div>
-        <hr>
-        <div class="cart-total">
-            <span>TỔNG TIỀN:</span>
-            <span class="total-amount">0₫</span>
-        </div>
-        <a href="../card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
-    </div>
+    <%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
+    <%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
+    <%--        <ul>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
+    <%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
+    <%--        </ul>--%>
+    <%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
 <nav class="menu-bar">
     <ul>
-        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
         <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
         <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
         <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
@@ -159,7 +147,7 @@
 <%--<!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->--%>
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
-        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
         <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
         <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
         <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>

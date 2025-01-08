@@ -56,7 +56,7 @@ public class ProductDao {
 //        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM products").mapToBean(Product.class).list());
     }
     // Lấy sản phẩm theo danh mục
-    public List<Product> getProductsByCategory(String category) {
+    public List<Product> getProductsByCategory(int categoryId) {
         Statement s = DbConnect.get();
         if (s == null) return new ArrayList<>();
         try {
@@ -64,10 +64,10 @@ public class ProductDao {
             String query = "SELECT p.*, pr.percent_discount " +
                     "FROM products p " +
                     "LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion " +
-                    "WHERE p.id_category = ( " +
-                    "SELECT id_category FROM category_products WHERE name_category = '" + category + "' " +
-                    ")";
-            ResultSet rs = s.executeQuery(query);
+                    "WHERE p.id_category = ?";
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, categoryId); // Sử dụng PreparedStatement để tránh SQL injection
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
                 Product product = new Product(
@@ -87,6 +87,7 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
+
     public List<Product> getProductsByIdRange(int startId, int endId) {
         Statement s = DbConnect.get();
         if (s == null) return new ArrayList<>();

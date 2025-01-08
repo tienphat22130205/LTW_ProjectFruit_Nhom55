@@ -53,9 +53,11 @@
                 <span>Hotline: 0865660775</span>
             </div>
             <div class="cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Giỏ hàng</span>
-                <span class="cart-badge">0</span>
+                <a href="${pageContext.request.contextPath}/show-cart" style="color: white">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">${sessionScope.cart != null ? sessionScope.cart.getTotalQuantity() : 0}</span>
+                </a>
             </div>
             <div class="account">
                 <!-- Kiểm tra nếu người dùng đã đăng nhập -->
@@ -118,28 +120,14 @@
         </div>
     </div>
     <!-- User Menu (ẩn khi chưa đăng nhập) -->
-    <div class="user-menu" id="userMenu" style="display: none;">
-        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
-            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
-        </ul>
-    </div>
-    <div class="cart-form" id="cartForm">
-        <h2>GIỎ HÀNG</h2>
-        <hr>
-        <div class="cart-content">
-            <i class="fa-solid fa-cart-shopping cart-icon"></i>
-            <p>Hiện chưa có sản phẩm</p>
-        </div>
-        <hr>
-        <div class="cart-total">
-            <span>TỔNG TIỀN:</span>
-            <span class="total-amount">0₫</span>
-        </div>
-        <a href="../card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
-    </div>
+    <%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
+    <%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
+    <%--        <ul>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
+    <%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
+    <%--        </ul>--%>
+    <%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
@@ -209,179 +197,172 @@
             </div>
         </div>
     </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <c:forEach var="product" items="${data3}">
-                <div class="swiper-slide box">
-                    <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                        <!-- Hiển thị hình ảnh sản phẩm -->
-                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
-                        <!-- Phần giảm giá -->
-                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                        <!-- Hiển thị thông tin sản phẩm -->
-                        <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                        <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                        <div class="stars">
-                            <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                        </div>
-                        <!-- Nút thêm vào giỏ hàng -->
-                        <a href="#" class="btn">thêm vào giỏ hàng</a>
-                    </a>
-                </div>
-            </c:forEach>
+    <c:forEach var="productGroup" items="${productGroups}">
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Hiển thị sản phẩm trong mỗi nhóm -->
+                <c:forEach var="product" items="${productGroup}">
+                    <div class="swiper-slide box">
+                        <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
+                            <!-- Hiển thị hình ảnh sản phẩm -->
+                            <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                                 alt="${product.name}" />
+                            <!-- Phần giảm giá -->
+                            <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
+                            <!-- Hiển thị thông tin sản phẩm -->
+                            <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
+                            <h3>${product.name}</h3>
+                            <h3 class="price">${product.discountedPrice}đ/ <span style="color: gray; text-decoration: line-through"><del>${product.price}đ</del></span></h3>
+                            <div class="stars">
+                                <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
+                            </div>
+                            <!-- Nút thêm vào giỏ hàng -->
+                            <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
-    </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <c:forEach var="product" items="${data3}">
-                <div class="swiper-slide box">
-                    <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                        <!-- Hiển thị hình ảnh sản phẩm -->
-                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
-                        <!-- Phần giảm giá -->
-                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                        <!-- Hiển thị thông tin sản phẩm -->
-                        <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                        <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                        <div class="stars">
-                            <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                        </div>
-                        <!-- Nút thêm vào giỏ hàng -->
-                        <a href="#" class="btn">thêm vào giỏ hàng</a>
-                    </a>
-                </div>
-            </c:forEach>
+    </c:forEach>
+    <c:forEach var="productGroup" items="${productGroups}">
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Hiển thị sản phẩm trong mỗi nhóm -->
+                <c:forEach var="product" items="${productGroup}">
+                    <div class="swiper-slide box">
+                        <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
+                            <!-- Hiển thị hình ảnh sản phẩm -->
+                            <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                                 alt="${product.name}" />
+                            <!-- Phần giảm giá -->
+                            <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
+                            <!-- Hiển thị thông tin sản phẩm -->
+                            <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
+                            <h3>${product.name}</h3>
+                            <h3 class="price">${product.discountedPrice}đ/ <span style="color: gray; text-decoration: line-through"><del>${product.price}đ</del></span></h3>
+                            <div class="stars">
+                                <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
+                            </div>
+                            <!-- Nút thêm vào giỏ hàng -->
+                            <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
-    </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <c:forEach var="product" items="${data3}">
-                <div class="swiper-slide box">
-                    <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                        <!-- Hiển thị hình ảnh sản phẩm -->
-                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
-                        <!-- Phần giảm giá -->
-                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                        <!-- Hiển thị thông tin sản phẩm -->
-                        <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                        <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                        <div class="stars">
-                            <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                        </div>
-                        <!-- Nút thêm vào giỏ hàng -->
-                        <a href="#" class="btn">thêm vào giỏ hàng</a>
-                    </a>
-                </div>
-            </c:forEach>
+    </c:forEach>
+    <c:forEach var="productGroup" items="${productGroups}">
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Hiển thị sản phẩm trong mỗi nhóm -->
+                <c:forEach var="product" items="${productGroup}">
+                    <div class="swiper-slide box">
+                        <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
+                            <!-- Hiển thị hình ảnh sản phẩm -->
+                            <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                                 alt="${product.name}" />
+                            <!-- Phần giảm giá -->
+                            <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
+                            <!-- Hiển thị thông tin sản phẩm -->
+                            <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
+                            <h3>${product.name}</h3>
+                            <h3 class="price">${product.discountedPrice}đ/ <span style="color: gray; text-decoration: line-through"><del>${product.price}đ</del></span></h3>
+                            <div class="stars">
+                                <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
+                            </div>
+                            <!-- Nút thêm vào giỏ hàng -->
+                            <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
-    </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <c:forEach var="product" items="${data3}">
-                <div class="swiper-slide box">
-                    <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                        <!-- Hiển thị hình ảnh sản phẩm -->
-                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
-                        <!-- Phần giảm giá -->
-                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                        <!-- Hiển thị thông tin sản phẩm -->
-                        <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                        <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                        <div class="stars">
-                            <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                        </div>
-                        <!-- Nút thêm vào giỏ hàng -->
-                        <a href="#" class="btn">thêm vào giỏ hàng</a>
-                    </a>
-                </div>
-            </c:forEach>
+    </c:forEach>
+    <c:forEach var="productGroup" items="${productGroups}">
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <!-- Hiển thị sản phẩm trong mỗi nhóm -->
+                <c:forEach var="product" items="${productGroup}">
+                    <div class="swiper-slide box">
+                        <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
+                            <!-- Hiển thị hình ảnh sản phẩm -->
+                            <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                                 alt="${product.name}" />
+                            <!-- Phần giảm giá -->
+                            <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
+                            <!-- Hiển thị thông tin sản phẩm -->
+                            <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
+                            <h3>${product.name}</h3>
+                            <h3 class="price">${product.discountedPrice}đ/ <span style="color: gray; text-decoration: line-through"><del>${product.price}đ</del></span></h3>
+                            <div class="stars">
+                                <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
+                            </div>
+                            <!-- Nút thêm vào giỏ hàng -->
+                            <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
-    </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <c:forEach var="product" items="${data3}">
-                <div class="swiper-slide box">
-                    <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                        <!-- Hiển thị hình ảnh sản phẩm -->
-                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
-                        <!-- Phần giảm giá -->
-                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                        <!-- Hiển thị thông tin sản phẩm -->
-                        <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                        <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                        <div class="stars">
-                            <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                        </div>
-                        <!-- Nút thêm vào giỏ hàng -->
-                        <a href="#" class="btn">thêm vào giỏ hàng</a>
-                    </a>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
+    </c:forEach>
     <div id="product-slider-1" class="hidden">
-        <div class="swiper product-slider">
-            <div class="swiper-wrapper">
-                <c:forEach var="product" items="${data3}">
-                    <div class="swiper-slide box">
-                        <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                            <!-- Hiển thị hình ảnh sản phẩm -->
-                            <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                                 alt="${product.name}" />
-                            <!-- Phần giảm giá -->
-                            <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                            <!-- Hiển thị thông tin sản phẩm -->
-                            <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                            <h3>${product.name}</h3>
-                            <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                            <div class="stars">
-                                <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                            </div>
-                            <!-- Nút thêm vào giỏ hàng -->
-                            <a href="#" class="btn">thêm vào giỏ hàng</a>
-                        </a>
-                    </div>
-                </c:forEach>
+        <c:forEach var="productGroup" items="${productGroups}">
+            <div class="swiper product-slider">
+                <div class="swiper-wrapper">
+                    <!-- Hiển thị sản phẩm trong mỗi nhóm -->
+                    <c:forEach var="product" items="${productGroup}">
+                        <div class="swiper-slide box">
+                            <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
+                                <!-- Hiển thị hình ảnh sản phẩm -->
+                                <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                                     alt="${product.name}" />
+                                <!-- Phần giảm giá -->
+                                <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
+                                <!-- Hiển thị thông tin sản phẩm -->
+                                <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
+                                <h3>${product.name}</h3>
+                                <h3 class="price">${product.discountedPrice}đ/ <span style="color: gray; text-decoration: line-through"><del>${product.price}đ</del></span></h3>
+                                <div class="stars">
+                                    <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
+                                </div>
+                                <!-- Nút thêm vào giỏ hàng -->
+                                <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                            </a>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
-        </div>
-        <div class="swiper product-slider">
-            <div class="swiper-wrapper">
-                <c:forEach var="product" items="${data3}">
-                    <div class="swiper-slide box">
-                        <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                            <!-- Hiển thị hình ảnh sản phẩm -->
-                            <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                                 alt="${product.name}" />
-                            <!-- Phần giảm giá -->
-                            <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
-                            <!-- Hiển thị thông tin sản phẩm -->
-                            <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
-                            <h3>${product.name}</h3>
-                            <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
-                            <div class="stars">
-                                <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
-                            </div>
-                            <!-- Nút thêm vào giỏ hàng -->
-                            <a href="#" class="btn">thêm vào giỏ hàng</a>
-                        </a>
-                    </div>
-                </c:forEach>
+        </c:forEach>
+        <c:forEach var="productGroup" items="${productGroups}">
+            <div class="swiper product-slider">
+                <div class="swiper-wrapper">
+                    <!-- Hiển thị sản phẩm trong mỗi nhóm -->
+                    <c:forEach var="product" items="${productGroup}">
+                        <div class="swiper-slide box">
+                            <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
+                                <!-- Hiển thị hình ảnh sản phẩm -->
+                                <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                                     alt="${product.name}" />
+                                <!-- Phần giảm giá -->
+                                <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
+                                <!-- Hiển thị thông tin sản phẩm -->
+                                <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
+                                <h3>${product.name}</h3>
+                                <h3 class="price">${product.discountedPrice}đ/ <span style="color: gray; text-decoration: line-through"><del>${product.price}đ</del></span></h3>
+                                <div class="stars">
+                                    <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
+                                </div>
+                                <!-- Nút thêm vào giỏ hàng -->
+                                <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                            </a>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
-        </div>
-
+        </c:forEach>
     </div>
     <div class="view-more-container">
-        <a href="#" class="view-more" id="view-more-btn">Xem tất cả sản phẩm</a>
+        <a href="#" class="view-more" id="view-more-btn">Xem thêm sản phẩm</a>
     </div>
 </section>
 <!-- products section end-->
