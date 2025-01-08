@@ -193,7 +193,7 @@
             <!-- Phần chi tiết sản phẩm -->
             <div class="product-price-section">
                 <h2>${product.name}</h2>
-                <p class="product-code">Mã sản phẩm: ${product.id_product} | Tình trạng: ${product.statusDisplay}
+                <p class="product-code">Mã sản phẩm: ${product.id_product} | Tình trạng: ${product.statusDisplay} </p>
                 <p class="product-code">Số lượng: ${product.quantity}</p>
                 <p class="discount-code">Chương trình giảm giá:</p>
                 <div class="discount-buttons">
@@ -225,7 +225,6 @@
     <div class="content_detail">
         <div class="product-description">
             <h2>THÔNG TIN SẢN PHẨM</h2>
-            <h3>Mô tả sản phẩm</h3>
             <p><strong>Xuất xứ:</strong> ${not empty product.origin ? product.origin : 'Không xác định'}</p>
             <p><strong>Ngày nhập:</strong> ${not empty product.entry_date ? product.entry_date : 'Không có thông tin'}</p>
             <p><strong>Hạn sử dụng:</strong> ${not empty product.shelf_life ? product.shelf_life : 'Không có thông tin'}</p>
@@ -252,8 +251,9 @@
             </ul>
         </div>
     </div>
-    </div>
+
 </section>
+
 
 <section class="products" id="products">
     <h1 class="heading"><span>Sản phẩm liên quan</span></h1>

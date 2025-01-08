@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: phuon
-  Date: 12/19/2024
-  Time: 1:37 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -1610,7 +1604,12 @@
 <script src="${pageContext.request.contextPath}/assets/js/admin.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/logicAdmin.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-
+<script>
+    const contextPath = "${pageContext.request.contextPath}";
+    document.getElementById("confirmLogoutBtn").onclick = function() {
+        window.location.href = contextPath + "/logout";
+    };
+</script>
 </body>
 
 </html>

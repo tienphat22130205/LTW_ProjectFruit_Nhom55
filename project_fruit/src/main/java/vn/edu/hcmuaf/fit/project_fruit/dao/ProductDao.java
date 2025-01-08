@@ -205,6 +205,7 @@ public class ProductDao {
         if (product != null) {
             System.out.println("Product details:");
             System.out.println("Name: " + product.getName());
+            System.out.println("quantity: " + product.getQuantity());
             System.out.println("Original Price: " + product.getPrice());
             System.out.println("Discounted Price: " + product.getDiscountedPrice());
             System.out.println("Promotion: " + product.getPromotionName());

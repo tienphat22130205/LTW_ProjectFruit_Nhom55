@@ -111,7 +111,7 @@ public class Product implements Serializable {
         this.describe_1 = describe_1;
     }
 
-    public int getQuantity(int i) {
+    public int getQuantity() {
         return quantity;
     }
 
