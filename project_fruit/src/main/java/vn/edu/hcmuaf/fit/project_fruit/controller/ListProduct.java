@@ -68,6 +68,8 @@ public class ListProduct extends HttpServlet {
         List<Product> data9 = service.getProductsByIdRange(77, 86);
         List<Product> data10 = service.getProductsByIdRange(87, 96);
 
+        List<Product> weeklyDiscountedProducts = service.getWeeklyDiscountedProducts();
+
         // Gửi danh sách sản phẩm theo dòng đến JSP
         request.setAttribute("data1", data1);
         request.setAttribute("data2", data2);
@@ -79,13 +81,14 @@ public class ListProduct extends HttpServlet {
         request.setAttribute("data8", data8);
         request.setAttribute("data9", data9);
         request.setAttribute("data10", data10);
+        request.setAttribute("weeklyDiscountedProducts", weeklyDiscountedProducts);
 
 
 
         // Thêm thông báo nếu danh sách rỗng
         if (data1.isEmpty() && data2.isEmpty() && data3.isEmpty() && data4.isEmpty() &&
                 data5.isEmpty() && data6.isEmpty() && data7.isEmpty() && data8.isEmpty() &&
-                data9.isEmpty() && data10.isEmpty()) {
+                data9.isEmpty() && data10.isEmpty() && weeklyDiscountedProducts.isEmpty()) {
             request.setAttribute("message", "Không tìm thấy sản phẩm nào.");
         }
 

@@ -22,5 +22,26 @@ public class ProductService {
     public List<Product> getProductsByIdRange(int startId, int endId) {
         return productDao.getProductsByIdRange(startId, endId);
     }
+    // Thêm phương thức mới: Lấy sản phẩm ưu đãi trong tuần
+    public List<Product> getWeeklyDiscountedProducts() {
+        return productDao.getWeeklyDiscountedProducts();
+    }
+    public static void main(String[] args) {
+        ProductService service = new ProductService();
+
+        List<Product> weeklyDiscountedProducts = service.getWeeklyDiscountedProducts();
+        if (weeklyDiscountedProducts != null && !weeklyDiscountedProducts.isEmpty()) {
+            System.out.println("Weekly Discounted Products:");
+            for (Product product : weeklyDiscountedProducts) {
+                System.out.println("ID: " + product.getId_product() + // Hoặc getId()
+                        ", Name: " + product.getName() +
+                        ", Price: " + product.getPrice() +
+                        ", Discounted Price: " + product.getDiscountedPrice());
+            }
+        } else {
+            System.out.println("No weekly discounted products found.");
+        }
+    }
+
 }
 
