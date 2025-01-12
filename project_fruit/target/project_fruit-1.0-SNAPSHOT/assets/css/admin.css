@@ -3447,16 +3447,52 @@ table.dataTable td:nth-child(5) {
 }
 
 /* Cải thiện giao diện thanh tìm kiếm */
-.dataTables_wrapper .dataTables_filter  {
+/* Cải thiện giao diện thanh tìm kiếm */
+.dataTables_wrapper .dataTables_filter {
     display: flex;
     align-items: center;
-    background-color: #28a745;
-    border-radius: 25px;
-    padding: 8px 16px;
-    margin: 10px 0px;
+    background-color: #007bff; /* Màu nền sáng */
+    border-radius: 30px; /* Bo tròn góc mềm mại */
+    padding: 12px 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ cho thanh tìm kiếm */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
 }
-tr td:last-child {
-    display: block;
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ccc; /* Đường viền nhẹ cho ô input */
+    outline: none;
+    padding: 10px 15px;
+    margin-left: 20px;
+    font-size: 14px;
+    border-radius: 20px; /* Bo tròn ô input */
+    width: 220px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    background-color: #fff; /* Màu nền trắng cho ô input */
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+    width: 250px; /* Tăng chiều rộng khi focus */
+    background-color: #f8f9fa; /* Thay đổi nền khi focus */
+    border-color: #007bff; /* Đổi màu viền khi focus */
+}
+
+.dataTables_wrapper .dataTables_filter input::placeholder {
+    color: #6c757d; /* Màu chữ placeholder */
+    font-style: italic;
+}
+
+/* Thêm hiệu ứng hover cho thanh tìm kiếm */
+.dataTables_wrapper .dataTables_filter:hover {
+    background-color: #28a745; /* Màu nền khi hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Bóng đổ đậm hơn khi hover */
+}
+
+/* Đảm bảo văn bản nằm ở vị trí chính giữa */
+.dataTables_wrapper .dataTables_filter label {
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 

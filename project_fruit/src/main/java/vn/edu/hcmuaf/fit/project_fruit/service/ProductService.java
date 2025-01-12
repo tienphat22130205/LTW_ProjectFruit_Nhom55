@@ -26,20 +26,29 @@ public class ProductService {
     public List<Product> getWeeklyDiscountedProducts() {
         return productDao.getWeeklyDiscountedProducts();
     }
+    public List<Product> searchProducts(String keyword) {
+        return productDao.searchProductsByName(keyword);
+    }
     public static void main(String[] args) {
         ProductService service = new ProductService();
 
-        List<Product> weeklyDiscountedProducts = service.getWeeklyDiscountedProducts();
-        if (weeklyDiscountedProducts != null && !weeklyDiscountedProducts.isEmpty()) {
-            System.out.println("Weekly Discounted Products:");
-            for (Product product : weeklyDiscountedProducts) {
-                System.out.println("ID: " + product.getId_product() + // Hoặc getId()
+        // Từ khóa cần tìm kiếm
+        String keyword = "Cam";
+
+        // Gọi phương thức searchProducts và nhận danh sách kết quả
+        List<Product> searchResults = service.searchProducts(keyword);
+
+        // In ra kết quả tìm kiếm
+        if (searchResults != null && !searchResults.isEmpty()) {
+            System.out.println("Search Results for keyword '" + keyword + "':");
+            for (Product product : searchResults) {
+                System.out.println("ID: " + product.getId_product() +
                         ", Name: " + product.getName() +
                         ", Price: " + product.getPrice() +
                         ", Discounted Price: " + product.getDiscountedPrice());
             }
         } else {
-            System.out.println("No weekly discounted products found.");
+            System.out.println("No products found for keyword '" + keyword + "'.");
         }
     }
 

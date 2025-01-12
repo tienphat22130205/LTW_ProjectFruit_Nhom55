@@ -1,14 +1,14 @@
 <%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- link swiper -->
     <!-- Thêm CSS của Swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -18,9 +18,9 @@
     <!-- link style css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <!-- Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <!-- link logo anh -->
-    <link rel="icon" href="${pageContext.request.contextPath}/assets/img/logoBank/logoweb.png"  type="image/x-icon">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/img/logoBank/logoweb.png" type="image/x-icon">
     <title>Selling Fruit</title>
 </head>
 
@@ -38,9 +38,11 @@
                     <h1>Vitamin<span>FRUIT</span></h1>
                 </a>
             </div>
-            <div class="search">
-                <input type="text" placeholder="Tìm kiếm sản phẩm...">
+            <div class="search" style="position: relative;">
+                <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..."
+                       oninput="fetchSuggestions(this.value)">
                 <i class="fa-solid fa-search"></i>
+                <div id="search-results" class="search-results"></div>
             </div>
         </div>
         <div class="center">
@@ -66,7 +68,8 @@
                 <c:if test="${not empty sessionScope.user}">
                     <!-- Nếu người dùng đã đăng nhập, hiển thị avatar và thông tin -->
                     <a href="${pageContext.request.contextPath}/user/user.jsp">
-                        <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar" class="avatar" onclick="toggleUserMenu()">
+                        <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar"
+                             class="avatar" onclick="toggleUserMenu()">
                     </a>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
@@ -116,26 +119,28 @@
             </div>
             <div class="branch">
                 <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
-                <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức, Phường An
+                <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức,
+                    Phường An
                     Phú, Thành phố Thủ Đức</p>
             </div>
         </div>
     </div>
     <!-- User Menu (ẩn khi chưa đăng nhập) -->
-<%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
-<%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
-<%--        <ul>--%>
-<%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
-<%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
-<%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
-<%--        </ul>--%>
-<%--    </div>--%>
+    <%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
+    <%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
+    <%--        <ul>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
+    <%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
+    <%--        </ul>--%>
+    <%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
 <nav class="menu-bar">
     <ul>
-        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a>
+        </li>
         <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
         <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
         <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
@@ -152,7 +157,8 @@
 <!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
-        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a>
+        </li>
         <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
         <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
         <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
@@ -162,7 +168,6 @@
         <li><a href="/project_fruit/home?category=traicaysaykho" onclick="setActive(this)">Trái cây sấy khô</a></li>
         <li><a href="/project_fruit/home?category=muttraicay" onclick="setActive(this)">Mứt trái cây</a></li>
         <li><a href="/project_fruit/user/contact.jsp" onclick="setActive(this)">Liên hệ</a></li>
-
 
 
     </ul>
@@ -191,7 +196,7 @@
     <h1 class="heading"><span>Dịch vụ nổi bật</span></h1>
     <div class="box-container">
         <div class="box">
-            <img src="./assets/img/fea1.jpg" alt="" />
+            <img src="./assets/img/fea1.jpg" alt=""/>
             <h3>Tươi và xanh</h3>
             <p>
                 Trái cây tươi nhập khẩu và trong nước phục vụ theo nhu cầu của bạn.
@@ -199,7 +204,7 @@
             <a href="#" class="btn">đọc thêm</a>
         </div>
         <div class="box">
-            <img src="./assets/img/fea2.jpg" alt="" />
+            <img src="./assets/img/fea2.jpg" alt=""/>
             <h3>giao hàng miễn phí</h3>
             <p>
                 Giao hàng mọi lúc, mọi nơi, miễn phí vận chuyển, còn chần chừ gì
@@ -208,15 +213,15 @@
             <a href="#" class="btn">đọc thêm</a>
         </div>
         <div class="box">
-            <img src="./assets/img/fea3.jpg" alt="" />
+            <img src="./assets/img/fea3.jpg" alt=""/>
             <h3>thanh toán dễ dàng</h3>
             <p>
                 Nhiều phương thức thanh toán, tùy theo nhu cầu thanh toán của bạn.
             </p>
             <a href="#" class="btn">đọc thêm</a>
         </div>
-        </div>
-    </section>
+    </div>
+</section>
 <!-- features section ends -->
 <section class="products1" id="products1">
     <h1 class="heading"><span>Ưu đãi trong tuần</span></h1>
@@ -225,7 +230,8 @@
             <c:forEach var="product" items="${weeklyDiscountedProducts}">
                 <div class="swiper-slide box">
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
-                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}" alt="${product.name}" />
+                        <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
+                             alt="${product.name}"/>
                         <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
@@ -237,7 +243,8 @@
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -250,7 +257,7 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
                         <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>
                         <!-- Hiển thị thông tin sản phẩm -->
@@ -265,7 +272,8 @@
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -286,18 +294,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -310,25 +321,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=traicayhomnay" class="view-more" id="view-more-btn">Xem thêm sản phẩm hôm nay</a>
+        <a href="/project_fruit/list-product?category=traicayhomnay" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm hôm nay</a>
     </div>
 </section>
 <!--------------------------------------- sản phẩm việt nam ------------------------------------------------->
@@ -342,18 +357,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -366,25 +384,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=traicayvietnam" class="view-more" id="view-more-btn">Xem thêm sản phẩm việt nam</a>
+        <a href="/project_fruit/list-product?category=traicayvietnam" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm việt nam</a>
     </div>
 </section>
 <!--------------------------------------------------- Trái cây nhập khẩu --------------------------------------->
@@ -398,18 +420,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -422,25 +447,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=traicaynhapkhau" class="view-more" id="view-more-btn">Xem thêm sản phẩm nhập khẩu</a>
+        <a href="/project_fruit/list-product?category=traicaynhapkhau" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm nhập khẩu</a>
     </div>
 </section>
 <!--------------------------------------------------------------- trái cây cắt sẵn ------------------------------------------->
@@ -453,18 +482,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -477,25 +509,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=traicaycatsan" class="view-more" id="view-more-btn">Xem thêm sản phẩm cắt sẵn</a>
+        <a href="/project_fruit/list-product?category=traicaycatsan" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm cắt sẵn</a>
     </div>
 </section>
 <!-- quà tặng trái cây -->
@@ -508,18 +544,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -532,25 +571,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=quatangtraicay" class="view-more" id="view-more-btn">Xem thêm sản phẩm quà tặng</a>
+        <a href="/project_fruit/list-product?category=quatangtraicay" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm quà tặng</a>
     </div>
 </section>
 <section class="products" id="products">
@@ -562,18 +605,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -586,25 +632,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=hopquanguyencat" class="view-more" id="view-more-btn">Xem thêm sản phẩm quà tặng nguyên cát</a>
+        <a href="/project_fruit/list-product?category=hopquanguyencat" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm quà tặng nguyên cát</a>
     </div>
 </section>
 <section class="products" id="products">
@@ -616,18 +666,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -640,25 +693,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=traicaysaykho" class="view-more" id="view-more-btn">Xem thêm sản phẩm sấy khô</a>
+        <a href="/project_fruit/list-product?category=traicaysaykho" class="view-more" id="view-more-btn">Xem thêm sản
+            phẩm sấy khô</a>
     </div>
 </section>
 <!-- Mứt -->
@@ -671,18 +728,21 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
@@ -695,25 +755,29 @@
                     <a href="${pageContext.request.contextPath}/product-detail?pid=${product.id_product}">
                         <!-- Hiển thị hình ảnh sản phẩm -->
                         <img src="${product.imageUrl != null ? product.imageUrl : '/assets/img/default.jpg'}"
-                             alt="${product.name}" />
+                             alt="${product.name}"/>
                         <!-- Phần giảm giá -->
-<%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
+                            <%--                        <div class="discount">${product.percentDiscount != null ? product.percentDiscount : 0}%</div>--%>
                         <!-- Hiển thị thông tin sản phẩm -->
                         <h4 style="color: red">Mã sản phẩm: ${product.id_product}</h4>
                         <h3>${product.name}</h3>
-                        <h3 class="price" >${product.discountedPrice}đ/ <span style= "color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span></h3>
+                        <h3 class="price">${product.discountedPrice}đ/ <span
+                                style="color: gray; text-decoration: line-through"><del>${product.price}đ</del> </span>
+                        </h3>
                         <div class="stars">
                             <i>Đánh giá: ${product.rating} <i class="fas fa-star"></i></i>
                         </div>
                         <!-- Nút thêm vào giỏ hàng -->
-                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}" class="btn">Thêm vào giỏ hàng</a>
+                        <a href="${pageContext.request.contextPath}/add-cart?addToCartPid=${product.id_product}"
+                           class="btn">Thêm vào giỏ hàng</a>
                     </a>
                 </div>
             </c:forEach>
         </div>
     </div>
     <div class="view-more-container">
-        <a href="/project_fruit/list-product?category=muttraicay" class="view-more" id="view-more-btn">Xem thêm sản phẩm mứt trái cây</a>
+        <a href="/project_fruit/list-product?category=muttraicay" class="view-more" id="view-more-btn">Xem thêm sản phẩm
+            mứt trái cây</a>
     </div>
 </section>
 <!-- products section end-->
@@ -722,43 +786,43 @@
     <h1 class="heading">thể loại<span>sản phẩm</span></h1>
     <div class="box-container">
         <div class="box">
-            <img src="./assets/img/traicayvietnam/mam_xoi_den.webp" alt="" />
+            <img src="./assets/img/traicayvietnam/mam_xoi_den.webp" alt=""/>
             <h3>Trái cây Việt Nam</h3>
             <p>Giảm giá tới 30%</p>
             <a href="./product/traicayvietnam.html" class="btn">mua ngay</a>
         </div>
         <div class="box">
-            <img src="./assets/img/traicaynhapkhau/le_sua_noi_dia_trung.webp" alt="" />
+            <img src="./assets/img/traicaynhapkhau/le_sua_noi_dia_trung.webp" alt=""/>
             <h3>Trái cây nhập khẩu</h3>
             <p>Giảm giá tới 25%</p>
             <a href="./product/traicaynhapkhau.html" class="btn">mua ngay</a>
         </div>
         <div class="box">
-            <img src="./assets/img/traicaycatsan/cs01.webp" alt="" />
+            <img src="./assets/img/traicaycatsan/cs01.webp" alt=""/>
             <h3>Trái cây cắt sẵn</h3>
             <p>Giảm giá tới 20%</p>
             <a href="./product/traicaycatsan.html" class="btn">mua ngay</a>
         </div>
         <div class="box">
-            <img src="./assets/img/gq19.webp" alt="" />
+            <img src="./assets/img/gq19.webp" alt=""/>
             <h3>Quà tặng trái cây</h3>
             <p>Giảm giá tới 30%</p>
             <a href="./product/quatangtraicay.html" class="btn">mua ngay</a>
         </div>
         <div class="box">
-            <img src="./assets/img/hqnc1.png" alt="" />
+            <img src="./assets/img/hqnc1.png" alt=""/>
             <h3>Hộp quà nguyên cát</h3>
             <p>Giảm giá tới 30%</p>
             <a href="./product/hopqua.html" class="btn">mua ngay</a>
         </div>
         <div class="box">
-            <img src="./assets/img/tcs1.jpg" alt="" />
+            <img src="./assets/img/tcs1.jpg" alt=""/>
             <h3>Trái cây sấy khô</h3>
             <p>Giảm giá tới 50%</p>
             <a href="./product/traicaysaykho.html" class="btn">mua ngay</a>
         </div>
         <div class="box">
-            <img src="./assets/img/mtc1.webp" alt="" />
+            <img src="./assets/img/mtc1.webp" alt=""/>
             <h3>Mứt trái cây</h3>
             <p>Giảm giá tới 45%</p>
             <a href="./product/muttraicay.html" class="btn">mua ngay</a>
@@ -770,28 +834,28 @@
     <div class="swiper brand-slider">
         <div class="swiper-wrapper">
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/acb.webp" alt="" />
+                <img src="./assets/img/logoBank/acb.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/bidv.webp" alt="" />
+                <img src="./assets/img/logoBank/bidv.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/helo.webp" alt="" />
+                <img src="./assets/img/logoBank/helo.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/map.webp" alt="" />
+                <img src="./assets/img/logoBank/map.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/shahan.webp" alt="" />
+                <img src="./assets/img/logoBank/shahan.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/bo.webp" alt="" />
+                <img src="./assets/img/logoBank/bo.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/ocb.webp" alt="" />
+                <img src="./assets/img/logoBank/ocb.webp" alt=""/>
             </div>
             <div class="swiper-slide box">
-                <img src="./assets/img/logoBank/pep.webp" alt="" />
+                <img src="./assets/img/logoBank/pep.webp" alt=""/>
             </div>
         </div>
         <div class="button-prev"><i class="fa-solid fa-angle-left"></i></div>
@@ -803,7 +867,7 @@
     <h1 class="heading">blog <span>của chúng tôi</span></h1>
     <div class="box-container">
         <div class="box">
-            <img src="./assets/img/bl1.0.jpg" alt="" />
+            <img src="./assets/img/bl1.0.jpg" alt=""/>
             <div class="content">
                 <div class="icons">
                     <a href="#"> <i class="fas fa-user"></i>người dùng</a>
@@ -812,18 +876,21 @@
                 <h3>
                     Lợi Ích Sức Khỏe Của Trái Cây Tươi
                 </h3>
-                <p> - Giới thiệu về các loại trái cây phổ biến và lợi ích sức khỏe mà chúng mang lại. Ví dụ, cam giàu vitamin
-                    C giúp tăng cường hệ miễn dịch, táo chứa chất xơ tốt cho tiêu hóa, hay nho chứa chất chống oxy hóa tốt cho
+                <p> - Giới thiệu về các loại trái cây phổ biến và lợi ích sức khỏe mà chúng mang lại. Ví dụ, cam giàu
+                    vitamin
+                    C giúp tăng cường hệ miễn dịch, táo chứa chất xơ tốt cho tiêu hóa, hay nho chứa chất chống oxy hóa
+                    tốt cho
                     da.
                     <br>
-                    - Nâng cao nhận thức về việc bổ sung trái cây vào chế độ ăn uống hàng ngày và khuyến khích khách hàng lựa
+                    - Nâng cao nhận thức về việc bổ sung trái cây vào chế độ ăn uống hàng ngày và khuyến khích khách
+                    hàng lựa
                     chọn trái cây tươi cho sức khỏe.
                 </p>
                 <a href="#" class="btn">đọc thêm</a>
             </div>
         </div>
         <div class="box">
-            <img src="./assets/img/bl2.jpg" alt="" />
+            <img src="./assets/img/bl2.jpg" alt=""/>
             <div class="content">
                 <div class="icons">
                     <a href="#"> <i class="fas fa-user"></i>người dùng</a>
@@ -833,10 +900,13 @@
                     Cách Bảo Quản Trái Cây Tươi Lâu Hơn
                 </h3>
                 <p>
-                    - Cung cấp các mẹo và phương pháp bảo quản trái cây đúng cách để giữ được độ tươi lâu hơn. Hướng dẫn về cách
-                    bảo quản trái cây khác nhau như: để trong tủ lạnh, bảo quản ở nhiệt độ phòng, hoặc cách rửa và cất trữ trái
+                    - Cung cấp các mẹo và phương pháp bảo quản trái cây đúng cách để giữ được độ tươi lâu hơn. Hướng dẫn
+                    về cách
+                    bảo quản trái cây khác nhau như: để trong tủ lạnh, bảo quản ở nhiệt độ phòng, hoặc cách rửa và cất
+                    trữ trái
                     cây. <br>
-                    - Giúp khách hàng bảo quản trái cây mua về được lâu hơn, tránh lãng phí và đảm bảo chất lượng tốt nhất khi
+                    - Giúp khách hàng bảo quản trái cây mua về được lâu hơn, tránh lãng phí và đảm bảo chất lượng tốt
+                    nhất khi
                     sử
                     dụng.
                 </p>
@@ -844,7 +914,7 @@
             </div>
         </div>
         <div class="box">
-            <img src="./assets/img/bl3.jpg" alt="" />
+            <img src="./assets/img/bl3.jpg" alt=""/>
             <div class="content">
                 <div class="icons">
                     <a href="#"> <i class="fas fa-user"></i>người dùng</a>
@@ -855,7 +925,8 @@
                 </h3>
                 <p>
                     - Gợi ý các công thức món ăn hoặc đồ uống dễ làm từ trái cây, ví dụ như sinh tố trái cây, salad trái
-                    cây, hoặc nước ép tươi mát. Kèm theo hình ảnh và hướng dẫn chi tiết để khách hàng dễ dàng thực hiện tại nhà.
+                    cây, hoặc nước ép tươi mát. Kèm theo hình ảnh và hướng dẫn chi tiết để khách hàng dễ dàng thực hiện
+                    tại nhà.
                     <br>
                     - Tạo cảm hứng cho khách hàng về cách sử dụng trái cây để chế biến các món ăn ngon, độc đáo, và
                     khuyến khích việc mua nhiều loại trái cây khác nhau.
@@ -910,12 +981,13 @@
         </div>
         <div class="box">
             <h3>Đơn vị vận chuyển</h3>
-            <p>"Chúng tôi sử dụng các đơn vị vận chuyển uy tín như Grab, Giao Hàng Tiết Kiệm, VNPost và nhiều đơn vị khác."
+            <p>"Chúng tôi sử dụng các đơn vị vận chuyển uy tín như Grab, Giao Hàng Tiết Kiệm, VNPost và nhiều đơn vị
+                khác."
             </p>
             <div class="shipping-brands">
-                <img src="./assets/img/logoBank/grab.jpg" alt="Grab" />
-                <img src="./assets/img/logoBank/giaohangtietkiem.png" alt="Giao Hàng Tiết Kiệm" />
-                <img src="./assets/img/logoBank/vnpost.webp" alt="VNPost" />
+                <img src="./assets/img/logoBank/grab.jpg" alt="Grab"/>
+                <img src="./assets/img/logoBank/giaohangtietkiem.png" alt="Giao Hàng Tiết Kiệm"/>
+                <img src="./assets/img/logoBank/vnpost.webp" alt="VNPost"/>
             </div>
         </div>
     </div>
@@ -925,7 +997,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="./assets/js/fruit.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/fruit.js" defer></script>
 </body>
 
 </html>

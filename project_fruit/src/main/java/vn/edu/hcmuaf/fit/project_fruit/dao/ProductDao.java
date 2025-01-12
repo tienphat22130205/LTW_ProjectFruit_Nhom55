@@ -168,6 +168,37 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
+    public List<Product> searchProductsByName(String keyword) {
+        try {
+            ArrayList<Product> products = new ArrayList<>();
+            String query = """
+        SELECT p.*, pr.percent_discount
+        FROM products p
+        LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
+        WHERE p.product_name LIKE ?;
+        """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setString(1, "%" + keyword + "%"); // Tìm kiếm với từ khóa có chứa keyword
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
+                Product product = new Product(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        listImg,
+                        rs.getDouble("price"),
+                        rs.getString("rating"),
+                        rs.getDouble("percent_discount")
+                );
+                product.calculateDiscountedPrice();
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
     // Lấy sản phẩm theo ID
     public Product getById(int id) {
         try {

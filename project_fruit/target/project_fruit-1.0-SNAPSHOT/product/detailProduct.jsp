@@ -417,6 +417,52 @@
     <h2 class="reviews-title">KHÁCH HÀNG NÓI VỀ SẢN PHẨM</h2>
     <p class="reviews-subtitle">Trở thành người đầu tiên đánh giá về sản phẩm.</p>
 
+    <%
+        String message = request.getParameter("message");
+        if (message != null) {
+            String alertMessage = "";
+            if ("success".equals(message)) {
+                alertMessage = "Bình luận thành công!";
+            } else if ("insert_failed".equals(message)) {
+                alertMessage = "Thêm bình luận thất bại. Vui lòng thử lại.";
+            } else if ("invalid_format".equals(message)) {
+                alertMessage = "Dữ liệu nhập không hợp lệ.";
+            } else if ("missing_data".equals(message)) {
+                alertMessage = "Vui lòng điền đầy đủ thông tin.";
+            } else if ("error".equals(message)) {
+                alertMessage = "Có lỗi xảy ra. Vui lòng thử lại sau.";
+            } else if ("not_logged_in".equals(message)) {
+                alertMessage = "Bạn cần đăng nhập để bình luận.";
+            }
+    %>
+    <div class="alert-message" style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 30px 50px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    font-size: 20px; /* Font chữ lớn hơn */
+    font-weight: bold;
+    text-align: center;
+    width: 20%; /* Chiều rộng lớn hơn */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+    z-index: 1000;">
+        <%= alertMessage %>
+    </div>
+    <script>
+        setTimeout(() => {
+            const alertBox = document.querySelector('.alert-message');
+            if (alertBox) alertBox.style.display = 'none';
+        }, 3500); // 5 giây tự động ẩn
+    </script>
+    <%
+        }
+    %>
+
     <!-- Form Gửi Bình Luận -->
     <form action="AddFeedbackServlet" method="POST" class="review-form">
         <input type="hidden" name="productId" value="${product.id_product}">
@@ -434,19 +480,23 @@
     </form>
 
     <!-- Danh Sách Bình Luận -->
-    <h3 class="reviews-count">Bình luận</h3>
+    <h3 class="reviews-count">Bình luận:</h3>
     <div class="reviews-list">
-        <div class="review-item">
-            <div class="review-avatar">
-                <img src="https://via.placeholder.com/50" alt="Nguyễn Văn A"/>
+        <c:forEach var="feedback" items="${feedbacks}">
+            <div class="review-item">
+                <div class="review-avatar">
+                    <img src="https://via.placeholder.com/50"/>
+                </div>
+                <div class="review-content">
+                    <p class="review-author">${feedback.cusName}</p>
+                    <p class="review-date">${feedback.dateCreate}</p>
+                    <p class="review-text">${feedback.content}</p>
+                    <p class="review-rating">Đánh giá: ${feedback.rating} sao</p>
+                </div>
             </div>
-            <div class="review-content">
-                <p class="review-author">Nguyễn Văn A</p>
-                <p class="review-date">02/11/2024</p>
-                <p class="review-text">Sản phẩm tuyệt vời, tôi rất hài lòng với chất lượng và giá cả!</p>
-            </div>
-        </div>
+        </c:forEach>
     </div>
+    <!--mới -->
 </section>
 
 
