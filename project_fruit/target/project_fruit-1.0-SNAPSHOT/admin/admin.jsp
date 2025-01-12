@@ -1086,6 +1086,7 @@
         <div id="feedback" class="section">
             <div class="feedback-container">
                 <div class="feedback-content">
+                    <h1>Phản Hồi Khách Hàng</h1> 
                     <table id="feedbackTable" class="feedback-table">
                         <thead>
                         <tr>
