@@ -35,9 +35,15 @@
                     <h1>Vitamin<span>FRUIT</span></h1>
                 </a>
             </div>
-            <div class="search">
-                <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                <i class="fa-solid fa-search"></i>
+            <div class="search" style="position: relative;">
+                <form action="${pageContext.request.contextPath}/search-result" method="GET" id="searchForm">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." name="keyword"
+                           oninput="fetchSuggestions(this.value)">
+                    <button type="submit" class="search-btn">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </form>
+                <div id="search-results" class="search-results"></div>
             </div>
         </div>
         <div class="center">
@@ -63,7 +69,8 @@
                 <c:if test="${not empty sessionScope.user}">
                     <!-- Nếu người dùng đã đăng nhập, hiển thị avatar và thông tin -->
                     <a href="${pageContext.request.contextPath}/user/user.jsp">
-                        <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar" class="avatar" onclick="toggleUserMenu()">
+                        <img src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" alt="Avatar"
+                             class="avatar" onclick="toggleUserMenu()">
                     </a>
                 </c:if>
                 <c:if test="${empty sessionScope.user}">
@@ -113,7 +120,8 @@
             </div>
             <div class="branch">
                 <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
-                <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức, Phường An
+                <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức,
+                    Phường An
                     Phú, Thành phố Thủ Đức</p>
             </div>
         </div>
@@ -313,7 +321,7 @@
     <div class="credit">Copyright © 2024 <span>Nhom 55 - Trái Cây Chất Lượng Cao</span></div>
 </section>
 <!-- footer section end -->
-
+<script src="${pageContext.request.contextPath}/assets/js/fruit.js" defer></script>
 <%--<script src="../assets/js/card.js"></script>--%>
 <%--<script src="../assets/js/login.js"></script>--%>
 </body>

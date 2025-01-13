@@ -40,37 +40,6 @@ section {
     padding: 2rem 9%;
 }
 
-.swal-button-custom {
-    font-size: 2rem;
-    padding: 12px 24px;
-    border-radius: 8px;
-    background-color: #3085d6;
-    color: #fff;
-}
-
-.swal-button-custom:hover {
-    background-color: #2874c1;
-}
-
-/* Tùy chỉnh tiêu đề */
-.swal2-title {
-    font-size: 2rem;
-    color: #444;
-    font-weight: bold;
-}
-
-/* Tùy chỉnh nội dung */
-.swal2-content {
-    font-size: 1.2rem;
-    color: #666;
-}
-
-/* Tùy chỉnh hộp thoại */
-.swal2-popup {
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-}
 
 .heading {
     text-align: center;
@@ -281,10 +250,13 @@ textarea {
     width: 200px;
 }
 
-.search i {
-    color: #ff7043;
+.search .search-btn {
     cursor: pointer;
     margin-right: 10px;
+    background-color: white;
+}
+.search .search-btn i{
+    color: var(--orange);
 }
 .search-results {
     position: absolute;

@@ -1,3 +1,17 @@
+function addToCart(productId) {
+    fetch(`/project_fruit/add-cart?addToCartPid=${productId}`, {
+        method: 'GET',
+    })
+        .then(response => {
+            if (response.ok) {
+                alert('Thêm vào giỏ hàng thành công!');
+            } else {
+                alert('Không thể thêm vào giỏ hàng.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
 function fetchSuggestions(keyword) {
     if (keyword.trim().length === 0) {
         const searchResults = document.getElementById("search-results");
