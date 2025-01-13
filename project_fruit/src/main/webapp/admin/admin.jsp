@@ -2,6 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.PromotionsDao" %>
+<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.model.Promotions" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 
