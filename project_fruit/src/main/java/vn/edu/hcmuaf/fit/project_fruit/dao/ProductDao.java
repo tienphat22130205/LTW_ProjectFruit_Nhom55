@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.project_fruit.dao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.db.DbConnect;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Product;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductImg;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +43,6 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
-
     // Lấy sản phẩm theo danh mục
     public List<Product> getProductsByCategory(int categoryId) {
         try {
@@ -75,7 +75,6 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
-
     public List<Product> getProductsByIdRange(int startId, int endId) {
         try {
             ArrayList<Product> products = new ArrayList<>();
@@ -108,7 +107,6 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
-
     // Lấy danh sách hình ảnh của sản phẩm từ bảng product_images
     private List<ProductImg> getImagesByProductId(int productId) {
         try {
@@ -245,4 +243,100 @@ public class ProductDao {
         }
         return null;
     }
+
+    // Lấy tất cả sản phẩm từ cơ sở dữ liệu
+    public List<ProductList> getAllProducts() {
+        List<ProductList> productList = new ArrayList<>();
+        String query = """
+            SELECT p.id_product, p.product_name, p.price, p.origin, p.status, c.name_category 
+            FROM products p
+            JOIN category_products c ON p.id_category = c.id_category
+            ORDER BY p.id_product ASC
+        """;
+
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductList product = new ProductList(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        rs.getString("name_category"),
+                        rs.getDouble("price"),
+                        rs.getString("origin"),
+                        rs.getBoolean("status")
+                );
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
+
+    // Phương thức phân trang
+    public List<ProductList> getProductsByPage(int page, int recordsPerPage) {
+        List<ProductList> productList = new ArrayList<>();
+        String query = """
+            SELECT p.id_product, p.product_name, p.price, p.origin, p.status, c.name_category 
+            FROM products p
+            JOIN category_products c ON p.id_category = c.id_category
+            ORDER BY p.id_product ASC 
+            LIMIT ?, ?
+        """;
+
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ps.setInt(1, (page - 1) * recordsPerPage);  // Tính offset
+            ps.setInt(2, recordsPerPage);  // Giới hạn số bản ghi mỗi trang
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductList product = new ProductList(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        rs.getString("name_category"),
+                        rs.getDouble("price"),
+                        rs.getString("origin"),
+                        rs.getBoolean("status")
+                );
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
+
+    // Lấy tổng số sản phẩm để tính số trang
+    public int getTotalRecords() {
+        String query = "SELECT COUNT(*) FROM products";
+        int totalRecords = 0;
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                totalRecords = rs.getInt(1);  // Lấy giá trị COUNT(*) từ kết quả
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalRecords;
+    }
+
+    public static void main(String[] args) {
+        ProductDao productDao = new ProductDao();
+
+        // Kiểm tra phương thức lấy tất cả sản phẩm
+        List<ProductList> allProducts = productDao.getAllProducts();
+        System.out.println("All Products: ");
+        for (ProductList productList : allProducts) {
+            System.out.println("Product ID: " + productList.getId_product());
+            System.out.println("Product Name: " + productList.getName());
+            System.out.println("Product Category: " + productList.getCategoryName());
+            System.out.println("Product Origin: " + productList.getOrigin());
+            System.out.println("Product Price: " + productList.getPrice());
+            System.out.println("Product Status: " + (productList.isStatus() ? "Còn Hàng" : "Hết Hàng"));
+            System.out.println("--------------------------------------------");
+        }
+}
 }
