@@ -27,7 +27,7 @@ public class AddFeedback extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            response.sendRedirect("login.jsp"); // Nếu không có user trong session, chuyển hướng đến trang đăng nhập
+            response.sendRedirect(request.getContextPath() + "/product-detail?pid=" + idProductStr + "&message=not_logged_in");
             return;
         }
         int idAccount = user.getId_account();
@@ -37,7 +37,7 @@ public class AddFeedback extends HttpServlet {
             if (content == null || content.trim().isEmpty() ||
                     ratingStr == null || ratingStr.trim().isEmpty() ||
                     idProductStr == null || idProductStr.trim().isEmpty()) {
-                response.sendRedirect("product/detailProduct.jsp?message=invalid_input");
+                response.sendRedirect("/product-detail?message=invalid_input");
                 return;
             }
 
@@ -61,15 +61,15 @@ public class AddFeedback extends HttpServlet {
 
                 // Kiểm tra kết quả và điều hướng
                 if (rowsInserted > 0) {
-                    response.sendRedirect("product/detailProduct.jsp?message=success");
+                    response.sendRedirect(request.getContextPath() + "/product-detail?pid=" + idProductStr + "&message=success");
                 } else {
-                    response.sendRedirect("product/detailProduct.jsp?message=insert_failed");
+                    response.sendRedirect(request.getContextPath() + "/product-detail?pid=" + idProductStr + "&message=insert_failed");
                 }
             }
         } catch (NumberFormatException e) {
-            response.sendRedirect("product/detailProduct.jsp?message=invalid_format");
+            response.sendRedirect("/product-detail?message=invalid_format");
         } catch (SQLException e) {
-            response.sendRedirect("product/detailProduct.jsp?message=error");
+            response.sendRedirect(request.getContextPath() + "/product-detail?pid=" + idProductStr + "&message=error");
         }
     }
 }

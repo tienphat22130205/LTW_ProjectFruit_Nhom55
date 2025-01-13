@@ -264,132 +264,6 @@
                                             Đang giao hàng
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>KH002</td>
-                                        <td>Đào Nguyễn Duy Phong</td>
-                                        <td>0912345678</td> <!-- Số điện thoại -->
-                                        <td>456 Đường XYZ</td> <!-- Địa chỉ -->
-                                        <td>10/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status yellow"></span>
-                                            Chưa thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH003</td>
-                                        <td>Ngô Quan Nhật</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>789 Đường MNO</td> <!-- Địa chỉ -->
-                                        <td>09/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH004</td>
-                                        <td>Ngô Tiến Phát</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>123 Đường ABC</td> <!-- Địa chỉ -->
-                                        <td>05/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH005</td>
-                                        <td>Đào Nguyễn Duy Phong</td>
-                                        <td>0912345678</td> <!-- Số điện thoại -->
-                                        <td>456 Đường XYZ</td> <!-- Địa chỉ -->
-                                        <td>03/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status yellow"></span>
-                                            Chưa thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH006</td>
-                                        <td>Ngô Quan Nhật</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>789 Đường MNO</td> <!-- Địa chỉ -->
-                                        <td>03/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH007</td>
-                                        <td>Trần Văn Bình</td>
-                                        <td>0938765432</td> <!-- Số điện thoại -->
-                                        <td>321 Đường PQR</td> <!-- Địa chỉ -->
-                                        <td>13/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH008</td>
-                                        <td>Phạm Thị Lan</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>789 Đường UVW</td> <!-- Địa chỉ -->
-                                        <td>15/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status yellow"></span>
-                                            Chưa thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH009</td>
-                                        <td>Lê Văn Tân</td>
-                                        <td>0912345678</td> <!-- Số điện thoại -->
-                                        <td>101 Đường XYZ</td> <!-- Địa chỉ -->
-                                        <td>14/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH010</td>
-                                        <td>Nguyễn Thị Mai</td>
-                                        <td>0938765432</td> <!-- Số điện thoại -->
-                                        <td>202 Đường STU</td> <!-- Địa chỉ -->
-                                        <td>12/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status red"></span>
-                                            Đã hủy
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -1086,7 +960,7 @@
         <div id="feedback" class="section">
             <div class="feedback-container">
                 <div class="feedback-content">
-                    <h1>Phản Hồi Khách Hàng</h1> 
+                    <h1>Phản Hồi Khách Hàng</h1>
                     <table id="feedbackTable" class="feedback-table">
                         <thead>
                         <tr>

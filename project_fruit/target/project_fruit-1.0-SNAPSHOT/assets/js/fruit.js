@@ -1,4 +1,51 @@
+function fetchSuggestions(keyword) {
+    if (keyword.trim().length === 0) {
+        const searchResults = document.getElementById("search-results");
+        searchResults.style.display = "none";
+        searchResults.innerHTML = "";
+        return;
+    }
 
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/project_fruit/search?keyword=" + encodeURIComponent(keyword), true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const products = JSON.parse(xhr.responseText); // Parse JSON từ backend
+            let resultsHTML = "";
+
+            if (products.length === 0) {
+                resultsHTML = "<p>Không tìm thấy sản phẩm nào.</p>";
+            } else {
+                products.forEach(product => {
+                    console.log("Product ID:", product.id_product);
+                    resultsHTML += `
+                            <div class="search-result-item" onclick="goToDetail(${product.id_product})">
+                                 <img src="${product.imageUrl}" alt="${product.name}">
+                            <div>
+                            <span style="color: #1a1a1a">${product.name}</span>
+                            <br>
+                            <span style="color: #1a1a1a">${product.discountedPrice.toLocaleString()}đ</span>
+                            </div>
+                            </div>
+                        `;
+                });
+            }
+
+            const searchResults = document.getElementById("search-results");
+            searchResults.innerHTML = resultsHTML;
+            searchResults.style.display = "block"; // Hiển thị danh sách
+        }
+    };
+    xhr.onerror = function () {
+        console.error("Lỗi khi gửi yêu cầu AJAX.");
+    };
+    xhr.send();
+}
+
+// Chuyển hướng đến chi tiết sản phẩm
+function goToDetail(id) {
+    window.location.href = `/project_fruit/product-detail?pid=` + id;
+}
 // product
 var swiper = new Swiper(".product-slider", {
     loop: true,
@@ -42,6 +89,7 @@ var swiper = new Swiper(".brand-slider", {
         },
     },
 });
+
 // ----------------------------------------------Sựkiện xem thêm sản phẩm
 document.getElementById('view-more-btn').addEventListener('click', function(e) {
     e.preventDefault();

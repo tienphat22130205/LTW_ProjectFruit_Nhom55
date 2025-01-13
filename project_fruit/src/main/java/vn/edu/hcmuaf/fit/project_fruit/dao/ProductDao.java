@@ -1,16 +1,12 @@
 package vn.edu.hcmuaf.fit.project_fruit.dao;
 
-import com.sun.tools.javac.Main;
-import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.project_fruit.dao.db.DbConnect;
-import vn.edu.hcmuaf.fit.project_fruit.dao.db.JdbiConnect;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Product;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductImg;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,21 +14,17 @@ public class ProductDao {
 
     // Lấy toàn bộ danh sách sản phẩm
     public List<Product> getAll() {
-        Statement s = DbConnect.get();
-        if (s == null) return new ArrayList<>();
         try {
             ArrayList<Product> products = new ArrayList<>();
             String query = """
             SELECT p.*, pr.percent_discount
             FROM products p
             LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion;
-        """;
-            ResultSet rs = s.executeQuery(query);
+            """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                // Lấy danh sách hình ảnh của sản phẩm
                 List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
-
-                // Thêm sản phẩm vào danh sách
                 Product product = new Product(
                         rs.getInt("id_product"),
                         rs.getString("product_name"),
@@ -41,10 +33,7 @@ public class ProductDao {
                         rs.getString("rating"),
                         rs.getDouble("percent_discount")
                 );
-                // Tính giá sau khi giảm
                 product.calculateDiscountedPrice();
-
-                // Thêm sản phẩm vào danh sách
                 products.add(product);
             }
             return products;
@@ -52,22 +41,21 @@ public class ProductDao {
             e.printStackTrace();
             return new ArrayList<>();
         }
-//        Jdbi jdbi = JdbiConnect.get();
-//        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM products").mapToBean(Product.class).list());
     }
+
     // Lấy sản phẩm theo danh mục
-    public List<Product> getProductsByCategory(String category) {
-        Statement s = DbConnect.get();
-        if (s == null) return new ArrayList<>();
+    public List<Product> getProductsByCategory(int categoryId) {
         try {
             ArrayList<Product> products = new ArrayList<>();
-            String query = "SELECT p.*, pr.percent_discount " +
-                    "FROM products p " +
-                    "LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion " +
-                    "WHERE p.id_category = ( " +
-                    "SELECT id_category FROM category_products WHERE name_category = '" + category + "' " +
-                    ")";
-            ResultSet rs = s.executeQuery(query);
+            String query = """
+            SELECT p.*, pr.percent_discount 
+            FROM products p 
+            LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion 
+            WHERE p.id_category = ?
+            """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, categoryId);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
                 Product product = new Product(
@@ -87,9 +75,8 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
+
     public List<Product> getProductsByIdRange(int startId, int endId) {
-        Statement s = DbConnect.get();
-        if (s == null) return new ArrayList<>();
         try {
             ArrayList<Product> products = new ArrayList<>();
             String query = """
@@ -97,7 +84,7 @@ public class ProductDao {
             FROM products p
             LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
             WHERE p.id_product BETWEEN ? AND ?
-        """;
+            """;
             PreparedStatement ps = DbConnect.getPreparedStatement(query);
             ps.setInt(1, startId);
             ps.setInt(2, endId);
@@ -124,11 +111,12 @@ public class ProductDao {
 
     // Lấy danh sách hình ảnh của sản phẩm từ bảng product_images
     private List<ProductImg> getImagesByProductId(int productId) {
-        Statement s = DbConnect.get();
-        if (s == null) return new ArrayList<>();
         try {
             ArrayList<ProductImg> images = new ArrayList<>();
-            ResultSet rs = s.executeQuery("SELECT * FROM product_images WHERE id_product = " + productId);
+            String query = "SELECT * FROM product_images WHERE id_product = ?";
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ProductImg img = new ProductImg(
                         rs.getInt("id_image"),
@@ -146,23 +134,86 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
+    public List<Product> getWeeklyDiscountedProducts() {
+        try {
+            ArrayList<Product> products = new ArrayList<>();
+            String query = """
+                    SELECT p.*, pr.percent_discount
+                    FROM products p
+                    LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
+                    WHERE pr.start_date <= NOW() AND pr.end_date >= NOW()\s
+                    AND pr.type = 'weekly';
+        """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                // Lấy danh sách hình ảnh của sản phẩm
+                List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
 
+                // Tạo đối tượng Product
+                Product product = new Product(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        listImg,
+                        rs.getDouble("price"),
+                        rs.getString("rating"),
+                        rs.getDouble("percent_discount")
+                );
+                product.calculateDiscountedPrice(); // Tính giá sau giảm giá
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    public List<Product> searchProductsByName(String keyword) {
+        try {
+            ArrayList<Product> products = new ArrayList<>();
+            String query = """
+        SELECT p.*, pr.percent_discount
+        FROM products p
+        LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
+        WHERE p.product_name LIKE ?;
+        """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setString(1, "%" + keyword + "%"); // Tìm kiếm với từ khóa có chứa keyword
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
+                Product product = new Product(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        listImg,
+                        rs.getDouble("price"),
+                        rs.getString("rating"),
+                        rs.getDouble("percent_discount")
+                );
+                product.calculateDiscountedPrice();
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
     // Lấy sản phẩm theo ID
     public Product getById(int id) {
-        Statement s = DbConnect.get();
-        if (s == null) return null;
         try {
-            ResultSet rs = s.executeQuery("""
+            String query = """
             SELECT p.*, pr.promotion_name, pr.percent_discount
             FROM products p
             LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
-            WHERE p.id_product = """ + id);
+            WHERE p.id_product = ?
+            """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                // Lấy danh sách hình ảnh của sản phẩm
                 List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
                 System.out.println("Product found: " + rs.getString("product_name"));
-                // Trả về sản phẩm
-                // Tạo đối tượng sản phẩm
                 Product product = new Product(
                         rs.getInt("id_product"),
                         rs.getString("product_name"),
@@ -184,10 +235,7 @@ public class ProductDao {
                         rs.getDouble("percent_discount")
                 );
 
-                // Tính giá sau khi giảm
                 product.calculateDiscountedPrice();
-
-                // Trả về sản phẩm
                 return product;
             } else {
                 System.out.println("No product found in database for ID: " + id);
@@ -197,22 +245,4 @@ public class ProductDao {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-        ProductDao dao = new ProductDao();
-        Product product = dao.getById(1); // ID của sản phẩm cần kiểm tra
-
-        if (product != null) {
-            System.out.println("Product details:");
-            System.out.println("Name: " + product.getName());
-            System.out.println("quantity: " + product.getQuantity());
-            System.out.println("Original Price: " + product.getPrice());
-            System.out.println("Discounted Price: " + product.getDiscountedPrice());
-            System.out.println("Promotion: " + product.getPromotionName());
-            System.out.println("Discount Percent: " + product.getPercentDiscount());
-        } else {
-            System.out.println("No product found.");
-        }
-    }
-
 }

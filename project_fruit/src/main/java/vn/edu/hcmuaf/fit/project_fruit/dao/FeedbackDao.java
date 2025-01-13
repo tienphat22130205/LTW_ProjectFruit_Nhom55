@@ -114,6 +114,36 @@ public class FeedbackDao {
 
     }
 
+    public List<Feedback> getFeedbackByProductId(int idProduct) {
+        List<Feedback> feedbackList = new ArrayList<>();
+        String query = "SELECT f.id_feedback, f.id_account, f.content, f.date_create, f.rating, " +
+                "a.cus_name, p.product_name " +
+                "FROM feedbacks f " +
+                "JOIN accounts a ON f.id_account = a.id_account " +
+                "JOIN products p ON f.id_product = p.id_product " +
+                "WHERE p.id_product = ? " +
+                "ORDER BY f.id_feedback ASC";
+
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ps.setInt(1, idProduct); // Gán id sản phẩm vào câu truy vấn
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                feedbackList.add(new Feedback(
+                        rs.getInt("id_feedback"),
+                        rs.getString("product_name"),
+                        rs.getString("cus_name"),
+                        rs.getString("content"),
+                        rs.getString("date_create"),
+                        rs.getDouble("rating")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return feedbackList;
+    }
+
     // Main để kiểm tra và in ra dữ liệu
     public static void main(String[] args) {
         FeedbackDao dao = new FeedbackDao();

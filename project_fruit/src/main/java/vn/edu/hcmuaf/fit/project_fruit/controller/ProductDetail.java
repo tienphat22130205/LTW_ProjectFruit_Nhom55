@@ -7,7 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Product;
 import vn.edu.hcmuaf.fit.project_fruit.service.ProductService;
-
+import vn.edu.hcmuaf.fit.project_fruit.dao.FeedbackDao;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.Feedback;
+import java.util.List;
 
 import java.io.IOException;
 
@@ -36,6 +38,14 @@ public class ProductDetail extends HttpServlet {
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID format.");
         }
+
+         FeedbackDao feedbackDao = new FeedbackDao();
+        // Lấy danh sách phản hồi theo id sản phẩm
+        List<Feedback> feedbacks = feedbackDao.getFeedbackByProductId(Integer.parseInt(pid));
+        // Đưa danh sách phản hồi vào request
+        request.setAttribute("idProduct", pid);
+        request.setAttribute("feedbacks", feedbacks);
+        
         request.getRequestDispatcher("/product/detailProduct.jsp").forward(request, response);
     }
     @Override

@@ -10,6 +10,8 @@ import vn.edu.hcmuaf.fit.project_fruit.service.ProductService;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @WebServlet(name = "ListProduct", value = "/home")
@@ -17,13 +19,44 @@ public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category = request.getParameter("category");
-        if (category == null) {
-            category = ""; // Nếu không có category, gán giá trị rỗng
+        String sortOption = request.getParameter("sort"); // Lấy danh mục từ URL
+        int categoryId = 0;
+
+        if (sortOption == null) {
+            sortOption = "date"; // Mặc định sắp xếp theo sản phẩm nổi bật
+        }
+
+        // Xử lý id của danh mục dựa trên category từ URL
+        if (category != null) {
+            switch (category) {
+                case "traicayhomnay":
+                    categoryId = 1;
+                    break;
+                case "traicayvietnam":
+                    categoryId = 2;
+                    break;
+                case "traicaynhapkhau":
+                    categoryId = 3;
+                    break;
+                case "traicaycatsan":
+                    categoryId = 4;
+                    break;
+                case "quatangtraicay":
+                    categoryId = 5;
+                    break;
+                case "hopquanguyencat":
+                    categoryId = 6;
+                    break;
+                case "traicaysaykho":
+                    categoryId = 7;
+                    break;
+                case "muttraicay":
+                    categoryId = 8;
+                    break;
+            }
         }
 
         ProductService service = new ProductService();
-
-        // Lấy danh sách sản phẩm chia theo dòng
         List<Product> data1 = service.getProductsByIdRange(1, 7);
         List<Product> data2 = service.getProductsByIdRange(8, 15);
         List<Product> data3 = service.getProductsByIdRange(16, 25);
@@ -34,6 +67,8 @@ public class ListProduct extends HttpServlet {
         List<Product> data8 = service.getProductsByIdRange(67, 76);
         List<Product> data9 = service.getProductsByIdRange(77, 86);
         List<Product> data10 = service.getProductsByIdRange(87, 96);
+
+        List<Product> weeklyDiscountedProducts = service.getWeeklyDiscountedProducts();
 
         // Gửi danh sách sản phẩm theo dòng đến JSP
         request.setAttribute("data1", data1);
@@ -46,47 +81,53 @@ public class ListProduct extends HttpServlet {
         request.setAttribute("data8", data8);
         request.setAttribute("data9", data9);
         request.setAttribute("data10", data10);
+        request.setAttribute("weeklyDiscountedProducts", weeklyDiscountedProducts);
 
 
 
         // Thêm thông báo nếu danh sách rỗng
         if (data1.isEmpty() && data2.isEmpty() && data3.isEmpty() && data4.isEmpty() &&
                 data5.isEmpty() && data6.isEmpty() && data7.isEmpty() && data8.isEmpty() &&
-                data9.isEmpty() && data10.isEmpty()) {
+                data9.isEmpty() && data10.isEmpty() && weeklyDiscountedProducts.isEmpty()) {
             request.setAttribute("message", "Không tìm thấy sản phẩm nào.");
         }
 
 
-        // Điều hướng đến trang phù hợp
-        String destination = "/index.jsp"; // Default to home page
-        switch (category) {
-            case "traicayhomnay":
-                destination = "/product/traicayhomnay.jsp";
-                break;
-            case "traicayvietnam":
-                destination = "/product/traicayvietnam.jsp";
-                break;
-            case "traicaynhapkhau":
-                destination = "/product/traicaynhapkhau.jsp";
-                break;
-            case "traicaycatsan":
-                destination = "/product/traicaycatsan.jsp";
-                break;
-            case "quatangtraicay":
-                destination = "/product/quatangtraicay.jsp";
-                break;
-            case "hopquanguyencat":
-                destination = "/product/hopqua.jsp";
-                break;
-            case "traicaysaykho":
-                destination = "/product/traicaysaykho.jsp";
-                break;
-            case "muttraicay":
-                destination = "/product/muttraicay.jsp";
-                break;
+        // Lấy sản phẩm theo categoryId (dành cho các danh mục riêng)
+        List<Product> productsByCategory = service.getProductsByCategory(categoryId);
+
+        if (sortOption.equals("price_asc")) {
+            productsByCategory.sort(Comparator.comparingDouble(Product::getPrice));  // Giá tăng dần
+        } else if (sortOption.equals("price_desc")) {
+            productsByCategory.sort(Comparator.comparingDouble(Product::getPrice).reversed());  // Giá giảm dần
+        } else if (sortOption.equals("date")) {
+            // Nếu có sắp xếp theo ngày hoặc sản phẩm nổi bật, có thể sắp xếp dựa trên ngày
+            // productsByCategory.sort(Comparator.comparing(Product::getCreateDate));  // Ví dụ sắp xếp theo ngày
+        }
+        // Phân chia danh sách sản phẩm theo nhóm (7 sản phẩm mỗi nhóm)
+        List<List<Product>> productGroups = new ArrayList<>();
+        int groupSize = 7;
+        for (int i = 0; i < productsByCategory.size(); i += groupSize) {
+            int end = Math.min(i + groupSize, productsByCategory.size());
+            productGroups.add(productsByCategory.subList(i, end));
         }
 
-        // Forward đến JSP
+//        // Gửi danh sách sản phẩm theo nhóm đến JSP
+        request.setAttribute("productGroups", productGroups);
+
+        // Thêm thông báo nếu không có sản phẩm
+        if (productsByCategory.isEmpty()) {
+            request.setAttribute("message", "Không tìm thấy sản phẩm nào.");
+        }
+
+        // Điều hướng đến trang chủ nếu không có category hoặc đến trang danh mục
+        String destination = "/index.jsp"; // Trang chủ mặc định
+        if (category != null && !category.isEmpty()) {
+            // Điều hướng đến trang danh mục
+            destination = "/product/" + category + ".jsp";
+        }
+
+        // Gửi request đến JSP
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
@@ -95,4 +136,7 @@ public class ListProduct extends HttpServlet {
         doGet(request, response); // Chuyển POST thành GET
     }
 }
+
+
+
 

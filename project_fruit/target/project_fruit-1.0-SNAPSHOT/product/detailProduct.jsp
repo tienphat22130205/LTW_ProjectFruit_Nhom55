@@ -52,9 +52,11 @@
                 <span>Hotline: 0865660775</span>
             </div>
             <div class="cart">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>Giỏ hàng</span>
-                <span class="cart-badge">0</span>
+                <a href="${pageContext.request.contextPath}/show-cart" style="color: white">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">${sessionScope.cart != null ? sessionScope.cart.getTotalQuantity() : 0}</span>
+                </a>
             </div>
             <div class="account">
                 <!-- Kiểm tra nếu người dùng đã đăng nhập -->
@@ -117,34 +119,20 @@
         </div>
     </div>
     <!-- User Menu (ẩn khi chưa đăng nhập) -->
-    <div class="user-menu" id="userMenu" style="display: none;">
-        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>
-            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
-        </ul>
-    </div>
-    <div class="cart-form" id="cartForm">
-        <h2>GIỎ HÀNG</h2>
-        <hr>
-        <div class="cart-content">
-            <i class="fa-solid fa-cart-shopping cart-icon"></i>
-            <p>Hiện chưa có sản phẩm</p>
-        </div>
-        <hr>
-        <div class="cart-total">
-            <span>TỔNG TIỀN:</span>
-            <span class="total-amount">0₫</span>
-        </div>
-        <a href="../card/card.jsp" class="view-cart-button">XEM GIỎ HÀNG</a>
-    </div>
+    <%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
+    <%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
+    <%--        <ul>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
+    <%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
+    <%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
+    <%--        </ul>--%>
+    <%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
 <nav class="menu-bar">
     <ul>
-        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
         <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
         <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
         <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
@@ -159,7 +147,7 @@
 <%--<!-- Menu docj ban đầu ẩn , chỉ xuất hiện khi ấn icon -->--%>
 <nav class="sidebar-menu" id="sidebarMenu">
     <ul>
-        <li class="active"><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/project_fruit/home" onclick="setActive(this)"><i class="fas fa-home"></i> Trang chủ</a></li>
         <li><a href="/project_fruit/home?category=traicayhomnay" onclick="setActive(this)">Trái ngon hôm nay</a></li>
         <li><a href="/project_fruit/home?category=traicayvietnam" onclick="setActive(this)">Trái cây Việt Nam</a></li>
         <li><a href="/project_fruit/home?category=traicaynhapkhau" onclick="setActive(this)">Trái cây nhập khẩu</a></li>
@@ -429,6 +417,52 @@
     <h2 class="reviews-title">KHÁCH HÀNG NÓI VỀ SẢN PHẨM</h2>
     <p class="reviews-subtitle">Trở thành người đầu tiên đánh giá về sản phẩm.</p>
 
+    <%
+        String message = request.getParameter("message");
+        if (message != null) {
+            String alertMessage = "";
+            if ("success".equals(message)) {
+                alertMessage = "Bình luận thành công!";
+            } else if ("insert_failed".equals(message)) {
+                alertMessage = "Thêm bình luận thất bại. Vui lòng thử lại.";
+            } else if ("invalid_format".equals(message)) {
+                alertMessage = "Dữ liệu nhập không hợp lệ.";
+            } else if ("missing_data".equals(message)) {
+                alertMessage = "Vui lòng điền đầy đủ thông tin.";
+            } else if ("error".equals(message)) {
+                alertMessage = "Có lỗi xảy ra. Vui lòng thử lại sau.";
+            } else if ("not_logged_in".equals(message)) {
+                alertMessage = "Bạn cần đăng nhập để bình luận.";
+            }
+    %>
+    <div class="alert-message" style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 30px 50px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    font-size: 20px; /* Font chữ lớn hơn */
+    font-weight: bold;
+    text-align: center;
+    width: 20%; /* Chiều rộng lớn hơn */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+    z-index: 1000;">
+        <%= alertMessage %>
+    </div>
+    <script>
+        setTimeout(() => {
+            const alertBox = document.querySelector('.alert-message');
+            if (alertBox) alertBox.style.display = 'none';
+        }, 3500); // 5 giây tự động ẩn
+    </script>
+    <%
+        }
+    %>
+
     <!-- Form Gửi Bình Luận -->
     <form action="AddFeedbackServlet" method="POST" class="review-form">
         <input type="hidden" name="productId" value="${product.id_product}">
@@ -446,19 +480,23 @@
     </form>
 
     <!-- Danh Sách Bình Luận -->
-    <h3 class="reviews-count">Bình luận</h3>
+    <h3 class="reviews-count">Bình luận:</h3>
     <div class="reviews-list">
-        <div class="review-item">
-            <div class="review-avatar">
-                <img src="https://via.placeholder.com/50" alt="Nguyễn Văn A"/>
+        <c:forEach var="feedback" items="${feedbacks}">
+            <div class="review-item">
+                <div class="review-avatar">
+                    <img src="https://via.placeholder.com/50"/>
+                </div>
+                <div class="review-content">
+                    <p class="review-author">${feedback.cusName}</p>
+                    <p class="review-date">${feedback.dateCreate}</p>
+                    <p class="review-text">${feedback.content}</p>
+                    <p class="review-rating">Đánh giá: ${feedback.rating} sao</p>
+                </div>
             </div>
-            <div class="review-content">
-                <p class="review-author">Nguyễn Văn A</p>
-                <p class="review-date">02/11/2024</p>
-                <p class="review-text">Sản phẩm tuyệt vời, tôi rất hài lòng với chất lượng và giá cả!</p>
-            </div>
-        </div>
+        </c:forEach>
     </div>
+    <!--mới -->
 </section>
 
 
