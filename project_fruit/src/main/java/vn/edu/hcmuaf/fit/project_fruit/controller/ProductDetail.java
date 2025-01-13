@@ -35,6 +35,24 @@ public class ProductDetail extends HttpServlet {
             }
             request.setAttribute("product", product);
             System.out.println(product);
+            // Lấy danh mục (categoryId) từ sản phẩm hiện tại
+            // Lấy danh mục (categoryId) của sản phẩm hiện tại
+            int categoryId = product.getCategoryId();
+
+            // Lấy danh sách sản phẩm liên quan theo `categoryId`
+            List<Product> relatedProducts = service.getProductsByCategory(categoryId);
+
+            // Loại bỏ sản phẩm hiện tại khỏi danh sách liên quan
+            relatedProducts.removeIf(p -> p.getId_product() == id);
+
+            // Giới hạn danh sách sản phẩm liên quan (nếu cần)
+            relatedProducts = relatedProducts.stream().limit(6).toList();
+
+            // Gửi danh sách sản phẩm liên quan vào request
+            request.setAttribute("relatedProducts", relatedProducts);
+
+            // Đưa danh sách sản phẩm liên quan vào request
+            request.setAttribute("relatedProducts", relatedProducts);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID format.");
         }
@@ -45,7 +63,7 @@ public class ProductDetail extends HttpServlet {
         // Đưa danh sách phản hồi vào request
         request.setAttribute("idProduct", pid);
         request.setAttribute("feedbacks", feedbacks);
-        
+
         request.getRequestDispatcher("/product/detailProduct.jsp").forward(request, response);
     }
     @Override

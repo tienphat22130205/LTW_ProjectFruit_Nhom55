@@ -261,170 +261,45 @@
     <h1 class="heading"><span>Sản phẩm liên quan</span></h1>
     <div class="swiper product-slider">
         <div class="swiper-wrapper">
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/luutuxuyen.webp" alt=""/>
-                <h3>Lựu tứ xuyên</h3>
-                <h3 class="price"><span>120.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/mandomy.webp" alt=""/>
-                <h3>Mận đỏ mỹ</h3>
-                <h3 class="price"><span>100.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/oinuhoang.webp" alt=""/>
-                <h3>Ổi nữ hoàng</h3>
-                <h3 class="price"><span>110.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/mangcutmientay.webp" alt=""/>
-                <h3>Măng cụt miền Tây</h3>
-                <h3 class="price"><span>90.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/vaithieu.webp" alt=""/>
-                <h3>Vãi thiều</h3>
-                <h3 class="price"><span>150.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/vusua.webp" alt=""/>
-                <h3>Vú sữa rò rằng</h3>
-                <h3 class="price"><span>120.000đ</span></h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
+            <!-- Lặp qua danh sách sản phẩm liên quan -->
+            <c:forEach var="relatedProduct" items="${relatedProducts}">
+                <div class="swiper-slide box">
+                    <!-- Hình ảnh sản phẩm -->
+                    <a href="${pageContext.request.contextPath}/product-detail?pid=${relatedProduct.id_product}">
+                        <img src="${relatedProduct.imageUrl}" alt="${relatedProduct.name}" />
+                    </a>
 
-        </div>
-    </div>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/nagiongthai.webp" alt=""/>
-                <h3>Na giống thái</h3>
-                <h3 class="price">45.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                    <!-- Tên sản phẩm -->
+                    <h3>${relatedProduct.name}</h3>
+
+                    <!-- Giá sản phẩm -->
+                    <h3 class="price">
+                        <span>${relatedProduct.discountedPrice}đ</span>
+                        <c:if test="${relatedProduct.percentDiscount > 0}">
+                            <del style="color: gray;">${relatedProduct.price}đ</del>
+                        </c:if>
+                    </h3>
+
+                    <!-- Đánh giá sản phẩm -->
+                    <div class="stars">
+                        <c:forEach begin="1" end="${relatedProduct.rating}" var="star">
+                            <i class="fas fa-star"></i>
+                        </c:forEach>
+                        <c:if test="${relatedProduct.rating < 5}">
+                            <i class="fas fa-star-half-alt"></i>
+                        </c:if>
+                    </div>
+
+                    <!-- Nút thêm vào giỏ hàng -->
+                    <a href="${pageContext.request.contextPath}/add-cart?pid=${relatedProduct.id_product}" class="btn">
+                        Thêm vào giỏ hàng
+                    </a>
                 </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/manvangmy.webp" alt=""/>
-                <h3>Mận vàng Mỹ</h3>
-                <h3 class="price">80.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/leduongmat.webp" alt=""/>
-                <h3>Lê đường mật</h3>
-                <h3 class="price">88.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/mangcauxiem.webp" alt=""/>
-                <h3>Mãng cầu xiêm</h3>
-                <h3 class="price">77.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/medotbot.webp" alt=""/>
-                <h3>Me dốt bột</h3>
-                <h3 class="price">65.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
-            <div class="swiper-slide box">
-                <img src="./img/traicaytrangchu/taocanada.jpg" alt=""/>
-                <h3>Táo canada</h3>
-                <h3 class="price">82.000đ</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <a href="#" class="btn">thêm vào giỏ hàng</a>
-            </div>
+            </c:forEach>
         </div>
     </div>
 </section>
+
 
 
 <section class="product-reviews">

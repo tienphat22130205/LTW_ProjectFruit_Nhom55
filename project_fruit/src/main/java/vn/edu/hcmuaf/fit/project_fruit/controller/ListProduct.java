@@ -111,7 +111,6 @@ public class ListProduct extends HttpServlet {
             int end = Math.min(i + groupSize, productsByCategory.size());
             productGroups.add(productsByCategory.subList(i, end));
         }
-
 //        // Gửi danh sách sản phẩm theo nhóm đến JSP
         request.setAttribute("productGroups", productGroups);
 
