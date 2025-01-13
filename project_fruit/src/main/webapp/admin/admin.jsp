@@ -29,6 +29,11 @@
             $('#customerTable').DataTable();  // Khởi tạo DataTable
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#productTable').DataTable();  // Khởi tạo DataTable
+        });
+    </script>
 
 <body>
 <input type="checkbox" name="" id="nav-toggle">
@@ -264,132 +269,6 @@
                                             Đang giao hàng
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>KH002</td>
-                                        <td>Đào Nguyễn Duy Phong</td>
-                                        <td>0912345678</td> <!-- Số điện thoại -->
-                                        <td>456 Đường XYZ</td> <!-- Địa chỉ -->
-                                        <td>10/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status yellow"></span>
-                                            Chưa thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH003</td>
-                                        <td>Ngô Quan Nhật</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>789 Đường MNO</td> <!-- Địa chỉ -->
-                                        <td>09/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH004</td>
-                                        <td>Ngô Tiến Phát</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>123 Đường ABC</td> <!-- Địa chỉ -->
-                                        <td>05/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH005</td>
-                                        <td>Đào Nguyễn Duy Phong</td>
-                                        <td>0912345678</td> <!-- Số điện thoại -->
-                                        <td>456 Đường XYZ</td> <!-- Địa chỉ -->
-                                        <td>03/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status yellow"></span>
-                                            Chưa thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH006</td>
-                                        <td>Ngô Quan Nhật</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>789 Đường MNO</td> <!-- Địa chỉ -->
-                                        <td>03/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH007</td>
-                                        <td>Trần Văn Bình</td>
-                                        <td>0938765432</td> <!-- Số điện thoại -->
-                                        <td>321 Đường PQR</td> <!-- Địa chỉ -->
-                                        <td>13/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH008</td>
-                                        <td>Phạm Thị Lan</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>789 Đường UVW</td> <!-- Địa chỉ -->
-                                        <td>15/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status yellow"></span>
-                                            Chưa thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH009</td>
-                                        <td>Lê Văn Tân</td>
-                                        <td>0912345678</td> <!-- Số điện thoại -->
-                                        <td>101 Đường XYZ</td> <!-- Địa chỉ -->
-                                        <td>14/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status green"></span>
-                                            Đã thanh toán
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>KH010</td>
-                                        <td>Nguyễn Thị Mai</td>
-                                        <td>0938765432</td> <!-- Số điện thoại -->
-                                        <td>202 Đường STU</td> <!-- Địa chỉ -->
-                                        <td>12/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status red"></span>
-                                            Đã hủy
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -606,7 +485,6 @@
                 </table>
             </div>
         </div>
-
         <!-- Products section -->
         <div id="products" class="section">
             <div class="overview-section">
@@ -633,7 +511,6 @@
                         <i class="fa-solid fa-star"></i>
                     </div>
                 </div>
-
                 <div class="overview-content">
                     <!-- Sản phẩm nổi bật -->
                     <div class="highlight-products">
@@ -676,15 +553,7 @@
             <div class="recent-grid">
                 <div class="customers">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="search-box">
-                                <input type="text" placeholder="Tìm kiếm..." />
-                                <div class="search">
-                                    <button class="search-btn">Tìm kiếm</button>
-                                </div>
-                            </div>
-                            <button id="addButton">Thêm Sản Phẩm</button>
-                        </div>
+                        <h1>Danh sách sản phẩm</h1>
                         <div class="card-body">
                             <div class="table-reponsive">
                                 <div class="add-modal" id="addModal">
@@ -707,191 +576,38 @@
                                         </form>
                                     </div>
                                 </div>
-                                <table width="100%">
+                                <table id="productTable" class="product-table">
                                     <thead>
                                     <tr>
-                                        <td>Tên Sản Phẩm</td>
-                                        <td>Mã Sản Phẩm</td>
-                                        <td>Loại Sản phẩm</td>
-                                        <td>Xuất sứ</td>
-                                        <td>Mô Tả Sản Phẩm</td>
-                                        <td>Trạng thái</td>
-                                        <td>Thao tác</td>
+                                        <th>Mã Sản Phẩm</th>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Loại Sản phẩm</th>
+                                        <th>Xuất xứ</th>
+                                        <th>Giá Sản Phẩm</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Vú Sữa</td>
-                                        <td>VS</td>
-                                        <td>Trái Cây Việt Nam</td>
-                                        <td>Tiền Giang, Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Còn Hàng
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Mứt Cam Nha Đam</td>
-                                        <td>MCND</td>
-                                        <td>Mứt Trái Cây</td>
-                                        <td>Đà Lạt, Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Còn Hàng
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mứt Dâu Nho</td>
-                                        <td>MDN</td>
-                                        <td>Mứt Trái Cây</td>
-                                        <td>Đà Lạt, Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status red"></span>
-                                            Tạm Hết
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hộp Quà Nguyệt Cát 1</td>
-                                        <td>HQNC01</td>
-                                        <td>Hộp Quà Nguyệt Cát</td>
-                                        <td>Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Còn Hàng
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hộp Quà Nguyệt Cát 2</td>
-                                        <td>HQNC02</td>
-                                        <td>Hộp Quà Nguyệt Cát</td>
-                                        <td>Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Còn Hàng
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hộp Quà Nguyệt Cát 5</td>
-                                        <td>HQNC05</td>
-                                        <td>Hộp Quà Nguyệt Cát</td>
-                                        <td>Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Còn Hàng
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hộp Quà Năm Mới 02</td>
-                                        <td>HQNM02</td>
-                                        <td>Quà Tặng Trái Cây</td>
-                                        <td>Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status red"></span>
-                                            Tạm Hết
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hộp Quà Năm Mới 03</td>
-                                        <td>HQNM03</td>
-                                        <td>Quà Tặng Trái Cây</td>
-                                        <td>Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Còn Hàng
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trái Cây Cắt Sẵn CS01</td>
-                                        <td>TCCS01</td>
-                                        <td>Trái Cây Cắt Sẵn</td>
-                                        <td>Việt Nam</td>
-                                        <td>
-                                            <button class="button-product-description">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status red"></span>
-                                            Tạm Hết
-                                        </td>
-                                        <td>
-
-                                            <button class="delete-button">Xóa</button>
-                                        </td>
-                                    </tr>
+                                    <!-- Lặp qua danh sách sản phẩm -->
+                                    <c:forEach var="product" items="${products}">
+                                        <tr>
+                                            <td>${product.id_product}</td> <!-- Mã sản phẩm -->
+                                            <td>${product.name}</td> <!-- Tên sản phẩm -->
+                                            <td>${product.categoryName}</td> <!-- Loại sản phẩm -->
+                                            <td>${product.origin}</td> <!-- Xuất xứ sản phẩm -->
+                                            <td>${product.price}</td> <!-- Xuất xứ sản phẩm -->
+                                            <td>
+                                                <span class="status ${product.status ? 'blue' : 'red'}"></span>
+                                                    ${product.status ? 'Còn Hàng' : 'Hết Hàng'}
+                                            </td>
+                                            <td>
+                                                <button class="delete-button">Xóa</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div class="card-bottom">
-                            <div class="left-section">
-                                <!-- Nội dung bên trái, ví dụ: thông tin thêm, icon, v.v. -->
-                                <span class="info">Hiển thị thêm sản phẩm</span>
-                            </div>
-                            <div class="right-section">
-                                <div class="pagination">
-                                    <button class="prev" onclick="changePage('prev')">Trước</button>
-                                    <span class="page-num" id="page-1" onclick="goToPage(1)">1</span>
-                                    <span class="page-num" id="page-2" onclick="goToPage(2)">2</span>
-                                    <span class="page-num" id="page-3" onclick="goToPage(3)">3</span>
-                                    <span class="page-num">...</span>
-                                    <button class="next" onclick="changePage('next')">Tiếp</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1007,7 +723,7 @@
                     <table id="supplierTable">
                     <thead>
                     <tr>
-                        <th>Mã nhà cung cấp</th>
+                        <th>Mã số</th>
                         <th>Tên nhà cung cấp</th>
                         <th>Địa chỉ</th>
                         <th>Email</th>

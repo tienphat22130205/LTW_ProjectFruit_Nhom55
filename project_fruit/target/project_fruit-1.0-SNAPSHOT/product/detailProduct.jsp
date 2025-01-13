@@ -257,51 +257,6 @@
 </section>
 
 
-<section class="products" id="products">
-    <h1 class="heading"><span>Sản phẩm liên quan</span></h1>
-    <div class="swiper product-slider">
-        <div class="swiper-wrapper">
-            <!-- Lặp qua danh sách sản phẩm liên quan -->
-            <c:forEach var="relatedProduct" items="${relatedProducts}">
-                <div class="swiper-slide box">
-                    <!-- Hình ảnh sản phẩm -->
-                    <a href="${pageContext.request.contextPath}/product-detail?pid=${relatedProduct.id_product}">
-                        <img src="${relatedProduct.imageUrl}" alt="${relatedProduct.name}" />
-                    </a>
-
-                    <!-- Tên sản phẩm -->
-                    <h3>${relatedProduct.name}</h3>
-
-                    <!-- Giá sản phẩm -->
-                    <h3 class="price">
-                        <span>${relatedProduct.discountedPrice}đ</span>
-                        <c:if test="${relatedProduct.percentDiscount > 0}">
-                            <del style="color: gray;">${relatedProduct.price}đ</del>
-                        </c:if>
-                    </h3>
-
-                    <!-- Đánh giá sản phẩm -->
-                    <div class="stars">
-                        <c:forEach begin="1" end="${relatedProduct.rating}" var="star">
-                            <i class="fas fa-star"></i>
-                        </c:forEach>
-                        <c:if test="${relatedProduct.rating < 5}">
-                            <i class="fas fa-star-half-alt"></i>
-                        </c:if>
-                    </div>
-
-                    <!-- Nút thêm vào giỏ hàng -->
-                    <a href="${pageContext.request.contextPath}/add-cart?pid=${relatedProduct.id_product}" class="btn">
-                        Thêm vào giỏ hàng
-                    </a>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
-</section>
-
-
-
 <section class="product-reviews">
     <h2 class="reviews-title">KHÁCH HÀNG NÓI VỀ SẢN PHẨM</h2>
     <p class="reviews-subtitle">Trở thành người đầu tiên đánh giá về sản phẩm.</p>

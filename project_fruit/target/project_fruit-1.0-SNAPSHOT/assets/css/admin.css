@@ -1385,8 +1385,6 @@ td:nth-child(4) {
 /* Style cho bảng sản phẩm trong modal */
 .product-table th,
 .product-table td {
-    padding: 15 px;
-    text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
@@ -2939,8 +2937,6 @@ table.dataTable td:nth-child(5) {
     max-width: 1200px;
     margin: 20px auto;
     background: #ffffff;
-    padding: 20px;
-
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -2952,7 +2948,20 @@ table.dataTable td:nth-child(5) {
     font-weight: bold;
     margin-bottom: 20px;
 }
+/* Điều chỉnh độ rộng cột */
+#supplierTable td:nth-child(4), /* Email */
+#supplierTable th:nth-child(4) {
+    width: 130px; /* Giảm bớt độ rộng của cột Email */
+}
 
+#supplierTable td:nth-child(6), /* Trạng thái hợp tác */
+#supplierTable th:nth-child(6) {
+    width: 100px; /* Tăng độ rộng của cột trạng thái hợp tác */
+}
+#supplierTable td:nth-child(8), /* Email */
+#supplierTable th:nth-child(8) {
+    width: 140px;
+}
 
 #supplierTable {
     width: 100%;
@@ -2966,11 +2975,7 @@ table.dataTable td:nth-child(5) {
 #supplierTable th {
     text-align: center;
     vertical-align: middle;
-    text-transform: uppercase;
     font-weight: 600;
-    padding: 12px 15px;
-    background-color: #f8f8f8;
-
 }
 
 #supplierTable td {
@@ -3446,13 +3451,16 @@ table.dataTable td:nth-child(5) {
     display: none;
 }
 
+
 /* Cải thiện giao diện thanh tìm kiếm */
-/* Cải thiện giao diện thanh tìm kiếm */
+/* Cải tiến giao diện thanh tìm kiếm */
+/* Cải tiến giao diện thanh tìm kiếm */
+/* Cải tiến giao diện thanh tìm kiếm với viền vuông */
 .dataTables_wrapper .dataTables_filter {
     display: flex;
     align-items: center;
-    background-color: #007bff; /* Màu nền sáng */
-    border-radius: 30px; /* Bo tròn góc mềm mại */
+    background-color: #f1f3f5; /* Màu nền sáng */
+    border-radius: 10px; /* Bo tròn nhẹ, tạo cảm giác vuông */
     padding: 12px 20px;
     margin: 15px 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ cho thanh tìm kiếm */
@@ -3465,7 +3473,7 @@ table.dataTable td:nth-child(5) {
     padding: 10px 15px;
     margin-left: 20px;
     font-size: 14px;
-    border-radius: 20px; /* Bo tròn ô input */
+    border-radius: 5px; /* Bo tròn ít hơn, tạo hiệu ứng vuông rõ hơn */
     width: 220px;
     transition: width 0.3s ease, background-color 0.3s ease;
     background-color: #fff; /* Màu nền trắng cho ô input */
@@ -3484,7 +3492,7 @@ table.dataTable td:nth-child(5) {
 
 /* Thêm hiệu ứng hover cho thanh tìm kiếm */
 .dataTables_wrapper .dataTables_filter:hover {
-    background-color: #28a745; /* Màu nền khi hover */
+    background-color: #e9ecef; /* Màu nền khi hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Bóng đổ đậm hơn khi hover */
 }
 
@@ -3494,5 +3502,57 @@ table.dataTable td:nth-child(5) {
     font-size: 16px;
     font-weight: bold;
 }
+/* Thiết lập cho phân trang */
+.dataTables_wrapper .dataTables_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
 
+/* Các nút phân trang */
+.dataTables_wrapper .dataTables_paginate a.paginate_button {
+    margin: 0 5px;
+    padding: 5px 15px;
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
 
+/* Khi hover vào nút phân trang */
+.dataTables_wrapper .dataTables_paginate a.paginate_button:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Nút hiện tại (được chọn) */
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Nút bị vô hiệu hóa (Previous, Next khi không có trang nào để chuyển) */
+.dataTables_wrapper .dataTables_paginate a.paginate_button.disabled {
+    color: #a9a9a9;
+}
+
+/* Các nút Previous và Next */
+.dataTables_wrapper .dataTables_paginate a#customerTable_previous,
+.dataTables_wrapper .dataTables_paginate a#customerTable_next {
+    padding: 5px 15px;
+}
+.product-table td {
+    border-bottom: 1px solid #ddd;
+}
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc{
+    /*background-color: #28a745; !* Màu nền xanh lá cây *!*/
+    /*color: white;  !* Màu chữ trắng *!*/
+    /*font-weight: bold; !* Làm cho chữ đậm *!*/
+    /*border-radius: 10px;*/
+}

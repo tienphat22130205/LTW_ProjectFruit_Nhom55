@@ -8,9 +8,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.project_fruit.dao.CustomerDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.FeedbackDao;
+import vn.edu.hcmuaf.fit.project_fruit.dao.ProductDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.SupplierDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Customer;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Feedback;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductList;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Supplier;
 
 import java.io.IOException;
@@ -82,6 +84,35 @@ public class ListProperties extends HttpServlet {
         if (customers.isEmpty()) {
             request.setAttribute("customerMessage", "Không có khách hàng nào.");
         }
+        //-------------------------------------------------------------------
+        ProductDao productDao = new ProductDao();
+        int productPage = 1;
+
+// Kiểm tra nếu có thông số "productPage" trong request (dùng để phân trang)
+        if (request.getParameter("productPage") != null) {
+            productPage = Integer.parseInt(request.getParameter("productPage"));
+        }
+
+        int recordsPerPageProducts = 86;  // Số lượng sản phẩm hiển thị mỗi trang
+        List<ProductList> products = productDao.getProductsByPage(productPage, recordsPerPageProducts);
+
+        // Lấy tổng số sản phẩm
+        int totalProducts = productDao.getTotalRecords();
+
+        // Tính số trang cần thiết để hiển thị
+        int productPages = (int) Math.ceil(totalProducts * 1.0 / recordsPerPageProducts);
+
+        // Đưa danh sách sản phẩm vào request để hiển thị trong JSP
+        request.setAttribute("products", products);
+        request.setAttribute("productPages", productPages);
+        request.setAttribute("currentProductPage", productPage);
+
+        // Kiểm tra nếu không có sản phẩm nào
+        if (products.isEmpty()) {
+            request.setAttribute("productMessage", "Không có sản phẩm nào.");
+        }
+
+
 
 
         // Chuyển tiếp tới JSP

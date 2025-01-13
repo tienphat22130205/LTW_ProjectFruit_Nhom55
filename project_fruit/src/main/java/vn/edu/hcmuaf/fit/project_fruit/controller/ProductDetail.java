@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.project_fruit.dao.ProductDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.Product;
 import vn.edu.hcmuaf.fit.project_fruit.service.ProductService;
 import vn.edu.hcmuaf.fit.project_fruit.dao.FeedbackDao;
@@ -24,6 +25,7 @@ public class ProductDetail extends HttpServlet {
             return;
         }
         ProductService service = new ProductService();
+        ProductDao dao = new ProductDao();
         try {
             int id = Integer.parseInt(pid);
             System.out.println(id);
@@ -35,23 +37,19 @@ public class ProductDetail extends HttpServlet {
             }
             request.setAttribute("product", product);
             System.out.println(product);
-            // Lấy danh mục (categoryId) từ sản phẩm hiện tại
-            // Lấy danh mục (categoryId) của sản phẩm hiện tại
-            int categoryId = product.getCategoryId();
 
-            // Lấy danh sách sản phẩm liên quan theo `categoryId`
-            List<Product> relatedProducts = service.getProductsByCategory(categoryId);
 
-            // Loại bỏ sản phẩm hiện tại khỏi danh sách liên quan
-            relatedProducts.removeIf(p -> p.getId_product() == id);
-
-            // Giới hạn danh sách sản phẩm liên quan (nếu cần)
-            relatedProducts = relatedProducts.stream().limit(6).toList();
-
-            // Gửi danh sách sản phẩm liên quan vào request
-            request.setAttribute("relatedProducts", relatedProducts);
-
-            // Đưa danh sách sản phẩm liên quan vào request
+            // Lấy danh mục (categoryId) của sản phẩm
+            int categoryId = dao.getCategoryIdByProductId(id);
+            if (categoryId == -1) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Category not found for this product");
+                return;
+            }
+            // Lấy danh sách sản phẩm liên quan
+            List<Product> relatedProducts = service.getRelatedProducts(categoryId, id);
+            if (relatedProducts.isEmpty()) {
+                request.setAttribute("relatedMessage", "No related products found.");
+            }
             request.setAttribute("relatedProducts", relatedProducts);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID format.");

@@ -34,35 +34,35 @@ public class ProductService {
     }
     public static void main(String[] args) {
         ProductService service = new ProductService();
+        ProductDao dao = new ProductDao();
 
-        // ID của sản phẩm hiện tại (giả sử bạn muốn kiểm tra sản phẩm có ID = 1)
-        int currentProductId = 1;
+        // ID sản phẩm cần kiểm tra
+        int productId = 1;
 
-        // Lấy chi tiết sản phẩm để lấy `categoryId`
-        Product currentProduct = service.getDetails(currentProductId);
+        // Lấy thông tin chi tiết sản phẩm
+        Product product = service.getDetails(productId);
+        if (product != null) {
+            System.out.println("Product found: " + product.getName());
 
-        if (currentProduct != null) {
-            // Lấy `categoryId` từ sản phẩm hiện tại
-            int categoryId = currentProduct.getCategoryId();
+            // Lấy categoryId từ ProductDao
+            int categoryId = dao.getCategoryIdByProductId(productId);
+            if (categoryId != -1) {
+                // Lấy sản phẩm liên quan
+                List<Product> relatedProducts = service.getRelatedProducts(categoryId, productId);
 
-            // Lấy danh sách sản phẩm liên quan
-            List<Product> relatedProducts = service.getRelatedProducts(categoryId, currentProductId);
-
-            // Kiểm tra và in danh sách sản phẩm liên quan
-            if (relatedProducts != null && !relatedProducts.isEmpty()) {
-                System.out.println("Related products for product ID " + currentProductId + ":");
-                for (Product product : relatedProducts) {
-                    System.out.println("ID: " + product.getId_product() +
-                            ", Name: " + product.getName() +
-                            ", Price: " + product.getPrice() +
-                            ", Discounted Price: " + product.getDiscountedPrice() +
-                            ", Category ID: " + product.getCategoryId());
+                if (!relatedProducts.isEmpty()) {
+                    System.out.println("Related products:");
+                    for (Product related : relatedProducts) {
+                        System.out.println("- " + related.getName() + " | Price: " + related.getDiscountedPrice());
+                    }
+                } else {
+                    System.out.println("No related products found for product ID " + productId);
                 }
             } else {
-                System.out.println("No related products found for product ID " + currentProductId);
+                System.out.println("Category not found for product ID " + productId);
             }
         } else {
-            System.out.println("Product with ID " + currentProductId + " not found.");
+            System.out.println("Product not found with ID " + productId);
         }
     }
 

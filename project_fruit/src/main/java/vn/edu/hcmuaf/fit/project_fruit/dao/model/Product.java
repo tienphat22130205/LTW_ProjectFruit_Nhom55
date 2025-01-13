@@ -23,9 +23,9 @@ public class Product implements Serializable {
     private String promotionName;
     private double percentDiscount;
     private double discountedPrice;
-    private int categoryId;
+//    private int categoryId;
 
-    // danh sach san pham trang chu
+   // danh sach san pham trang chu
     public Product(int id_product, String name, List<ProductImg> listImg, double price, String rating , double percentDiscount) {
         this.id_product = id_product;
         this.name = name;
@@ -199,13 +199,6 @@ public class Product implements Serializable {
         this.percentDiscount = percentDiscount;
     }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
 
     // Phương thức tính giá giảm
     public void calculateDiscountedPrice() {
