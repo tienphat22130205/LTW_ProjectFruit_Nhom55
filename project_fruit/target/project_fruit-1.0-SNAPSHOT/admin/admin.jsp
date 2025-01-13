@@ -2,6 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.PromotionsDao" %>
+<%@ page import="vn.edu.hcmuaf.fit.project_fruit.dao.model.Promotions" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -758,45 +761,109 @@
                 </table>
             </div>
         </div>
-        <div id="promotions" class="section">
+      <div id="promotions" class="section">
             <div class="promotion-container">
                 <div class="promotion-header">
                     <h1>Quản Lý Khuyến Mãi</h1>
-                    <button id="openPromotionModal" class="button-add-promotion">Thêm Khuyến Mãi</button>
-                    <!-- Modal Thêm Khuyến Mãi -->
                 </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm khuyến mãi..." />
+                    <input type="text" placeholder="Tìm khuyến mãi..."/>
                     <button>Tìm kiếm</button>
                 </div>
-                <table class="promotion-table">
-                    <thead>
-                    <tr style="text-align: center">
-                        <th>Tên Khuyến Mãi</th>
-                        <th>Thời Gian</th>
-                        <th>Phần Trăm Giảm Giá</th>
-                        <th>Loại Sản Phẩm Áp Dụng</th>
-                        <th>Hành Động</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Ngày Nhà Giáo Việt Nam</td>
-                        <td style="text-align: center">19/11/2024 - 20/11/2024</td>
-                        <td>25%</td>
-                        <td>Tất cả sản phẩm</td>
-                        <td>
-                            <button class="edit-btn"
-                                    onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">
-                                Sửa
-                            </button>
-                            <button class="delete-btn"
-                                    onclick="openModal({promoTitle: ''}, 'deletePromotion')">Xóa
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                <!-- Form Thêm Khuyến Mãi -->
+                <h3>Thêm khuyến mãi</h3>
+                <form class="promotionAddTable" action="<%= request.getContextPath() %>/AddPromotionServlet"
+                      method="POST">
+                    <div class="form-group">
+                        <label for="promotion-code">Tên khuyến mãi:</label>
+                        <input type="text" id="promotion-code" name="promotion_code" placeholder="Nhập mã giảm giá"
+                               required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description-add">Mô tả:</label>
+                        <input type="text" id="description-add" name="description_add" placeholder="Nhập mô tả"
+                               required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start-date">Ngày bắt đầu:</label>
+                        <input type="date" id="start-date" name="start_date" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiration-date">Ngày hết hạn:</label>
+                        <input type="date" id="expiration-date" name="expiration_date" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="promotion-discount">Mức giảm (%):</label>
+                        <input type="number" id="promotion-discount" name="promotion_discount"
+                               placeholder="Nhập mức giảm (%)" min="0" max="100" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="promotion-type">Loại:</label>
+                        <select id="promotion-type" name="promotion_type" class="promotionType" required>
+                            <option value="weekly">Weekly</option>
+                            <option value="general">General</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Cập nhật</button>
+                </form>
+
+                <h3>Danh sách Khuyến mãi</h3>
+                <div class="promotion-table">
+                    <%
+                        PromotionsDao promotionsDao = new PromotionsDao();
+                        List<Promotions> promotionsList = promotionsDao.getAll();
+                    %>
+                    <table>
+                        <thead>
+                        <tr style="text-align: center">
+                            <th>ID</th>
+                            <th style="text-align: left">Tên Khuyến Mãi</th>
+                            <th>Mô Tả</th>
+                            <th>Ngày Bắt Đầu</th>
+                            <th>Ngày Kết Thúc</th>
+                            <th>Phần Trăm Giảm Giá</th>
+                            <th>Loại</th>
+                            <th>Hành Động
+                            <th>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                            for (Promotions promotion : promotionsList) {
+                        %>
+                        <tr>
+                            <td><%= promotion.getId_promotion() %>
+                            </td>
+                            <td><%= promotion.getPromotion_name() %>
+                            </td>
+                            <td><%= promotion.getDescribe_1() %>
+                            </td>
+                            <td><%= promotion.getStart_date() %>
+                            </td>
+                            <td style="text-align: center"><%= promotion.getEnd_date() %>
+                            </td>
+                            <td style="text-align: center"><%= promotion.getPercent_discount()%>%
+                            </td>
+                            <td style="text-align: center"><%= promotion.getType() %>
+                            </td>
+                            <td>
+                                <button onclick="openModal({promoTitle: '', promoDiscount: 0, promoStart: '', promoEnd: ''}, 'editPromotion')">Sửa</button>
+                                <button onclick="window.location.href='remove-promotion?pid=<%= promotion.getId_promotion() %>'">Xóa</button>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div id="feedback" class="section">
