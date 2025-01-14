@@ -456,71 +456,100 @@
                         <i class="fa-solid fa-star"></i>
                     </div>
                 </div>
-                <div class="overview-content">
-                    <!-- Sản phẩm nổi bật -->
-                    <div class="highlight-products">
-                        <h2>Sản Phẩm Bán Chạy</h2>
-                        <ul>
-                            <li>
-                                <img src="<img src="${pageContext.request.contextPath}/assets/img/vusua.jpg" alt="Vú Sữa">" alt="Sản phẩm 1">
-                                <div>
-                                    <h3>Vú Sữa</h3>
-                                    <p>Giá: 121,000đ</p>
-                                </div>
-                                <button class="button-product-description">Xem chi tiết</button>
-                            </li>
-                            <li>
-                                <img src="<img src="${pageContext.request.contextPath}/assets/img/xoai.png" alt="Xoài">" alt="Sản phẩm 2">
-                                <div>
-                                    <h3>Xoài Cát</h3>
-                                    <p>Giá: 75,000đ</p>
-                                </div>
-                                <button class="button-product-description">Xem chi tiết</button>
-                            </li>
-                            <li>
-                                <img src="./img/traicaynhapkhau/cherrydocanada.png" alt="Sản phẩm 3">
-                                <div>
-                                    <h3>Cherry Đỏ</h3>
-                                    <p>Giá: 135,000đ</p>
-                                </div>
-                                <button class="button-product-description">Xem chi tiết</button>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Biểu đồ -->
-                    <div class="chart-section">
-                        <h2>Biểu Đồ Thống Kê Sản Phẩm</h2>
-                        <canvas id="productOverviewChart" width="400" height="300"></canvas>
-                    </div>
-                </div>
+            
             </div>
             <div class="recent-grid">
                 <div class="customers">
                     <div class="card">
                         <h1>Danh sách sản phẩm</h1>
                         <div class="card-body">
-                            <div class="table-reponsive">
-                                <div class="add-modal" id="addModal">
-                                    <div class="add-modal-content">
-                                        <h3>Thêm sản phẩm mới</h3>
-                                        <form id="addForm">
-                                            <input type="text" name="productName" placeholder="Tên sản phẩm"
-                                                   required>
-                                            <input type="text" name="productCode" placeholder="Mã sản phẩm"
-                                                   required>
-                                            <input type="text" name="productType" placeholder="Loại sản phẩm"
-                                                   required>
-                                            <input type="text" name="productOrigin" placeholder="Xuất xứ" required>
-                                            <select name="productStatus" required>
-                                                <option value="Còn Hàng">Còn Hàng</option>
-                                                <option value="Tạm Hết">Tạm Hết</option>
-                                            </select>
-                                            <button type="submit">Thêm</button>
-                                            <button type="button" id="closeAddModal">Đóng</button>
-                                        </form>
-                                    </div>
+
+                            <h3>Thêm sản phẩm</h3>
+                            <form class="productAddTable" action="<%= request.getContextPath() %>/addproduct"
+                                  method="post">
+                                <div class="form-group">
+                                    <label for="product-name">Tên sản phẩm:</label>
+                                    <input type="text" id="product-name" name="product-name"
+                                           placeholder="Nhập tên sản phẩm" required/>
                                 </div>
+                                <div class="form-group">
+                                    <label for="product-type">Loại sản phẩm:</label>
+                                    <input type="text" id="product-type" name="product-type"
+                                           placeholder="Nhập loại sản phẩm" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="origin">Xuất xứ:</label>
+                                    <input type="text" id="origin" name="origin" placeholder="Nhập xuất xứ" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-price">Giá:</label>
+                                    <input type="text" id="product-price" name="product-price"
+                                           placeholder="Nhập mức giá" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Số lượng:</label>
+                                    <input type="text" id="quantity" name="quantity" placeholder="Nhập số lượng"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="promotion-code">Mã khuyến mãi:</label>
+                                    <input type="text" id="promotion-code" name="promotion-code"
+                                           placeholder="Nhập mã khuyến mãi" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="supplier-add">Mã nhà cung cấp:</label>
+                                    <input type="text" id="supplier-add" name="supplier-add"
+                                           placeholder="Nhập mã nhà cung cấp" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="warranty-period">Thời gian bảo hành:</label>
+                                    <input type="text" id="warranty-period" name="warranty-period"
+                                           placeholder="Nhập thời gian bảo hành" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="shelf-life">Hạn sử dụng:</label>
+                                    <input type="text" id="shelf-life" name="shelf-life" placeholder="Nhập hạn sử dụng"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="describe">Mô tả:</label>
+                                    <input type="text" id="describe" name="describe" placeholder="Nhập mô tả sản phẩm"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rating">Đánh giá:</label>
+                                    <input type="text" id="rating" name="rating" placeholder="Nhập đánh giá sản phẩm"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="characteristic">Đặc điểm:</label>
+                                    <input type="text" id="characteristic" name="characteristic"
+                                           placeholder="Nhập đặc điểm sản phẩm" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="preserve-product">Bảo quản:</label>
+                                    <input type="text" id="preserve-product" name="preserve-product"
+                                           placeholder="Nhập cách bảo quản" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="use-product">Hướng dẫn sử dụng:</label>
+                                    <input type="text" id="use-product" name="use-product"
+                                           placeholder="Nhập hướng dẫn sử dụng" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="benefit">Lợi ích:</label>
+                                    <input type="text" id="benefit" name="benefit" placeholder="Nhập lợi ích sản phẩm"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image-link">Link ảnh:</label>
+                                    <input type="text" id="image-link" name="image-link" placeholder="Nhập link ảnh"
+                                           required/>
+                                </div>
+                                <button type="submit" class="btn-submit">Cập nhật</button>
+                            </form>
+
+                            <div class="table-reponsive">
                                 <table id="productTable" class="product-table">
                                     <thead>
                                     <tr>
