@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.project_fruit.dao.model.Product;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductImg;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductList;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -409,6 +410,22 @@ public class ProductDao {
         return productList;
     }
 
+    public static boolean deleteProductById(String productId) throws SQLException {
+        String query = "DELETE FROM products WHERE id_product = ?";
+
+        // Sử dụng DbConnect để lấy kết nối
+        try (Connection conn = DbConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, productId);
+            int rowsAffected = ps.executeUpdate();
+
+            return rowsAffected > 0; // Trả về true nếu xóa thành công, ngược lại false
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // Ném lại ngoại lệ
+        }
+    }
     
     public static void main(String[] args) {
         ProductDao productDao = new ProductDao();
