@@ -709,7 +709,7 @@
                         PromotionsDao promotionsDao = new PromotionsDao();
                         List<Promotions> promotionsList = promotionsDao.getAll();
                     %>
-                    <table>
+                    <table id="promotionTable">
                         <thead>
                         <tr style="text-align: center">
                             <th>ID</th>
@@ -719,9 +719,7 @@
                             <th>Ngày Kết Thúc</th>
                             <th>Phần Trăm Giảm Giá</th>
                             <th>Loại</th>
-                            <th>Hành Động
-                            <th>
-                            </th>
+                            <th>Hành Động</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -1049,6 +1047,11 @@
 <script>
     $(document).ready(function() {
         $('#recent-customers').DataTable();  // Khởi tạo DataTable cho bảng
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#promotionTable').DataTable();  // Khởi tạo DataTable cho bảng
     });
 </script>
 <script src="${pageContext.request.contextPath}/assets/js/admin.js" defer></script>
