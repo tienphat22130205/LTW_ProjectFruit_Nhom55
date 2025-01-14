@@ -734,7 +734,7 @@
                         <th>Trạng thái hợp tác</th>
                         <th>Đánh giá</th>
                         <th>Danh sách sản phẩm</th>
-                        <th>Hành động</th>
+<%--                        <th>Hành động</th>--%>
                     </tr>
                     </thead>
                     <tbody>
@@ -894,7 +894,7 @@
                                 <td>${feedback.cusName}</td>
                                 <td>${feedback.content}</td>
                                 <td>${feedback.dateCreate}</td>
-                                <td>${feedback.rating}</td>
+                                <td style="gap: 5px">${feedback.rating} <i class="fas fa-star"></i></td>
                             </tr>
                         </c:forEach>
                         </tbody>

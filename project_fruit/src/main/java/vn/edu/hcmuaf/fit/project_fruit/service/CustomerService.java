@@ -40,42 +40,51 @@ public class CustomerService {
     public static void main(String[] args) {
         CustomerService customerService = new CustomerService();
 
-        // Test 1: Lấy thông tin khách hàng theo ID
-//        System.out.println("Test 1: Lấy thông tin khách hàng theo ID");
-//        int testCustomerId = 1; // Thay bằng ID khách hàng bạn muốn test
-//        Customer customer = customerService.getCustomerById(testCustomerId);
-//        if (customer != null) {
-//            System.out.println("Thông tin khách hàng:");
-//            System.out.println("ID: " + customer.getIdCustomer());
-//            System.out.println("Tên: " + customer.getCustomerName());
-//            System.out.println("Số điện thoại: " + customer.getCustomerPhone());
-//            System.out.println("Địa chỉ: " + customer.getAddress());
-//            System.out.println("Email: " + customer.getEmail());
-//        } else {
-//            System.out.println("Không tìm thấy khách hàng với ID: " + testCustomerId);
-//        }
-
-//        // Test 2: Cập nhật thông tin khách hàng
-        System.out.println("\nTest 2: Cập nhật thông tin khách hàng");
-        int updateCustomerId = 1; // Thay bằng ID khách hàng bạn muốn cập nhật
-        String newName = "Nguyễn Văn B";
-        String newPhone = "0901234567";
-        String newAddress = "123 Đường ABD";
-
-        boolean isUpdated = customerService.updateCustomerDetails(updateCustomerId, newName, newPhone, newAddress);
-        if (isUpdated) {
-            System.out.println("Cập nhật thành công. Thông tin sau khi cập nhật:");
-            Customer updatedCustomer = customerService.getCustomerById(updateCustomerId);
-            if (updatedCustomer != null) {
-                System.out.println("ID: " + updatedCustomer.getIdCustomer());
-                System.out.println("Tên: " + updatedCustomer.getCustomerName());
-                System.out.println("Số điện thoại: " + updatedCustomer.getCustomerPhone());
-                System.out.println("Địa chỉ: " + updatedCustomer.getAddress());
-                System.out.println("Email: " + updatedCustomer.getEmail());
+        // Test 1: Lấy tất cả khách hàng
+        System.out.println("Test 1: Lấy tất cả khách hàng");
+        List<Customer> allCustomers = customerService.getAllCustomers();
+        if (allCustomers != null && !allCustomers.isEmpty()) {
+            System.out.println("Danh sách khách hàng:");
+            for (Customer customer : allCustomers) {
+                System.out.println("ID: " + customer.getIdCustomer());
+                System.out.println("Tên: " + customer.getCustomerName());
+                System.out.println("Số điện thoại: " + customer.getCustomerPhone());
+                System.out.println("Địa chỉ: " + customer.getAddress());
+                System.out.println("Email: " + customer.getEmail());
+                System.out.println("----------------------------");
             }
         } else {
-            System.out.println("Cập nhật thất bại cho ID: " + updateCustomerId);
+            System.out.println("Không có khách hàng nào.");
         }
+
+        // Test 2: In ra thông tin tất cả khách hàng
+        System.out.println("\nTest 2: In ra thông tin tất cả khách hàng");
+        customerService.printAllCustomers();
+
+        // Test 3: Lấy danh sách khách hàng theo phân trang
+        System.out.println("\nTest 3: Lấy danh sách khách hàng theo phân trang");
+        int page = 1; // Trang cần lấy
+        int recordsPerPage = 2; // Số khách hàng mỗi trang
+        List<Customer> paginatedCustomers = customerService.getCustomersByPage(page, recordsPerPage);
+        if (paginatedCustomers != null && !paginatedCustomers.isEmpty()) {
+            System.out.println("Danh sách khách hàng ở trang " + page + ":");
+            for (Customer customer : paginatedCustomers) {
+                System.out.println("ID: " + customer.getIdCustomer());
+                System.out.println("Tên: " + customer.getCustomerName());
+                System.out.println("Số điện thoại: " + customer.getCustomerPhone());
+                System.out.println("Địa chỉ: " + customer.getAddress());
+                System.out.println("Email: " + customer.getEmail());
+                System.out.println("----------------------------");
+            }
+        } else {
+            System.out.println("Không có khách hàng nào ở trang " + page + ".");
+        }
+
+        // Test 4: Lấy tổng số bản ghi khách hàng
+        System.out.println("\nTest 4: Lấy tổng số bản ghi khách hàng");
+        int totalRecords = customerService.getTotalRecords();
+        System.out.println("Tổng số bản ghi khách hàng: " + totalRecords);
     }
+
 
 }

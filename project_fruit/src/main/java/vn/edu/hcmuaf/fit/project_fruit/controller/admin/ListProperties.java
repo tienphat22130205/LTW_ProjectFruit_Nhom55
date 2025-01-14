@@ -25,7 +25,7 @@ public class ListProperties extends HttpServlet {
 
         // Lấy số trang từ request, mặc định là trang 1 nếu không có
         int page = 1;
-        int recordsPerPage = 17;  // Số lượng feedback hiển thị mỗi trang
+        int recordsPerPage = 500;  // Số lượng feedback hiển thị mỗi trang
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
@@ -70,7 +70,7 @@ public class ListProperties extends HttpServlet {
             customerPage = Integer.parseInt(request.getParameter("customerPage"));
         }
 
-        int recordsPerPageCustomers = 15;  // Số lượng khách hàng hiển thị mỗi trang
+        int recordsPerPageCustomers = 200;  // Số lượng khách hàng hiển thị mỗi trang
         List<Customer> customers = customerDao.getCustomersByPage(customerPage, recordsPerPageCustomers);
         int totalCustomers = customerDao.getTotalRecords();  // Lấy tổng số khách hàng
         int customerPages = (int) Math.ceil(totalCustomers * 1.0 / recordsPerPageCustomers);
@@ -93,7 +93,7 @@ public class ListProperties extends HttpServlet {
             productPage = Integer.parseInt(request.getParameter("productPage"));
         }
 
-        int recordsPerPageProducts = 86;  // Số lượng sản phẩm hiển thị mỗi trang
+        int recordsPerPageProducts = 150;  // Số lượng sản phẩm hiển thị mỗi trang
         List<ProductList> products = productDao.getProductsByPage(productPage, recordsPerPageProducts);
 
         // Lấy tổng số sản phẩm
