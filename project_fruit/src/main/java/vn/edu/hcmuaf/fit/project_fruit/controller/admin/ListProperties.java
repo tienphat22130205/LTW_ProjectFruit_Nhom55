@@ -10,10 +10,9 @@ import vn.edu.hcmuaf.fit.project_fruit.dao.CustomerDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.FeedbackDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.ProductDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.SupplierDao;
-import vn.edu.hcmuaf.fit.project_fruit.dao.model.Customer;
-import vn.edu.hcmuaf.fit.project_fruit.dao.model.Feedback;
-import vn.edu.hcmuaf.fit.project_fruit.dao.model.ProductList;
-import vn.edu.hcmuaf.fit.project_fruit.dao.model.Supplier;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.*;
+import vn.edu.hcmuaf.fit.project_fruit.service.CustomerService;
+import vn.edu.hcmuaf.fit.project_fruit.service.ProductService;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,6 +21,8 @@ public class ListProperties extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         FeedbackDao feedbackDao = new FeedbackDao();
+        CustomerService customerService = new CustomerService();
+        ProductService productService = new ProductService();
 
         // Lấy số trang từ request, mặc định là trang 1 nếu không có
         int page = 1;
@@ -39,7 +40,14 @@ public class ListProperties extends HttpServlet {
         request.setAttribute("feedback", feedbacks);  // Chỉ cần gọi một lần
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
-//--------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------
+        // Khách hàng gần đây
+        List<Customer> recentCustomers = customerService.getRecentCustomers();
+        request.setAttribute("recentCustomers", recentCustomers);
+        // -------------------------------------------------------------------------
+        List<Product> bestSellingProducts = productService.getBestSellingProducts(); // Hàm này trả về các sản phẩm bán chạy nhất
+        request.setAttribute("bestSellingProducts", bestSellingProducts);
+        //--------------------------------------------------------------------------------------
         // Kiểm tra xem có nhà cung cấp không
         SupplierDao supplierDao = new SupplierDao();
         int supplierPage = 1;

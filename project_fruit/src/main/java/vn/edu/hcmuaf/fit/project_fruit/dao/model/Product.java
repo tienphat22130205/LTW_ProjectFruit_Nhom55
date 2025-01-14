@@ -23,9 +23,18 @@ public class Product implements Serializable {
     private String promotionName;
     private double percentDiscount;
     private double discountedPrice;
+    private int totalQuantity; // Tổng số lượng đã bán
+    private double totalAmount;
+
 //    private int categoryId;
 
-   // danh sach san pham trang chu
+    public Product(String name, int totalQuantity, double totalAmount) {
+        this.name = name;
+        this.totalQuantity = totalQuantity;
+        this.totalAmount = totalAmount;
+    }
+
+    // danh sach san pham trang chu
     public Product(int id_product, String name, List<ProductImg> listImg, double price, String rating , double percentDiscount) {
         this.id_product = id_product;
         this.name = name;
@@ -56,6 +65,26 @@ public class Product implements Serializable {
         this.benefit = benefit;
         this.promotionName = promotionName;
         this.percentDiscount = percentDiscount;
+    }
+
+    public void setDiscountedPrice(double discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public int getId_product() {

@@ -150,6 +150,33 @@ public class CustomerDao {
         }
         return false;
     }
+    public List<Customer> getRecentCustomers() {
+        List<Customer> customerList = new ArrayList<>();
+        String query = "SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.create_date, a.email " +
+                "FROM customers c " +
+                "JOIN accounts a ON c.id_customer = a.id_customer " +
+                "ORDER BY a.create_date DESC LIMIT 10";  // Lấy 10 khách hàng mới nhất
+
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Customer customer = new Customer(
+                        rs.getInt("id_customer"),
+                        rs.getString("customer_name"),
+                        rs.getString("customer_phone"),
+                        rs.getString("address"),
+                        rs.getDate("create_date"),
+                        rs.getString("email")
+                );
+                customerList.add(customer);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customerList;
+    }
 
     // Main để kiểm tra và in ra dữ liệu
     public static void main(String[] args) {

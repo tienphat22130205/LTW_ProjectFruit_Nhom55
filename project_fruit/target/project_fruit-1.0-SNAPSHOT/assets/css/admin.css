@@ -3622,3 +3622,57 @@ table.dataTable thead .sorting_asc{
 .promotionAddTable .btn-submit:hover {
     background-color: #0056b3;
 }
+
+
+
+.productAddTable {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    max-width: 100%; /* Đảm bảo form không bị vỡ */
+    margin: 0 auto; /* Căn giữa form */
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.productAddTable .form-group {
+    display: flex;
+    flex-direction: column;
+    grid-column: span 1;
+}
+
+.productAddTable .form-group label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.productAddTable .form-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.productAddTable .btn-submit {
+    grid-column: span 1;
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: start;
+    margin-top: 30px;
+}
+
+.productAddTable .btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.productAddTable .form-group.wide {
+    grid-column: span 2;
+}

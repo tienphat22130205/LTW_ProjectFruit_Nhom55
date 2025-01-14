@@ -223,131 +223,37 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table width="100%">
+                                <table id="recent-customers" class="display" width="100%">
                                     <thead>
                                     <tr>
-                                        <td>Id</td>
-                                        <td>Tên khách hàng</td>
-                                        <td>Số điện thoại</td>
-                                        <td>Địa chỉ</td>
-                                        <td>Ngày mua</td>
-                                        <td>Chi tiết hóa đơn</td>
-                                        <td>Tình trạng</td>
+                                        <th>ID</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Ngày tạo tài khoản</th>
+                                        <th>Email</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>KH001</td>
-                                        <td>Ngô Tiến Phát</td>
-                                        <td>0987654321</td> <!-- Số điện thoại -->
-                                        <td>123 Đường ABC</td> <!-- Địa chỉ -->
-                                        <td>12/11/2023</td>
-                                        <td>
-                                            <button class="button-invoice-detail">Xem chi tiết</button>
-                                        </td>
-                                        <td>
-                                            <span class="status blue"></span>
-                                            Đang giao hàng
-                                        </td>
-                                    </tr>
+                                    <!-- Lặp qua danh sách khách hàng gần đây -->
+                                    <c:forEach var="customer" items="${recentCustomers}">
+                                        <tr>
+                                            <td>${customer.idCustomer}</td>
+                                            <td>${customer.customerName}</td>
+                                            <td>${customer.customerPhone}</td>
+                                            <td>${customer.address}</td>
+                                            <td>${customer.dateRegister}</td>
+                                            <td>${customer.email}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div class="card-bottom">
-                            <div class="left-section">
-                                <!-- Nội dung bên trái, ví dụ: thông tin thêm, icon, v.v. -->
-                                <span class="info">Hiển thị thêm khách hàng</span>
-                            </div>
-                            <div class="right-section">
-                                <div class="pagination">
-                                    <button class="prev" onclick="changePage('prev')">Trước</button>
-                                    <span class="page-num" id="page-1" onclick="goToPage(1)">1</span>
-                                    <span class="page-num" id="page-2" onclick="goToPage(2)">2</span>
-                                    <span class="page-num" id="page-3" onclick="goToPage(3)">3</span>
-                                    <span class="page-num">...</span>
-                                    <button class="next" onclick="changePage('next')">Tiếp</button>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="box">
                     <div class="flex-container">
-                        <div class="customer">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h2>Khách hàng mới </h2>
-                                </div>
-                                <div class="card-body">
-                                    <div class="customer">
-                                        <div class="info">
-                                            <img src="${pageContext.request.contextPath}/assets/img/user_admin.png" alt="User Admin" width="40px" height="40px" alt="">
-                                            <div>
-                                                <h4>Nguyen Van A</h4>
-                                            </div>
-                                        </div>
-                                        <div class="contact">
-                                            <span class="fa-regular fa-circle-user"></span>
-                                            <span class="fa-regular fa-comment"></span>
-                                            <span class="fa-solid fa-phone"></span>
-                                        </div>
-                                    </div>
-                                    <div class="customer">
-                                        <div class="info">
-                                            <img src="./img/user_admin.png" width="40px" height="40px" alt="">
-                                            <div>
-                                                <h4>Le Thi B</h4>
-                                            </div>
-                                        </div>
-                                        <div class="contact">
-                                            <span class="fa-regular fa-circle-user"></span>
-                                            <span class="fa-regular fa-comment"></span>
-                                            <span class="fa-solid fa-phone"></span>
-                                        </div>
-                                    </div>
-                                    <div class="customer">
-                                        <div class="info">
-                                            <img src="./img/user_admin.png" width="40px" height="40px" alt="">
-                                            <div>
-                                                <h4>Nguyen Hong N</h4>
-                                            </div>
-                                        </div>
-                                        <div class="contact">
-                                            <span class="fa-regular fa-circle-user"></span>
-                                            <span class="fa-regular fa-comment"></span>
-                                            <span class="fa-solid fa-phone"></span>
-                                        </div>
-                                    </div>
-                                    <div class="customer">
-                                        <div class="info">
-                                            <img src="./img/user_admin.png" width="40px" height="40px" alt="">
-                                            <div>
-                                                <h4>Nguyen Tu A</h4>
-                                            </div>
-                                        </div>
-                                        <div class="contact">
-                                            <span class="fa-regular fa-circle-user"></span>
-                                            <span class="fa-regular fa-comment"></span>
-                                            <span class="fa-solid fa-phone"></span>
-                                        </div>
-                                    </div>
-                                    <div class="customer">
-                                        <div class="info">
-                                            <img src="./img/user_admin.png" width="40px" height="40px" alt="">
-                                            <div>
-                                                <h4>Ngo Van A</h4>
-                                            </div>
-                                        </div>
-                                        <div class="contact">
-                                            <span class="fa-regular fa-circle-user"></span>
-                                            <span class="fa-regular fa-comment"></span>
-                                            <span class="fa-solid fa-phone"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="product">
                             <div class="card">
                                 <div class="card-header">
@@ -365,12 +271,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dâu Đà Lạt</td>
-                                                <td>50</td>
-                                                <td>10,000,000đ</td>
-                                            </tr>
+                                            <!-- Lặp qua danh sách các sản phẩm bán chạy -->
+                                            <c:forEach var="product" items="${bestSellingProducts}" varStatus="status">
+                                                <tr>
+                                                    <td>${status.index + 1}</td>  <!-- Số thứ tự, bắt đầu từ 1 -->
+                                                    <td>${product.name}</td>  <!-- Tên sản phẩm -->
+                                                    <td>${product.totalQuantity}</td>  <!-- Tổng số lượng mua -->
+                                                    <td>${product.totalAmount} VND</td>  <!-- Tổng số tiền -->
+                                                </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -399,7 +308,6 @@
         <!-- Khach hang -->
         <div id="customers" class="section">
             <div class="container">
-<%--                <h1>Thông Tin Khách Hàng</h1>--%>
                 <!-- Customer Table -->
                 <table id="customerTable">
                     <thead>
@@ -456,71 +364,99 @@
                         <i class="fa-solid fa-star"></i>
                     </div>
                 </div>
-                <div class="overview-content">
-                    <!-- Sản phẩm nổi bật -->
-                    <div class="highlight-products">
-                        <h2>Sản Phẩm Bán Chạy</h2>
-                        <ul>
-                            <li>
-                                <img src="<img src="${pageContext.request.contextPath}/assets/img/vusua.jpg" alt="Vú Sữa">" alt="Sản phẩm 1">
-                                <div>
-                                    <h3>Vú Sữa</h3>
-                                    <p>Giá: 121,000đ</p>
-                                </div>
-                                <button class="button-product-description">Xem chi tiết</button>
-                            </li>
-                            <li>
-                                <img src="<img src="${pageContext.request.contextPath}/assets/img/xoai.png" alt="Xoài">" alt="Sản phẩm 2">
-                                <div>
-                                    <h3>Xoài Cát</h3>
-                                    <p>Giá: 75,000đ</p>
-                                </div>
-                                <button class="button-product-description">Xem chi tiết</button>
-                            </li>
-                            <li>
-                                <img src="./img/traicaynhapkhau/cherrydocanada.png" alt="Sản phẩm 3">
-                                <div>
-                                    <h3>Cherry Đỏ</h3>
-                                    <p>Giá: 135,000đ</p>
-                                </div>
-                                <button class="button-product-description">Xem chi tiết</button>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Biểu đồ -->
-                    <div class="chart-section">
-                        <h2>Biểu Đồ Thống Kê Sản Phẩm</h2>
-                        <canvas id="productOverviewChart" width="400" height="300"></canvas>
-                    </div>
-                </div>
+            
             </div>
             <div class="recent-grid">
                 <div class="customers">
                     <div class="card">
                         <h1>Danh sách sản phẩm</h1>
                         <div class="card-body">
-                            <div class="table-reponsive">
-                                <div class="add-modal" id="addModal">
-                                    <div class="add-modal-content">
-                                        <h3>Thêm sản phẩm mới</h3>
-                                        <form id="addForm">
-                                            <input type="text" name="productName" placeholder="Tên sản phẩm"
-                                                   required>
-                                            <input type="text" name="productCode" placeholder="Mã sản phẩm"
-                                                   required>
-                                            <input type="text" name="productType" placeholder="Loại sản phẩm"
-                                                   required>
-                                            <input type="text" name="productOrigin" placeholder="Xuất xứ" required>
-                                            <select name="productStatus" required>
-                                                <option value="Còn Hàng">Còn Hàng</option>
-                                                <option value="Tạm Hết">Tạm Hết</option>
-                                            </select>
-                                            <button type="submit">Thêm</button>
-                                            <button type="button" id="closeAddModal">Đóng</button>
-                                        </form>
-                                    </div>
+                            <h3>Thêm sản phẩm</h3>
+                            <form class="productAddTable" action="<%= request.getContextPath() %>/addproduct"
+                                  method="post">
+                                <div class="form-group">
+                                    <label for="product-name">Tên sản phẩm:</label>
+                                    <input type="text" id="product-name" name="product-name"
+                                           placeholder="Nhập tên sản phẩm" required/>
                                 </div>
+                                <div class="form-group">
+                                    <label for="product-type">Loại sản phẩm:</label>
+                                    <input type="text" id="product-type" name="product-type"
+                                           placeholder="Nhập loại sản phẩm" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="origin">Xuất xứ:</label>
+                                    <input type="text" id="origin" name="origin" placeholder="Nhập xuất xứ" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-price">Giá:</label>
+                                    <input type="text" id="product-price" name="product-price"
+                                           placeholder="Nhập mức giá" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity">Số lượng:</label>
+                                    <input type="text" id="quantity" name="quantity" placeholder="Nhập số lượng"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="promotion-code">Mã khuyến mãi:</label>
+                                    <input type="text" id="promotion-code" name="promotion-code"
+                                           placeholder="Nhập mã khuyến mãi" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="supplier-add">Mã nhà cung cấp:</label>
+                                    <input type="text" id="supplier-add" name="supplier-add"
+                                           placeholder="Nhập mã nhà cung cấp" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="warranty-period">Thời gian bảo hành:</label>
+                                    <input type="text" id="warranty-period" name="warranty-period"
+                                           placeholder="Nhập thời gian bảo hành" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="shelf-life">Hạn sử dụng:</label>
+                                    <input type="text" id="shelf-life" name="shelf-life" placeholder="Nhập hạn sử dụng"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="describe">Mô tả:</label>
+                                    <input type="text" id="describe" name="describe" placeholder="Nhập mô tả sản phẩm"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rating">Đánh giá:</label>
+                                    <input type="text" id="rating" name="rating" placeholder="Nhập đánh giá sản phẩm"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="characteristic">Đặc điểm:</label>
+                                    <input type="text" id="characteristic" name="characteristic"
+                                           placeholder="Nhập đặc điểm sản phẩm" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="preserve-product">Bảo quản:</label>
+                                    <input type="text" id="preserve-product" name="preserve-product"
+                                           placeholder="Nhập cách bảo quản" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="use-product">Hướng dẫn sử dụng:</label>
+                                    <input type="text" id="use-product" name="use-product"
+                                           placeholder="Nhập hướng dẫn sử dụng" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="benefit">Lợi ích:</label>
+                                    <input type="text" id="benefit" name="benefit" placeholder="Nhập lợi ích sản phẩm"
+                                           required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image-link">Link ảnh:</label>
+                                    <input type="text" id="image-link" name="image-link" placeholder="Nhập link ảnh"
+                                           required/>
+                                </div>
+                                <button type="submit" class="btn-submit">Cập nhật</button>
+                            </form>
+
+                            <div class="table-reponsive">
                                 <table id="productTable" class="product-table">
                                     <thead>
                                     <tr>
@@ -850,18 +786,6 @@
                         <i class="fa-solid fa-user-gear"></i>
                         <span>Quản lý người dùng</span>
                     </div>
-                    <div class="system-item button-system-config" id="system-config">
-                        <i class="fa-solid fa-cogs"></i>
-                        <span>Cấu hình hệ thống</span>
-                    </div>
-                    <div class="system-item button-activity-log" id="activity-log">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <span>Nhật ký hoạt động</span>
-                    </div>
-                    <div class="system-item" id="support">
-                        <i class="fa-solid fa-headset"></i>
-                        <span>Hỗ trợ kỹ thuật</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1086,224 +1010,11 @@
                 đổi</button>
         </div>
     </div>
-    <!-- Modal Cấu Hình Hệ Thống -->
-    <div id="systemConfigModal" class="modal system-config-modal">
-        <div class="modal-content">
-            <div class="header">
-                <span class="close-button" onclick="closeModal('systemConfig')">&times;</span>
-                <h2>
-                    <i class="fa fa-cogs"></i> Cấu Hình Hệ Thống
-                </h2>
-            </div>
-
-            <form id="systemConfigForm" class="form-section">
-                <div class="form-group">
-                    <label for="systemName"><i class="fa fa-desktop"></i> Tên Hệ Thống:</label>
-                    <input type="text" id="systemName" placeholder="Nhập tên hệ thống" />
-                </div>
-
-                <div class="form-group">
-                    <label for="adminEmail"><i class="fa fa-envelope"></i> Email Quản Trị:</label>
-                    <input type="email" id="adminEmail" placeholder="Nhập email quản trị" />
-                </div>
-
-                <div class="form-group">
-                    <label for="language"><i class="fa fa-language"></i> Ngôn Ngữ:</label>
-                    <select id="language">
-                        <option value="vi">Tiếng Việt</option>
-                        <option value="en">English</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="timeZone"><i class="fa fa-clock"></i> Múi Giờ:</label>
-                    <select id="timeZone">
-                        <option value="UTC+7">UTC+7 (Vietnam)</option>
-                        <option value="UTC+8">UTC+8 (England)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="maintenanceMode"><i class="fa fa-wrench"></i> Chế Độ Bảo Trì:</label>
-                    <select id="maintenanceMode">
-                        <option value="off">Tắt</option>
-                        <option value="on">Bật</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="maxUsers"><i class="fa fa-users"></i> Số Lượng Người Dùng Tối Đa:</label>
-                    <input type="number" id="maxUsers" placeholder="Nhập số lượng người dùng tối đa" />
-                </div>
-            </form>
-            <div class="form-buttons">
-                <button type="button" class="btn-save" onclick="saveSystemConfig()"><i
-                        class="fa-solid fa-floppy-disk"></i> Lưu Cấu Hình</button>
-            </div>
-        </div>
-    </div>
-    <div id="activityLogModal" class="modal system-activity">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal('activityLog')">&times;</span>
-            <h2>Nhật Ký Hoạt Động</h2>
-
-            <!-- Bộ lọc -->
-            <div class="filters">
-                <!-- Phần Tìm kiếm -->
-                <div class="filter-item">
-                    <label for="searchInput">
-                        <i class="fas fa-search"></i> Tìm kiếm:
-                    </label>
-                    <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên, hoạt động..." />
-                </div>
-
-                <!-- Phần Từ ngày -->
-                <div class="filter-item">
-                    <label for="fromDate">
-                        <i class="fas fa-calendar-alt"></i> Từ ngày:
-                    </label>
-                    <input type="date" id="fromDate" />
-                </div>
-
-                <!-- Phần Đến ngày -->
-                <div class="filter-item">
-                    <label for="toDate">
-                        <i class="fas fa-calendar-alt"></i> Đến ngày:
-                    </label>
-                    <input type="date" id="toDate" />
-                </div>
-
-                <!-- Nút Lọc -->
-                <div class="filter-button">
-                    <button class="btn-filter" onclick="filterLogs()">Lọc</button>
-                </div>
-            </div>
-
-            <!-- Bảng nhật ký -->
-            <table class="activity-log">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Thời gian</th>
-                    <th>Người thực hiện</th>
-                    <th>Hành động</th>
-                    <th>Kết quả</th>
-                    <th>Ghi chú</th>
-                </tr>
-                </thead>
-                <tbody id="activityLogBody">
-                <!-- Nhật ký sẽ được thêm bằng JS -->
-                </tbody>
-            </table>
-
-            <!-- Nút hành động -->
-            <div class="action-buttons">
-                <button class="btn-clear" onclick="clearLogs()">Xóa toàn bộ nhật ký</button>
-                <button class="btn-export" onclick="exportLogs()">Xuất File</button>
-            </div>
-        </div>
-    </div>
-    <!-- Quản lý khuyến mãi -->
-    <div id="promotionModal1" class="custom-modal">
-        <div class="custom-modal-content">
-            <span class="custom-close-button" onclick="closeModal('promotion')">&times;</span>
-            <h2>Thêm Khuyến Mãi</h2>
-            <form id="promotionForm">
-                <div class="form-group">
-                    <label for="promotionName">Tên Khuyến Mãi:</label>
-                    <input type="text" id="promotionName" placeholder="Nhập tên khuyến mãi" required>
-                </div>
-                <div class="form-group">
-                    <label for="discount">Giảm Giá (%):</label>
-                    <input type="text" id="discount" min="1" max="100" placeholder="Nhập giảm giá" required>
-                </div>
-                <div class="form-group">
-                    <label for="startDate">Ngày Bắt Đầu:</label>
-                    <input type="date" id="startDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="endDate">Ngày Kết Thúc:</label>
-                    <input type="date" id="endDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
-                    <select id="productTypeSelect">
-                        <option value="all">Tất cả sản phẩm</option>
-                        <option value="domestic">Sản phẩm trong nước</option>
-                        <option value="imported">Sản phẩm nhập khẩu</option>
-                        <option value="today_fruits">Trái Ngon Hôm Nay</option>
-                        <option value="vietnam_fruits">Trái Cây Việt Nam</option>
-                        <option value="imported_fruits">Trái Cây Nhập Khẩu</option>
-                        <option value="precut_fruits">Trái Cây Cắt Sẵn</option>
-                        <option value="fruit_gifts">Quà Tặng Trái Cây</option>
-                        <option value="mooncake_gifts">Hộp Quà Nguyệt Cát</option>
-                        <option value="dried_fruits">Trái Cây Sấy Khô</option>
-                        <option value="fruit_jam">Mứt Trái Cây</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" id="savePromotionBtn" class="btn-save">Lưu</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Sửa Khuyến Mãi -->
-    <div id="editPromotionModal" class="modal">
-        <div class="editPromotionModal-content">
-            <h3>Chỉnh Sửa Chương Trình Khuyến Mãi</h3>
-            <form id="editPromotionForm" class="editPromotion">
-                <label for="promoTitle">Tên Chương Trình</label>
-                <input type="text" id="promoTitle" placeholder="Nhập tên chương trình">
-                <label for="promoDiscount">Phần Trăm Giảm Giá</label>
-                <input type="number" id="promoDiscount" placeholder="Nhập % giảm giá">
-                <label for="promoStart">Thời Gian Bắt Đầu</label>
-                <input type="date" id="promoStart">
-                <label for="promoEnd">Thời Gian Kết Thúc</label>
-                <input type="date" id="promoEnd">
-                <label for="productTypeSelect">Loại Sản Phẩm Áp Dụng</label>
-                <select id="productTypeSelect">
-                    <option value="all">Tất cả sản phẩm</option>
-                    <option value="domestic">Sản phẩm trong nước</option>
-                    <option value="imported">Sản phẩm nhập khẩu</option>
-                    <option value="today_fruits">Trái Ngon Hôm Nay</option>
-                    <option value="vietnam_fruits">Trái Cây Việt Nam</option>
-                    <option value="imported_fruits">Trái Cây Nhập Khẩu</option>
-                    <option value="precut_fruits">Trái Cây Cắt Sẵn</option>
-                    <option value="fruit_gifts">Quà Tặng Trái Cây</option>
-                    <option value="mooncake_gifts">Hộp Quà Nguyệt Cát</option>
-                    <option value="dried_fruits">Trái Cây Sấy Khô</option>
-                    <option value="fruit_jam">Mứt Trái Cây</option>
-                </select>
-            </form>
-            <div class="save-close" style="padding-top: 30px">
-                <button type="submit">Lưu</button>
-                <button type="button" onclick="closeModal()">Hủy</button>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Xóa Khuyến Mãi -->
-    <div id="deletePromotionModal" class="modal">
-        <div class="deletePromotionModal-content">
-            <h3>Xác Nhận Xóa Chương Trình</h3>
-            <div class="delete-cancel">
-                <button id="confirmDeleteButton">Xóa</button>
-                <button type="button" onclick="closeModal('deletePromotion')">Hủy</button>
-            </div>
-        </div>
-    </div>
 </div>
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/admin.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/logicAdmin.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script>
-    const contextPath = "${pageContext.request.contextPath}";
-    document.getElementById("confirmLogoutBtn").onclick = function() {
-        window.location.href = contextPath + "/logout";
-    };
-</script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 <script>
@@ -1325,7 +1036,19 @@
     $(document).ready(function() {
         $('#productTable').DataTable();  // Khởi tạo DataTable
     });
-</script>s
+</script>
+<script>
+    $(document).ready(function() {
+        $('#recent-customers').DataTable();  // Khởi tạo DataTable cho bảng
+    });
+</script>
+<script src="${pageContext.request.contextPath}/assets/js/admin.js" defer></script>
+<script>
+    const contextPath = "${pageContext.request.contextPath}";
+    document.getElementById("confirmLogoutBtn").onclick = function() {
+        window.location.href = contextPath + "/logout";
+    };
+</script>
 </body>
 
 </html>

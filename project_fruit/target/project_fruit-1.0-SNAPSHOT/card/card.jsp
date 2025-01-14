@@ -126,15 +126,6 @@
             </div>
         </div>
     </div>
-    <!-- User Menu (ẩn khi chưa đăng nhập) -->
-    <%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
-    <%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
-    <%--        <ul>--%>
-    <%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
-    <%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
-    <%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
-    <%--        </ul>--%>
-    <%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->

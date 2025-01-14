@@ -3627,13 +3627,14 @@ table.dataTable thead .sorting_asc{
 
 .productAddTable {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 16px;
     border-radius: 8px;
     border: 1px solid #ddd;
+    max-width: 100%; /* Đảm bảo form không bị vỡ */
+    margin: 0 auto; /* Căn giữa form */
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .productAddTable .form-group {
@@ -3665,6 +3666,7 @@ table.dataTable thead .sorting_asc{
     border-radius: 4px;
     cursor: pointer;
     justify-self: start;
+    margin-top: 30px;
 }
 
 .productAddTable .btn-submit:hover {

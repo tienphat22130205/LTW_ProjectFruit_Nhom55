@@ -32,40 +32,28 @@ public class ProductService {
     public List<Product> getRelatedProducts(int categoryId, int excludeProductId) {
         return productDao.getRelatedProducts(categoryId, excludeProductId);
     }
+    public List<Product> getBestSellingProducts() {
+        return productDao.getBestSellingProducts();
+    }
     public static void main(String[] args) {
-        ProductService service = new ProductService();
-        ProductDao dao = new ProductDao();
+        ProductService productService = new ProductService();
 
-        // ID sản phẩm cần kiểm tra
-        int productId = 1;
+        // Lấy sản phẩm bán chạy nhất
+        List<Product> bestSellingProducts = productService.getBestSellingProducts();
 
-        // Lấy thông tin chi tiết sản phẩm
-        Product product = service.getDetails(productId);
-        if (product != null) {
-            System.out.println("Product found: " + product.getName());
-
-            // Lấy categoryId từ ProductDao
-            int categoryId = dao.getCategoryIdByProductId(productId);
-            if (categoryId != -1) {
-                // Lấy sản phẩm liên quan
-                List<Product> relatedProducts = service.getRelatedProducts(categoryId, productId);
-
-                if (!relatedProducts.isEmpty()) {
-                    System.out.println("Related products:");
-                    for (Product related : relatedProducts) {
-                        System.out.println("- " + related.getName() + " | Price: " + related.getDiscountedPrice());
-                    }
-                } else {
-                    System.out.println("No related products found for product ID " + productId);
-                }
-            } else {
-                System.out.println("Category not found for product ID " + productId);
+        // Kiểm tra và in ra thông tin các sản phẩm bán chạy nhất
+        if (bestSellingProducts != null && !bestSellingProducts.isEmpty()) {
+            System.out.println("Sản phẩm bán chạy nhất:");
+            for (Product product : bestSellingProducts) {
+                System.out.println("Tên sản phẩm: " + product.getName());
+                System.out.println("Tổng số lượng mua: " + product.getTotalQuantity());
+                System.out.println("Tổng số tiền: " + product.getTotalAmount() + " VND");
+                System.out.println("---------------------------");
             }
         } else {
-            System.out.println("Product not found with ID " + productId);
+            System.out.println("Không có sản phẩm bán chạy nào.");
         }
     }
-
 
 }
 

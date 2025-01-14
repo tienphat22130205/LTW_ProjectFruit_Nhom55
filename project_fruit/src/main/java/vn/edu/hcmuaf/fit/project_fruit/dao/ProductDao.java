@@ -372,6 +372,34 @@ public class ProductDao {
 
         return totalRecords;
     }
+    public List<Product> getBestSellingProducts() {
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT p.product_name, SUM(id.quantity) AS total_quantity, SUM(id.quantity * p.price) AS total_amount " +
+                "FROM invoices_details id " +
+                "JOIN products p ON id.id_product = p.id_product " +
+                "JOIN invoices i ON id.id_invoice = i.id_invoice " +
+                "WHERE i.status = 'Đã hoàn thành' " +
+                "GROUP BY p.product_name " +
+                "ORDER BY total_quantity DESC " +
+                "LIMIT 10";  // Lấy 10 sản phẩm bán chạy nhất
+
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                String productName = rs.getString("product_name");
+                int totalQuantity = rs.getInt("total_quantity");
+                double totalAmount = rs.getDouble("total_amount");
+
+                Product product = new Product(productName, totalQuantity, totalAmount);
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
 
     public static void main(String[] args) {
         ProductDao productDao = new ProductDao();
