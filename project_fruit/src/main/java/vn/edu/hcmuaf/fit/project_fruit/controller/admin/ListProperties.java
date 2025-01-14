@@ -70,7 +70,7 @@ public class ListProperties extends HttpServlet {
             customerPage = Integer.parseInt(request.getParameter("customerPage"));
         }
 
-        int recordsPerPageCustomers = 10;  // Số lượng khách hàng hiển thị mỗi trang
+        int recordsPerPageCustomers = 15;  // Số lượng khách hàng hiển thị mỗi trang
         List<Customer> customers = customerDao.getCustomersByPage(customerPage, recordsPerPageCustomers);
         int totalCustomers = customerDao.getTotalRecords();  // Lấy tổng số khách hàng
         int customerPages = (int) Math.ceil(totalCustomers * 1.0 / recordsPerPageCustomers);

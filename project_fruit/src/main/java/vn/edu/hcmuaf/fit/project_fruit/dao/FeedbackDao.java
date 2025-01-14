@@ -12,10 +12,11 @@ public class FeedbackDao {
     public List<Feedback> getAllFeedback() {
         // Sử dụng getPreparedStatement từ DbConnect để lấy PreparedStatement
         PreparedStatement ps = DbConnect.getPreparedStatement("SELECT f.id_feedback, f.id_account, f.content, f.date_create, f.rating, " +
-                "a.cus_name, p.product_name " +
+                "c.customer_name AS cus_name, p.product_name " +
                 "FROM feedbacks f " +
                 "JOIN accounts a ON f.id_account = a.id_account " +
                 "JOIN products p ON f.id_product = p.id_product " +
+                "JOIN customers c ON a.id_customer = c.id_customer " +
                 "ORDER BY f.id_feedback ASC");
 
         if (ps == null) return new ArrayList<>();  // Nếu không thể tạo PreparedStatement, trả về danh sách trống
@@ -71,10 +72,11 @@ public class FeedbackDao {
     public List<Feedback> getFeedbacksByPage(int page, int recordsPerPage) {
         List<Feedback> feedbackList = new ArrayList<>();
         String query = "SELECT f.id_feedback, f.id_account, f.content, f.date_create, f.rating, " +
-                "a.cus_name, p.product_name " +
+                "c.customer_name AS cus_name, p.product_name " +
                 "FROM feedbacks f " +
                 "JOIN accounts a ON f.id_account = a.id_account " +
                 "JOIN products p ON f.id_product = p.id_product " +
+                "JOIN customers c ON a.id_customer = c.id_customer " +
                 "ORDER BY f.id_feedback ASC " +
                 "LIMIT ?, ?";  // Phân trang ở đây
 
@@ -105,22 +107,22 @@ public class FeedbackDao {
         try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) { // Sử dụng getPreparedStatement
             ResultSet rs = ps.executeQuery();  // Thực thi câu lệnh SQL
             if (rs.next()) {
-                totalRecords = rs.getInt(2);  // Lấy giá trị COUNT(*) từ kết quả
+                totalRecords = rs.getInt(1);  // Sửa lại từ rs.getInt(2) thành rs.getInt(1) vì COUNT(*) sẽ trả về kết quả ở cột đầu tiên
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return totalRecords;
-
     }
 
     public List<Feedback> getFeedbackByProductId(int idProduct) {
         List<Feedback> feedbackList = new ArrayList<>();
         String query = "SELECT f.id_feedback, f.id_account, f.content, f.date_create, f.rating, " +
-                "a.cus_name, p.product_name " +
+                "c.customer_name AS cus_name, p.product_name " +
                 "FROM feedbacks f " +
                 "JOIN accounts a ON f.id_account = a.id_account " +
                 "JOIN products p ON f.id_product = p.id_product " +
+                "JOIN customers c ON a.id_customer = c.id_customer " +
                 "WHERE p.id_product = ? " +
                 "ORDER BY f.id_feedback ASC";
 

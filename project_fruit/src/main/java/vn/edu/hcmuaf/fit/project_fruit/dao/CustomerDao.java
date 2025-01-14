@@ -11,7 +11,7 @@ public class CustomerDao {
     // Lấy tất cả các khách hàng và in ra
     public List<Customer> getAllCustomers() {
         // Sử dụng getPreparedStatement từ DbConnect để lấy PreparedStatement
-        PreparedStatement ps = DbConnect.getPreparedStatement("SELECT c.id_customer, a.cus_name, c.customer_phone, c.address, c.date_register, a.email " +
+        PreparedStatement ps = DbConnect.getPreparedStatement("SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.create_date, a.email " +
                 "FROM customers c " +
                 "JOIN accounts a ON c.id_customer = a.id_customer " +
                 "ORDER BY c.id_customer ASC");
@@ -29,10 +29,10 @@ public class CustomerDao {
                 // Lấy thông tin khách hàng từ bảng customers và bảng accounts
                 Customer customer = new Customer(
                         rs.getInt("id_customer"),
-                        rs.getString("cus_name"),  // Lấy tên khách hàng từ bảng accounts
+                        rs.getString("customer_name"),  // Lấy tên khách hàng từ bảng accounts
                         rs.getString("customer_phone"),
                         rs.getString("address"),
-                        rs.getDate("date_register"),
+                        rs.getDate("create_date"),
                         rs.getString("email")
                 );
                 customerList.add(customer);
@@ -71,7 +71,7 @@ public class CustomerDao {
     // Phương thức lấy khách hàng theo trang
     public List<Customer> getCustomersByPage(int page, int recordsPerPage) {
         List<Customer> customerList = new ArrayList<>();
-        String query = "SELECT c.id_customer, a.cus_name, c.customer_phone, c.address, c.date_register, a.email " +
+        String query = "SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.create_date, a.email " +
                 "FROM customers c " +
                 "JOIN accounts a ON c.id_customer = a.id_customer " +
                 "ORDER BY c.id_customer ASC " +
@@ -85,10 +85,10 @@ public class CustomerDao {
             while (rs.next()) {
                 customerList.add(new Customer(
                         rs.getInt("id_customer"),
-                        rs.getString("cus_name"),  // Lấy tên khách hàng từ bảng accounts
+                        rs.getString("customer_name"),
                         rs.getString("customer_phone"),
                         rs.getString("address"),
-                        rs.getDate("date_register"),
+                        rs.getDate("create_date"),
                         rs.getString("email")
                 ));
             }
@@ -112,7 +112,6 @@ public class CustomerDao {
         }
         return totalRecords;
     }
-    // Lấy khách hàng theo ID
     public Customer getCustomerById(int customerId) {
         String query = "SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.email " +
                 "FROM customers c " +
@@ -137,7 +136,6 @@ public class CustomerDao {
         }
         return null;
     }
-    // Cập nhật thông tin khách hàng
     public boolean updateCustomerDetails(int customerId, String customerName, String customerPhone, String address) {
         String query = "UPDATE customers SET customer_name = ?, customer_phone = ?, address = ? WHERE id_customer = ?";
         try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
