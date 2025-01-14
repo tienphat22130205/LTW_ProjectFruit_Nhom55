@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.project_fruit.dao;
 
 import vn.edu.hcmuaf.fit.project_fruit.dao.db.DbConnect;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.Customer;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.User;
 
 import java.sql.*;
@@ -20,7 +21,8 @@ public class UserDao {
                         rs.getInt("id_account"),
                         rs.getString("email"),
                         rs.getString("password"), // Mật khẩu hash
-                        rs.getString("role")
+                        rs.getString("role"),
+                        rs.getInt("id_customer")
                 );
             }
         } catch (SQLException e) {
@@ -102,5 +104,19 @@ public class UserDao {
             }
         }
         return false; // Đăng ký thất bại
+    }
+
+    // Cập nhật mật khẩu theo email
+    public boolean updatePasswordByEmail(String email, String hashedPassword) {
+        String query = "UPDATE accounts SET password = ? WHERE email = ?";
+        try (Connection conn = DbConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, hashedPassword);
+            ps.setString(2, email);
+            return ps.executeUpdate() > 0; // Trả về true nếu cập nhật thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

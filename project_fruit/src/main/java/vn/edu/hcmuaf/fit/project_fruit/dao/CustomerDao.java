@@ -112,6 +112,46 @@ public class CustomerDao {
         }
         return totalRecords;
     }
+    // Lấy khách hàng theo ID
+    public Customer getCustomerById(int customerId) {
+        String query = "SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.email " +
+                "FROM customers c " +
+                "JOIN accounts a ON c.id_customer = a.id_customer " +
+                "WHERE c.id_customer = ?";
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ps.setInt(1, customerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Customer(
+                            rs.getInt("id_customer"),
+                            rs.getString("customer_name"),
+                            rs.getString("customer_phone"),
+                            rs.getString("address"),
+                            null, // Không còn sử dụng date_register
+                            rs.getString("email")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    // Cập nhật thông tin khách hàng
+    public boolean updateCustomerDetails(int customerId, String customerName, String customerPhone, String address) {
+        String query = "UPDATE customers SET customer_name = ?, customer_phone = ?, address = ? WHERE id_customer = ?";
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ps.setString(1, customerName);
+            ps.setString(2, customerPhone);
+            ps.setString(3, address);
+            ps.setInt(4, customerId);
+
+            return ps.executeUpdate() > 0; // Trả về true nếu cập nhật thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     // Main để kiểm tra và in ra dữ liệu
     public static void main(String[] args) {

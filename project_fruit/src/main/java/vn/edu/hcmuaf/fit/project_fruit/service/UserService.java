@@ -4,6 +4,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.fit.project_fruit.dao.UserDao;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.User;
 
+import java.util.UUID;
+
 public class UserService {
     private final UserDao userDao = new UserDao();
 
@@ -30,6 +32,7 @@ public class UserService {
 
         return user; // Trả về user nếu hợp lệ
     }
+
     public boolean registerUser(String email, String password, String confirmPassword, String fullName) {
         if (userDao.isEmailExists(email)) {
             System.out.println("Email đã tồn tại: " + email);
@@ -53,30 +56,35 @@ public class UserService {
         // Gọi DAO để thêm người dùng mới
         return userDao.registerUser(newUser, fullName);
     }
-
-
-
-        public static void main(String[] args) {
-            UserService userService = new UserService();
-            // Test case 1: Email đã tồn tại
-            System.out.println("Test case 1: Email đã tồn tại");
-            boolean result1 = userService.registerUser("existing_email@example.com", "password123", "password123", "User One");
-            System.out.println("Kết quả: " + (result1 ? "Thành công" : "Thất bại"));
-
-            // Test case 2: Mật khẩu xác nhận không khớp
-            System.out.println("\nTest case 2: Mật khẩu xác nhận không khớp");
-            boolean result2 = userService.registerUser("new_email@example.com", "password123", "password321", "User Two");
-            System.out.println("Kết quả: " + (result2 ? "Thành công" : "Thất bại"));
-
-            // Test case 3: Đăng ký thành công
-            System.out.println("\nTest case 3: Đăng ký thành công");
-            boolean result3 = userService.registerUser("new_user@example.com", "password123", "password123", "User Three");
-            System.out.println("Kết quả: " + (result3 ? "Thành công" : "Thất bại"));
-
-            // Test case 4: Email không hợp lệ
-            System.out.println("\nTest case 4: Email không hợp lệ");
-            boolean result4 = userService.registerUser("invalid_email_format", "password123", "password123", "User Four");
-            System.out.println("Kết quả: " + (result4 ? "Thành công" : "Thất bại"));
-        }
+    // Tạo mật khẩu ngẫu nhiên
+    public String generateRandomPassword() {
+        return UUID.randomUUID().toString().substring(0, 8); // Tạo chuỗi ngẫu nhiên 8 ký tự
     }
 
+    // Phục hồi mật khẩu
+    public String recoverPassword(String email) {
+        // Kiểm tra email có tồn tại hay không
+        if (!userDao.isEmailExists(email)) {
+            return null; // Email không tồn tại
+        }
+
+        // Tạo mật khẩu mới
+        String newPassword = generateRandomPassword();
+
+        // Mã hóa mật khẩu mới
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+
+        // Cập nhật mật khẩu vào cơ sở dữ liệu
+        boolean isUpdated = userDao.updatePasswordByEmail(email, hashedPassword);
+
+        if (isUpdated) {
+            return newPassword; // Trả về mật khẩu gốc để gửi qua email
+        }
+        return null; // Cập nhật thất bại
+    }
+
+
+}
+
+
+    

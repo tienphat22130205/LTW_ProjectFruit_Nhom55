@@ -5,7 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import vn.edu.hcmuaf.fit.project_fruit.dao.model.Customer;
 import vn.edu.hcmuaf.fit.project_fruit.dao.model.User;
+import vn.edu.hcmuaf.fit.project_fruit.service.CustomerService;
 import vn.edu.hcmuaf.fit.project_fruit.service.UserService;
 
 import java.io.IOException;
@@ -14,6 +17,7 @@ import java.io.IOException;
 public class LoginController extends HttpServlet {
 
     private final UserService userService = new UserService();
+    private final CustomerService customerService = new CustomerService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,20 +31,31 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("pass");
 
         // Xác thực người dùng
-        User user = new UserService().validateUser(email, password);
+        User user = userService.validateUser(email, password);
 
         if (user != null) {
-            // Lưu user vào session
-            request.getSession().setAttribute("user", user);
+            // Lấy thông tin khách hàng từ bảng customers
+            Customer customer = customerService.getCustomerById(user.getIdCustomer());
 
-            // Chuyển hướng theo vai trò
-            if ("admin".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/admin");
-            } else if ("user".equals(user.getRole())) {
-                response.sendRedirect(request.getContextPath() + "/home");
+            if (customer != null) {
+                // Lưu thông tin User và Customer vào session
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                session.setAttribute("customer", customer);
+
+                // Chuyển hướng theo vai trò
+                if ("admin".equals(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/admin");
+                } else if ("user".equals(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                } else {
+                    // Nếu vai trò không hợp lệ, chuyển đến unauthorized
+                    response.sendRedirect(request.getContextPath() + "/unauthorized");
+                }
             } else {
-                // Nếu vai trò không hợp lệ, chuyển đến unauthorized
-                response.sendRedirect(request.getContextPath() + "/unauthorized");
+                // Không tìm thấy thông tin khách hàng
+                request.setAttribute("errorMessage", "Không thể tìm thấy thông tin khách hàng. Vui lòng thử lại.");
+                request.getRequestDispatcher("/user/login.jsp").forward(request, response);
             }
         } else {
             // Đăng nhập thất bại
@@ -49,5 +64,3 @@ public class LoginController extends HttpServlet {
         }
     }
 }
-
-

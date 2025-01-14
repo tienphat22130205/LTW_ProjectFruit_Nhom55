@@ -11,7 +11,7 @@
     <!-- ===== BOX ICONS ===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Login form responsive</title>
+    <title>Login - VitaminFruit</title>
 </head>
 <body>
 <%--<form method="post" action="login">--%>
@@ -54,9 +54,9 @@
                 <p style="color: red; text-align: center;">${errorMessage}</p>
             </c:if>
 
-            <a href="#" class="form__forgot">Quên mật khẩu ?</a>
+            <a href="${pageContext.request.contextPath}/user/forgotPassword.jsp" class="form__forgot">Quên mật khẩu ?</a>
 
-            <input type="submit" class="form__button" value="Login">
+            <input type="submit" class="form__button" value="Đăng nhập">
 
             <div class="register">
                 <p>Chưa có tài khoản?</p>

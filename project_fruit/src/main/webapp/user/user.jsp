@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- link style css -->
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user.css">
     <!-- Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- link logo anh -->
@@ -126,15 +126,6 @@
             </div>
         </div>
     </div>
-    <!-- User Menu (ẩn khi chưa đăng nhập) -->
-    <%--    <div class="user-menu" id="userMenu" style="display: none;">--%>
-    <%--        <p>Xin chào, <span id="userNameDisplay">${sessionScope.user.email}</span></p>--%>
-    <%--        <ul>--%>
-    <%--            <li><a href="${pageContext.request.contextPath}/user/user.jsp"><i class="fas fa-box"></i> Thông tin cá nhân</a></li>--%>
-    <%--            <li><a href="#"><i class="fas fa-eye"></i> Đã xem gần đây</a></li>--%>
-    <%--            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>--%>
-    <%--        </ul>--%>
-    <%--    </div>--%>
 </header>
 <!-- Menu Bar dưới Header -->
 <!-- Menu Bar dưới Header -->
@@ -174,109 +165,63 @@
 <!-- header section ends -->
 
 <div class="container">
+    <!-- Sidebar -->
     <div class="sidebar">
         <div class="profile">
-            <img alt="Profile Picture" height="50" src="../assets/img/anhdaidien.jpg" width="50" />
-            <span>Nguyễn Văn A</span>
+            <img alt="Profile Picture" height="50" src="${pageContext.request.contextPath}/assets/img/anhdaidien.jpg" width="50" />
+            <span>${sessionScope.customer.customerName}</span> <!-- Hiển thị tên từ session -->
         </div>
         <ul>
-            <li><a class="active" href="#" onclick="showSection('account-info', this)"><i class="fas fa-user"></i>
-                Thông tin tài khoản</a></li>
-            <li><a href="#" onclick="showSection('order-management', this)"><i class="fas fa-box"></i> Quản lý đơn
-                hàng</a></li>
+            <li><a class="active" href="#" onclick="showSection('account-info', this)"><i class="fas fa-user"></i> Thông tin tài khoản</a></li>
+            <li><a href="#" onclick="showSection('order-management', this)"><i class="fas fa-box"></i> Quản lý đơn hàng</a></li>
             <li><a href="${pageContext.request.contextPath}/logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
         </ul>
     </div>
+
+    <!-- Content -->
     <div class="content">
+        <!-- Thông tin tài khoản -->
         <div id="account-info" class="section active">
-            <h2>Thông tin tài khoản</h2>
-            <form>
+            <h2>Thông Tin Tài Khoản</h2>
+            <!-- Hiển thị thông báo -->
+            <c:if test="${param.success == 'true'}">
+                <div class="alert alert-success">Cập nhật thông tin thành công!</div>
+            </c:if>
+            <c:if test="${param.error == 'true'}">
+                <div class="alert alert-danger">Cập nhật thông tin thất bại. Vui lòng thử lại.</div>
+            </c:if>
+            <!-- Form cập nhật thông tin -->
+            <form action="${pageContext.request.contextPath}/update-customer-info" method="post">
+                <!-- Họ và tên -->
                 <div class="form-group">
                     <label for="name">Họ Tên</label>
-                    <input id="name" type="text" value="" placeholder="Nhập họ và tên" />
+                    <input id="name" name="customerName" type="text" value="${sessionScope.customer.customerName}" placeholder="Nhập họ và tên" required />
                 </div>
+                <!-- Số điện thoại -->
                 <div class="form-group">
-                    <label>Giới tính</label>
-                    <div class="radio-group">
-                        <label><input checked="" name="gender" type="radio" /> Nam</label>
-                        <label><input name="gender" type="radio" /> Nữ</label>
-                    </div>
+                    <label for="phone">Số Điện Thoại</label>
+                    <input id="phone" name="customerPhone" type="text" value="${sessionScope.customer.customerPhone}" placeholder="Nhập số điện thoại" required />
                 </div>
+                <!-- Địa chỉ -->
                 <div class="form-group">
-                    <label for="phone">Số điện thoại</label>
-                    <input id="phone" type="text" value="" placeholder="Nhập số điện thoại" />
-                    <a href="#">Thay đổi</a>
+                    <label for="address">Địa Chỉ</label>
+                    <input id="address" name="address" type="text" value="${sessionScope.customer.address}" placeholder="Nhập địa chỉ" required />
                 </div>
+                <!-- Email (readonly) -->
                 <div class="form-group">
-                    <%--@declare id="email"--%><label for="email">Email</label>
-                    <input id="gmail" type="text" value="" placeholder="Nhập email " />
-                    <a href="#">Thay đổi</a>
+                    <label for="email">Email</label>
+                    <input id="email" type="text" value="${sessionScope.customer.email}" readonly />
                 </div>
-                <div class="form-group">
-                    <label>Ngày sinh</label>
-                    <div class="date-group">
-                        <select>
-                            <option>Ngày</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                            <option>05</option>
-                            <option>06</option>
-                            <option>07</option>
-                            <option>08</option>
-                            <option>09</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
-                            <option>24</option>
-                            <option>25</option>
-                            <option>26</option>
-                            <option>27</option>
-                            <option>28</option>
-                            <option>29</option>
-                            <option>30</option>
-                            <option>31</option>
-                        </select>
-                        <select>
-                            <option>Tháng</option>
-                            <option>01</option>
-                            <option>02</option>
-                            <option>03</option>
-                            <option>04</option>
-                            <option>05</option>
-                            <option>06</option>
-                            <option>07</option>
-                            <option>08</option>
-                            <option>09</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                        </select>
-                        <select>
-                            <option>Năm</option>
-                        </select>
-                    </div>
-                </div>
+                <!-- Nút Lưu Thay Đổi -->
                 <div class="form-group">
                     <button type="submit">LƯU THAY ĐỔI</button>
                 </div>
             </form>
         </div>
-        <!-- Quản Lý Đơn Hàng Section -->
+
+        <!-- Quản lý đơn hàng -->
         <div id="order-management" class="section">
-            <h2>Quản lý đơn hàng</h2>
+            <h2>Quản Lý Đơn Hàng</h2>
             <div class="tabs">
                 <button onclick="showTab('all-orders')" class="tab active">Tất cả</button>
                 <button onclick="showTab('new-orders')" class="tab">Mới</button>
@@ -286,12 +231,10 @@
                 <button onclick="showTab('cancelled-orders')" class="tab">Hủy</button>
             </div>
 
-
             <div class="order-search">
                 <input type="text" placeholder="Tìm đơn hàng theo Mã đơn hàng..." id="orderSearchInput">
                 <button onclick="searchOrders()">Tìm đơn hàng</button>
             </div>
-
 
             <div class="tab-content">
                 <div id="all-orders" class="tab-pane active">
@@ -316,6 +259,9 @@
         </div>
     </div>
 </div>
+
+
+
 <!-- footer -->
 <section class="footer">
     <div class="box-container">
@@ -369,9 +315,17 @@
     </div>
     <div class="credit">Copyright © 2024 <span>Nhom 55 - Trái Cây Chất Lượng Cao</span></div>
 </section>
-<script src="../assets/js/user.js"></script>
-<script src="../assets/js/login.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/user.js" defer></script>
 <script src="${pageContext.request.contextPath}/assets/js/fruit.js" defer></script>
+<script>
+    // Script để chuyển đổi giữa các section
+    function showSection(sectionId, element) {
+        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+        document.querySelector(`#${sectionId}`).classList.add('active');
+        document.querySelectorAll('.sidebar ul li a').forEach(link => link.classList.remove('active'));
+        element.classList.add('active');
+    }
+</script>
 </body>
 
 </html>
