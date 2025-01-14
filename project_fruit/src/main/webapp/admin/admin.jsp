@@ -492,7 +492,7 @@
                                                         image: '${product.getProductImgUrl()}',
                                                         description: '${product.describe_1}'
                                                         }, 'productDescription')">Xem chi tiết</button>
-                                                <button class="delete-button">Xóa</button>
+                                                <button class="delete-button" onclick="window.location.href='remove-product?pid=${product.id_product}'">Xóa</button>
                                             </td>
                                         </tr>
                                     </c:forEach>
