@@ -98,6 +98,73 @@ public class PromotionsDao {
         }
         return false;
     }
+    
+    public List<Promotions> getPromotionsByPage(int page, int recordsPerPage) {
+        List<Promotions> promotionsList = new ArrayList<>();
+        String query = "SELECT id_promotion, promotion_name, describe_1, start_date, end_date, percent_discount, type " +
+                "FROM promotions " +
+                "ORDER BY id_promotion ASC " +
+                "LIMIT ?, ?";  // Phân trang ở đây
+
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ps.setInt(1, (page - 1) * recordsPerPage);  // Tính offset
+            ps.setInt(2, recordsPerPage);  // Giới hạn số bản ghi mỗi trang
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                promotionsList.add(new Promotions(
+                        rs.getInt("id_promotion"),
+                        rs.getString("promotion_name"),
+                        rs.getString("describe_1"),
+                        rs.getString("start_date"),
+                        rs.getString("end_date"),
+                        rs.getString("percent_discount"),
+                        rs.getString("type")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return promotionsList;
+    }
+
+    // Phương thức lấy tổng số bản ghi để tính số trang
+    public int getTotalRecords() {
+        String query = "SELECT COUNT(*) FROM promotions";
+        int totalRecords = 0;
+        try (PreparedStatement ps = DbConnect.getPreparedStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                totalRecords = rs.getInt(1);  // Trả về số bản ghi
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return totalRecords;
+    }
+        public static void main(String[] args) {
+            // Tạo đối tượng PromotionsDao
+            PromotionsDao promotionsDao = new PromotionsDao();
+
+            // Lấy tất cả các khuyến mãi
+            List<Promotions> promotionsList = promotionsDao.getAll();
+
+            // In ra các khuyến mãi
+            if (promotionsList.isEmpty()) {
+                System.out.println("Không có khuyến mãi nào.");
+            } else {
+                for (Promotions promotion : promotionsList) {
+                    System.out.println("ID: " + promotion.getId_promotion());
+                    System.out.println("Tên khuyến mãi: " + promotion.getPromotion_name());
+                    System.out.println("Mô tả: " + promotion.getDescribe_1());
+                    System.out.println("Ngày bắt đầu: " + promotion.getStart_date());
+                    System.out.println("Ngày kết thúc: " + promotion.getEnd_date());
+                    System.out.println("Phần trăm giảm giá: " + promotion.getPercent_discount());
+                    System.out.println("Loại khuyến mãi: " + promotion.getType());
+                    System.out.println("-------------------------------------------");
+                }
+            }
+        }
 
 
 }
