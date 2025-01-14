@@ -719,8 +719,9 @@
         <div id="suppliers" class="section">
             <div class="container">
                 <h1>Thông Tin Nhà Cung Cấp</h1>
-                    <!-- Supplier Table -->
-                    <table id="supplierTable">
+                <!-- Supplier Table -->
+
+                <table id="supplierTable">
                     <thead>
                     <tr>
                         <th>Mã nhà cung cấp</th>
@@ -731,6 +732,7 @@
                         <th>Trạng thái hợp tác</th>
                         <th>Đánh giá</th>
                         <th>Danh sách sản phẩm</th>
+                        <th>Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -742,16 +744,25 @@
                             <td>${supplier.address}</td>
                             <td>${supplier.email}</td>
                             <td>${supplier.phone_number}</td>
-                            <td>${supplier.status} <c:choose>
-                                <c:when test="${supplier.status == 'Đang hợp tác'}">
-                                    <i class="fas fa-circle" style="color: blue;"></i>
-                                </c:when>
-                                <c:when test="${supplier.status == 'Đã dừng'}">
-                                    <i class="fas fa-circle" style="color: red;"></i>
-                                </c:when>
-                            </c:choose></td>
+                            <td>
+                                    ${supplier.status}
+                                <c:choose>
+                                    <c:when test="${supplier.status == 'Đang hợp tác'}">
+                                        <i class="fas fa-circle" style="color: blue;"></i>
+                                    </c:when>
+                                    <c:when test="${supplier.status == 'Đã dừng'}">
+                                        <i class="fas fa-circle" style="color: red;"></i>
+                                    </c:when>
+                                </c:choose>
+                            </td>
                             <td>${supplier.rating} <i class="fas fa-star" style="color: #ffcc00;"></i></td>
                             <td>${supplier.name_category}</td>
+                            <td>
+                                <!-- Chỉnh sửa -->
+                                <a href="editSupplier.jsp?id=${supplier.id_supplier}" class="btn btn-edit">Sửa</a>
+                                <!-- Xóa -->
+                                <a href="deleteSupplier?id=${supplier.id_supplier}" class="btn btn-delete">Xóa</a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

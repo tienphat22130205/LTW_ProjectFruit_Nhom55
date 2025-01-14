@@ -10,8 +10,8 @@ public class CustomerDao {
 
     // Lấy tất cả các khách hàng và in ra
     public List<Customer> getAllCustomers() {
-        // Sử dụng getPreparedStatement từ DbConnect để lấy PreparedStatement
-        PreparedStatement ps = DbConnect.getPreparedStatement("SELECT c.id_customer, a.cus_name, c.customer_phone, c.address, c.date_register, a.email " +
+        // Cập nhật câu truy vấn để lấy customer_name từ bảng customers
+        PreparedStatement ps = DbConnect.getPreparedStatement("SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.create_date, a.email " +
                 "FROM customers c " +
                 "JOIN accounts a ON c.id_customer = a.id_customer " +
                 "ORDER BY c.id_customer ASC");
@@ -29,10 +29,10 @@ public class CustomerDao {
                 // Lấy thông tin khách hàng từ bảng customers và bảng accounts
                 Customer customer = new Customer(
                         rs.getInt("id_customer"),
-                        rs.getString("cus_name"),  // Lấy tên khách hàng từ bảng accounts
+                        rs.getString("customer_name"),  // Lấy tên khách hàng từ bảng customers
                         rs.getString("customer_phone"),
                         rs.getString("address"),
-                        rs.getDate("date_register"),
+                        rs.getDate("create_date"),
                         rs.getString("email")
                 );
                 customerList.add(customer);
@@ -62,16 +62,17 @@ public class CustomerDao {
             System.out.println("Customer Name: " + customer.getCustomerName());
             System.out.println("Customer Phone: " + customer.getCustomerPhone());
             System.out.println("Address: " + customer.getAddress());
-            System.out.println("Date Registered: " + customer.getDateRegister());
+            System.out.println("Account Created Date: " + customer.getDateRegister()); // Thay "Date Registered" bằng "Account Created Date"
             System.out.println("Email: " + customer.getEmail());
             System.out.println("------------------------------");
         }
     }
 
     // Phương thức lấy khách hàng theo trang
+    // Phương thức lấy khách hàng theo trang
     public List<Customer> getCustomersByPage(int page, int recordsPerPage) {
         List<Customer> customerList = new ArrayList<>();
-        String query = "SELECT c.id_customer, a.cus_name, c.customer_phone, c.address, c.date_register, a.email " +
+        String query = "SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.create_date, a.email " +
                 "FROM customers c " +
                 "JOIN accounts a ON c.id_customer = a.id_customer " +
                 "ORDER BY c.id_customer ASC " +
@@ -85,10 +86,10 @@ public class CustomerDao {
             while (rs.next()) {
                 customerList.add(new Customer(
                         rs.getInt("id_customer"),
-                        rs.getString("cus_name"),  // Lấy tên khách hàng từ bảng accounts
+                        rs.getString("customer_name"),  // Lấy tên khách hàng từ bảng customers
                         rs.getString("customer_phone"),
                         rs.getString("address"),
-                        rs.getDate("date_register"),
+                        rs.getDate("create_date"), // Thay "date_register" bằng "create_date"
                         rs.getString("email")
                 ));
             }
@@ -97,7 +98,6 @@ public class CustomerDao {
         }
         return customerList;
     }
-
     // Phương thức lấy tổng số bản ghi để tính số trang
     public int getTotalRecords() {
         String query = "SELECT COUNT(*) FROM customers";
@@ -112,7 +112,6 @@ public class CustomerDao {
         }
         return totalRecords;
     }
-
     // Main để kiểm tra và in ra dữ liệu
     public static void main(String[] args) {
         CustomerDao dao = new CustomerDao();
