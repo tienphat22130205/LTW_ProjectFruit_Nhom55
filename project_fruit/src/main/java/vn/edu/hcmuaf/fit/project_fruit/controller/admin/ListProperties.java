@@ -119,7 +119,32 @@ public class ListProperties extends HttpServlet {
         if (products.isEmpty()) {
             request.setAttribute("productMessage", "Không có sản phẩm nào.");
         }
+//----------------------------------------------------------------------------------------------
+        
+        PromotionsDao promotionDao = new PromotionsDao();  // Tạo đối tượng PromotionDao để lấy dữ liệu khuyến mãi
+        int promotionPage = 1;
+        if (request.getParameter("promotionPage") != null) {
+            promotionPage = Integer.parseInt(request.getParameter("promotionPage"));
+        }
 
+        int recordsPerPagePromotions = 10;  // Số lượng khuyến mãi hiển thị mỗi trang
+        List<Promotions> promotions = promotionDao.getPromotionsByPage(promotionPage, recordsPerPagePromotions);
+
+        // Lấy tổng số khuyến mãi
+        int totalPromotions = promotionDao.getTotalRecords();
+
+        // Tính số trang cần thiết để hiển thị khuyến mãi
+        int promotionPages = (int) Math.ceil(totalPromotions * 1.0 / recordsPerPagePromotions);
+
+        // Đưa danh sách khuyến mãi vào request để hiển thị trong JSP
+        request.setAttribute("promotions", promotions);
+        request.setAttribute("promotionPages", promotionPages);
+        request.setAttribute("currentPromotionPage", promotionPage);
+
+        // Kiểm tra nếu không có khuyến mãi nào
+        if (promotions.isEmpty()) {
+            request.setAttribute("promotionMessage", "Không có khuyến mãi nào.");
+        }
 
 
 
