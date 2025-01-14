@@ -576,6 +576,15 @@
                                                     ${product.status ? 'Còn Hàng' : 'Hết Hàng'}
                                             </td>
                                             <td>
+                                                <button class="detail-button" onclick="openModal({
+                                                        id_product: ${product.id_product},
+                                                        name: '${product.name}',
+                                                        categoryName: '${product.categoryName}',
+                                                        origin: '${product.origin}',
+                                                        price: '${product.price}',
+                                                        image: '${product.getProductImgUrl()}',
+                                                        description: '${product.describe_1}'
+                                                        }, 'productDescription')">Xem chi tiết</button>
                                                 <button class="delete-button">Xóa</button>
                                             </td>
                                         </tr>
