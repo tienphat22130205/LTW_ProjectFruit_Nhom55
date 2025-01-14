@@ -1,16 +1,16 @@
-function addToCart(productId) {
-    fetch(`/project_fruit/add-cart?addToCartPid=${productId}`, {
-        method: 'GET',
-    })
-        .then(response => {
-            if (response.ok) {
-                alert('Thêm vào giỏ hàng thành công!');
-            } else {
-                alert('Không thể thêm vào giỏ hàng.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
+// function addToCart(productId) {
+//     fetch(`/project_fruit/add-cart?addToCartPid=${productId}`, {
+//         method: 'GET',
+//     })
+//         .then(response => {
+//             if (response.ok) {
+//                 alert('Thêm vào giỏ hàng thành công!');
+//             } else {
+//                 alert('Không thể thêm vào giỏ hàng.');
+//             }
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
 
 function fetchSuggestions(keyword) {
     if (keyword.trim().length === 0) {
@@ -265,40 +265,6 @@ window.onclick = function (event) {
 window.addEventListener("scroll", function () {
     closeAllForms();
 });
-
-
-
-// back
-var swiper = new Swiper(".background-slider", {
-    loop: true,
-    spaceBetween: 20,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-    effect: 'fade',
-    speed: 1000,
-    navigation: {
-        nextEl: '.swiper-button-nex',
-        prevEl: '.swiper-button-pre',
-    },
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 1,
-        },
-        1020: {
-            slidesPerView: 1,
-        },
-    },
-});;
-
-
-
-
-
 
 // cap nhat thoi gian dem nguoc
 const countdownDate = new Date().getTime() + 3 * 60 * 60 * 1000; // 3 giờ tính từ bây giờ

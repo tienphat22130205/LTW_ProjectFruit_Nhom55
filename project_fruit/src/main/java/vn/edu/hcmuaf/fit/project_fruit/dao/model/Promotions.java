@@ -7,16 +7,20 @@ public class Promotions {
     private String start_date;
     private String end_date;
     private String percent_discount;
+    private String type; // Thêm thuộc tính type
 
-    public Promotions(int id_promotion, String promotion_name, String describe_1, String start_date, String end_date, String percent_discount) {
+    // Constructor
+    public Promotions(int id_promotion, String promotion_name, String describe_1, String start_date, String end_date, String percent_discount, String type) {
         this.id_promotion = id_promotion;
         this.promotion_name = promotion_name;
         this.describe_1 = describe_1;
         this.start_date = start_date;
         this.end_date = end_date;
         this.percent_discount = percent_discount;
+        this.type = type; // Gán giá trị type
     }
 
+    // Getters và Setters
     public int getId_promotion() {
         return id_promotion;
     }
@@ -49,6 +53,14 @@ public class Promotions {
         this.start_date = start_date;
     }
 
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
     public String getPercent_discount() {
         return percent_discount;
     }
@@ -57,11 +69,25 @@ public class Promotions {
         this.percent_discount = percent_discount;
     }
 
-    public String getEnd_date() {
-        return end_date;
+    public String getType() {
+        return type;
     }
 
-    public void setEnd_date(String end_date) {
-        this.end_date = end_date;
+    public void setType(String type) {
+        this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Promotions{" +
+                "id_promotion=" + id_promotion +
+                ", promotion_name='" + promotion_name + '\'' +
+                ", describe_1='" + describe_1 + '\'' +
+                ", start_date='" + start_date + '\'' +
+                ", end_date='" + end_date + '\'' +
+                ", percent_discount='" + percent_discount + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
 }

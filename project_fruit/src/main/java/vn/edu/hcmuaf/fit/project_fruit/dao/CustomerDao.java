@@ -10,7 +10,7 @@ public class CustomerDao {
 
     // Lấy tất cả các khách hàng và in ra
     public List<Customer> getAllCustomers() {
-        // Cập nhật câu truy vấn để lấy customer_name từ bảng customers
+        // Cập nhật câu truy vấn để lấy create_date từ bảng accounts
         PreparedStatement ps = DbConnect.getPreparedStatement("SELECT c.id_customer, c.customer_name, c.customer_phone, c.address, a.create_date, a.email " +
                 "FROM customers c " +
                 "JOIN accounts a ON c.id_customer = a.id_customer " +
@@ -32,7 +32,7 @@ public class CustomerDao {
                         rs.getString("customer_name"),  // Lấy tên khách hàng từ bảng customers
                         rs.getString("customer_phone"),
                         rs.getString("address"),
-                        rs.getDate("create_date"),
+                        rs.getDate("create_date"),  // Sửa lại lấy create_date từ bảng accounts
                         rs.getString("email")
                 );
                 customerList.add(customer);
@@ -51,7 +51,9 @@ public class CustomerDao {
         return customerList;  // Trả về danh sách khách hàng
     }
 
+
     // Phương thức in ra thông tin tất cả khách hàng
+// Phương thức in ra thông tin tất cả khách hàng
     public void printAllCustomers() {
         // Giả sử getAllCustomers() là phương thức lấy tất cả khách hàng từ cơ sở dữ liệu
         List<Customer> customers = getAllCustomers();
@@ -68,6 +70,8 @@ public class CustomerDao {
         }
     }
 
+
+    // Phương thức lấy khách hàng theo trang
     // Phương thức lấy khách hàng theo trang
     // Phương thức lấy khách hàng theo trang
     public List<Customer> getCustomersByPage(int page, int recordsPerPage) {
@@ -98,6 +102,7 @@ public class CustomerDao {
         }
         return customerList;
     }
+
     // Phương thức lấy tổng số bản ghi để tính số trang
     public int getTotalRecords() {
         String query = "SELECT COUNT(*) FROM customers";
@@ -112,7 +117,7 @@ public class CustomerDao {
         }
         return totalRecords;
     }
-    // Main để kiểm tra và in ra dữ liệu
+        // Main để kiểm tra và in ra dữ liệu
     public static void main(String[] args) {
         CustomerDao dao = new CustomerDao();
         dao.printAllCustomers(); // Gọi phương thức để in ra tất cả khách hàng

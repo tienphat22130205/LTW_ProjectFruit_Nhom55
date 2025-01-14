@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.project_fruit.dao.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private int id_account;
     private String email;
     private String password;

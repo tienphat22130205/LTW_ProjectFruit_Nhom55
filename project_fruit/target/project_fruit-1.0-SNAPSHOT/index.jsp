@@ -87,14 +87,13 @@
         </div>
     </div>
     <!-- Branch Selection Form -->
-    <div class="branch-selection" id="branchSelection">
+    <div class="branch-selection" id="branchSelection" style="display: none;">
         <h2>KHU VỰC MUA HÀNG</h2>
         <div class="form-group">
             <label for="city">Tỉnh/Thành</label>
             <select id="city">
                 <option>- Chọn Thành phố/ tỉnh -</option>
                 <option>Hồ Chí Minh</option>
-                <!-- Thêm các tỉnh/thành khác nếu cần -->
             </select>
         </div>
         <div class="form-group">
@@ -103,19 +102,15 @@
                 <option>- Chọn Quận/Huyện -</option>
                 <option>- Thủ Đức -</option>
                 <option>- Quận 1 -</option>
-                <!-- Thêm các quận/huyện khác nếu cần -->
             </select>
         </div>
-
         <div class="selected-branch">
             <p>Giao hoặc đến lấy tại:</p>
             <div class="branch-info-highlight">
                 <p><strong>Chi nhánh 1 - 43 Nguyễn Thái Học, Phường Cầu Ông Lãnh, Quận 1</strong></p>
             </div>
         </div>
-
         <p>Chọn cửa hàng gần bạn nhất để tối ưu chi phí giao hàng. Hoặc đến lấy hàng</p>
-
         <div class="branch-list">
             <div class="branch">
                 <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 1</p>
@@ -123,9 +118,7 @@
             </div>
             <div class="branch">
                 <p><i class="fas fa-map-marker-alt"></i> Chi nhánh 2</p>
-                <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, thành phố Thủ Đức,
-                    Phường An
-                    Phú, Thành phố Thủ Đức</p>
+                <p>SAV.7-00.01, Tầng trệt Tháp 7, The Sun Avenue, 28 Mai Chí Thọ, phường An Phú, Thành phố Thủ Đức</p>
             </div>
         </div>
     </div>
@@ -175,7 +168,7 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="./assets/img/back6.webp" alt="Background 4"></div>
             <div class="swiper-slide"><img src="./assets/img/back5.webp" alt="Background 1"></div>
-            <div class="swiper-slide"><img src="./assets/img/back2.jpg" alt="Background 2"></div>
+            <div class="swiper-slide"><img src="./assets/img/back7.webp" alt="Background 2"></div>
             <div class="swiper-slide"><img src="./assets/img/back3.jpg" alt="Background 3"></div>
             <div class="swiper-slide"><img src="./assets/img/back3.webp" alt="Background 4"></div>
         </div>
@@ -992,6 +985,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".background-slider", {
+        loop: true,
+        autoplay: {
+            delay: 5000, // 5 giây giữa các slide
+            disableOnInteraction: false,
+        },
+        effect: 'fade', // Hiệu ứng fade
+        fadeEffect: {
+            crossFade: true, // Chuyển mượt hơn
+        },
+        speed: 2000, // Thời gian chuyển slide (2 giây)
+        navigation: {
+            nextEl: '.swiper-button-nex',
+            prevEl: '.swiper-button-pre',
+        },
+    });
+</script>
 <script src="${pageContext.request.contextPath}/assets/js/fruit.js" defer></script>
 </body>
 

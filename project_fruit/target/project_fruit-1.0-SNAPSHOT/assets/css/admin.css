@@ -2580,11 +2580,9 @@ table.dataTable td:nth-child(5) {
 }
 
 .editPromotionModal-content input {
-    width: 100%;
     padding: 12px;
-    /* Khoảng cách lớn hơn */
     font-size: 16px;
-    /* Chữ to hơn */
+    width: 500px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -2663,11 +2661,11 @@ table.dataTable td:nth-child(5) {
     /* Khoảng cách giữa các dòng */
 }
 
+
 #productTypeSelect {
-    max-width: 320px;
     font-weight: bold;
     font-family: "Poppins", sans-serif;
-    width: 320px;
+    width: 500px;
     padding: 5px;
     font-size: 14px;
     color: #333;
@@ -3551,8 +3549,76 @@ table.dataTable td:nth-child(5) {
 }
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc{
-    background-color: #28a745; /* Màu nền xanh lá cây */
-    color: white;  /* Màu chữ trắng */
-    font-weight: bold; /* Làm cho chữ đậm */
-    border-radius: 10px;
+    /*background-color: #28a745; !* Màu nền xanh lá cây *!*/
+    /*color: white;  !* Màu chữ trắng *!*/
+    /*font-weight: bold; !* Làm cho chữ đậm *!*/
+    /*border-radius: 10px;*/
+}
+
+
+.promotionAddTable {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    background-color: #f9f9f9; /* Màu nền nhạt */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.promotionAddTable .form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+}
+
+.promotionAddTable .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.promotionAddTable .form-group input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.promotionAddTable .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.promotionAddTable .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.promotionAddTable .btn-submit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.promotionAddTable .btn-submit:hover {
+    background-color: #0056b3;
 }

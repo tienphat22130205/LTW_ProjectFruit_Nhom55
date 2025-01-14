@@ -197,6 +197,56 @@ public class ProductDao {
             return new ArrayList<>();
         }
     }
+    public List<Product> getRelatedProducts(int categoryId, int excludeProductId) {
+        try {
+            List<Product> relatedProducts = new ArrayList<>();
+            String query = """
+            SELECT p.*, pr.percent_discount
+            FROM products p
+            LEFT JOIN promotions pr ON p.id_promotion = pr.id_promotion
+            WHERE p.id_category = ? AND p.id_product != ?
+            LIMIT 6
+        """;
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, categoryId); // Lấy theo danh mục
+            ps.setInt(2, excludeProductId); // Loại trừ sản phẩm hiện tại
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // Lấy danh sách hình ảnh
+                List<ProductImg> listImg = getImagesByProductId(rs.getInt("id_product"));
+                // Tạo đối tượng Product
+                Product product = new Product(
+                        rs.getInt("id_product"),
+                        rs.getString("product_name"),
+                        listImg,
+                        rs.getDouble("price"),
+                        rs.getString("rating"),
+                        rs.getDouble("percent_discount")
+                );
+                product.calculateDiscountedPrice();
+                relatedProducts.add(product);
+            }
+            return relatedProducts;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+    public int getCategoryIdByProductId(int productId) {
+        try {
+            String query = "SELECT id_category FROM products WHERE id_product = ?";
+            PreparedStatement ps = DbConnect.getPreparedStatement(query);
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id_category");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Trả về -1 nếu không tìm thấy
+    }
     // Lấy sản phẩm theo ID
     public Product getById(int id) {
         try {

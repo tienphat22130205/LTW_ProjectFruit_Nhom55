@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.project_fruit.dao.model;
 
-public class ProductList {
+import java.io.Serializable;
+
+public class ProductList implements Serializable {
     private int id_product;
     private String name;
     private String categoryName;

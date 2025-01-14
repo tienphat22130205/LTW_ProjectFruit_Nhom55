@@ -29,28 +29,43 @@ public class ProductService {
     public List<Product> searchProducts(String keyword) {
         return productDao.searchProductsByName(keyword);
     }
+    public List<Product> getRelatedProducts(int categoryId, int excludeProductId) {
+        return productDao.getRelatedProducts(categoryId, excludeProductId);
+    }
     public static void main(String[] args) {
         ProductService service = new ProductService();
+        ProductDao dao = new ProductDao();
 
-        // Từ khóa cần tìm kiếm
-        String keyword = "Cam";
+        // ID sản phẩm cần kiểm tra
+        int productId = 1;
 
-        // Gọi phương thức searchProducts và nhận danh sách kết quả
-        List<Product> searchResults = service.searchProducts(keyword);
+        // Lấy thông tin chi tiết sản phẩm
+        Product product = service.getDetails(productId);
+        if (product != null) {
+            System.out.println("Product found: " + product.getName());
 
-        // In ra kết quả tìm kiếm
-        if (searchResults != null && !searchResults.isEmpty()) {
-            System.out.println("Search Results for keyword '" + keyword + "':");
-            for (Product product : searchResults) {
-                System.out.println("ID: " + product.getId_product() +
-                        ", Name: " + product.getName() +
-                        ", Price: " + product.getPrice() +
-                        ", Discounted Price: " + product.getDiscountedPrice());
+            // Lấy categoryId từ ProductDao
+            int categoryId = dao.getCategoryIdByProductId(productId);
+            if (categoryId != -1) {
+                // Lấy sản phẩm liên quan
+                List<Product> relatedProducts = service.getRelatedProducts(categoryId, productId);
+
+                if (!relatedProducts.isEmpty()) {
+                    System.out.println("Related products:");
+                    for (Product related : relatedProducts) {
+                        System.out.println("- " + related.getName() + " | Price: " + related.getDiscountedPrice());
+                    }
+                } else {
+                    System.out.println("No related products found for product ID " + productId);
+                }
+            } else {
+                System.out.println("Category not found for product ID " + productId);
             }
         } else {
-            System.out.println("No products found for keyword '" + keyword + "'.");
+            System.out.println("Product not found with ID " + productId);
         }
     }
+
 
 }
 

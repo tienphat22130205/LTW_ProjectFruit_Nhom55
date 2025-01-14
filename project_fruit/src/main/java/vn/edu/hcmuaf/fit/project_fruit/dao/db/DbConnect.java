@@ -29,7 +29,18 @@ public class DbConnect {
             return null;
         }
     }
-
+    // Trả về một Connection
+    public static Connection getConnection() {
+        try {
+            if (conn == null || conn.isClosed()) {
+                makeConnect();
+            }
+            return conn;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private static void makeConnect() throws ClassNotFoundException , SQLException{
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, DbProperties.username(), DbProperties.password());

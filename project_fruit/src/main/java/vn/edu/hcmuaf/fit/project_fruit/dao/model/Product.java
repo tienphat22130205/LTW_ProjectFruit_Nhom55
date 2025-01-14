@@ -23,7 +23,7 @@ public class Product implements Serializable {
     private String promotionName;
     private double percentDiscount;
     private double discountedPrice;
-    private String categoryName;  // Thêm thuộc tính categoryName
+//    private int categoryId;
 
    // danh sach san pham trang chu
     public Product(int id_product, String name, List<ProductImg> listImg, double price, String rating , double percentDiscount) {
@@ -57,25 +57,7 @@ public class Product implements Serializable {
         this.promotionName = promotionName;
         this.percentDiscount = percentDiscount;
     }
-    //
-    public Product(int id_product, String name, List<ProductImg> listImg, double price, String rating,
-                   double percentDiscount, boolean status, String origin, String categoryName) {
-        this.id_product = id_product;
-        this.name = name;
-        this.listImg = listImg;
-        this.price = price;
-        this.rating = rating;
-        this.percentDiscount = percentDiscount;
-        this.status = status;
-        this.origin = origin;
-        this.categoryName = categoryName;  // Gán giá trị cho categoryName
-    }
-    public String getCategoryName() {
-        return categoryName;
-    }
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+
     public int getId_product() {
         return id_product;
     }
