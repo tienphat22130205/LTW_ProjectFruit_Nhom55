@@ -9,17 +9,20 @@ public class ProductList implements Serializable {
     private double price;
     private String origin;
     private boolean status;
+    private String describe_1;
+    private String productImgUrl;
 
-    public ProductList(int id_product, String name, String categoryName, double price, String origin, boolean status) {
+    public ProductList(int id_product, String name, String categoryName, double price, String origin, boolean status, String describe_1, String productImUrl) {
         this.id_product = id_product;
         this.name = name;
         this.categoryName = categoryName;
         this.price = price;
         this.origin = origin;
         this.status = status;
+        this.describe_1 = describe_1;
+        this.productImgUrl = productImUrl;
     }
 
-    // Getters and Setters
     public int getId_product() {
         return id_product;
     }
@@ -68,6 +71,22 @@ public class ProductList implements Serializable {
         this.status = status;
     }
 
+    public String getDescribe_1() {
+        return describe_1;
+    }
+
+    public void setDescribe_1(String describe_1) {
+        this.describe_1 = describe_1;
+    }
+
+    public String getProductImgUrl() {
+        return productImgUrl;
+    }
+
+    public void setProductImgUrl(String productImgUrl) {
+        this.productImgUrl = productImgUrl;
+    }
+
     @Override
     public String toString() {
         return "ProductList{" +
@@ -77,6 +96,8 @@ public class ProductList implements Serializable {
                 ", price=" + price +
                 ", origin='" + origin + '\'' +
                 ", status=" + status +
+                ", describe_1='" + describe_1 + '\'' +
+                ", productImg=" + productImgUrl +
                 '}';
     }
 }
