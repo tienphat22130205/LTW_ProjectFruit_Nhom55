@@ -12,32 +12,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#feedbackTable').DataTable();  // Khởi tạo DataTable
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#supplierTable').DataTable();  // Khởi tạo DataTable
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#customerTable').DataTable();  // Khởi tạo DataTable
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#productTable').DataTable();  // Khởi tạo DataTable
-        });
-    </script>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/custom-datatable.css">
 <body>
 <input type="checkbox" name="" id="nav-toggle">
 <div class="sidebar">
@@ -393,42 +371,6 @@
                                                 <td>50</td>
                                                 <td>10,000,000đ</td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Táo Mỹ</td>
-                                                <td>45</td>
-                                                <td>6,750,000đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Nho Úc</td>
-                                                <td>40</td>
-                                                <td>5,200,000đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Cam Sành</td>
-                                                <td>35</td>
-                                                <td>4,900,000đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Xoài Cát</td>
-                                                <td>30</td>
-                                                <td>4,500,000đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mâm xôi đen</td>
-                                                <td>25</td>
-                                                <td>4,000,000đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>Dừa xiêm</td>
-                                                <td>24</td>
-                                                <td>3,990,000đ</td>
-                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -457,7 +399,7 @@
         <!-- Khach hang -->
         <div id="customers" class="section">
             <div class="container">
-                <h1>Thông Tin Khách Hàng</h1>
+<%--                <h1>Thông Tin Khách Hàng</h1>--%>
                 <!-- Customer Table -->
                 <table id="customerTable">
                     <thead>
@@ -721,12 +663,11 @@
         </div>
         <div id="suppliers" class="section">
             <div class="container">
-                <h1>Thông Tin Nhà Cung Cấp</h1>
                 <!-- Supplier Table -->
                 <table id="supplierTable">
                     <thead>
                     <tr>
-                        <th>Mã nhà cung cấp</th>
+                        <th>Mã số</th>
                         <th>Tên nhà cung cấp</th>
                         <th>Địa chỉ</th>
                         <th>Email</th>
@@ -1363,6 +1304,28 @@
         window.location.href = contextPath + "/logout";
     };
 </script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#feedbackTable').DataTable();  // Khởi tạo DataTable
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#supplierTable').DataTable();  // Khởi tạo DataTable
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#customerTable').DataTable();  // Khởi tạo DataTable
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#productTable').DataTable();  // Khởi tạo DataTable
+    });
+</script>s
 </body>
 
 </html>

@@ -3529,7 +3529,6 @@ table.dataTable td:nth-child(5) {
 
 /* Nút hiện tại (được chọn) */
 .dataTables_wrapper .dataTables_paginate a.paginate_button.current {
-    background-color: #0056b3;
     color: white;
     border-color: #0056b3;
 }
@@ -3617,6 +3616,7 @@ table.dataTable thead .sorting_asc{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 25px;
 }
 
 .promotionAddTable .btn-submit:hover {
