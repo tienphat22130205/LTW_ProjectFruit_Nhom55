@@ -195,12 +195,13 @@
         </div>
         <div class="sort">
             <div class="sort-menu">
-                <select id="sort-options">
+                <select id="sort-options" onchange="submitSortOption()">
                     <option value="#">Sắp xếp</option>
                     <option value="date">Sản phẩm nổi bật</option>
                     <option value="price_asc">Giá: Tăng dần</option>
                     <option value="price_desc">Giá: Giảm dần</option>
                 </select>
+                <div id="loading" style="display: none;">Đang tải...</div>
             </div>
         </div>
     </div>
@@ -430,6 +431,15 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="${pageContext.request.contextPath}/assets/js/fruit.js" defer></script>
 <script src="${pageContext.request.contextPath}/assets/js/login.js"></script>
+<script>
+    // Hàm gửi yêu cầu sắp xếp sản phẩm khi người dùng chọn lựa chọn trong dropdown
+    function submitSortOption() {
+        const sortOption = document.getElementById('sort-options').value;
+        const url = new URL(window.location.href);
+        url.searchParams.set('sort', sortOption); // Thêm tham số sắp xếp vào URL
+        window.location.href = url.toString(); // Tải lại trang với tham số sắp xếp
+    }
+</script>
 </body>
 
 </html>
