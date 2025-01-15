@@ -9,15 +9,17 @@ public class Customer {
     private String address;
     private Date dateRegister;
     private String email;
+    private String role;
 
     // Constructor, getters and setters
-    public Customer(int idCustomer, String customerName, String customerPhone, String address, Date dateRegister, String email) {
+    public Customer(int idCustomer, String customerName, String customerPhone, String address, Date dateRegister, String email, String role) {
         this.idCustomer = idCustomer;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.address = address;
         this.dateRegister = dateRegister;
         this.email = email;
+        this.role = role;
     }
 
     public int getIdCustomer() {
@@ -68,6 +70,14 @@ public class Customer {
         this.email = email;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -77,6 +87,7 @@ public class Customer {
                 ", address='" + address + '\'' +
                 ", dateRegister=" + dateRegister +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
