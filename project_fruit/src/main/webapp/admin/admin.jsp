@@ -323,7 +323,7 @@
                     </thead>
                     <tbody>
                     <!-- Lặp qua tất cả khách hàng -->
-                    <c:forEach var="customer" items="${customers}">
+                    <c:forEach var="customer" items="${customersUser}">
                         <tr id="customer-${customer.idCustomer}">
                             <td>${customer.idCustomer}</td>
                             <td>${customer.customerName}</td>
@@ -786,16 +786,106 @@
                 </div>
             </div>
         </div>
+
         <div id="system" class="section">
             <div class="system-settings">
                 <div class="system-menu">
-                    <div class="system-item button-user-management" id="user-management">
-                        <i class="fa-solid fa-user-gear"></i>
-                        <span>Quản lý người dùng</span>
+                    <!-- Tab Quản lý tài khoản -->
+                    <div class="tab-content">
+                        <h2>QUẢN LÝ TÀI KHOẢN</h2>
+                        <!-- Khu vực thêm tài khoản -->
+                        <div class="account-management">
+                            <!-- Form thêm tài khoản mới -->
+                            <div class="account-form">
+                                <h3>Thêm Tài Khoản</h3>
+                                <form class="accountAddTable" action="<%= request.getContextPath() %>/AddAccountServlet"
+                                      method="post">
+                                    <!-- Họ và tên -->
+                                    <div class="form-group">
+                                        <label for="username">Họ và tên:</label>
+                                        <input type="text" id="username" name="username" placeholder="Nhập họ và tên"
+                                               required/>
+                                    </div>
+                                    <!-- Email -->
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" id="email" name="email" placeholder="Nhập email" required/>
+                                    </div>
+                                    <!-- Mật khẩu -->
+                                    <div class="form-group">
+                                        <label for="password">Mật khẩu:</label>
+                                        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu"
+                                               minlength="6" required/>
+                                    </div>
+                                    <!-- Xác nhận mật khẩu -->
+                                    <div class="form-group">
+                                        <label for="confirm-password">Xác nhận mật khẩu:</label>
+                                        <input type="password" id="confirm-password" name="confirm-password"
+                                               placeholder="Xác nhận mật khẩu" minlength="6" required/>
+                                    </div>
+                                    <!-- Vai trò -->
+                                    <div class="form-group">
+                                        <label for="role">Phân quyền:</label>
+                                        <select id="role" name="role" class="accountRole" required>
+                                            <option value="" disabled selected>Chọn vai trò</option>
+                                            <option value="admin">Quản trị viên</option>
+                                            <option value="staff">Nhân viên</option>
+                                        </select>
+                                    </div>
+                                    <!-- Nút thêm tài khoản -->
+                                    <div class="form-group">
+                                        <button type="submit" class="btn-submit">Thêm tài khoản</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="header-tab">
+                            <div class="search-container">
+                                <input
+                                        type="text"
+                                        id="account-search"
+                                        placeholder="Tìm kiếm tài khoản..."
+                                />
+                                <button id="search-btn-account">Tìm kiếm</button>
+                            </div>
+                        </div>
+
+                        <!-- Danh sách tài khoản -->
+                        <div id="account-list">
+                            <h3>DANH SÁCH TÀI KHOẢN</h3>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên đăng nhập</th>
+                                    <th>Email</th>
+                                    <th>Phân quyền</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="customer" items="${AdminStaff}">
+                                    <tr id="customer-${customer.idCustomer}">
+                                        <td>${customer.idCustomer}</td>
+                                        <td>${customer.customerName}</td>
+                                        <td>${customer.email}</td>
+                                        <td>${customer.role}</td>
+                                        <td>
+                                            <button onclick="window.location.href='remove-account?pid=${customer.idCustomer}'">
+                                                Xóa
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </main>
 </div>
 <div id="logoutOverlay" class="logout-overlay" style="display: none;"></div>
