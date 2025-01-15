@@ -79,12 +79,21 @@ public class ListProperties extends HttpServlet {
         }
 
         int recordsPerPageCustomers = 200;  // Số lượng khách hàng hiển thị mỗi trang
-        List<Customer> customers = customerDao.getCustomersByPage(customerPage, recordsPerPageCustomers);
+       // List<Customer> customers = customerDao.getCustomersByPage(customerPage, recordsPerPageCustomers);
         int totalCustomers = customerDao.getTotalRecords();  // Lấy tổng số khách hàng
         int customerPages = (int) Math.ceil(totalCustomers * 1.0 / recordsPerPageCustomers);
 
+         List<String> userRoles = Arrays.asList("user");
+        List<String> AdminStaffRoles = Arrays.asList("admin", "staff");
+
+        List<Customer> customers = customerDao.getCustomersByRoles(userRoles);
+        List<Customer> AdminStaff = customerDao.getCustomersByRoles(AdminStaffRoles);
+
+
         // Đưa danh sách khách hàng vào request để hiển thị trong JSP
-        request.setAttribute("customers", customers);
+        request.setAttribute("customersUser", customers);
+        request.setAttribute("AdminStaff", AdminStaff);
+        
         request.setAttribute("customerPages", customerPages);
         request.setAttribute("currentCustomerPage", customerPage);
 
